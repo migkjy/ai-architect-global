@@ -4,15 +4,48 @@ import { books, bundle, getBundleUrl, getProductUrl } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
 
 export const metadata: Metadata = {
-  title: "All Books — AI Architect Series",
+  title: "All 6 AI Business Framework Guides — AI Architect Series",
   description:
-    "6 AI-powered PDF guides. Each one turns a proven business framework into an executable AI system. $17 each or $47 for the complete bundle.",
+    "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into executable AI systems. $17 each or $47 for the complete bundle.",
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io"}/products`,
+  },
 };
 
 export default function ProductsPage() {
   const bundleUrl = getBundleUrl();
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "AI Architect Series — All Books",
+    description: "6 AI-powered PDF guides that turn proven business frameworks into executable AI systems.",
+    numberOfItems: books.length,
+    itemListElement: books.map((book, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Product",
+        name: book.title,
+        description: book.shortDescription,
+        url: `${siteUrl}/products/${book.slug}`,
+        offers: {
+          "@type": "Offer",
+          price: "17",
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+        },
+      },
+    })),
+  };
 
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     <div className="min-h-screen pt-24 pb-20">
       {/* Header */}
       <div className="max-w-5xl mx-auto px-4 text-center mb-14">
@@ -129,5 +162,6 @@ export default function ProductsPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

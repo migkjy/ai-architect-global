@@ -4,9 +4,12 @@ import { bundle, getBundleUrl } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
 
 export const metadata: Metadata = {
-  title: "About — AI Architect Series",
+  title: "About AI Architect Series — Why We Built AI-Powered Business Framework Guides",
   description:
-    "The AI Architect Series was built to close the gap between reading great business frameworks and actually executing them. Learn about our mission and approach.",
+    "The AI Architect Series closes the gap between reading proven business frameworks and executing them. Learn how we turn DotCom Secrets, PLF, Copywriting Secrets, and more into AI-powered systems.",
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io"}/about`,
+  },
 };
 
 const bundleUrl = getBundleUrl();

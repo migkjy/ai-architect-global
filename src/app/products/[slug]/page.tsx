@@ -17,13 +17,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const book = getBookBySlug(slug);
   if (!book) return {};
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
   return {
     title: `${book.title} — ${book.subtitle}`,
     description: book.shortDescription,
+    alternates: {
+      canonical: `${siteUrl}/products/${slug}`,
+    },
     openGraph: {
       title: `${book.title} — ${book.subtitle}`,
       description: book.shortDescription,
       type: "website",
+      locale: "en_US",
+      siteName: "AI Architect Series",
+      url: `${siteUrl}/products/${slug}`,
     },
   };
 }

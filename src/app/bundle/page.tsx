@@ -6,7 +6,18 @@ import BuyButton from "@/components/BuyButton";
 export const metadata: Metadata = {
   title: "Complete Bundle — All 6 AI Architect Books for $47",
   description:
-    "Get all 6 AI Architect books in one bundle for $47. Apply Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks with AI. Save $55 vs buying individually. 7-day money-back guarantee.",
+    "Get all 6 AI Architect books in one bundle for $47. Apply Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven frameworks with AI. Save $55 vs buying individually. Instant PDF download. 7-day money-back guarantee.",
+  alternates: {
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io"}/bundle`,
+  },
+  openGraph: {
+    title: "Complete Bundle — All 6 AI Architect Books for $47",
+    description:
+      "Six AI-powered systems for marketing, branding, traffic, copywriting, product launches, and content. One price. Instant PDF download.",
+    type: "website",
+    locale: "en_US",
+    siteName: "AI Architect Series",
+  },
 };
 
 const bonusItems = [

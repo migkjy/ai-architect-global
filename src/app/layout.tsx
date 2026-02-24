@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
-const OG_IMAGE = `${SITE_URL}/og-image.png`;
+const OG_IMAGE = `${SITE_URL}/og-image`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -62,6 +62,9 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  alternates: {
+    canonical: SITE_URL,
   },
 };
 
