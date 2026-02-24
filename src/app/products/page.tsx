@@ -1,0 +1,133 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { books, bundle, getBundleUrl, getProductUrl } from "@/lib/products";
+import BuyButton from "@/components/BuyButton";
+
+export const metadata: Metadata = {
+  title: "All Books — AI Architect Series",
+  description:
+    "6 AI-powered PDF guides. Each one turns a proven business framework into an executable AI system. $17 each or $47 for the complete bundle.",
+};
+
+export default function ProductsPage() {
+  const bundleUrl = getBundleUrl();
+
+  return (
+    <div className="min-h-screen pt-24 pb-20">
+      {/* Header */}
+      <div className="max-w-5xl mx-auto px-4 text-center mb-14">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <span className="gradient-gold">All 6 Books</span>
+        </h1>
+        <p className="text-text-secondary text-lg mb-6 max-w-2xl mx-auto">
+          Each guide turns one world-class business framework into a step-by-step AI system — designed to work on your specific business, not a generic example.
+        </p>
+        <div className="inline-flex items-center gap-3 bg-gold/10 border border-gold/20 rounded-xl px-6 py-3">
+          <span className="text-text-secondary text-sm">Individual books:</span>
+          <span className="text-gold font-bold">$17 each</span>
+          <span className="text-text-muted text-xs">or</span>
+          <Link href="/bundle" className="text-gold font-bold hover:text-gold-light transition-colors">
+            All 6 for $47 →
+          </Link>
+        </div>
+      </div>
+
+      {/* Bundle CTA Banner */}
+      <div className="max-w-5xl mx-auto px-4 mb-14">
+        <div className="bg-surface/60 border border-gold/20 rounded-2xl p-6 md:p-8 card-glow flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <div className="inline-block bg-gold text-navy-dark text-xs font-bold px-3 py-1 rounded-full mb-3">
+              BEST VALUE
+            </div>
+            <h2 className="text-xl md:text-2xl font-bold mb-2">
+              <span className="gradient-gold">Complete Bundle — All 6 Books</span>
+            </h2>
+            <p className="text-text-secondary text-sm">
+              Six AI-powered systems for marketing, branding, traffic, copywriting, product launches, and content — one price.
+            </p>
+          </div>
+          <div className="flex flex-col items-center md:items-end gap-2 shrink-0">
+            <div className="flex items-center gap-3">
+              <span className="text-text-secondary line-through">${bundle.originalPrice}</span>
+              <span className="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded">SAVE ${bundle.originalPrice - bundle.price}</span>
+            </div>
+            <div className="text-3xl font-bold text-gold">${bundle.price}</div>
+            <BuyButton href={bundleUrl} className="text-sm px-6 py-2.5">
+              Get All 6 Books
+            </BuyButton>
+          </div>
+        </div>
+      </div>
+
+      {/* Books Grid */}
+      <div className="max-w-5xl mx-auto px-4">
+        <div className="space-y-6">
+          {books.map((book) => {
+            const productUrl = getProductUrl(book.envKey);
+            return (
+              <div
+                key={book.id}
+                className="bg-surface/60 border border-white/5 rounded-2xl p-6 md:p-8 card-glow hover:border-gold/10 transition-all"
+              >
+                <div className="flex flex-col md:flex-row gap-6">
+                  {/* Book Icon & Vol */}
+                  <div className="shrink-0 flex flex-row md:flex-col items-center gap-4 md:gap-2 md:w-24">
+                    <div className="w-16 h-16 bg-navy-dark/60 border border-gold/10 rounded-2xl flex items-center justify-center text-3xl">
+                      {book.icon}
+                    </div>
+                    <div className="text-center">
+                      <div className="text-xs text-gold/70 font-bold">Vol. {book.vol}</div>
+                      <div className="text-xs text-text-muted">of 6</div>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-3">
+                      <div>
+                        <h2 className="text-xl font-bold text-text-primary mb-1">{book.title}</h2>
+                        <p className="text-sm text-gold/80 italic">{book.tagline}</p>
+                      </div>
+                      <div className="shrink-0 flex flex-col items-start md:items-end gap-2">
+                        <div className="text-2xl font-bold text-gold">$17</div>
+                        <BuyButton href={productUrl} className="text-sm px-5 py-2">
+                          Buy Now
+                        </BuyButton>
+                        <Link
+                          href={`/products/${book.slug}`}
+                          className="text-xs text-text-secondary hover:text-gold transition-colors"
+                        >
+                          Full details →
+                        </Link>
+                      </div>
+                    </div>
+
+                    <p className="text-text-secondary text-sm leading-relaxed mb-4">
+                      {book.shortDescription}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {book.highlights.map((h) => (
+                        <span
+                          key={h}
+                          className="text-xs bg-navy-dark/60 text-text-secondary border border-white/5 px-3 py-1.5 rounded-lg"
+                        >
+                          {h}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="mt-4 pt-4 border-t border-white/5">
+                      <span className="text-xs text-gold/60 font-semibold">Real result: </span>
+                      <span className="text-xs text-text-secondary italic">&ldquo;{book.caseStudy.result}&rdquo;</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
