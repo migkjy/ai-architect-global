@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { bundle, getBundleUrl } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
+import { setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "About AI Architect Series — Why We Built AI-Powered Business Framework Guides",
@@ -14,7 +15,10 @@ export const metadata: Metadata = {
 
 const bundleUrl = getBundleUrl();
 
-export default function AboutPage() {
+export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <div className="min-h-screen pt-24 pb-20">
       <div className="max-w-3xl mx-auto px-4">

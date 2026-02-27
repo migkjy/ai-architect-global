@@ -4,20 +4,27 @@ import type { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
+import { setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
-export async function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug }));
+export function generateStaticParams() {
+  const posts = getAllPosts();
+  return routing.locales.flatMap((locale) =>
+    posts.map((p) => ({ locale, slug: p.slug }))
+  );
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string; locale: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
   return { title: post.title, description: post.description };
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
+  const { slug, locale } = await params;
+  setRequestLocale(locale);
+
   const post = getPostBySlug(slug);
   if (!post) notFound();
   return (

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { books, bundle, getBundleUrl, getProductUrl } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
+import { setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "AI Architect Series — You've Read the Books. Now Let AI Execute the Frameworks.",
@@ -45,7 +46,10 @@ const faqs = [
 
 const bundleUrl = getBundleUrl();
 
-export default function HomePage() {
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",

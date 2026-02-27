@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "All Books",
+    "bundle": "Bundle",
+    "blog": "Blog",
+    "about": "About",
+    "getBundle": "Get Bundle — $47",
+    "bundleShort": "$47 Bundle"
+  },
+  "hero": {
+    "badge": "6 World-Class Frameworks + AI",
+    "title1": "You've Read the Books.",
+    "title2": "Now Let AI Execute the Frameworks.",
+    "subtitle": "The AI Architect Series puts 6 world-class business frameworks — from Russell Brunson, Jim Edwards, Jeff Walker, and Nicolas Cole — into AI-powered systems that work on your specific business. No more \"how do I apply this?\" Just results.",
+    "cta": "Get Complete Bundle",
+    "viewBooks": "View Individual Books — $17 each",
+    "trust": "Immediate PDF download · Works with Claude, ChatGPT, Gemini · 7-day money-back guarantee"
+  },
+  "common": {
+    "buyNow": "Buy Now",
+    "learnMore": "Learn More",
+    "price": "Price",
+    "getBundle": "Get the Complete Bundle",
+    "orGetAll": "Or get all 6 for $47",
+    "getAllBooks": "Get All 6 Books",
+    "viewIndividual": "View Individual Books",
+    "instantDownload": "Instant download",
+    "moneyBack": "7-day money-back guarantee",
+    "lifetimeAccess": "Lifetime access",
+    "pdfDownload": "Immediate PDF download",
+    "worksWithAI": "Works with Claude, ChatGPT, Gemini",
+    "fullDetails": "Full details"
+  },
+  "footer": {
+    "tagline": "Six world-class business frameworks. Fully automated with AI. One price.",
+    "books": "Books",
+    "info": "Info",
+    "completeBundle": "Complete Bundle — $47",
+    "individualBooks": "Individual Books — $17 each",
+    "rights": "All rights reserved",
+    "instantPdf": "Instant PDF download"
+  },
+  "blog": {
+    "title": "AI Business Blog",
+    "subtitle": "Practical AI strategies for entrepreneurs and small business owners",
+    "backToBlog": "Back to Blog",
+    "readyToApply": "Ready to apply AI to your business?",
+    "getSeriesCta": "Get the AI Architect Series"
+  },
+  "about": {
+    "title": "Why We Built This",
+    "insightTitle": "The Insight",
+    "approachTitle": "Our Approach",
+    "frameworksTitle": "The Frameworks",
+    "ctaTitle": "Ready to Close the Execution Gap?",
+    "ctaSubtitle": "Six frameworks. Six AI systems. Immediate PDF download."
+  },
+  "bundle": {
+    "badge": "COMPLETE BUNDLE — ALL 6 BOOKS",
+    "title1": "Six World-Class Frameworks.",
+    "title2": "Fully Automated with AI.",
+    "subtitle": "Marketing. Branding. Traffic. Copywriting. Product Launch. Content. Six proven systems. One AI-powered bundle. One price.",
+    "whatYouGet": "What You Get",
+    "whatYouGetSub": "6 premium PDF guides. One complete AI-powered business system.",
+    "bonuses": "Bundle Bonuses",
+    "bonusesSub": "Exclusive Notion templates included with the complete bundle.",
+    "realValue": "The Real Value",
+    "readyTitle": "Ready to Start Executing?",
+    "readySub": "Six frameworks. Six AI systems. One complete business operating system.",
+    "alreadyKnow": "Already know which framework you need most?",
+    "viewIndividual": "View individual books at $17 each"
+  },
+  "products": {
+    "title": "All 6 Books",
+    "subtitle": "Each guide turns one world-class business framework into a step-by-step AI system — designed to work on your specific business, not a generic example.",
+    "bestValue": "BEST VALUE",
+    "bundleTitle": "Complete Bundle — All 6 Books",
+    "bundleSub": "Six AI-powered systems for marketing, branding, traffic, copywriting, product launches, and content — one price.",
+    "frameworksCovered": "Frameworks Covered",
+    "whatsInside": "What's Inside",
+    "readyToExecute": "Ready to execute {framework} with AI?",
+    "otherBooks": "Other Books in the Series"
+  }
+}

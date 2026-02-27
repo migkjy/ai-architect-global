@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { books, bundle, getBundleUrl } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
+import { setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "Complete Bundle — All 6 AI Architect Books for $47",
@@ -80,7 +81,10 @@ const frameworkAxes = [
 const bundleUrl = getBundleUrl();
 const savedAmount = bundle.originalPrice - bundle.price;
 
-export default function BundlePage() {
+export default async function BundlePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",

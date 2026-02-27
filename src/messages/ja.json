@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "products": "全書籍",
+    "bundle": "バンドル",
+    "blog": "ブログ",
+    "about": "概要",
+    "getBundle": "バンドル購入 — $47",
+    "bundleShort": "$47 バンドル"
+  },
+  "hero": {
+    "badge": "6つの世界クラスフレームワーク + AI",
+    "title1": "本は読み終えましたね。",
+    "title2": "今度はAIがフレームワークを実行します。",
+    "subtitle": "AI Architectシリーズは、ラッセル・ブランソン、ジム・エドワーズ、ジェフ・ウォーカー、ニコラス・コールの6つの世界クラスのビジネスフレームワークを、あなたのビジネスに特化したAIシステムに変換します。「どう適用すればいいの？」はもう不要。結果だけがあります。",
+    "cta": "完全バンドルを購入",
+    "viewBooks": "個別書籍を見る — 各$17",
+    "trust": "即時PDFダウンロード · Claude、ChatGPT、Gemini対応 · 7日間返金保証"
+  },
+  "common": {
+    "buyNow": "今すぐ購入",
+    "learnMore": "詳しく見る",
+    "price": "価格",
+    "getBundle": "完全バンドルを購入",
+    "orGetAll": "または6冊全て$47で",
+    "getAllBooks": "6冊全て購入",
+    "viewIndividual": "個別書籍を見る",
+    "instantDownload": "即時ダウンロード",
+    "moneyBack": "7日間返金保証",
+    "lifetimeAccess": "永久アクセス",
+    "pdfDownload": "即時PDFダウンロード",
+    "worksWithAI": "Claude、ChatGPT、Gemini対応",
+    "fullDetails": "詳細を見る"
+  },
+  "footer": {
+    "tagline": "6つの世界クラスのビジネスフレームワーク。AIで完全自動化。一つの価格。",
+    "books": "書籍",
+    "info": "情報",
+    "completeBundle": "完全バンドル — $47",
+    "individualBooks": "個別書籍 — 各$17",
+    "rights": "All rights reserved",
+    "instantPdf": "即時PDFダウンロード"
+  },
+  "blog": {
+    "title": "AIビジネスブログ",
+    "subtitle": "起業家とスモールビジネスオーナーのための実践的なAI戦略",
+    "backToBlog": "ブログに戻る",
+    "readyToApply": "AIをビジネスに活用する準備はできましたか？",
+    "getSeriesCta": "AI Architectシリーズを入手"
+  },
+  "about": {
+    "title": "なぜこれを作ったのか",
+    "insightTitle": "核心的なインサイト",
+    "approachTitle": "私たちのアプローチ",
+    "frameworksTitle": "フレームワーク",
+    "ctaTitle": "実行ギャップを埋める準備はできましたか？",
+    "ctaSubtitle": "6つのフレームワーク。6つのAIシステム。即時PDFダウンロード。"
+  },
+  "bundle": {
+    "badge": "完全バンドル — 全6冊",
+    "title1": "6つの世界クラスフレームワーク。",
+    "title2": "AIで完全自動化。",
+    "subtitle": "マーケティング。ブランディング。トラフィック。コピーライティング。製品ローンチ。コンテンツ。6つの実証済みシステム。一つのAIバンドル。一つの価格。",
+    "whatYouGet": "含まれるもの",
+    "whatYouGetSub": "6冊のプレミアムPDFガイド。一つの完全なAIビジネスシステム。",
+    "bonuses": "バンドルボーナス",
+    "bonusesSub": "完全バンドル限定のNotionテンプレート。",
+    "realValue": "実際の価値",
+    "readyTitle": "実行を始める準備はできましたか？",
+    "readySub": "6つのフレームワーク。6つのAIシステム。一つの完全なビジネスオペレーションシステム。",
+    "alreadyKnow": "どのフレームワークが最も必要かご存知ですか？",
+    "viewIndividual": "個別書籍を見る — 各$17"
+  },
+  "products": {
+    "title": "全6冊",
+    "subtitle": "各ガイドは世界クラスのビジネスフレームワークをAIシステムに変換します — 一般的な例ではなく、あなたのビジネスに特化して設計されています。",
+    "bestValue": "最高のコスパ",
+    "bundleTitle": "完全バンドル — 全6冊",
+    "bundleSub": "マーケティング、ブランディング、トラフィック、コピーライティング、製品ローンチ、コンテンツのための6つのAIシステム — 一つの価格。",
+    "frameworksCovered": "含まれるフレームワーク",
+    "whatsInside": "含まれるもの",
+    "readyToExecute": "AIで{framework}を実行する準備はできましたか？",
+    "otherBooks": "シリーズの他の書籍"
+  }
+}

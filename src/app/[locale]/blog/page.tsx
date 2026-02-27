@@ -1,13 +1,17 @@
 import { getAllPosts } from "@/lib/blog";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "AI Business Blog | AI Architect Series",
   description: "Practical AI tools, marketing automation, and business growth strategies for entrepreneurs and small business owners.",
 };
 
-export default function BlogPage() {
+export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const posts = getAllPosts();
   return (
     <main className="max-w-4xl mx-auto px-4 py-16">

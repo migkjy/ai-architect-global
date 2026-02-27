@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { books, bundle, getBundleUrl, getProductUrl } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
+import { setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "All 6 AI Business Framework Guides — AI Architect Series",
@@ -12,7 +13,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ProductsPage() {
+export default async function ProductsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const bundleUrl = getBundleUrl();
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
 

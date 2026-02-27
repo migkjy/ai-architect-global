@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "home": "홈",
+    "products": "전체 도서",
+    "bundle": "번들",
+    "blog": "블로그",
+    "about": "소개",
+    "getBundle": "번들 구매 — $47",
+    "bundleShort": "$47 번들"
+  },
+  "hero": {
+    "badge": "6가지 세계적 프레임워크 + AI",
+    "title1": "책은 다 읽으셨죠.",
+    "title2": "이제 AI가 프레임워크를 실행합니다.",
+    "subtitle": "AI Architect 시리즈는 러셀 브런슨, 짐 에드워즈, 제프 워커, 니콜라스 콜의 6가지 세계적 비즈니스 프레임워크를 당신의 사업에 맞는 AI 시스템으로 바꿔줍니다. 더 이상 \"어떻게 적용하지?\"가 없습니다. 결과만 있습니다.",
+    "cta": "전체 번들 구매",
+    "viewBooks": "개별 도서 보기 — 각 $17",
+    "trust": "즉시 PDF 다운로드 · Claude, ChatGPT, Gemini 호환 · 7일 환불 보장"
+  },
+  "common": {
+    "buyNow": "지금 구매",
+    "learnMore": "자세히 보기",
+    "price": "가격",
+    "getBundle": "전체 번들 구매",
+    "orGetAll": "또는 6권 모두 $47에",
+    "getAllBooks": "6권 모두 구매",
+    "viewIndividual": "개별 도서 보기",
+    "instantDownload": "즉시 다운로드",
+    "moneyBack": "7일 환불 보장",
+    "lifetimeAccess": "평생 이용",
+    "pdfDownload": "즉시 PDF 다운로드",
+    "worksWithAI": "Claude, ChatGPT, Gemini 호환",
+    "fullDetails": "상세 보기"
+  },
+  "footer": {
+    "tagline": "6가지 세계적 비즈니스 프레임워크. AI로 완전 자동화. 하나의 가격.",
+    "books": "도서",
+    "info": "정보",
+    "completeBundle": "전체 번들 — $47",
+    "individualBooks": "개별 도서 — 각 $17",
+    "rights": "All rights reserved",
+    "instantPdf": "즉시 PDF 다운로드"
+  },
+  "blog": {
+    "title": "AI 비즈니스 블로그",
+    "subtitle": "기업가와 소규모 사업자를 위한 실용적인 AI 전략",
+    "backToBlog": "블로그로 돌아가기",
+    "readyToApply": "AI를 비즈니스에 적용할 준비가 되셨나요?",
+    "getSeriesCta": "AI Architect 시리즈 구매하기"
+  },
+  "about": {
+    "title": "왜 이것을 만들었나",
+    "insightTitle": "핵심 인사이트",
+    "approachTitle": "우리의 접근 방식",
+    "frameworksTitle": "프레임워크",
+    "ctaTitle": "실행 격차를 해소할 준비가 되셨나요?",
+    "ctaSubtitle": "6가지 프레임워크. 6개의 AI 시스템. 즉시 PDF 다운로드."
+  },
+  "bundle": {
+    "badge": "전체 번들 — 6권 모두",
+    "title1": "6가지 세계적 프레임워크.",
+    "title2": "AI로 완전 자동화.",
+    "subtitle": "마케팅. 브랜딩. 트래픽. 카피라이팅. 제품 런칭. 콘텐츠. 6가지 검증된 시스템. 하나의 AI 번들. 하나의 가격.",
+    "whatYouGet": "포함 내용",
+    "whatYouGetSub": "6권의 프리미엄 PDF 가이드. 하나의 완전한 AI 비즈니스 시스템.",
+    "bonuses": "번들 보너스",
+    "bonusesSub": "전체 번들에만 포함되는 Notion 템플릿.",
+    "realValue": "실제 가치",
+    "readyTitle": "실행을 시작할 준비가 되셨나요?",
+    "readySub": "6가지 프레임워크. 6개의 AI 시스템. 하나의 완전한 비즈니스 운영 시스템.",
+    "alreadyKnow": "어떤 프레임워크가 가장 필요한지 이미 아시나요?",
+    "viewIndividual": "개별 도서 보기 — 각 $17"
+  },
+  "products": {
+    "title": "전체 6권",
+    "subtitle": "각 가이드는 세계적 비즈니스 프레임워크를 AI 시스템으로 전환합니다 — 일반적인 예시가 아닌, 당신의 사업에 맞춰 설계되었습니다.",
+    "bestValue": "최고 가성비",
+    "bundleTitle": "전체 번들 — 6권 모두",
+    "bundleSub": "마케팅, 브랜딩, 트래픽, 카피라이팅, 제품 런칭, 콘텐츠를 위한 6개 AI 시스템 — 하나의 가격.",
+    "frameworksCovered": "포함된 프레임워크",
+    "whatsInside": "포함 내용",
+    "readyToExecute": "AI로 {framework}를 실행할 준비가 되셨나요?",
+    "otherBooks": "시리즈 다른 도서"
+  }
+}

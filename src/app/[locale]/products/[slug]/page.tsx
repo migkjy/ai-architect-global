@@ -3,13 +3,17 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { books, getBookBySlug, getBundleUrl, getProductUrl } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
+import { setRequestLocale } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: string }>;
 };
 
-export async function generateStaticParams() {
-  return books.map((b) => ({ slug: b.slug }));
+export function generateStaticParams() {
+  return routing.locales.flatMap((locale) =>
+    books.map((b) => ({ locale, slug: b.slug }))
+  );
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -36,7 +40,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProductPage({ params }: Props) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
+  setRequestLocale(locale);
+
   const book = getBookBySlug(slug);
 
   if (!book) notFound();
