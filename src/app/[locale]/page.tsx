@@ -8,6 +8,41 @@ export const metadata: Metadata = {
   title: "AI Architect Series — You've Read the Books. Now Let AI Execute the Frameworks.",
   description:
     "6 AI-powered PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into executable systems you can run today. Bundle: $47. Individual books: $17.",
+  keywords: [
+    "AI business framework",
+    "Russell Brunson AI",
+    "DotCom Secrets AI system",
+    "Jeff Walker Product Launch Formula AI",
+    "Jim Edwards Copywriting Secrets AI",
+    "Nicolas Cole AI writing",
+    "AI sales funnel automation",
+    "business PDF guide",
+    "AI marketing system",
+    "online business AI",
+  ],
+  openGraph: {
+    title: "AI Architect Series — You've Read the Books. Now Let AI Execute the Frameworks.",
+    description:
+      "6 AI-powered PDF guides turn world-class business frameworks into executable systems. Bundle: $47.",
+    url: "https://ai-architect.io",
+    type: "website",
+    locale: "en_US",
+    siteName: "AI Architect Series",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Architect Series — Let AI Execute the Frameworks",
+    description:
+      "6 PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards frameworks into AI-powered systems. Bundle $47.",
+  },
+  alternates: {
+    canonical: "https://ai-architect.io",
+    languages: {
+      en: "https://ai-architect.io",
+      ko: "https://ai-architect.io/ko",
+      ja: "https://ai-architect.io/ja",
+    },
+  },
 };
 
 const results = [
@@ -50,25 +85,66 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "AI Architect Series",
-    url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io",
+    url: siteUrl,
     description:
       "6 AI-powered PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's business frameworks into executable AI systems.",
     potentialAction: {
       "@type": "SearchAction",
-      target: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io"}/products/{search_term_string}`,
+      target: `${siteUrl}/products/{search_term_string}`,
       "query-input": "required name=search_term_string",
     },
   };
+
+  const faqPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
+  const bookListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "AI Architect Series — 6 Books",
+    description: "6 AI-powered PDF guides for business framework automation",
+    numberOfItems: books.length,
+    itemListElement: books.map((book, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      name: book.title,
+      url: `${siteUrl}/products/${book.slug}`,
+    })),
+  };
+
+  function escapeJsonLd(json: string): string {
+    return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
+  }
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(faqPageJsonLd)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(bookListJsonLd)) }}
       />
 
       {/* Hero */}
