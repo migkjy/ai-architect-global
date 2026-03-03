@@ -53,5 +53,46 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...productPages, ...blogPages];
+  const nonDefaultLocales = ["ko", "ja"];
+
+  const localizedPages: MetadataRoute.Sitemap = nonDefaultLocales.flatMap((locale) => [
+    {
+      url: `${baseUrl}/${locale}`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/${locale}/products`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/${locale}/bundle`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/${locale}/about`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/${locale}/blog`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    },
+    ...books.map((book) => ({
+      url: `${baseUrl}/${locale}/products/${book.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
+  ]);
+
+  return [...staticPages, ...productPages, ...blogPages, ...localizedPages];
 }

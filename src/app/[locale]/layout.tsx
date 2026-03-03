@@ -78,6 +78,40 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+function buildSiteJsonLd(locale: string, siteUrl: string) {
+  const names: Record<string, string> = {
+    en: "AI Architect Series",
+    ko: "AI 아키텍트 시리즈",
+    ja: "AI アーキテクトシリーズ",
+  };
+  const descriptions: Record<string, string> = {
+    en: "6 world-class business frameworks automated with AI.",
+    ko: "Russell Brunson, Jeff Walker, Jim Edwards의 비즈니스 프레임워크를 AI로 자동화.",
+    ja: "世界クラスのビジネスフレームワークをAIで自動化。",
+  };
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: names[locale] ?? names.en,
+      url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`,
+      description: descriptions[locale] ?? descriptions.en,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "AI Architect Series",
+      url: siteUrl,
+      logo: `${siteUrl}/og-image`,
+      sameAs: [],
+    },
+  ];
+}
+
+function escapeJsonLd(json: string): string {
+  return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
+}
+
 export default async function LocaleLayout({
   children,
   params,
@@ -101,6 +135,8 @@ export default async function LocaleLayout({
     href: loc === routing.defaultLocale ? SITE_URL : `${SITE_URL}/${loc}`,
   }));
 
+  const siteJsonLd = buildSiteJsonLd(locale, SITE_URL);
+
   return (
     <html lang={locale}>
       <head>
@@ -108,6 +144,10 @@ export default async function LocaleLayout({
           <link key={link.hrefLang} rel={link.rel} hrefLang={link.hrefLang} href={link.href} />
         ))}
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(siteJsonLd)) }}
+        />
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-navy text-text-primary">
         <NextIntlClientProvider messages={messages}>
