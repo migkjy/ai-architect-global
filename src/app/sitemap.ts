@@ -3,7 +3,7 @@ import { books } from "@/lib/products";
 import { getAllPosts } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+  const baseUrl = "https://ai-architect.io";
 
   const staticPages: MetadataRoute.Sitemap = [
     {
