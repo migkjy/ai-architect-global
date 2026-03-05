@@ -17,24 +17,45 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const book = getBookBySlug(slug);
   if (!book) return {};
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+  const canonicalUrl = `${siteUrl}/products/${slug}`;
   return {
     title: `${book.title} — ${book.subtitle}`,
     description: book.shortDescription,
+    keywords: [
+      book.title,
+      book.framework,
+      `${book.framework} AI`,
+      "AI business framework",
+      "AI PDF guide",
+      "business automation",
+      "AI Architect Series",
+      "digital download",
+    ],
     alternates: {
-      canonical: `${siteUrl}/products/${slug}`,
+      canonical: canonicalUrl,
+      languages: {
+        en: `${siteUrl}/products/${slug}`,
+        ko: `${siteUrl}/ko/products/${slug}`,
+        ja: `${siteUrl}/ja/products/${slug}`,
+      },
     },
     openGraph: {
       title: `${book.title} — ${book.subtitle}`,
       description: book.shortDescription,
       type: "website",
-      locale: "en_US",
+      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Architect Series",
-      url: `${siteUrl}/products/${slug}`,
+      url: canonicalUrl,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${book.title} — ${book.subtitle}`,
+      description: book.shortDescription,
     },
   };
 }
@@ -50,24 +71,48 @@ export default async function ProductPage({ params }: Props) {
   const productUrl = getProductUrl(book.envKey);
   const bundleUrl = getBundleUrl();
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: book.title,
     description: book.shortDescription,
+    url: `${siteUrl}/products/${slug}`,
+    brand: { "@type": "Brand", name: "AI Architect Series" },
     offers: {
       "@type": "Offer",
       price: "17",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
+      url: `${siteUrl}/products/${slug}`,
+      seller: { "@type": "Organization", name: "AI Architect Series", url: siteUrl },
     },
   };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "AI Architect Series", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "All Books", item: `${siteUrl}/products` },
+      { "@type": "ListItem", position: 3, name: book.title, item: `${siteUrl}/products/${slug}` },
+    ],
+  };
+
+  function escapeJsonLd(json: string): string {
+    return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
+  }
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(breadcrumbJsonLd)) }}
       />
 
       <div className="min-h-screen pt-24 pb-20">

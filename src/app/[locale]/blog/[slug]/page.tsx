@@ -52,6 +52,23 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           Get the AI Architect Series →
         </Link>
       </div>
+
+      {/* Korean ecosystem crosslink */}
+      <div className="mt-8 p-5 bg-white/5 border border-white/10 rounded-xl flex items-center justify-between gap-4">
+        <div>
+          <p className="text-text-secondary/60 text-xs mb-1">Korean readers</p>
+          <p className="text-text-primary text-sm font-medium">AI business content in Korean</p>
+          <p className="text-text-secondary text-xs">Richbukae — AI Architect guides for Korean entrepreneurs</p>
+        </div>
+        <a
+          href="https://richbukae.com?utm_source=ai-architect&utm_medium=blog&utm_campaign=ecosystem"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex-shrink-0 text-gold text-sm hover:text-gold-light transition-colors font-medium"
+        >
+          richbukae.com →
+        </a>
+      </div>
     </main>
   );
 }
