@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "AI Architect Series — You've Read the Books. Now Let AI Execute the Frameworks.",
     description:
       "6 AI-powered PDF guides turn world-class business frameworks into executable systems. Bundle: $47.",
-    url: "https://ai-architect.io",
+    url: "https://ai-driven-architect.com",
     type: "website",
     locale: "en_US",
     siteName: "AI Architect Series",
@@ -36,11 +36,11 @@ export const metadata: Metadata = {
       "6 PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards frameworks into AI-powered systems. Bundle $47.",
   },
   alternates: {
-    canonical: "https://ai-architect.io",
+    canonical: "https://ai-driven-architect.com",
     languages: {
-      en: "https://ai-architect.io",
-      ko: "https://ai-architect.io/ko",
-      ja: "https://ai-architect.io/ja",
+      en: "https://ai-driven-architect.com",
+      ko: "https://ai-driven-architect.com/ko",
+      ja: "https://ai-driven-architect.com/ja",
     },
   },
 };
@@ -85,7 +85,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
   const jsonLd = {
     "@context": "https://schema.org",

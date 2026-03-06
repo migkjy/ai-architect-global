@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://ai-architect.io/sitemap.xml",
+    sitemap: "https://ai-driven-architect.com/sitemap.xml",
   };
 }

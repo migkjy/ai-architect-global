@@ -4,7 +4,7 @@ import { books, bundle, getBundleUrl } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
 import { setRequestLocale } from "next-intl/server";
 
-const BUNDLE_URL = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io"}/bundle`;
+const BUNDLE_URL = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/bundle`;
 
 export const metadata: Metadata = {
   title: "Complete Bundle — All 6 AI Architect Books for $47",
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     canonical: BUNDLE_URL,
     languages: {
       en: BUNDLE_URL,
-      ko: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io"}/ko/bundle`,
-      ja: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io"}/ja/bundle`,
+      ko: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/ko/bundle`,
+      ja: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/ja/bundle`,
     },
   },
   openGraph: {
@@ -111,7 +111,7 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
   const jsonLd = {
     "@context": "https://schema.org",
