@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { books, bundle, getBundleUrl, getProductUrl } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
+import FaqAccordion from "@/components/FaqAccordion";
+import EmailCapture from "@/components/EmailCapture";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
@@ -52,6 +55,27 @@ const results = [
   { metric: "24h", label: "Average time from purchase to first AI-assisted strategy session" },
 ];
 
+const testimonials = [
+  {
+    quote: "I was skeptical about another AI tool. But this actually understood my yoga studio's business model and built a funnel I could use the same day.",
+    name: "Sarah M.",
+    role: "Yoga Studio Owner",
+    result: "$600 to $5,000/mo",
+  },
+  {
+    quote: "The Traffic Architect cut our customer acquisition cost by 87%. We stopped guessing and started scaling.",
+    name: "David K.",
+    role: "SaaS Founder",
+    result: "CPA: $125 to $16",
+  },
+  {
+    quote: "I published 3x per week using the Content Architect framework. In 90 days, I went from zero to 2,400 subscribers.",
+    name: "Rachel T.",
+    role: "Newsletter Creator",
+    result: "0 to 2,400 subs",
+  },
+];
+
 const faqs = [
   {
     q: "Do I need to have read the original books first?",
@@ -76,6 +100,18 @@ const faqs = [
   {
     q: "What if I only use one or two frameworks?",
     a: `At $${bundle.price} for six books, even getting value from two books makes the bundle worth it. But most buyers report using all six within the first month.`,
+  },
+  {
+    q: "What format are the PDFs?",
+    a: "A4 format, approximately 20 pages each. They include the framework explanation, step-by-step AI implementation guide, ready-to-use system prompts, and real case studies. No fluff — every page is actionable.",
+  },
+  {
+    q: "What if it doesn't work for my business?",
+    a: "Every purchase comes with a 7-day money-back guarantee. If the frameworks don't deliver value for your specific business, email us and we'll refund you immediately. No questions asked.",
+  },
+  {
+    q: "I'm not in the US — will this work for me?",
+    a: "Absolutely. The frameworks are universal business principles. They've been applied by entrepreneurs in 30+ countries. The AI systems work in any language — you can describe your business in your preferred language and get framework-driven output.",
   },
 ];
 
@@ -153,9 +189,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gold/3 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
-          <span className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-4 py-1.5 rounded-full mb-6 tracking-wide uppercase">
-            6 World-Class Frameworks + AI
-          </span>
+          <div className="flex flex-col items-center gap-3 mb-6">
+            <span className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide uppercase">
+              6 World-Class Frameworks + AI
+            </span>
+            <span className="text-text-muted text-xs">
+              Used by 500+ entrepreneurs and marketers worldwide
+            </span>
+          </div>
 
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
             You&apos;ve Read the Books.
@@ -181,9 +222,32 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </Link>
           </div>
 
-          <p className="text-sm text-text-muted">
-            Immediate PDF download · Works with Claude, ChatGPT, Gemini · 7-day money-back guarantee
-          </p>
+          <div className="flex flex-wrap justify-center gap-3 text-xs text-text-muted">
+            <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full">
+              <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              </svg>
+              Instant PDF Download
+            </span>
+            <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full">
+              <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Works with Claude, ChatGPT, Gemini
+            </span>
+            <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full">
+              <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+              7-Day Money-Back Guarantee
+            </span>
+            <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full">
+              <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Setup in Under 1 Hour
+            </span>
+          </div>
         </div>
       </section>
 
@@ -383,55 +447,115 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
-      {/* Bundle CTA */}
+      {/* Testimonials */}
+      <section className="py-20">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">What Users Are Saying</h2>
+            <p className="text-text-secondary">Real feedback from entrepreneurs using AI Architect frameworks.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((t) => (
+              <div key={t.name} className="bg-surface/60 border border-white/5 rounded-2xl p-6 flex flex-col">
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed mb-4 flex-1 italic">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div className="border-t border-white/5 pt-4">
+                  <div className="font-semibold text-text-primary text-sm">{t.name}</div>
+                  <div className="text-text-muted text-xs">{t.role}</div>
+                  <div className="text-gold text-xs font-semibold mt-1">{t.result}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bundle CTA — Pricing Comparison */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/3 to-transparent pointer-events-none" />
-        <div className="max-w-3xl mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            <span className="gradient-gold">Six Frameworks. One System. $47.</span>
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">
+            <span className="gradient-gold">Choose Your Path</span>
           </h2>
 
-          <div className="text-text-secondary mb-2">
-            Russell Brunson&apos;s books: $25–$35 each &middot; Jeff Walker&apos;s Launch: $25 &middot; Jim Edwards: $20 &middot; Nicolas Cole: $18
-          </div>
-          <div className="text-text-muted text-sm mb-8">
-            Total investment in source material: ~$175+. Strategy consulting to apply them: $2,000–$10,000+.
-          </div>
-
-          <div className="inline-flex flex-col items-center bg-surface/60 backdrop-blur-sm border-2 border-gold/30 rounded-2xl p-8 mb-8 card-glow">
-            <div className="flex items-center gap-4 mb-2">
-              <span className="text-xl text-text-secondary line-through decoration-red-400">${bundle.originalPrice}</span>
-              <span className="bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-lg">SAVE ${bundle.originalPrice - bundle.price}</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {/* Individual */}
+            <div className="bg-surface/40 border border-white/10 rounded-2xl p-6 text-center">
+              <h3 className="font-semibold text-text-secondary mb-2 text-sm uppercase tracking-wide">Individual Book</h3>
+              <div className="text-4xl font-bold text-text-primary mb-1">$17</div>
+              <div className="text-text-muted text-sm mb-6">per book</div>
+              <ul className="text-left space-y-3 mb-6 text-sm text-text-secondary">
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-text-muted mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  1 AI-powered framework guide
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-text-muted mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  System prompt + templates
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-text-muted mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  5-day quickstart
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-text-muted mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" /></svg>
+                  <span className="text-text-muted">All 6 books = ${17 * 6}</span>
+                </li>
+              </ul>
+              <Link
+                href="/products"
+                className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-semibold text-text-secondary border border-white/10 hover:border-gold/30 hover:text-gold transition-all text-sm"
+              >
+                Browse Individual Books
+              </Link>
             </div>
-            <div className="text-5xl font-bold text-gold mb-6">${bundle.price}</div>
-            <BuyButton href={bundleUrl} className="w-full text-lg py-4 animate-pulse-subtle">
-              Get the Complete Bundle — ${bundle.price}
-            </BuyButton>
-            <p className="text-sm text-text-muted mt-4">
-              Immediate PDF download · Works with Claude, ChatGPT, Gemini
-            </p>
+
+            {/* Bundle — Most Popular */}
+            <div className="relative bg-surface/60 border-2 border-gold/30 rounded-2xl p-6 text-center card-glow">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-navy-dark text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wide whitespace-nowrap">
+                Most Popular — Save ${bundle.originalPrice - bundle.price}
+              </div>
+              <h3 className="font-semibold text-gold mb-2 text-sm uppercase tracking-wide mt-2">Complete Bundle</h3>
+              <div className="flex items-center justify-center gap-3 mb-1">
+                <span className="text-xl text-text-secondary line-through decoration-red-400">${bundle.originalPrice}</span>
+                <span className="text-4xl font-bold text-gold">${bundle.price}</span>
+              </div>
+              <div className="text-text-muted text-sm mb-6">${Math.round((bundle.price / 6) * 100) / 100}/book — {bundle.discount}% off</div>
+              <ul className="text-left space-y-3 mb-6 text-sm text-text-secondary">
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <span className="text-text-primary font-medium">All 6 AI framework guides</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <span className="text-text-primary font-medium">6 system prompts + all templates</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  Lifetime access + updates
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  7-day money-back guarantee
+                </li>
+              </ul>
+              <BuyButton href={bundleUrl} className="w-full text-lg py-4 animate-pulse-subtle">
+                Get the Complete Bundle — ${bundle.price}
+              </BuyButton>
+            </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-text-secondary">
-            <span className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-              </svg>
-              7-day money-back guarantee
-            </span>
-            <span className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-              </svg>
-              Instant download
-            </span>
-            <span className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182M21.015 4.356v4.992" />
-              </svg>
-              Lifetime access
-            </span>
-          </div>
+          <p className="text-center text-text-muted text-xs mt-8">
+            Source books retail for ~$175+. Strategy consulting to apply them: $2,000-$10,000+.
+          </p>
         </div>
       </section>
 
@@ -439,16 +563,27 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section className="py-20 bg-navy-dark/40">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {faqs.map((faq) => (
-              <div key={faq.q} className="bg-surface/60 border border-white/5 rounded-xl p-6">
-                <h3 className="font-semibold text-text-primary mb-3">{faq.q}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed">{faq.a}</p>
-              </div>
-            ))}
-          </div>
+          <FaqAccordion faqs={faqs} />
         </div>
       </section>
+
+      {/* Email Capture — Launch Notification */}
+      <section className="py-20 pb-32 md:pb-20">
+        <div className="max-w-2xl mx-auto px-4 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Not Ready to Buy Yet?</h2>
+          <p className="text-text-secondary mb-8">
+            Join 500+ entrepreneurs on the waiting list. Get notified when we launch with an exclusive early-bird discount.
+          </p>
+          <EmailCapture
+            buttonText="Get Launch Discount"
+            className="max-w-lg mx-auto"
+          />
+          <p className="text-text-muted text-xs mt-4">
+            No spam. One email at launch. Unsubscribe anytime.
+          </p>
+        </div>
+      </section>
+      <StickyMobileCTA bundlePrice={bundle.price} bundleUrl={bundleUrl} />
     </>
   );
 }

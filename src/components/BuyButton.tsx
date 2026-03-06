@@ -1,5 +1,7 @@
 "use client";
 
+import EmailCapture from "@/components/EmailCapture";
+
 type BuyButtonProps = {
   href: string;
   children: React.ReactNode;
@@ -20,13 +22,23 @@ export default function BuyButton({
 
   const isDisabled = href === "#" || !href;
 
+  if (isDisabled) {
+    return (
+      <div className={`w-full max-w-md mx-auto ${className}`}>
+        <p className="text-center text-gold font-semibold text-sm mb-2">
+          Launching Soon — Get Notified
+        </p>
+        <EmailCapture buttonText="Notify Me at Launch" />
+      </div>
+    );
+  }
+
   return (
     <a
-      href={isDisabled ? undefined : href}
-      target={isDisabled ? undefined : "_blank"}
-      rel={isDisabled ? undefined : "noopener noreferrer"}
-      aria-disabled={isDisabled}
-      className={`inline-flex items-center justify-center px-8 py-3 rounded-xl font-bold transition-all transform hover:scale-105 ${base} ${className} ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}`}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center justify-center px-8 py-3 rounded-xl font-bold transition-all transform hover:scale-105 ${base} ${className}`}
     >
       {children}
     </a>
