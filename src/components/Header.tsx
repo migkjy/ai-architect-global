@@ -15,9 +15,6 @@ export default function Header() {
         </Link>
 
         <nav className="hidden md:flex items-center gap-6 text-sm text-text-secondary">
-          <Link href="/blog" className="hover:text-text-primary transition-colors">
-            Blog
-          </Link>
           <Link href="/products" className="hover:text-text-primary transition-colors">
             All Books
           </Link>
@@ -67,9 +64,6 @@ export default function Header() {
       {/* Mobile dropdown */}
       {mobileOpen && (
         <div className="md:hidden bg-navy-dark border-t border-white/5 px-4 py-4 flex flex-col gap-4 text-sm text-text-secondary">
-          <Link href="/blog" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
-            Blog
-          </Link>
           <Link href="/products" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
             All Books
           </Link>
