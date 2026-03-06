@@ -2,6 +2,12 @@
 
 import EmailCapture from "@/components/EmailCapture";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 type BuyButtonProps = {
   href: string;
   children: React.ReactNode;
@@ -33,11 +39,16 @@ export default function BuyButton({
     );
   }
 
+  function handleBuyClick() {
+    window.gtag?.("event", "buy_click", { item_name: String(children) });
+  }
+
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleBuyClick}
       className={`inline-flex items-center justify-center px-8 py-3 rounded-xl font-bold transition-all transform hover:scale-105 ${base} ${className}`}
     >
       {children}

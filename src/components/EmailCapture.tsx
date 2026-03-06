@@ -2,6 +2,12 @@
 
 import { useState } from "react";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 type EmailCaptureProps = {
   buttonText?: string;
   className?: string;
@@ -27,6 +33,7 @@ export default function EmailCapture({
       if (res.ok) {
         setStatus("success");
         setEmail("");
+        window.gtag?.("event", "email_capture", { source: "email-capture-form" });
       } else {
         setStatus("error");
       }
