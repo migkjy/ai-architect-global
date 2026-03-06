@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const book = getBookBySlug(slug);
   if (!book) return {};
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
   const canonicalUrl = `${siteUrl}/products/${slug}`;
   return {
     title: `${book.title} — ${book.subtitle}`,
@@ -71,7 +71,7 @@ export default async function ProductPage({ params }: Props) {
   const productUrl = getProductUrl(book.envKey);
   const bundleUrl = getBundleUrl();
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
   const jsonLd = {
     "@context": "https://schema.org",
