@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { routing } from "@/i18n/routing";
+import { MetaPixel } from "@/components/MetaPixel";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 const OG_IMAGE = `${SITE_URL}/og-image`;
@@ -154,6 +155,7 @@ export default async function LocaleLayout({
         <Script id="ga4-ai-architect-io" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-76C0HSW5LB');`}
         </Script>
+        <MetaPixel />
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-navy text-text-primary">
         <NextIntlClientProvider messages={messages}>

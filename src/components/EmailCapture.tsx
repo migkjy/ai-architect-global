@@ -5,6 +5,7 @@ import { useState } from "react";
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
   }
 }
 
@@ -34,6 +35,7 @@ export default function EmailCapture({
         setStatus("success");
         setEmail("");
         window.gtag?.("event", "email_capture", { source: "email-capture-form" });
+        window.fbq?.('track', 'Lead');
       } else {
         setStatus("error");
       }

@@ -5,6 +5,7 @@ import EmailCapture from "@/components/EmailCapture";
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
   }
 }
 
@@ -41,6 +42,7 @@ export default function BuyButton({
 
   function handleBuyClick() {
     window.gtag?.("event", "buy_click", { item_name: String(children) });
+    window.fbq?.('track', 'InitiateCheckout', { content_name: String(children) });
   }
 
   return (
