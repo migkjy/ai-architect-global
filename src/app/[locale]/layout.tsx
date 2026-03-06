@@ -10,6 +10,8 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { routing } from "@/i18n/routing";
 import { MetaPixel } from "@/components/MetaPixel";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
+import ScrollSubscribeBanner from "@/components/ScrollSubscribeBanner";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 const OG_IMAGE = `${SITE_URL}/og-image`;
@@ -163,6 +165,8 @@ export default async function LocaleLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </NextIntlClientProvider>
+        <ScrollSubscribeBanner />
+        <ExitIntentPopup />
         <Analytics />
         <SpeedInsights />
       </body>
