@@ -287,11 +287,29 @@ export const bundle: Bundle = {
 };
 
 export function getBundleUrl(): string {
-  return process.env.NEXT_PUBLIC_LS_BUNDLE_URL ?? "#";
+  const base = process.env.NEXT_PUBLIC_LS_BUNDLE_URL ?? "#";
+  if (base === "#") return "#";
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+  const redirect = encodeURIComponent(
+    `${siteUrl}/thank-you?product=Complete+Bundle`
+  );
+  return `${base}?checkout[custom][redirect_url]=${redirect}`;
 }
 
 export function getProductUrl(envKey: string): string {
-  return (process.env[envKey as keyof typeof process.env] as string | undefined) ?? "#";
+  const base =
+    (process.env[envKey as keyof typeof process.env] as string | undefined) ??
+    "#";
+  if (base === "#") return "#";
+  const book = books.find((b) => b.envKey === envKey);
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+  const productName = encodeURIComponent(book?.title ?? "AI Architect");
+  const redirect = encodeURIComponent(
+    `${siteUrl}/thank-you?product=${productName}`
+  );
+  return `${base}?checkout[custom][redirect_url]=${redirect}`;
 }
 
 export function getBookBySlug(slug: string): Book | undefined {
