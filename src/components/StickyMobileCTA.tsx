@@ -29,8 +29,9 @@ export default function StickyMobileCTA({
         <div className="text-sm font-bold text-text-primary">
           Complete Bundle
           <span className="text-gold ml-2">${bundlePrice}</span>
+          <span className="text-xs text-text-secondary line-through ml-1.5">$102</span>
         </div>
-        <div className="text-xs text-text-muted">All 6 books · 7-day guarantee</div>
+        <div className="text-xs text-text-muted">All 6 books · Instant download · 7-day guarantee</div>
       </div>
       {isDisabled ? (
         <span className="bg-gold/20 text-gold px-4 py-2.5 rounded-lg text-xs font-bold">
