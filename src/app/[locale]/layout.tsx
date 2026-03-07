@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -8,8 +9,11 @@ import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { routing } from "@/i18n/routing";
+import { MetaPixel } from "@/components/MetaPixel";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
+import ScrollSubscribeBanner from "@/components/ScrollSubscribeBanner";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 const OG_IMAGE = `${SITE_URL}/og-image`;
 
 export const metadata: Metadata = {
@@ -78,6 +82,53 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+function buildSiteJsonLd(locale: string, siteUrl: string) {
+  const names: Record<string, string> = {
+    en: "AI Architect Series",
+    ko: "AI 아키텍트 시리즈",
+    ja: "AI アーキテクトシリーズ",
+  };
+  const descriptions: Record<string, string> = {
+    en: "6 world-class business frameworks automated with AI.",
+    ko: "Russell Brunson, Jeff Walker, Jim Edwards의 비즈니스 프레임워크를 AI로 자동화.",
+    ja: "世界クラスのビジネスフレームワークをAIで自動化。",
+  };
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: names[locale] ?? names.en,
+      url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`,
+      description: descriptions[locale] ?? descriptions.en,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "AI Architect Series",
+      url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/og-image`,
+        width: 1200,
+        height: 630,
+      },
+      sameAs: [
+        "https://richbukae.com",
+        "https://aihubkorea.kr",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "contact@newbizsoft.com",
+        contactType: "customer service",
+      },
+    },
+  ];
+}
+
+function escapeJsonLd(json: string): string {
+  return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
+}
+
 export default async function LocaleLayout({
   children,
   params,
@@ -101,6 +152,8 @@ export default async function LocaleLayout({
     href: loc === routing.defaultLocale ? SITE_URL : `${SITE_URL}/${loc}`,
   }));
 
+  const siteJsonLd = buildSiteJsonLd(locale, SITE_URL);
+
   return (
     <html lang={locale}>
       <head>
@@ -108,6 +161,69 @@ export default async function LocaleLayout({
           <link key={link.hrefLang} rel={link.rel} hrefLang={link.hrefLang} href={link.href} />
         ))}
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://cdn.paddle.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.paddle.com" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        <link
+          rel="preload"
+          as="style"
+          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
+        <link
+          rel="stylesheet"
+          media="print"
+          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+          // @ts-expect-error onload is valid HTML attribute
+          onLoad="this.media='all'"
+        />
+        <noscript>
+          <link
+            rel="stylesheet"
+            crossOrigin="anonymous"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+          />
+        </noscript>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(siteJsonLd)) }}
+        />
+        {/* GA4: ai-driven-architect.com — 자비스 자동 삽입 */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-76C0HSW5LB" strategy="afterInteractive" />
+        <Script id="ga4-ai-architect-io" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-76C0HSW5LB');`}
+        </Script>
+        {/* Paddle Billing — overlay checkout */}
+        <Script
+          src="https://cdn.paddle.com/paddle/v2/paddle.js"
+          strategy="afterInteractive"
+          onLoad={undefined}
+        />
+        <Script id="paddle-init" strategy="afterInteractive">
+          {`
+            (function() {
+              var checkPaddle = setInterval(function() {
+                if (typeof window.Paddle !== 'undefined') {
+                  clearInterval(checkPaddle);
+                  var env = '${process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT ?? "sandbox"}';
+                  if (env === 'sandbox' && window.Paddle.Environment) {
+                    window.Paddle.Environment.set('sandbox');
+                  }
+                  var token = '${process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN ?? ""}';
+                  if (token && window.Paddle.Setup) {
+                    window.Paddle.Setup({ token: token });
+                  }
+                }
+              }, 100);
+            })();
+          `}
+        </Script>
+        <MetaPixel />
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-navy text-text-primary">
         <NextIntlClientProvider messages={messages}>
@@ -115,6 +231,8 @@ export default async function LocaleLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </NextIntlClientProvider>
+        <ScrollSubscribeBanner />
+        <ExitIntentPopup />
         <Analytics />
         <SpeedInsights />
       </body>

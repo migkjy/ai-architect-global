@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { books, getBookBySlug, getBundleUrl, getProductUrl } from "@/lib/products";
+import { books, getBookBySlug, getBundleUrl, getBundlePaddlePriceId, getProductUrl } from "@/lib/products";
+import { getAllPosts } from "@/lib/blog";
 import BuyButton from "@/components/BuyButton";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -17,24 +18,54 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const book = getBookBySlug(slug);
   if (!book) return {};
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const canonicalUrl = `${siteUrl}/products/${slug}`;
   return {
     title: `${book.title} — ${book.subtitle}`,
     description: book.shortDescription,
+    keywords: [
+      book.title,
+      book.framework,
+      `${book.framework} AI`,
+      "AI business framework",
+      "AI PDF guide",
+      "business automation",
+      "AI Architect Series",
+      "digital download",
+    ],
     alternates: {
-      canonical: `${siteUrl}/products/${slug}`,
+      canonical: canonicalUrl,
+      languages: {
+        en: `${siteUrl}/products/${slug}`,
+        ko: `${siteUrl}/ko/products/${slug}`,
+        ja: `${siteUrl}/ja/products/${slug}`,
+      },
     },
     openGraph: {
       title: `${book.title} — ${book.subtitle}`,
       description: book.shortDescription,
       type: "website",
-      locale: "en_US",
+      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Architect Series",
-      url: `${siteUrl}/products/${slug}`,
+      url: canonicalUrl,
+      images: [
+        {
+          url: `${siteUrl}/og-image`,
+          width: 1200,
+          height: 630,
+          alt: `${book.title} — AI Architect Series`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${book.title} — ${book.subtitle}`,
+      description: book.shortDescription,
+      images: [`${siteUrl}/og-image`],
     },
   };
 }
@@ -49,25 +80,52 @@ export default async function ProductPage({ params }: Props) {
 
   const productUrl = getProductUrl(book.envKey);
   const bundleUrl = getBundleUrl();
+  const bookPaddlePriceId =
+    (process.env[book.paddlePriceEnvKey] as string | undefined) ?? undefined;
+  const bundlePaddlePriceId = getBundlePaddlePriceId();
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: book.title,
     description: book.shortDescription,
+    url: `${siteUrl}/products/${slug}`,
+    brand: { "@type": "Brand", name: "AI Architect Series" },
     offers: {
       "@type": "Offer",
       price: "17",
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
+      url: `${siteUrl}/products/${slug}`,
+      seller: { "@type": "Organization", name: "AI Architect Series", url: siteUrl },
     },
   };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "AI Architect Series", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "All Books", item: `${siteUrl}/products` },
+      { "@type": "ListItem", position: 3, name: book.title, item: `${siteUrl}/products/${slug}` },
+    ],
+  };
+
+  function escapeJsonLd(json: string): string {
+    return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
+  }
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(breadcrumbJsonLd)) }}
       />
 
       <div className="min-h-screen pt-24 pb-20">
@@ -106,16 +164,27 @@ export default async function ProductPage({ params }: Props) {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <BuyButton href={productUrl} className="text-lg px-8 py-4">
-                  Buy {book.title} — $17
+                <BuyButton
+                  href={productUrl}
+                  paddlePriceId={bookPaddlePriceId}
+                  paddleSuccessUrl={`${siteUrl}/thank-you?product=${encodeURIComponent(book.title)}`}
+                  className="text-lg px-8 py-4"
+                >
+                  Get {book.title} — $17
                 </BuyButton>
-                <BuyButton href={bundleUrl} variant="secondary" className="text-sm py-2">
-                  Or get all 6 for $47
+                <BuyButton
+                  href={bundleUrl}
+                  paddlePriceId={bundlePaddlePriceId}
+                  paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
+                  variant="secondary"
+                  className="text-sm py-2"
+                >
+                  Get All 6 Books — $47
                 </BuyButton>
               </div>
 
               <p className="text-xs text-text-muted mt-3">
-                Immediate PDF download · 7-day money-back guarantee
+                Instant PDF download · 7-day money-back guarantee · No questions asked
               </p>
             </div>
 
@@ -176,25 +245,76 @@ export default async function ProductPage({ params }: Props) {
         {/* CTA */}
         <section className="max-w-4xl mx-auto px-4">
           <div className="bg-surface/60 border border-gold/20 rounded-2xl p-8 text-center card-glow">
+            <div className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">
+              Instant PDF Download
+            </div>
             <h2 className="text-2xl font-bold mb-2">
               Ready to execute {book.framework} with AI?
             </h2>
-            <p className="text-text-secondary mb-6">
-              Immediate PDF download. Works with Claude, ChatGPT, and Gemini.
+            <p className="text-text-secondary mb-2">
+              Works with Claude, ChatGPT, and Gemini. Start your first AI session in under 1 hour.
+            </p>
+            <p className="text-sm text-gold/80 mb-6">
+              500+ entrepreneurs are already using these frameworks.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <BuyButton href={productUrl} className="text-lg px-8 py-4">
-                Buy {book.title} — $17
+              <BuyButton
+                href={productUrl}
+                paddlePriceId={bookPaddlePriceId}
+                paddleSuccessUrl={`${siteUrl}/thank-you?product=${encodeURIComponent(book.title)}`}
+                className="text-lg px-8 py-4"
+              >
+                Get {book.title} — $17
               </BuyButton>
-              <BuyButton href={bundleUrl} variant="secondary">
+              <BuyButton
+                href={bundleUrl}
+                paddlePriceId={bundlePaddlePriceId}
+                paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
+                variant="secondary"
+              >
                 Get All 6 Books — $47
               </BuyButton>
             </div>
-            <p className="text-xs text-text-muted mt-4">
-              7-day money-back guarantee · No questions asked
-            </p>
+            <div className="flex items-center justify-center gap-4 mt-4 text-xs text-text-muted">
+              <span className="flex items-center gap-1">
+                <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                7-day money-back guarantee
+              </span>
+              <span className="flex items-center gap-1">
+                <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                No account required
+              </span>
+            </div>
           </div>
         </section>
+
+        {/* Related Blog Articles */}
+        {(() => {
+          const blogPosts = getAllPosts().slice(0, 3);
+          if (blogPosts.length === 0) return null;
+          return (
+            <div className="max-w-4xl mx-auto px-4 mt-16">
+              <h2 className="text-xl font-bold mb-6">Related Articles</h2>
+              <div className="grid gap-4">
+                {blogPosts.map((post) => (
+                  <Link
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className="block border border-white/10 rounded-xl p-4 hover:border-gold/40 transition-colors"
+                  >
+                    <div className="text-xs text-text-muted mb-1">
+                      <time dateTime={post.date}>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</time>
+                      <span className="mx-2">&middot;</span>
+                      <span>{post.readingTime}</span>
+                    </div>
+                    <h3 className="font-semibold text-text-primary hover:text-gold transition-colors mb-1">{post.title}</h3>
+                    <p className="text-xs text-text-secondary line-clamp-2">{post.description}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Other Books */}
         <div className="max-w-4xl mx-auto px-4 mt-16">

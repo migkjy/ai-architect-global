@@ -26,3 +26,10 @@ npm run build
 - 코드 수정/배포 가능
 - 타 프로젝트 파일 수정 금지
 - 작업 완료 후 반드시 commit + push
+
+## Git 브랜치 규칙 (CEO 지시 2026-03-07)
+- **main → production 직행 PR 절대 금지**
+- 브랜치 흐름: `main` → `staging` → `production`
+- PR은 반드시 main → staging으로 생성
+- staging → production 머지는 VP만 수행
+- 긴급 핫픽스도 staging 경유 필수 (예외 없음)

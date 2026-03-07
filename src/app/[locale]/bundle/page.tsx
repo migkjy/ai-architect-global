@@ -1,15 +1,34 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { books, bundle, getBundleUrl } from "@/lib/products";
+import { books, bundle, getBundleUrl, getBundlePaddlePriceId } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
 import { setRequestLocale } from "next-intl/server";
+
+const BUNDLE_URL = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/bundle`;
 
 export const metadata: Metadata = {
   title: "Complete Bundle — All 6 AI Architect Books for $47",
   description:
     "Get all 6 AI Architect books in one bundle for $47. Apply Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven frameworks with AI. Save $55 vs buying individually. Instant PDF download. 7-day money-back guarantee.",
+  keywords: [
+    "AI Architect bundle",
+    "AI business framework bundle",
+    "Russell Brunson Jeff Walker AI",
+    "DotCom Secrets Expert Secrets AI",
+    "Product Launch Formula AI",
+    "Copywriting Secrets AI",
+    "6 book bundle",
+    "AI PDF guide bundle",
+    "business automation bundle",
+    "online business AI system",
+  ],
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io"}/bundle`,
+    canonical: BUNDLE_URL,
+    languages: {
+      en: BUNDLE_URL,
+      ko: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/ko/bundle`,
+      ja: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/ja/bundle`,
+    },
   },
   openGraph: {
     title: "Complete Bundle — All 6 AI Architect Books for $47",
@@ -18,6 +37,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "AI Architect Series",
+    url: BUNDLE_URL,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Complete Bundle — All 6 AI Architect Books for $47",
+    description:
+      "Six AI-powered systems for marketing, branding, traffic, copywriting, product launches, and content. $47 bundle. Instant download.",
   },
 };
 
@@ -79,11 +105,14 @@ const frameworkAxes = [
 ];
 
 const bundleUrl = getBundleUrl();
+const bundlePaddlePriceId = getBundlePaddlePriceId();
 const savedAmount = bundle.originalPrice - bundle.price;
 
 export default async function BundlePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -91,19 +120,40 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
     name: bundle.title,
     description:
       "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's business frameworks into executable AI systems.",
+    url: `${siteUrl}/bundle`,
+    brand: { "@type": "Brand", name: "AI Architect Series" },
     offers: {
       "@type": "Offer",
       price: bundle.price.toString(),
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
+      url: `${siteUrl}/bundle`,
+      seller: { "@type": "Organization", name: "AI Architect Series", url: siteUrl },
     },
   };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "AI Architect Series", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "Complete Bundle", item: `${siteUrl}/bundle` },
+    ],
+  };
+
+  function escapeJsonLd(json: string): string {
+    return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
+  }
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(breadcrumbJsonLd)) }}
       />
 
       <div className="min-h-screen pt-24">
@@ -140,7 +190,12 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
               <p className="text-sm text-green-400 font-medium mb-6">
                 ${savedAmount} off buying each book individually
               </p>
-              <BuyButton href={bundleUrl} className="w-full text-lg py-4 animate-pulse-subtle">
+              <BuyButton
+                href={bundleUrl}
+                paddlePriceId={bundlePaddlePriceId}
+                paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
+                className="w-full text-lg py-4 animate-pulse-subtle"
+              >
                 Get the Complete Bundle — ${bundle.price}
               </BuyButton>
               <p className="text-sm text-text-muted mt-4">
@@ -296,7 +351,12 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
               </div>
               <div className="text-4xl font-bold text-gold mb-6">${bundle.price}</div>
 
-              <BuyButton href={bundleUrl} className="w-full text-lg py-4 animate-pulse-subtle">
+              <BuyButton
+                href={bundleUrl}
+                paddlePriceId={bundlePaddlePriceId}
+                paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
+                className="w-full text-lg py-4 animate-pulse-subtle"
+              >
                 Get the Complete Bundle — ${bundle.price}
               </BuyButton>
             </div>

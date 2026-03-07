@@ -7,20 +7,48 @@ import { setRequestLocale } from "next-intl/server";
 export const metadata: Metadata = {
   title: "About AI Architect Series — Why We Built AI-Powered Business Framework Guides",
   description:
-    "The AI Architect Series closes the gap between reading proven business frameworks and executing them. Learn how we turn DotCom Secrets, PLF, Copywriting Secrets, and more into AI-powered systems.",
+    "Bridge the gap between reading and executing proven business frameworks. AI Architect turns DotCom Secrets, PLF, and Copywriting Secrets into AI-powered systems you can run today.",
+  keywords: [
+    "AI Architect Series",
+    "AI business framework",
+    "Russell Brunson AI",
+    "Jeff Walker AI",
+    "Jim Edwards AI",
+    "Nicolas Cole AI",
+    "about AI Architect",
+    "business automation tools",
+  ],
   alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io"}/about`,
+    canonical: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/about`,
   },
 };
 
 const bundleUrl = getBundleUrl();
 
+function escapeJsonLd(json: string): string {
+  return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
+}
+
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: "About", item: `${siteUrl}/about` },
+    ],
+  };
+
   return (
     <div className="min-h-screen pt-24 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(breadcrumbJsonLd)) }}
+      />
       <div className="max-w-3xl mx-auto px-4">
         {/* Hero */}
         <div className="mb-16">

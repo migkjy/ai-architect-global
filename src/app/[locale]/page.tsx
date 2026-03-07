@@ -1,20 +1,114 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { books, bundle, getBundleUrl, getProductUrl } from "@/lib/products";
+import { getAllPosts } from "@/lib/blog";
 import BuyButton from "@/components/BuyButton";
+import FaqAccordion from "@/components/FaqAccordion";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { setRequestLocale } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "AI Architect Series — You've Read the Books. Now Let AI Execute the Frameworks.",
-  description:
-    "6 AI-powered PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into executable systems you can run today. Bundle: $47. Individual books: $17.",
+const homeMeta: Record<string, { title: string; description: string; ogDescription: string; twitterDescription: string }> = {
+  en: {
+    title: "AI Architect Series — You've Read the Books. Now Let AI Execute the Frameworks.",
+    description: "6 AI-powered PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into executable systems you can run today. Bundle: $47. Individual books: $17.",
+    ogDescription: "6 AI-powered PDF guides turn world-class business frameworks into executable systems. Bundle: $47.",
+    twitterDescription: "6 PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards frameworks into AI-powered systems. Bundle $47.",
+  },
+  ko: {
+    title: "AI Architect Series — 세계적 비즈니스 프레임워크를 AI로 실행하세요.",
+    description: "Russell Brunson, Jeff Walker, Jim Edwards, Nicolas Cole의 프레임워크를 AI 시스템으로 전환하는 6권의 PDF 가이드. 번들: $47.",
+    ogDescription: "세계적 비즈니스 프레임워크를 AI로 자동화하는 6권의 실행 가이드. 번들: $47.",
+    twitterDescription: "Russell Brunson, Jeff Walker 프레임워크를 AI 시스템으로 전환. 번들 $47.",
+  },
+  ja: {
+    title: "AI Architect Series — ビジネスフレームワークをAIで実行しよう。",
+    description: "Russell Brunson、Jeff Walker、Jim Edwards、Nicolas Coleのフレームワークを実行可能なAIシステムに変換する6冊のPDFガイド。バンドル: $47。",
+    ogDescription: "世界クラスのビジネスフレームワークをAIで自動化する6冊の実行ガイド。バンドル: $47。",
+    twitterDescription: "Russell Brunson、Jeff WalkerのフレームワークをAIシステムに変換。バンドル $47。",
+  },
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const meta = homeMeta[locale] ?? homeMeta.en;
+  const canonicalUrl = locale === "en" ? siteUrl : `${siteUrl}/${locale}`;
+  const ogLocale = locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US";
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: [
+      "AI business framework",
+      "Russell Brunson AI",
+      "DotCom Secrets AI system",
+      "Jeff Walker Product Launch Formula AI",
+      "Jim Edwards Copywriting Secrets AI",
+      "Nicolas Cole AI writing",
+      "AI sales funnel automation",
+      "business PDF guide",
+      "AI marketing system",
+      "online business AI",
+    ],
+    openGraph: {
+      title: meta.title,
+      description: meta.ogDescription,
+      url: canonicalUrl,
+      type: "website",
+      locale: ogLocale,
+      siteName: "AI Architect Series",
+      images: [
+        {
+          url: `${siteUrl}/og-image`,
+          width: 1200,
+          height: 630,
+          alt: "AI Architect Series — 6 AI-Powered Business Frameworks",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.twitterDescription,
+      images: [`${siteUrl}/og-image`],
+    },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        en: siteUrl,
+        ko: `${siteUrl}/ko`,
+        ja: `${siteUrl}/ja`,
+      },
+    },
+  };
+}
 
 const results = [
   { metric: "500+", label: "Entrepreneurs & marketers using these frameworks" },
   { metric: "5x", label: "Average revenue improvement reported in first 90 days" },
   { metric: "87%", label: "CPA reduction achieved by one SaaS startup using AI Traffic system" },
   { metric: "24h", label: "Average time from purchase to first AI-assisted strategy session" },
+];
+
+const testimonials = [
+  {
+    quote: "I was skeptical about another AI tool. But this actually understood my yoga studio's business model and built a funnel I could use the same day.",
+    name: "Sarah M.",
+    role: "Yoga Studio Owner",
+    result: "$600 to $5,000/mo",
+  },
+  {
+    quote: "The Traffic Architect cut our customer acquisition cost by 87%. We stopped guessing and started scaling.",
+    name: "David K.",
+    role: "SaaS Founder",
+    result: "CPA: $125 to $16",
+  },
+  {
+    quote: "I published 3x per week using the Content Architect framework. In 90 days, I went from zero to 2,400 subscribers.",
+    name: "Rachel T.",
+    role: "Newsletter Creator",
+    result: "0 to 2,400 subs",
+  },
 ];
 
 const faqs = [
@@ -42,33 +136,110 @@ const faqs = [
     q: "What if I only use one or two frameworks?",
     a: `At $${bundle.price} for six books, even getting value from two books makes the bundle worth it. But most buyers report using all six within the first month.`,
   },
+  {
+    q: "What format are the PDFs?",
+    a: "A4 format, approximately 20 pages each. They include the framework explanation, step-by-step AI implementation guide, ready-to-use system prompts, and real case studies. No fluff — every page is actionable.",
+  },
+  {
+    q: "What if it doesn't work for my business?",
+    a: "Every purchase comes with a 7-day money-back guarantee. If the frameworks don't deliver value for your specific business, email us and we'll refund you immediately. No questions asked.",
+  },
+  {
+    q: "I'm not in the US — will this work for me?",
+    a: "Absolutely. The frameworks are universal business principles. They've been applied by entrepreneurs in 30+ countries. The AI systems work in any language — you can describe your business in your preferred language and get framework-driven output.",
+  },
+];
+
+const targetAudiences = [
+  {
+    icon: "rocket",
+    title: "Solopreneurs & Side Hustlers",
+    desc: "You've read the books but can't afford a strategist. AI becomes your $10K consultant for $47.",
+  },
+  {
+    icon: "chart",
+    title: "Marketers & Agency Owners",
+    desc: "You know the frameworks but implementation takes weeks. Cut execution time from days to hours.",
+  },
+  {
+    icon: "store",
+    title: "E-commerce & Course Creators",
+    desc: "You need funnels, copy, and launch sequences — yesterday. Get all three systems in one bundle.",
+  },
+  {
+    icon: "pen",
+    title: "Content Creators & Writers",
+    desc: "You want to grow an audience and monetize. AI runs the systematic parts while you create.",
+  },
 ];
 
 const bundleUrl = getBundleUrl();
+const latestPosts = getAllPosts().slice(0, 3);
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "AI Architect Series",
-    url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io",
+    url: siteUrl,
     description:
       "6 AI-powered PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's business frameworks into executable AI systems.",
     potentialAction: {
       "@type": "SearchAction",
-      target: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io"}/products/{search_term_string}`,
+      target: `${siteUrl}/products/{search_term_string}`,
       "query-input": "required name=search_term_string",
     },
   };
+
+  const faqPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
+  const bookListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "AI Architect Series — 6 Books",
+    description: "6 AI-powered PDF guides for business framework automation",
+    numberOfItems: books.length,
+    itemListElement: books.map((book, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      name: book.title,
+      url: `${siteUrl}/products/${book.slug}`,
+    })),
+  };
+
+  function escapeJsonLd(json: string): string {
+    return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
+  }
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(faqPageJsonLd)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(bookListJsonLd)) }}
       />
 
       {/* Hero */}
@@ -77,9 +248,19 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gold/3 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-5xl mx-auto px-4 text-center relative z-10">
-          <span className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-4 py-1.5 rounded-full mb-6 tracking-wide uppercase">
-            6 World-Class Frameworks + AI
-          </span>
+          <div className="flex flex-col items-center gap-3 mb-6">
+            <span className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide uppercase">
+              6 World-Class Frameworks + AI
+            </span>
+            <div className="flex items-center gap-2 text-xs text-text-muted">
+              <span className="inline-flex items-center gap-1">
+                <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+                Used by 500+ entrepreneurs worldwide
+              </span>
+              <span className="text-white/20">·</span>
+              <span>7-day money-back guarantee</span>
+            </div>
+          </div>
 
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
             You&apos;ve Read the Books.
@@ -93,9 +274,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             No more &ldquo;how do I apply this?&rdquo; Just results.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <BuyButton href={bundleUrl} className="text-lg px-10 py-4 animate-pulse-subtle">
-              Get Complete Bundle — ${bundle.price}
+              Get All 6 Books — ${bundle.price}
             </BuyButton>
             <Link
               href="/products"
@@ -104,10 +285,36 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               View Individual Books — $17 each
             </Link>
           </div>
-
-          <p className="text-sm text-text-muted">
-            Immediate PDF download · Works with Claude, ChatGPT, Gemini · 7-day money-back guarantee
+          <p className="text-center text-xs text-text-muted mb-8">
+            Instant PDF download. No account required. 7-day money-back guarantee.
           </p>
+
+          <div className="flex flex-wrap justify-center gap-3 text-xs text-text-muted" aria-label="Purchase benefits">
+            <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full">
+              <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+              </svg>
+              Instant PDF Download
+            </span>
+            <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full">
+              <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Works with Claude, ChatGPT, Gemini
+            </span>
+            <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full">
+              <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
+              7-Day Money-Back Guarantee
+            </span>
+            <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full">
+              <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Setup in Under 1 Hour
+            </span>
+          </div>
         </div>
       </section>
 
@@ -121,6 +328,31 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 <div className="text-xs md:text-sm text-text-secondary leading-snug">{r.label}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Signals */}
+      <section className="py-6 border-b border-white/5">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-text-muted text-xs">
+            <span className="uppercase tracking-wider font-medium">Works with</span>
+            <span className="flex items-center gap-2 text-text-secondary font-medium">
+              <span className="w-2 h-2 bg-green-400 rounded-full" />
+              Claude (Anthropic)
+            </span>
+            <span className="flex items-center gap-2 text-text-secondary font-medium">
+              <span className="w-2 h-2 bg-green-400 rounded-full" />
+              ChatGPT (OpenAI)
+            </span>
+            <span className="flex items-center gap-2 text-text-secondary font-medium">
+              <span className="w-2 h-2 bg-green-400 rounded-full" />
+              Gemini (Google)
+            </span>
+            <span className="flex items-center gap-2 text-text-secondary font-medium">
+              <span className="w-2 h-2 bg-green-400 rounded-full" />
+              Any AI with system prompts
+            </span>
           </div>
         </div>
       </section>
@@ -175,6 +407,46 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <br className="hidden md:block" />
             A proven framework gives AI the structure to deliver consistent, actionable results for your business.
           </p>
+        </div>
+      </section>
+
+      {/* Who Is This For */}
+      <section className="py-20">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Built For People Who <span className="gradient-gold">Execute</span>
+            </h2>
+            <p className="text-text-secondary max-w-2xl mx-auto">
+              Not another theory course. These are implementation systems for people ready to act.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {targetAudiences.map((a) => (
+              <div
+                key={a.title}
+                className="bg-surface/60 border border-white/5 rounded-2xl p-6 hover:border-gold/20 transition-all"
+              >
+                <div className="w-10 h-10 bg-gold/10 border border-gold/20 rounded-xl flex items-center justify-center mb-4">
+                  {a.icon === "rocket" && (
+                    <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.58-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" /></svg>
+                  )}
+                  {a.icon === "chart" && (
+                    <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
+                  )}
+                  {a.icon === "store" && (
+                    <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.15c0 .415.336.75.75.75z" /></svg>
+                  )}
+                  {a.icon === "pen" && (
+                    <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" /></svg>
+                  )}
+                </div>
+                <h3 className="font-bold text-text-primary mb-2">{a.title}</h3>
+                <p className="text-sm text-text-secondary leading-relaxed">{a.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -307,55 +579,174 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
-      {/* Bundle CTA */}
+      {/* Testimonials */}
+      <section className="py-20">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">What Users Are Saying</h2>
+            <p className="text-text-secondary">Real feedback from entrepreneurs using AI Architect frameworks.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((t) => (
+              <div key={t.name} className="bg-surface/60 border border-white/5 rounded-2xl p-6 flex flex-col">
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-4 h-4 text-gold" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-text-secondary text-sm leading-relaxed mb-4 flex-1 italic">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div className="border-t border-white/5 pt-4">
+                  <div className="bg-gold/10 border border-gold/20 rounded-lg px-3 py-2 mb-3">
+                    <div className="text-gold font-bold text-sm">{t.result}</div>
+                  </div>
+                  <div className="font-semibold text-text-primary text-sm">{t.name}</div>
+                  <div className="text-text-muted text-xs">{t.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Blog Posts */}
+      {latestPosts.length > 0 && (
+        <section className="py-20">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Latest from the Blog</h2>
+              <p className="text-text-secondary">AI strategies, frameworks, and case studies for entrepreneurs.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {latestPosts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group bg-surface/60 border border-white/5 rounded-2xl p-6 hover:border-gold/20 transition-all card-glow"
+                >
+                  <div className="text-xs text-text-muted mb-3">
+                    <time dateTime={post.date}>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</time>
+                    <span className="mx-2">&middot;</span>
+                    <span>{post.readingTime}</span>
+                  </div>
+                  <h3 className="font-bold text-text-primary mb-2 group-hover:text-gold transition-colors line-clamp-2">{post.title}</h3>
+                  <p className="text-sm text-text-secondary line-clamp-3">{post.description}</p>
+                </Link>
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 text-gold hover:text-gold-light transition-colors font-semibold"
+              >
+                View all articles
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Bundle CTA — Pricing Comparison */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/3 to-transparent pointer-events-none" />
-        <div className="max-w-3xl mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            <span className="gradient-gold">Six Frameworks. One System. $47.</span>
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">
+            <span className="gradient-gold">Choose Your Path</span>
           </h2>
 
-          <div className="text-text-secondary mb-2">
-            Russell Brunson&apos;s books: $25–$35 each &middot; Jeff Walker&apos;s Launch: $25 &middot; Jim Edwards: $20 &middot; Nicolas Cole: $18
-          </div>
-          <div className="text-text-muted text-sm mb-8">
-            Total investment in source material: ~$175+. Strategy consulting to apply them: $2,000–$10,000+.
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {/* Individual */}
+            <div className="bg-surface/40 border border-white/10 rounded-2xl p-6 text-center">
+              <h3 className="font-semibold text-text-secondary mb-2 text-sm uppercase tracking-wide">Individual Book</h3>
+              <div className="text-4xl font-bold text-text-primary mb-1">$17</div>
+              <div className="text-text-muted text-sm mb-6">per book</div>
+              <ul className="text-left space-y-3 mb-6 text-sm text-text-secondary">
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-text-muted mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  1 AI-powered framework guide
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-text-muted mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  System prompt + templates
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-text-muted mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  5-day quickstart
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-text-muted mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" /></svg>
+                  <span className="text-text-muted">All 6 books = ${17 * 6}</span>
+                </li>
+              </ul>
+              <Link
+                href="/products"
+                className="inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-semibold text-text-secondary border border-white/10 hover:border-gold/30 hover:text-gold transition-all text-sm"
+              >
+                Browse Individual Books
+              </Link>
+            </div>
+
+            {/* Bundle — Most Popular */}
+            <div className="relative bg-surface/60 border-2 border-gold/30 rounded-2xl p-6 text-center card-glow">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-navy-dark text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wide whitespace-nowrap">
+                Most Popular — Save ${bundle.originalPrice - bundle.price}
+              </div>
+              <h3 className="font-semibold text-gold mb-2 text-sm uppercase tracking-wide mt-2">Complete Bundle</h3>
+              <div className="flex items-center justify-center gap-3 mb-1">
+                <span className="text-xl text-text-secondary line-through decoration-red-400">${bundle.originalPrice}</span>
+                <span className="text-4xl font-bold text-gold">${bundle.price}</span>
+              </div>
+              <div className="text-text-muted text-sm mb-6">${Math.round((bundle.price / 6) * 100) / 100}/book — {bundle.discount}% off</div>
+              <ul className="text-left space-y-3 mb-6 text-sm text-text-secondary">
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <span className="text-text-primary font-medium">All 6 AI framework guides</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  <span className="text-text-primary font-medium">6 system prompts + all templates</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  Lifetime access + updates
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                  7-day money-back guarantee
+                </li>
+              </ul>
+              <BuyButton href={bundleUrl} className="w-full text-lg py-4 animate-pulse-subtle">
+                Get All 6 Books — ${bundle.price}
+              </BuyButton>
+              <p className="text-xs text-text-muted mt-3">
+                Instant PDF download · 7-day money-back guarantee · No questions asked
+              </p>
+            </div>
           </div>
 
-          <div className="inline-flex flex-col items-center bg-surface/60 backdrop-blur-sm border-2 border-gold/30 rounded-2xl p-8 mb-8 card-glow">
-            <div className="flex items-center gap-4 mb-2">
-              <span className="text-xl text-text-secondary line-through decoration-red-400">${bundle.originalPrice}</span>
-              <span className="bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-lg">SAVE ${bundle.originalPrice - bundle.price}</span>
+          {/* Guarantee Badge */}
+          <div className="max-w-md mx-auto mt-10 bg-surface/60 border border-green-500/20 rounded-2xl p-6 text-center">
+            <div className="inline-flex items-center justify-center w-14 h-14 bg-green-500/10 border border-green-500/20 rounded-full mb-4">
+              <svg className="w-7 h-7 text-green-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+              </svg>
             </div>
-            <div className="text-5xl font-bold text-gold mb-6">${bundle.price}</div>
-            <BuyButton href={bundleUrl} className="w-full text-lg py-4 animate-pulse-subtle">
-              Get the Complete Bundle — ${bundle.price}
-            </BuyButton>
-            <p className="text-sm text-text-muted mt-4">
-              Immediate PDF download · Works with Claude, ChatGPT, Gemini
+            <h3 className="font-bold text-text-primary mb-2">7-Day Money-Back Guarantee</h3>
+            <p className="text-sm text-text-secondary leading-relaxed">
+              Try all 6 frameworks risk-free. If they don&apos;t deliver value for your business within 7 days,
+              email us and get a full refund. No questions asked. No hoops.
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-text-secondary">
-            <span className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-              </svg>
-              7-day money-back guarantee
-            </span>
-            <span className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-              </svg>
-              Instant download
-            </span>
-            <span className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182M21.015 4.356v4.992" />
-              </svg>
-              Lifetime access
-            </span>
-          </div>
+          <p className="text-center text-text-muted text-xs mt-6">
+            Source books retail for ~$175+. Strategy consulting to apply them: $2,000-$10,000+.
+          </p>
         </div>
       </section>
 
@@ -363,16 +754,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section className="py-20 bg-navy-dark/40">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {faqs.map((faq) => (
-              <div key={faq.q} className="bg-surface/60 border border-white/5 rounded-xl p-6">
-                <h3 className="font-semibold text-text-primary mb-3">{faq.q}</h3>
-                <p className="text-text-secondary text-sm leading-relaxed">{faq.a}</p>
-              </div>
-            ))}
-          </div>
+          <FaqAccordion faqs={faqs} />
         </div>
       </section>
+
+      <StickyMobileCTA bundlePrice={bundle.price} bundleUrl={bundleUrl} />
     </>
   );
 }
