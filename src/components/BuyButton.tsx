@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import EmailCapture from "@/components/EmailCapture";
 
 declare global {
@@ -45,16 +46,48 @@ export default function BuyButton({
   paddlePriceId,
   paddleSuccessUrl,
 }: BuyButtonProps) {
+  const [paddleReady, setPaddleReady] = useState(false);
+
+  useEffect(() => {
+    if (!paddlePriceId) return;
+
+    // Paddle.js가 로드되어 Checkout.open이 사용 가능한지 확인
+    function checkPaddle() {
+      if (window.Paddle?.Checkout) {
+        setPaddleReady(true);
+        return true;
+      }
+      return false;
+    }
+
+    if (checkPaddle()) return;
+
+    const interval = setInterval(() => {
+      if (checkPaddle()) clearInterval(interval);
+    }, 200);
+
+    // 5초 후 포기 (Paddle.js 미로드 = Client Token 미설정)
+    const timeout = setTimeout(() => clearInterval(interval), 5000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, [paddlePriceId]);
+
   const base =
     variant === "primary"
       ? "bg-gold text-navy-dark hover:bg-gold-light shadow-lg shadow-gold/20"
       : "bg-surface border border-gold/30 text-gold hover:border-gold/60";
 
-  // Paddle Price ID가 있으면 Paddle overlay 사용
-  const usePaddleOverlay = !!paddlePriceId;
+  // Paddle Price ID가 있고 Paddle.js 준비됨 → Paddle overlay 사용
+  const usePaddleOverlay = !!paddlePriceId && paddleReady;
+
+  // Paddle Price ID가 있지만 Paddle.js 미로드 → 결제 시스템 준비 중
+  const paddleNotReady = !!paddlePriceId && !paddleReady;
 
   // href="#" 이고 Paddle Price ID도 없으면 이메일 캡처 폼 표시
-  const isDisabled = !usePaddleOverlay && (href === "#" || !href);
+  const isDisabled = !paddlePriceId && (href === "#" || !href);
 
   if (isDisabled) {
     return (
@@ -64,6 +97,20 @@ export default function BuyButton({
         </p>
         <EmailCapture buttonText="Notify Me at Launch" />
       </div>
+    );
+  }
+
+  // Paddle Price ID는 있지만 Paddle.js가 로드되지 않은 상태 (Client Token 미설정)
+  // href도 없으면 disabled 버튼, href가 있으면 href로 폴백
+  if (paddleNotReady && (href === "#" || !href)) {
+    return (
+      <button
+        type="button"
+        disabled
+        className={`inline-flex items-center justify-center px-8 py-3 rounded-xl font-bold transition-all opacity-60 cursor-not-allowed bg-surface border border-gold/30 text-gold ${className}`}
+      >
+        Payment system coming soon
+      </button>
     );
   }
 
@@ -84,10 +131,10 @@ export default function BuyButton({
         },
       });
     }
-    // Paddle이 로드되지 않았거나 priceId가 없으면 href 링크로 폴백
+    // Paddle이 로드되지 않았으면 href 링크로 폴백
   }
 
-  // Paddle overlay 사용 시 button 태그, 아니면 a 태그
+  // Paddle overlay 사용 시 button 태그
   if (usePaddleOverlay) {
     return (
       <button
@@ -100,6 +147,7 @@ export default function BuyButton({
     );
   }
 
+  // href 폴백 (Paddle 미로드 시 or paddlePriceId 없는 경우)
   return (
     <a
       href={href}
