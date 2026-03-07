@@ -31,12 +31,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "AI Architect Series",
+    images: [
+      {
+        url: "https://ai-driven-architect.com/og-image",
+        width: 1200,
+        height: 630,
+        alt: "AI Architect Series — 6 AI-Powered Business Frameworks",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI Architect Series — Let AI Execute the Frameworks",
     description:
       "6 PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards frameworks into AI-powered systems. Bundle $47.",
+    images: ["https://ai-driven-architect.com/og-image"],
   },
   alternates: {
     canonical: "https://ai-driven-architect.com",

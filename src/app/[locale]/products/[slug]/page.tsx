@@ -51,11 +51,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Architect Series",
       url: canonicalUrl,
+      images: [
+        {
+          url: `${siteUrl}/og-image`,
+          width: 1200,
+          height: 630,
+          alt: `${book.title} — AI Architect Series`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${book.title} — ${book.subtitle}`,
       description: book.shortDescription,
+      images: [`${siteUrl}/og-image`],
     },
   };
 }
