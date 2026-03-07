@@ -7,7 +7,17 @@ import { setRequestLocale } from "next-intl/server";
 export const metadata: Metadata = {
   title: "About AI Architect Series — Why We Built AI-Powered Business Framework Guides",
   description:
-    "The AI Architect Series closes the gap between reading proven business frameworks and executing them. Learn how we turn DotCom Secrets, PLF, Copywriting Secrets, and more into AI-powered systems.",
+    "Bridge the gap between reading and executing proven business frameworks. AI Architect turns DotCom Secrets, PLF, and Copywriting Secrets into AI-powered systems you can run today.",
+  keywords: [
+    "AI Architect Series",
+    "AI business framework",
+    "Russell Brunson AI",
+    "Jeff Walker AI",
+    "Jim Edwards AI",
+    "Nicolas Cole AI",
+    "about AI Architect",
+    "business automation tools",
+  ],
   alternates: {
     canonical: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/about`,
   },
