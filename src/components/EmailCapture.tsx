@@ -54,12 +54,17 @@ export default function EmailCapture({
 
   return (
     <form onSubmit={handleSubmit} className={`flex flex-col sm:flex-row gap-2 ${className}`}>
+      <label htmlFor="email-capture-input" className="sr-only">
+        Email address
+      </label>
       <input
+        id="email-capture-input"
         type="email"
         required
         placeholder="your@email.com"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        aria-describedby={status === "error" ? "email-capture-error" : undefined}
         className="flex-1 px-4 py-3 rounded-xl bg-navy-dark/80 border border-white/10 text-text-primary placeholder:text-text-muted focus:border-gold/40 focus:outline-none text-sm"
       />
       <button
@@ -69,7 +74,7 @@ export default function EmailCapture({
         {buttonText}
       </button>
       {status === "error" && (
-        <p className="text-red-400 text-xs mt-1">Something went wrong. Try again.</p>
+        <p id="email-capture-error" role="alert" className="text-red-400 text-xs mt-1">Something went wrong. Try again.</p>
       )}
     </form>
   );

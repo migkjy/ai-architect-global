@@ -45,7 +45,9 @@ export default function Header() {
           {/* Hamburger */}
           <button
             onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Toggle navigation menu"
+            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
             className="md:hidden p-1.5 text-text-secondary hover:text-text-primary transition-colors"
           >
             {mobileOpen ? (
@@ -63,7 +65,7 @@ export default function Header() {
 
       {/* Mobile dropdown */}
       {mobileOpen && (
-        <div className="md:hidden bg-navy-dark border-t border-white/5 px-4 py-4 flex flex-col gap-4 text-sm text-text-secondary">
+        <div id="mobile-nav" className="md:hidden bg-navy-dark border-t border-white/5 px-4 py-4 flex flex-col gap-4 text-sm text-text-secondary" role="navigation" aria-label="Mobile navigation">
           <Link href="/products" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
             All Books
           </Link>
