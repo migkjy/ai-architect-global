@@ -5,24 +5,56 @@ import BuyButton from "@/components/BuyButton";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "About AI Architect Series — Why We Built AI-Powered Business Framework Guides",
-  description:
-    "Bridge the gap between reading and executing proven business frameworks. AI Architect turns DotCom Secrets, PLF, and Copywriting Secrets into AI systems.",
-  keywords: [
-    "AI Architect Series",
-    "AI business framework",
-    "Russell Brunson AI",
-    "Jeff Walker AI",
-    "Jim Edwards AI",
-    "Nicolas Cole AI",
-    "about AI Architect",
-    "business automation tools",
-  ],
-  alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/about`,
+const aboutMeta: Record<string, { title: string; description: string }> = {
+  en: {
+    title: "About AI Architect Series — Why We Built AI-Powered Business Framework Guides",
+    description: "Bridge the gap between reading and executing proven business frameworks. AI Architect turns DotCom Secrets, PLF, and Copywriting Secrets into AI systems.",
+  },
+  ko: {
+    title: "AI Architect Series 소개 — AI 기반 비즈니스 프레임워크 가이드를 만든 이유",
+    description: "비즈니스 프레임워크를 읽는 것과 실행하는 것 사이의 갭을 해소합니다. AI Architect가 DotCom Secrets, PLF, Copywriting Secrets를 AI 시스템으로 전환합니다.",
+  },
+  ja: {
+    title: "AI Architect Seriesについて — AIビジネスフレームワークガイドを作った理由",
+    description: "ビジネスフレームワークを読むことと実行することのギャップを埋めます。AI ArchitectがDotCom Secrets、PLF、Copywriting SecretsをAIシステムに変換。",
   },
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const meta = aboutMeta[locale] ?? aboutMeta.en;
+  const canonicalUrl = locale === "en" ? `${siteUrl}/about` : `${siteUrl}/${locale}/about`;
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: [
+      "AI Architect Series",
+      "AI business framework",
+      "Russell Brunson AI",
+      "Jeff Walker AI",
+      "Jim Edwards AI",
+      "Nicolas Cole AI",
+    ],
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        en: `${siteUrl}/about`,
+        ko: `${siteUrl}/ko/about`,
+        ja: `${siteUrl}/ja/about`,
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      type: "website",
+      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      siteName: "AI Architect Series",
+      url: canonicalUrl,
+    },
+  };
+}
 
 const bundleUrl = getBundleUrl();
 
