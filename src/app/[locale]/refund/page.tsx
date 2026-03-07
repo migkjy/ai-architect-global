@@ -16,12 +16,36 @@ export const metadata: Metadata = {
   },
 };
 
+const BREADCRUMB_LABELS: Record<string, { home: string; page: string }> = {
+  en: { home: "Home", page: "Refund Policy" },
+  ko: { home: "\uD648", page: "\uD658\uBD88 \uC815\uCC45" },
+  ja: { home: "\u30DB\u30FC\u30E0", page: "\u8FD4\u91D1\u30DD\u30EA\u30B7\u30FC" },
+};
+
+function getBreadcrumbJsonLd(locale: string) {
+  const labels = BREADCRUMB_LABELS[locale] || BREADCRUMB_LABELS.en;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: labels.home, item: `${SITE_URL}/${locale}` },
+      { "@type": "ListItem", position: 2, name: labels.page, item: `${SITE_URL}/${locale}/refund` },
+    ],
+  };
+}
+
 export default async function RefundPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
   return (
     <div className="min-h-screen pt-24 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getBreadcrumbJsonLd(locale)).replace(/</g, "\\u003c"),
+        }}
+      />
       <div className="max-w-3xl mx-auto px-4">
         <div className="mb-10">
           <h1 className="text-4xl font-bold mb-3 gradient-gold">Refund Policy</h1>
