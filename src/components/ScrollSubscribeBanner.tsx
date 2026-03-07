@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 declare global {
   interface Window {
@@ -19,6 +20,7 @@ export default function ScrollSubscribeBanner() {
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const t = useTranslations("scrollBanner");
 
   const dismiss = useCallback(() => {
     setVisible(false);
@@ -91,13 +93,13 @@ export default function ScrollSubscribeBanner() {
     >
       <div className="mx-auto max-w-2xl flex items-center gap-3">
         <div className="hidden sm:flex flex-col shrink-0">
-          <span className="text-sm font-bold text-text-primary leading-tight">AI Framework Preview — Free</span>
-          <span className="text-xs text-gold/80">500+ entrepreneurs already inside</span>
+          <span className="text-sm font-bold text-text-primary leading-tight">{t("title")}</span>
+          <span className="text-xs text-gold/80">{t("badge")}</span>
         </div>
 
         {status === "success" ? (
           <p className="flex-1 text-sm text-green-400 font-medium">
-            Check your inbox for the framework sample!
+            {t("success")}
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="flex-1 flex gap-2">
@@ -116,7 +118,7 @@ export default function ScrollSubscribeBanner() {
               disabled={status === "loading"}
               className="rounded-xl bg-gold px-4 py-1.5 text-sm font-bold text-navy-dark hover:bg-gold-light transition-colors disabled:opacity-50 whitespace-nowrap"
             >
-              {status === "loading" ? "..." : "Get Free Sample"}
+              {status === "loading" ? "..." : t("cta")}
             </button>
           </form>
         )}
@@ -130,7 +132,7 @@ export default function ScrollSubscribeBanner() {
         </button>
       </div>
       {status === "error" && (
-        <p className="text-center text-xs text-red-400 mt-1">Something went wrong. Try again.</p>
+        <p className="text-center text-xs text-red-400 mt-1">{t("error")}</p>
       )}
     </div>
   );

@@ -5,6 +5,7 @@ import { books, getBookBySlug, getBundleUrl, getBundlePaddlePriceId, getProductU
 import { getAllPosts } from "@/lib/blog";
 import BuyButton from "@/components/BuyButton";
 import { setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 
 type Props = {
@@ -74,8 +75,11 @@ export default async function ProductPage({ params }: Props) {
   const { slug, locale } = await params;
   setRequestLocale(locale);
 
-  const book = getBookBySlug(slug);
+  const t = await getTranslations("products");
+  const tc = await getTranslations("common");
+  const tn = await getTranslations("nav");
 
+  const book = getBookBySlug(slug);
   if (!book) notFound();
 
   const productUrl = getProductUrl(book.envKey);
@@ -85,6 +89,7 @@ export default async function ProductPage({ params }: Props) {
   const bundlePaddlePriceId = getBundlePaddlePriceId();
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const dateLocale = locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -108,7 +113,7 @@ export default async function ProductPage({ params }: Props) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "AI Architect Series", item: siteUrl },
-      { "@type": "ListItem", position: 2, name: "All Books", item: `${siteUrl}/products` },
+      { "@type": "ListItem", position: 2, name: t("title"), item: `${siteUrl}/products` },
       { "@type": "ListItem", position: 3, name: book.title, item: `${siteUrl}/products/${slug}` },
     ],
   };
@@ -119,22 +124,16 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(breadcrumbJsonLd)) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(breadcrumbJsonLd)) }} />
 
       <div className="min-h-screen pt-24 pb-20">
         {/* Breadcrumb */}
         <div className="max-w-4xl mx-auto px-4 mb-8">
           <div className="flex items-center gap-2 text-sm text-text-muted">
-            <Link href="/" className="hover:text-gold transition-colors">Home</Link>
+            <Link href="/" className="hover:text-gold transition-colors">{tn("home")}</Link>
             <span>/</span>
-            <Link href="/products" className="hover:text-gold transition-colors">All Books</Link>
+            <Link href="/products" className="hover:text-gold transition-colors">{tn("products")}</Link>
             <span>/</span>
             <span className="text-text-secondary">{book.title}</span>
           </div>
@@ -148,7 +147,7 @@ export default async function ProductPage({ params }: Props) {
                 <span className="text-xs text-gold/70 font-bold bg-gold/10 border border-gold/20 px-3 py-1 rounded-full">
                   Vol. {book.vol} of 6
                 </span>
-                <span className="text-xs text-text-muted">Based on: {book.framework}</span>
+                <span className="text-xs text-text-muted">{t("basedOn", { framework: book.framework })}</span>
               </div>
 
               <h1 className="text-3xl md:text-4xl font-bold mb-3">
@@ -157,7 +156,6 @@ export default async function ProductPage({ params }: Props) {
               <p className="text-xl text-text-secondary mb-4 italic">{book.tagline}</p>
               <p className="text-text-secondary leading-relaxed mb-6">{book.shortDescription}</p>
 
-              {/* Case Study */}
               <div className="bg-gold/5 border border-gold/20 rounded-xl p-4 mb-6">
                 <div className="text-gold font-bold mb-1">{book.caseStudy.result}</div>
                 <div className="text-text-secondary text-sm">{book.caseStudy.detail}</div>
@@ -170,7 +168,7 @@ export default async function ProductPage({ params }: Props) {
                   paddleSuccessUrl={`${siteUrl}/thank-you?product=${encodeURIComponent(book.title)}`}
                   className="text-lg px-8 py-4"
                 >
-                  Get {book.title} — $17
+                  {book.title} &mdash; $17
                 </BuyButton>
                 <BuyButton
                   href={bundleUrl}
@@ -179,16 +177,15 @@ export default async function ProductPage({ params }: Props) {
                   variant="secondary"
                   className="text-sm py-2"
                 >
-                  Get All 6 Books — $47
+                  {tc("getAllBooks")} &mdash; $47
                 </BuyButton>
               </div>
 
               <p className="text-xs text-text-muted mt-3">
-                Instant PDF download · 7-day money-back guarantee · No questions asked
+                {tc("pdfDownload")} &middot; {tc("moneyBack")}
               </p>
             </div>
 
-            {/* Book Card */}
             <div className="md:w-64 shrink-0">
               <div className={`bg-gradient-to-br ${book.color} border border-white/10 rounded-2xl p-8 text-center`}>
                 <div className="text-6xl mb-4">{book.icon}</div>
@@ -204,7 +201,7 @@ export default async function ProductPage({ params }: Props) {
         <section className="max-w-4xl mx-auto px-4 mb-16">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-1 h-6 bg-gold rounded-full" />
-            <h2 className="text-2xl font-bold">Frameworks Covered</h2>
+            <h2 className="text-2xl font-bold">{t("frameworksCovered")}</h2>
           </div>
           <div className="space-y-3">
             {book.frameworks.map((f, i) => (
@@ -224,7 +221,7 @@ export default async function ProductPage({ params }: Props) {
         <section className="max-w-4xl mx-auto px-4 mb-16">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-1 h-6 bg-gold rounded-full" />
-            <h2 className="text-2xl font-bold">What&apos;s Inside</h2>
+            <h2 className="text-2xl font-bold">{t("whatsInside")}</h2>
           </div>
           <div className="bg-surface/60 border border-white/5 rounded-2xl p-6 md:p-8">
             <ul className="space-y-3">
@@ -246,17 +243,13 @@ export default async function ProductPage({ params }: Props) {
         <section className="max-w-4xl mx-auto px-4">
           <div className="bg-surface/60 border border-gold/20 rounded-2xl p-8 text-center card-glow">
             <div className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">
-              Instant PDF Download
+              {t("instantPdfDownload")}
             </div>
             <h2 className="text-2xl font-bold mb-2">
-              Ready to execute {book.framework} with AI?
+              {t("readyToExecute", { framework: book.framework })}
             </h2>
-            <p className="text-text-secondary mb-2">
-              Works with Claude, ChatGPT, and Gemini. Start your first AI session in under 1 hour.
-            </p>
-            <p className="text-sm text-gold/80 mb-6">
-              500+ entrepreneurs are already using these frameworks.
-            </p>
+            <p className="text-text-secondary mb-2">{t("worksWithStart")}</p>
+            <p className="text-sm text-gold/80 mb-6">{t("entrepreneursUsing")}</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <BuyButton
                 href={productUrl}
@@ -264,7 +257,7 @@ export default async function ProductPage({ params }: Props) {
                 paddleSuccessUrl={`${siteUrl}/thank-you?product=${encodeURIComponent(book.title)}`}
                 className="text-lg px-8 py-4"
               >
-                Get {book.title} — $17
+                {book.title} &mdash; $17
               </BuyButton>
               <BuyButton
                 href={bundleUrl}
@@ -272,17 +265,17 @@ export default async function ProductPage({ params }: Props) {
                 paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
                 variant="secondary"
               >
-                Get All 6 Books — $47
+                {tc("getAllBooks")} &mdash; $47
               </BuyButton>
             </div>
             <div className="flex items-center justify-center gap-4 mt-4 text-xs text-text-muted">
               <span className="flex items-center gap-1">
                 <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                7-day money-back guarantee
+                {tc("moneyBack")}
               </span>
               <span className="flex items-center gap-1">
                 <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
-                No account required
+                {t("noAccount")}
               </span>
             </div>
           </div>
@@ -294,7 +287,7 @@ export default async function ProductPage({ params }: Props) {
           if (blogPosts.length === 0) return null;
           return (
             <div className="max-w-4xl mx-auto px-4 mt-16">
-              <h2 className="text-xl font-bold mb-6">Related Articles</h2>
+              <h2 className="text-xl font-bold mb-6">{t("relatedArticles")}</h2>
               <div className="grid gap-4">
                 {blogPosts.map((post) => (
                   <Link
@@ -303,7 +296,7 @@ export default async function ProductPage({ params }: Props) {
                     className="block border border-white/10 rounded-xl p-4 hover:border-gold/40 transition-colors"
                   >
                     <div className="text-xs text-text-muted mb-1">
-                      <time dateTime={post.date}>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</time>
+                      <time dateTime={post.date}>{new Date(post.date).toLocaleDateString(dateLocale, { year: "numeric", month: "short", day: "numeric" })}</time>
                       <span className="mx-2">&middot;</span>
                       <span>{post.readingTime}</span>
                     </div>
@@ -318,7 +311,7 @@ export default async function ProductPage({ params }: Props) {
 
         {/* Other Books */}
         <div className="max-w-4xl mx-auto px-4 mt-16">
-          <h2 className="text-xl font-bold mb-6">Other Books in the Series</h2>
+          <h2 className="text-xl font-bold mb-6">{t("otherBooks")}</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {books
               .filter((b) => b.id !== book.id)

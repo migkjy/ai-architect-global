@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 declare global {
   interface Window {
@@ -21,6 +22,7 @@ export default function ExitIntentPopup() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const t = useTranslations("exitPopup");
 
   const dismiss = useCallback(() => {
     setVisible(false);
@@ -29,7 +31,6 @@ export default function ExitIntentPopup() {
     } catch {}
   }, []);
 
-  // Exit intent detection (desktop only, blog pages only)
   useEffect(() => {
     if (!isBlogPage) return;
     if (typeof window !== "undefined" && window.innerWidth < 768) return;
@@ -59,7 +60,6 @@ export default function ExitIntentPopup() {
     };
   }, []);
 
-  // Auto-close on success
   useEffect(() => {
     if (status === "success") {
       const t = setTimeout(dismiss, 3000);
@@ -67,7 +67,6 @@ export default function ExitIntentPopup() {
     }
   }, [status, dismiss]);
 
-  // ESC key
   useEffect(() => {
     if (!visible) return;
     function handleKeyDown(e: KeyboardEvent) {
@@ -136,42 +135,42 @@ export default function ExitIntentPopup() {
               <span className="text-gold text-3xl">&#10003;</span>
             </div>
             <h2 id="exit-popup-title" className="text-xl font-bold text-text-primary mb-2">
-              You&apos;re on the list!
+              {t("successTitle")}
             </h2>
             <p className="text-text-secondary text-sm">
-              Check your inbox for the AI Architecture Design sample.
+              {t("successDesc")}
             </p>
           </div>
         ) : (
           <>
             <div className="text-center mb-5">
               <div className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-3 py-1 rounded-full mb-3 uppercase tracking-wide">
-                500+ entrepreneurs inside
+                {t("badge")}
               </div>
               <p className="text-2xl mb-2">&#128218;</p>
               <h2
                 id="exit-popup-title"
                 className="text-xl font-bold text-text-primary mb-1"
               >
-                Before You Go — Free Framework Inside
+                {t("title")}
               </h2>
               <p className="text-text-secondary text-sm">
-                Join 500+ entrepreneurs getting AI-powered business frameworks every week
+                {t("subtitle")}
               </p>
             </div>
 
             <ul className="mb-5 space-y-2 text-sm text-text-secondary">
               <li className="flex items-center gap-2.5">
                 <span className="text-gold shrink-0">&#10003;</span>
-                <span>AI Framework preview — cut 50%+ strategy time</span>
+                <span>{t("benefit1")}</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="text-gold shrink-0">&#10003;</span>
-                <span>3 ready-to-use system prompts (Claude / ChatGPT)</span>
+                <span>{t("benefit2")}</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="text-gold shrink-0">&#10003;</span>
-                <span>Weekly AI business insight — every Friday</span>
+                <span>{t("benefit3")}</span>
               </li>
             </ul>
 
@@ -194,7 +193,7 @@ export default function ExitIntentPopup() {
                 disabled={status === "loading"}
                 className="w-full px-6 py-3 bg-gold text-navy-dark font-bold rounded-xl hover:bg-gold-light transition-all text-sm disabled:opacity-50"
               >
-                {status === "loading" ? "..." : "Send Me the Free Framework"}
+                {status === "loading" ? "..." : t("cta")}
               </button>
               {status === "error" && (
                 <p role="alert" className="text-center text-xs text-red-400">
@@ -204,14 +203,14 @@ export default function ExitIntentPopup() {
             </form>
 
             <p className="mt-3 text-center text-xs text-text-muted">
-              No spam. Unsubscribe anytime.
+              {t("noSpam")}
             </p>
 
             <button
               onClick={dismiss}
               className="mt-3 block w-full text-center text-xs text-text-muted hover:text-text-secondary transition-colors"
             >
-              No thanks, I don&apos;t need free frameworks
+              {t("dismiss")}
             </button>
           </>
         )}
