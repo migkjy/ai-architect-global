@@ -140,6 +140,17 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </div>
         </div>
 
+        {/* Blog cross-link */}
+        <div className="mb-16 p-5 bg-white/5 border border-white/10 rounded-xl">
+          <p className="text-sm text-text-secondary mb-1">Latest insights</p>
+          <Link
+            href="/blog"
+            className="text-gold hover:text-gold-light font-medium text-sm transition-colors"
+          >
+            Read our blog for AI business frameworks and strategies →
+          </Link>
+        </div>
+
         {/* CTA */}
         <div className="bg-surface/60 border border-gold/20 rounded-2xl p-8 text-center card-glow">
           <h2 className="text-2xl font-bold mb-3">
