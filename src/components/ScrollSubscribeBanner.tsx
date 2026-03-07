@@ -86,13 +86,14 @@ export default function ScrollSubscribeBanner() {
       role="banner"
     >
       <div className="mx-auto max-w-2xl flex items-center gap-3">
-        <div className="hidden sm:block text-sm font-medium text-text-primary shrink-0">
-          Free AI Framework Preview + 3 Prompts
+        <div className="hidden sm:flex flex-col shrink-0">
+          <span className="text-sm font-bold text-text-primary leading-tight">AI Framework Preview — Free</span>
+          <span className="text-xs text-gold/80">500+ entrepreneurs already inside</span>
         </div>
 
         {status === "success" ? (
           <p className="flex-1 text-sm text-green-400 font-medium">
-            Check your inbox for the sample!
+            Check your inbox for the framework sample!
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="flex-1 flex gap-2">
@@ -111,7 +112,7 @@ export default function ScrollSubscribeBanner() {
               disabled={status === "loading"}
               className="rounded-xl bg-gold px-4 py-1.5 text-sm font-bold text-navy-dark hover:bg-gold-light transition-colors disabled:opacity-50 whitespace-nowrap"
             >
-              {status === "loading" ? "..." : "Get Free"}
+              {status === "loading" ? "..." : "Get Free Sample"}
             </button>
           </form>
         )}

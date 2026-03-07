@@ -141,30 +141,33 @@ export default function ExitIntentPopup() {
         ) : (
           <>
             <div className="text-center mb-5">
+              <div className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-3 py-1 rounded-full mb-3 uppercase tracking-wide">
+                500+ entrepreneurs inside
+              </div>
               <p className="text-2xl mb-2">&#128218;</p>
               <h2
                 id="exit-popup-title"
                 className="text-xl font-bold text-text-primary mb-1"
               >
-                Wait! Free Sample Inside
+                Before You Go — Free Framework Inside
               </h2>
               <p className="text-text-secondary text-sm">
-                Get the AI Architect framework preview + 3 ready-to-use system prompts
+                Join 500+ entrepreneurs getting AI-powered business frameworks every week
               </p>
             </div>
 
             <ul className="mb-5 space-y-2 text-sm text-text-secondary">
               <li className="flex items-center gap-2.5">
                 <span className="text-gold shrink-0">&#10003;</span>
-                <span>AI Framework preview (12 pages)</span>
+                <span>AI Framework preview — cut 50%+ strategy time</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="text-gold shrink-0">&#10003;</span>
-                <span>3 ready-to-use system prompts</span>
+                <span>3 ready-to-use system prompts (Claude / ChatGPT)</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="text-gold shrink-0">&#10003;</span>
-                <span>Early-bird launch discount</span>
+                <span>Weekly AI business insight — every Friday</span>
               </li>
             </ul>
 
@@ -187,7 +190,7 @@ export default function ExitIntentPopup() {
                 disabled={status === "loading"}
                 className="w-full px-6 py-3 bg-gold text-navy-dark font-bold rounded-xl hover:bg-gold-light transition-all text-sm disabled:opacity-50"
               >
-                {status === "loading" ? "..." : "Get Free Sample"}
+                {status === "loading" ? "..." : "Send Me the Free Framework"}
               </button>
               {status === "error" && (
                 <p role="alert" className="text-center text-xs text-red-400">
@@ -204,7 +207,7 @@ export default function ExitIntentPopup() {
               onClick={dismiss}
               className="mt-3 block w-full text-center text-xs text-text-muted hover:text-text-secondary transition-colors"
             >
-              No thanks, I&apos;ll pass on the free sample
+              No thanks, I don&apos;t need free frameworks
             </button>
           </>
         )}

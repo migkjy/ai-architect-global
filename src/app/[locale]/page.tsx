@@ -567,19 +567,33 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
-      {/* Email Capture — Launch Notification */}
+      {/* Email Capture — Free Framework Sample */}
       <section className="py-20 pb-32 md:pb-20">
         <div className="max-w-2xl mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Not Ready to Buy Yet?</h2>
-          <p className="text-text-secondary mb-8">
-            Join 500+ entrepreneurs on the waiting list. Get notified when we launch with an exclusive early-bird discount.
+          <div className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-4 py-1.5 rounded-full mb-4 uppercase tracking-wide">
+            500+ entrepreneurs already subscribed
+          </div>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Get the Free AI Framework Sample</h2>
+          <p className="text-text-secondary mb-3">
+            Get a free preview of the AI Architect framework + 3 ready-to-use system prompts — plus weekly AI business insights every Friday.
           </p>
+          <div className="flex flex-wrap justify-center gap-4 text-xs text-text-muted mb-8">
+            <span className="flex items-center gap-1.5">
+              <span className="text-gold">&#10003;</span> Cut 50%+ strategy time with AI
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="text-gold">&#10003;</span> Real results from 500+ users
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="text-gold">&#10003;</span> Every Friday — no fluff
+            </span>
+          </div>
           <EmailCapture
-            buttonText="Get Launch Discount"
+            buttonText="Send Me the Free Framework"
             className="max-w-lg mx-auto"
           />
           <p className="text-text-muted text-xs mt-4">
-            No spam. One email at launch. Unsubscribe anytime.
+            No spam. Unsubscribe anytime.
           </p>
         </div>
       </section>
