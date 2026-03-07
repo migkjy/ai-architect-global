@@ -40,6 +40,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "bundle", changeFrequency: "weekly", priority: 0.9 },
     { path: "about", changeFrequency: "monthly", priority: 0.6 },
     { path: "blog", changeFrequency: "weekly", priority: 0.8 },
+    { path: "terms", changeFrequency: "yearly", priority: 0.3 },
+    { path: "privacy", changeFrequency: "yearly", priority: 0.3 },
+    { path: "refund", changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const productRoutes: RouteEntry[] = books.map((book) => ({
