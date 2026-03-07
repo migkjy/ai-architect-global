@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { books, getBookBySlug, getBundleUrl, getProductUrl } from "@/lib/products";
+import { books, getBookBySlug, getBundleUrl, getBundlePaddlePriceId, getProductUrl } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -51,11 +51,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Architect Series",
       url: canonicalUrl,
+      images: [
+        {
+          url: `${siteUrl}/og-image`,
+          width: 1200,
+          height: 630,
+          alt: `${book.title} — AI Architect Series`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${book.title} — ${book.subtitle}`,
       description: book.shortDescription,
+      images: [`${siteUrl}/og-image`],
     },
   };
 }
@@ -70,6 +79,9 @@ export default async function ProductPage({ params }: Props) {
 
   const productUrl = getProductUrl(book.envKey);
   const bundleUrl = getBundleUrl();
+  const bookPaddlePriceId =
+    (process.env[book.paddlePriceEnvKey] as string | undefined) ?? undefined;
+  const bundlePaddlePriceId = getBundlePaddlePriceId();
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
@@ -151,10 +163,21 @@ export default async function ProductPage({ params }: Props) {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <BuyButton href={productUrl} className="text-lg px-8 py-4">
+                <BuyButton
+                  href={productUrl}
+                  paddlePriceId={bookPaddlePriceId}
+                  paddleSuccessUrl={`${siteUrl}/thank-you?product=${encodeURIComponent(book.title)}`}
+                  className="text-lg px-8 py-4"
+                >
                   Buy {book.title} — $17
                 </BuyButton>
-                <BuyButton href={bundleUrl} variant="secondary" className="text-sm py-2">
+                <BuyButton
+                  href={bundleUrl}
+                  paddlePriceId={bundlePaddlePriceId}
+                  paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
+                  variant="secondary"
+                  className="text-sm py-2"
+                >
                   Or get all 6 for $47
                 </BuyButton>
               </div>
@@ -228,10 +251,20 @@ export default async function ProductPage({ params }: Props) {
               Immediate PDF download. Works with Claude, ChatGPT, and Gemini.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <BuyButton href={productUrl} className="text-lg px-8 py-4">
+              <BuyButton
+                href={productUrl}
+                paddlePriceId={bookPaddlePriceId}
+                paddleSuccessUrl={`${siteUrl}/thank-you?product=${encodeURIComponent(book.title)}`}
+                className="text-lg px-8 py-4"
+              >
                 Buy {book.title} — $17
               </BuyButton>
-              <BuyButton href={bundleUrl} variant="secondary">
+              <BuyButton
+                href={bundleUrl}
+                paddlePriceId={bundlePaddlePriceId}
+                paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
+                variant="secondary"
+              >
                 Get All 6 Books — $47
               </BuyButton>
             </div>

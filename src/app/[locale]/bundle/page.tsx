@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { books, bundle, getBundleUrl } from "@/lib/products";
+import { books, bundle, getBundleUrl, getBundlePaddlePriceId } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
 import { setRequestLocale } from "next-intl/server";
 
@@ -105,6 +105,7 @@ const frameworkAxes = [
 ];
 
 const bundleUrl = getBundleUrl();
+const bundlePaddlePriceId = getBundlePaddlePriceId();
 const savedAmount = bundle.originalPrice - bundle.price;
 
 export default async function BundlePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -189,7 +190,12 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
               <p className="text-sm text-green-400 font-medium mb-6">
                 ${savedAmount} off buying each book individually
               </p>
-              <BuyButton href={bundleUrl} className="w-full text-lg py-4 animate-pulse-subtle">
+              <BuyButton
+                href={bundleUrl}
+                paddlePriceId={bundlePaddlePriceId}
+                paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
+                className="w-full text-lg py-4 animate-pulse-subtle"
+              >
                 Get the Complete Bundle — ${bundle.price}
               </BuyButton>
               <p className="text-sm text-text-muted mt-4">
@@ -345,7 +351,12 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
               </div>
               <div className="text-4xl font-bold text-gold mb-6">${bundle.price}</div>
 
-              <BuyButton href={bundleUrl} className="w-full text-lg py-4 animate-pulse-subtle">
+              <BuyButton
+                href={bundleUrl}
+                paddlePriceId={bundlePaddlePriceId}
+                paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
+                className="w-full text-lg py-4 animate-pulse-subtle"
+              >
                 Get the Complete Bundle — ${bundle.price}
               </BuyButton>
             </div>

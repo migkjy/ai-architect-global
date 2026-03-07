@@ -9,6 +9,9 @@ import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { routing } from "@/i18n/routing";
+import { MetaPixel } from "@/components/MetaPixel";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
+import ScrollSubscribeBanner from "@/components/ScrollSubscribeBanner";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 const OG_IMAGE = `${SITE_URL}/og-image`;
@@ -103,8 +106,21 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
       "@type": "Organization",
       name: "AI Architect Series",
       url: siteUrl,
-      logo: `${siteUrl}/og-image`,
-      sameAs: [],
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/og-image`,
+        width: 1200,
+        height: 630,
+      },
+      sameAs: [
+        "https://richbukae.com",
+        "https://aihubkorea.kr",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "contact@newbizsoft.com",
+        contactType: "customer service",
+      },
     },
   ];
 }
@@ -145,6 +161,34 @@ export default async function LocaleLayout({
           <link key={link.hrefLang} rel={link.rel} hrefLang={link.hrefLang} href={link.href} />
         ))}
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://cdn.paddle.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.paddle.com" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        <link
+          rel="preload"
+          as="style"
+          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
+        <link
+          rel="stylesheet"
+          media="print"
+          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+          // @ts-expect-error onload is valid HTML attribute
+          onLoad="this.media='all'"
+        />
+        <noscript>
+          <link
+            rel="stylesheet"
+            crossOrigin="anonymous"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+          />
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(siteJsonLd)) }}
@@ -154,6 +198,32 @@ export default async function LocaleLayout({
         <Script id="ga4-ai-architect-io" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-76C0HSW5LB');`}
         </Script>
+        {/* Paddle Billing — overlay checkout */}
+        <Script
+          src="https://cdn.paddle.com/paddle/v2/paddle.js"
+          strategy="afterInteractive"
+          onLoad={undefined}
+        />
+        <Script id="paddle-init" strategy="afterInteractive">
+          {`
+            (function() {
+              var checkPaddle = setInterval(function() {
+                if (typeof window.Paddle !== 'undefined') {
+                  clearInterval(checkPaddle);
+                  var env = '${process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT ?? "sandbox"}';
+                  if (env === 'sandbox' && window.Paddle.Environment) {
+                    window.Paddle.Environment.set('sandbox');
+                  }
+                  var token = '${process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN ?? ""}';
+                  if (token && window.Paddle.Setup) {
+                    window.Paddle.Setup({ token: token });
+                  }
+                }
+              }, 100);
+            })();
+          `}
+        </Script>
+        <MetaPixel />
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-navy text-text-primary">
         <NextIntlClientProvider messages={messages}>
@@ -161,6 +231,8 @@ export default async function LocaleLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </NextIntlClientProvider>
+        <ScrollSubscribeBanner />
+        <ExitIntentPopup />
         <Analytics />
         <SpeedInsights />
       </body>
