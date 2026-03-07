@@ -2,103 +2,87 @@ import type { MetadataRoute } from "next";
 import { books } from "@/lib/products";
 import { getAllPosts } from "@/lib/blog";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://ai-driven-architect.com";
+const BASE_URL = "https://ai-driven-architect.com";
 
-  const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/products`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/bundle`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
+// 로캘 prefix 없는 영어 canonical URL
+function canonicalUrl(path: string): string {
+  return path ? `${BASE_URL}/${path}` : BASE_URL;
+}
+
+// 로캘 prefix URL (en 포함)
+function localizedUrl(locale: string, path: string): string {
+  return path ? `${BASE_URL}/${locale}/${path}` : `${BASE_URL}/${locale}`;
+}
+
+// hreflang alternates — 영어는 prefix 없는 canonical + /en/ 둘 다 포함
+function buildAlternates(path: string): Record<string, string> {
+  return {
+    en: localizedUrl("en", path),
+    ko: localizedUrl("ko", path),
+    ja: localizedUrl("ja", path),
+    "x-default": canonicalUrl(path),
+  };
+}
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const blogPosts = getAllPosts();
+
+  type RouteEntry = {
+    path: string;
+    changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+    priority: number;
+    lastModified?: Date;
+  };
+
+  const staticRoutes: RouteEntry[] = [
+    { path: "", changeFrequency: "weekly", priority: 1 },
+    { path: "products", changeFrequency: "weekly", priority: 0.9 },
+    { path: "bundle", changeFrequency: "weekly", priority: 0.9 },
+    { path: "about", changeFrequency: "monthly", priority: 0.6 },
+    { path: "blog", changeFrequency: "weekly", priority: 0.8 },
   ];
 
-  const productPages: MetadataRoute.Sitemap = books.map((book) => ({
-    url: `${baseUrl}/products/${book.slug}`,
-    lastModified: new Date(),
+  const productRoutes: RouteEntry[] = books.map((book) => ({
+    path: `products/${book.slug}`,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
-  const blogPosts = getAllPosts();
-  const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
+  const blogRoutes: RouteEntry[] = blogPosts.map((post) => ({
+    path: `blog/${post.slug}`,
     changeFrequency: "monthly" as const,
     priority: 0.7,
+    lastModified: new Date(post.date),
   }));
 
-  const nonDefaultLocales = ["ko", "ja"];
+  const allRoutes = [...staticRoutes, ...productRoutes, ...blogRoutes];
+  const result: MetadataRoute.Sitemap = [];
 
-  const localizedPages: MetadataRoute.Sitemap = nonDefaultLocales.flatMap((locale) => [
-    {
-      url: `${baseUrl}/${locale}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/${locale}/products`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/${locale}/bundle`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/${locale}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/${locale}/blog`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.7,
-    },
-    ...books.map((book) => ({
-      url: `${baseUrl}/${locale}/products/${book.slug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
-    ...blogPosts.map((post) => ({
-      url: `${baseUrl}/${locale}/blog/${post.slug}`,
-      lastModified: new Date(post.date),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
-    })),
-  ]);
+  // 1. prefix 없는 영어 canonical URL (hreflang alternates 포함)
+  for (const route of allRoutes) {
+    result.push({
+      url: canonicalUrl(route.path),
+      lastModified: route.lastModified ?? new Date(),
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+      alternates: {
+        languages: buildAlternates(route.path),
+      },
+    });
+  }
 
-  return [...staticPages, ...productPages, ...blogPages, ...localizedPages];
+  // 2. /en/, /ko/, /ja/ 로캘 prefix URL
+  for (const locale of ["en", "ko", "ja"] as const) {
+    for (const route of allRoutes) {
+      result.push({
+        url: localizedUrl(locale, route.path),
+        lastModified: route.lastModified ?? new Date(),
+        changeFrequency: route.changeFrequency,
+        // 로캘 prefix URL은 canonical보다 낮은 priority
+        priority: Math.max(route.priority - 0.1, 0.1),
+      });
+    }
+  }
+
+  return result;
 }
