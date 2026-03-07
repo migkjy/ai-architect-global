@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import EmailCapture from "@/components/EmailCapture";
+import dynamic from "next/dynamic";
+const EmailCapture = dynamic(() => import("@/components/EmailCapture"));
 
 declare global {
   interface Window {

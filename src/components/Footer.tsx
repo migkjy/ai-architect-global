@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export default function Footer() {
-  const t = useTranslations("footer");
-  const tn = useTranslations("nav");
+export default async function Footer() {
+  const t = await getTranslations("footer");
+  const tn = await getTranslations("nav");
 
   return (
     <footer className="bg-navy-dark border-t border-white/5 py-12">
