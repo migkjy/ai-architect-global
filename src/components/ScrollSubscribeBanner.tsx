@@ -109,7 +109,7 @@ export default function ScrollSubscribeBanner() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
+              placeholder="Enter your work email"
               required
               className="flex-1 min-w-0 rounded-xl border border-white/10 bg-navy-dark/80 px-3 py-1.5 text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-gold/40 transition-colors"
             />
