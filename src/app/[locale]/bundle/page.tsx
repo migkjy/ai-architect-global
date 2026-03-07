@@ -5,48 +5,64 @@ import BuyButton from "@/components/BuyButton";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 
-const BUNDLE_URL = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/bundle`;
-
-export const metadata: Metadata = {
-  title: "Complete Bundle — All 6 AI Architect Books for $47",
-  description:
-    "All 6 AI Architect books for $47. Apply Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven frameworks with AI. Save $55. Instant PDF download.",
-  keywords: [
-    "AI Architect bundle",
-    "AI business framework bundle",
-    "Russell Brunson Jeff Walker AI",
-    "DotCom Secrets Expert Secrets AI",
-    "Product Launch Formula AI",
-    "Copywriting Secrets AI",
-    "6 book bundle",
-    "AI PDF guide bundle",
-    "business automation bundle",
-    "online business AI system",
-  ],
-  alternates: {
-    canonical: BUNDLE_URL,
-    languages: {
-      en: BUNDLE_URL,
-      ko: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/ko/bundle`,
-      ja: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/ja/bundle`,
-    },
-  },
-  openGraph: {
+const bundleMeta: Record<string, { title: string; description: string; ogDescription: string }> = {
+  en: {
     title: "Complete Bundle — All 6 AI Architect Books for $47",
-    description:
-      "Six AI-powered systems for marketing, branding, traffic, copywriting, product launches, and content. One price. Instant PDF download.",
-    type: "website",
-    locale: "en_US",
-    siteName: "AI Architect Series",
-    url: BUNDLE_URL,
+    description: "All 6 AI Architect books for $47. Apply Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven frameworks with AI. Save $55. Instant PDF download.",
+    ogDescription: "Six AI-powered systems for marketing, branding, traffic, copywriting, product launches, and content. One price. Instant PDF download.",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Complete Bundle — All 6 AI Architect Books for $47",
-    description:
-      "Six AI-powered systems for marketing, branding, traffic, copywriting, product launches, and content. $47 bundle. Instant download.",
+  ko: {
+    title: "완전 번들 — AI Architect 6권 전체 $47",
+    description: "AI Architect 6권 전체 $47. Russell Brunson, Jeff Walker, Jim Edwards, Nicolas Cole의 프레임워크를 AI로 실행. $55 절약. 즉시 PDF 다운로드.",
+    ogDescription: "마케팅, 브랜딩, 트래픽, 카피라이팅, 제품 런칭, 콘텐츠를 위한 6개 AI 시스템. 하나의 가격. 즉시 다운로드.",
+  },
+  ja: {
+    title: "完全バンドル — AI Architect全6冊 $47",
+    description: "AI Architect全6冊を$47で。Russell Brunson、Jeff Walker、Jim Edwards、Nicolas Coleの実証済みフレームワークをAIで実行。$55お得。即時PDFダウンロード。",
+    ogDescription: "マーケティング、ブランディング、トラフィック、コピーライティング、製品ローンチ、コンテンツのための6つのAIシステム。一つの価格。即時ダウンロード。",
   },
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const meta = bundleMeta[locale] ?? bundleMeta.en;
+  const canonicalUrl = locale === "en" ? `${siteUrl}/bundle` : `${siteUrl}/${locale}/bundle`;
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: [
+      "AI Architect bundle",
+      "AI business framework bundle",
+      "Russell Brunson Jeff Walker AI",
+      "DotCom Secrets Expert Secrets AI",
+      "Product Launch Formula AI",
+      "Copywriting Secrets AI",
+    ],
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        en: `${siteUrl}/bundle`,
+        ko: `${siteUrl}/ko/bundle`,
+        ja: `${siteUrl}/ja/bundle`,
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.ogDescription,
+      type: "website",
+      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      siteName: "AI Architect Series",
+      url: canonicalUrl,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.ogDescription,
+    },
+  };
+}
 
 const bundleUrl = getBundleUrl();
 const bundlePaddlePriceId = getBundlePaddlePriceId();

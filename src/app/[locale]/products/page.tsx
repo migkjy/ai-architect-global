@@ -5,14 +5,48 @@ import BuyButton from "@/components/BuyButton";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "All 6 AI Business Framework Guides — AI Architect Series",
-  description:
-    "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into executable AI systems. $17 each or $47 for the complete bundle.",
-  alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/products`,
+const productsMeta: Record<string, { title: string; description: string }> = {
+  en: {
+    title: "All 6 AI Business Framework Guides — AI Architect Series",
+    description: "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into executable AI systems. $17 each or $47 for the complete bundle.",
+  },
+  ko: {
+    title: "AI 비즈니스 프레임워크 가이드 6권 — AI Architect Series",
+    description: "Russell Brunson, Jeff Walker, Jim Edwards, Nicolas Cole의 프레임워크를 실행 가능한 AI 시스템으로 변환하는 6권의 PDF 가이드. 개별 $17, 번들 $47.",
+  },
+  ja: {
+    title: "AIビジネスフレームワークガイド全6冊 — AI Architect Series",
+    description: "Russell Brunson、Jeff Walker、Jim Edwards、Nicolas Coleのフレームワークを実行可能なAIシステムに変換する6冊のPDFガイド。個別$17、バンドル$47。",
   },
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const meta = productsMeta[locale] ?? productsMeta.en;
+  const canonicalUrl = locale === "en" ? `${siteUrl}/products` : `${siteUrl}/${locale}/products`;
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        en: `${siteUrl}/products`,
+        ko: `${siteUrl}/ko/products`,
+        ja: `${siteUrl}/ja/products`,
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      type: "website",
+      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      siteName: "AI Architect Series",
+      url: canonicalUrl,
+    },
+  };
+}
 
 export default async function ProductsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
