@@ -84,41 +84,49 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
     ko: "Russell Brunson, Jeff Walker, Jim Edwards의 비즈니스 프레임워크를 AI로 자동화.",
     ja: "世界クラスのビジネスフレームワークをAIで自動化。",
   };
-  return [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: names[locale] ?? names.en,
-      url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`,
-      description: descriptions[locale] ?? descriptions.en,
-      potentialAction: {
-        "@type": "SearchAction",
-        target: `${siteUrl}/products/{search_term_string}`,
-        "query-input": "required name=search_term_string",
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        name: names[locale] ?? names.en,
+        url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`,
+        description: descriptions[locale] ?? descriptions.en,
+        inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+        potentialAction: {
+          "@type": "SearchAction",
+          target: `${siteUrl}/products/{search_term_string}`,
+          "query-input": "required name=search_term_string",
+        },
+        publisher: {
+          "@id": `${siteUrl}/#organization`,
+        },
       },
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      name: "AI Architect Series",
-      url: siteUrl,
-      logo: {
-        "@type": "ImageObject",
-        url: `${siteUrl}/og-image`,
-        width: 1200,
-        height: 630,
+      {
+        "@type": "Organization",
+        "@id": `${siteUrl}/#organization`,
+        name: "AI Architect Series",
+        url: siteUrl,
+        description: descriptions[locale] ?? descriptions.en,
+        logo: {
+          "@type": "ImageObject",
+          url: `${siteUrl}/opengraph-image`,
+          width: 1200,
+          height: 630,
+        },
+        sameAs: [
+          "https://richbukae.com",
+          "https://aihubkorea.kr",
+        ],
+        contactPoint: {
+          "@type": "ContactPoint",
+          email: "contact@newbizsoft.com",
+          contactType: "customer service",
+        },
       },
-      sameAs: [
-        "https://richbukae.com",
-        "https://aihubkorea.kr",
-      ],
-      contactPoint: {
-        "@type": "ContactPoint",
-        email: "contact@newbizsoft.com",
-        contactType: "customer service",
-      },
-    },
-  ];
+    ],
+  };
 }
 
 function escapeJsonLd(json: string): string {
