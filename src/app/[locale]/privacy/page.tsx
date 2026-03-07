@@ -16,12 +16,36 @@ export const metadata: Metadata = {
   },
 };
 
+const BREADCRUMB_LABELS: Record<string, { home: string; page: string }> = {
+  en: { home: "Home", page: "Privacy Policy" },
+  ko: { home: "\uD648", page: "\uAC1C\uC778\uC815\uBCF4\uCC98\uB9AC\uBC29\uCE68" },
+  ja: { home: "\u30DB\u30FC\u30E0", page: "\u30D7\u30E9\u30A4\u30D0\u30B7\u30FC\u30DD\u30EA\u30B7\u30FC" },
+};
+
+function getBreadcrumbJsonLd(locale: string) {
+  const labels = BREADCRUMB_LABELS[locale] || BREADCRUMB_LABELS.en;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: labels.home, item: `${SITE_URL}/${locale}` },
+      { "@type": "ListItem", position: 2, name: labels.page, item: `${SITE_URL}/${locale}/privacy` },
+    ],
+  };
+}
+
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
   return (
     <div className="min-h-screen pt-24 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getBreadcrumbJsonLd(locale)).replace(/</g, "\\u003c"),
+        }}
+      />
       <div className="max-w-3xl mx-auto px-4">
         <div className="mb-10">
           <h1 className="text-4xl font-bold mb-3 gradient-gold">Privacy Policy</h1>
