@@ -106,8 +106,20 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
       "@type": "Organization",
       name: "AI Architect Series",
       url: siteUrl,
-      logo: `${siteUrl}/og-image`,
-      sameAs: [],
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/og-image`,
+        width: 1200,
+        height: 630,
+      },
+      sameAs: [
+        "https://richbukae.com",
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "contact@newbizsoft.com",
+        contactType: "customer service",
+      },
     },
   ];
 }
