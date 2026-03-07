@@ -20,6 +20,9 @@ export type Book = {
   };
   frameworks: string[];
   whatsInside: string[];
+  relatedSlugs?: string[];
+  isBestseller?: boolean;
+  isNew?: boolean;
 };
 
 export type Bundle = {
@@ -72,6 +75,8 @@ export const books: Book[] = [
       "ROI scenarios for 12-month funnel growth",
       "5-day quickstart checklist",
     ],
+    relatedSlugs: ["ai-brand-architect", "ai-traffic-architect"],
+    isBestseller: true,
   },
   {
     id: "brand-architect",
@@ -113,6 +118,7 @@ export const books: Book[] = [
       "3 real case studies: life coach, ceramic artist, e-commerce consultant",
       "5-day quickstart checklist",
     ],
+    relatedSlugs: ["ai-marketing-architect", "ai-story-architect"],
   },
   {
     id: "traffic-architect",
@@ -155,6 +161,7 @@ export const books: Book[] = [
       "12-month traffic growth ROI scenario",
       "5-day quickstart checklist",
     ],
+    relatedSlugs: ["ai-marketing-architect", "ai-content-architect"],
   },
   {
     id: "story-architect",
@@ -197,6 +204,8 @@ export const books: Book[] = [
       "Copy ROI scenarios across 5 channel types",
       "5-day quickstart checklist",
     ],
+    relatedSlugs: ["ai-brand-architect", "ai-content-architect"],
+    isBestseller: true,
   },
   {
     id: "startup-architect",
@@ -239,6 +248,7 @@ export const books: Book[] = [
       "12-month PLF growth cycle scenario",
       "5-day quickstart checklist",
     ],
+    relatedSlugs: ["ai-marketing-architect", "ai-brand-architect"],
   },
   {
     id: "content-architect",
@@ -282,6 +292,8 @@ export const books: Book[] = [
       "12-month newsletter monetization ROI scenario",
       "5-day quickstart checklist",
     ],
+    relatedSlugs: ["ai-story-architect", "ai-traffic-architect"],
+    isNew: true,
   },
 ];
 

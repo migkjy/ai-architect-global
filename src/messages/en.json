@@ -119,7 +119,11 @@
     "worksWithStart": "Works with Claude, ChatGPT, and Gemini. Start your first AI session in under 1 hour.",
     "entrepreneursUsing": "500+ entrepreneurs are already using these frameworks.",
     "noAccount": "No account required",
-    "basedOn": "Based on: {framework}"
+    "basedOn": "Based on: {framework}",
+    "bundleSavings": "Get all 6 books for {perBook}/each in the bundle",
+    "bundleSavingsDetail": "Individual: {individual} — Bundle saves you {save} total",
+    "pairsWellWith": "Pairs Well With",
+    "pairsWellDesc": "These books complement this guide and multiply your results."
   },
   "home": {
     "results": {

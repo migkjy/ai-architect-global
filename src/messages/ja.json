@@ -119,7 +119,11 @@
     "worksWithStart": "Claude、ChatGPT、Geminiで動作。1時間以内に初回AIセッションを開始。",
     "entrepreneursUsing": "500人以上の起業家がこれらのフレームワークを活用中。",
     "noAccount": "アカウント不要",
-    "basedOn": "原著：{framework}"
+    "basedOn": "原著：{framework}",
+    "bundleSavings": "バンドルなら1冊あたり{perBook}で全6冊",
+    "bundleSavingsDetail": "個別：{individual} — バンドルで合計{save}お得",
+    "pairsWellWith": "一緒に読むと効果倍増",
+    "pairsWellDesc": "このガイドと相乗効果のある書籍です。"
   },
   "home": {
     "results": {
