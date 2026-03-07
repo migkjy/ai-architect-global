@@ -3,8 +3,12 @@ import Link from "next/link";
 import { books, bundle, getBundleUrl, getProductUrl } from "@/lib/products";
 import { getAllPosts } from "@/lib/blog";
 import dynamic from "next/dynamic";
-import BuyButton from "@/components/BuyButton";
-const FaqAccordion = dynamic(() => import("@/components/FaqAccordion"));
+const BuyButton = dynamic(() => import("@/components/BuyButton"), {
+  loading: () => <span className="inline-block h-12 w-48 animate-pulse bg-gold/20 rounded-xl" />,
+});
+const FaqAccordion = dynamic(() => import("@/components/FaqAccordion"), {
+  loading: () => <div className="h-64 animate-pulse bg-surface/30 rounded-xl" />,
+});
 const StickyMobileCTA = dynamic(() => import("@/components/StickyMobileCTA"));
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
