@@ -10,7 +10,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const canonicalUrl = locale === "en" ? `${SITE_URL}/blog` : `${SITE_URL}/${locale}/blog`;
   return {
     title: "AI Business Blog | AI Architect Series",
-    description: "Practical AI tools, marketing automation, and business growth strategies for entrepreneurs and small business owners.",
+    description: "Discover practical AI tools, marketing automation strategies, and business growth tactics. Free guides for entrepreneurs who want to scale with AI frameworks.",
+    keywords: [
+      "AI business blog",
+      "AI marketing automation",
+      "business growth strategies",
+      "AI tools for entrepreneurs",
+      "sales funnel automation",
+      "AI Architect Series blog",
+    ],
     alternates: {
       canonical: canonicalUrl,
       languages: {
@@ -21,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     openGraph: {
       title: "AI Business Blog | AI Architect Series",
-      description: "Practical AI tools, marketing automation, and business growth strategies for entrepreneurs and small business owners.",
+      description: "Free AI tools, marketing automation guides, and business growth strategies for entrepreneurs who want to scale smarter.",
       type: "website",
       url: canonicalUrl,
       siteName: "AI Architect Series",
