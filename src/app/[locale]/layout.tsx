@@ -148,6 +148,29 @@ export default async function LocaleLayout({
           <link key={link.hrefLang} rel={link.rel} hrefLang={link.hrefLang} href={link.href} />
         ))}
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+        <link
+          rel="preload"
+          as="style"
+          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
+        <link
+          rel="stylesheet"
+          media="print"
+          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+          // @ts-expect-error onload is valid HTML attribute
+          onLoad="this.media='all'"
+        />
+        <noscript>
+          <link
+            rel="stylesheet"
+            crossOrigin="anonymous"
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+          />
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(siteJsonLd)) }}
