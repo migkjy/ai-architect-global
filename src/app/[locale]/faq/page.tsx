@@ -9,6 +9,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architec
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "faqPage" });
+  const canonicalUrl = locale === "en" ? `${SITE_URL}/faq` : `${SITE_URL}/${locale}/faq`;
 
   return {
     title: t("title"),
@@ -21,7 +22,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       "AI Architect system requirements",
     ],
     alternates: {
-      canonical: `${SITE_URL}/faq`,
+      canonical: canonicalUrl,
+      languages: {
+        en: `${SITE_URL}/faq`,
+        ko: `${SITE_URL}/ko/faq`,
+        ja: `${SITE_URL}/ja/faq`,
+      },
     },
   };
 }
