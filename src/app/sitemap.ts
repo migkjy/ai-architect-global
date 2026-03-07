@@ -92,6 +92,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
+    ...blogPosts.map((post) => ({
+      url: `${baseUrl}/${locale}/blog/${post.slug}`,
+      lastModified: new Date(post.date),
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    })),
   ]);
 
   return [...staticPages, ...productPages, ...blogPages, ...localizedPages];
