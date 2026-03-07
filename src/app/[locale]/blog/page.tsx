@@ -115,10 +115,8 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
           ))}
         </div>
         <div className="mt-16 pt-8 border-t border-white/10 text-center">
-          <p className="text-text-secondary mb-4">Ready to apply these AI frameworks to your business?</p>
-          <Link href="/bundle" className="inline-block bg-gold text-navy-dark px-6 py-3 rounded-lg hover:bg-gold-light transition-colors font-bold">
-            Get the Complete AI Architect Bundle — $47 →
-          </Link>
+          <p className="text-text-secondary mb-2">Get weekly AI business frameworks delivered to your inbox.</p>
+          <p className="text-xs text-text-muted">500+ entrepreneurs subscribed · Every Friday · No spam</p>
         </div>
       </main>
     </>

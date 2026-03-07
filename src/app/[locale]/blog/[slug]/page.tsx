@@ -157,10 +157,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </article>
       <div className="mt-16 pt-8 border-t border-white/10 text-center">
-        <p className="text-text-secondary mb-4">Ready to apply AI to your business?</p>
-        <Link href="/bundle" className="inline-block bg-gold text-navy-dark px-6 py-3 rounded-lg hover:bg-gold-light transition-colors font-bold">
-          Get the AI Architect Series →
-        </Link>
+        <p className="text-text-secondary mb-2">Get weekly AI business frameworks — every Friday.</p>
+        <p className="text-xs text-text-muted">500+ entrepreneurs subscribed · No spam · Unsubscribe anytime</p>
       </div>
 
       {/* Related Posts */}

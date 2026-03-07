@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { usePathname } from "next/navigation";
 
 declare global {
   interface Window {
@@ -14,6 +15,8 @@ const SUBSCRIBED_KEY = "ai_architect_subscribed";
 const DISMISS_DAYS = 14;
 
 export default function ExitIntentPopup() {
+  const pathname = usePathname();
+  const isBlogPage = pathname?.includes("/blog");
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -26,8 +29,9 @@ export default function ExitIntentPopup() {
     } catch {}
   }, []);
 
-  // Exit intent detection (desktop only)
+  // Exit intent detection (desktop only, blog pages only)
   useEffect(() => {
+    if (!isBlogPage) return;
     if (typeof window !== "undefined" && window.innerWidth < 768) return;
     try {
       if (localStorage.getItem(SUBSCRIBED_KEY)) return;
