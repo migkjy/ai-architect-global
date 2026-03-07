@@ -84,7 +84,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
               Six AI-powered systems for marketing, branding, traffic, copywriting, product launches, and content — one price.
             </p>
           </div>
-          <div className="flex flex-col items-center md:items-end gap-2 shrink-0">
+          <div className="flex flex-col items-start md:items-end gap-2 shrink-0">
             <div className="flex items-center gap-3">
               <span className="text-text-secondary line-through">${bundle.originalPrice}</span>
               <span className="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded">SAVE ${bundle.originalPrice - bundle.price}</span>
@@ -96,8 +96,9 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
               paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
               className="text-sm px-6 py-2.5"
             >
-              Get All 6 Books
+              Get All 6 Books — ${bundle.price}
             </BuyButton>
+            <p className="text-xs text-text-muted">Instant download · 7-day guarantee</p>
           </div>
         </div>
       </div>

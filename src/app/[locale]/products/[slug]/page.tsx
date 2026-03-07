@@ -169,7 +169,7 @@ export default async function ProductPage({ params }: Props) {
                   paddleSuccessUrl={`${siteUrl}/thank-you?product=${encodeURIComponent(book.title)}`}
                   className="text-lg px-8 py-4"
                 >
-                  Buy {book.title} — $17
+                  Get {book.title} — $17
                 </BuyButton>
                 <BuyButton
                   href={bundleUrl}
@@ -178,12 +178,12 @@ export default async function ProductPage({ params }: Props) {
                   variant="secondary"
                   className="text-sm py-2"
                 >
-                  Or get all 6 for $47
+                  Get All 6 Books — $47
                 </BuyButton>
               </div>
 
               <p className="text-xs text-text-muted mt-3">
-                Immediate PDF download · 7-day money-back guarantee
+                Instant PDF download · 7-day money-back guarantee · No questions asked
               </p>
             </div>
 
@@ -244,11 +244,17 @@ export default async function ProductPage({ params }: Props) {
         {/* CTA */}
         <section className="max-w-4xl mx-auto px-4">
           <div className="bg-surface/60 border border-gold/20 rounded-2xl p-8 text-center card-glow">
+            <div className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">
+              Instant PDF Download
+            </div>
             <h2 className="text-2xl font-bold mb-2">
               Ready to execute {book.framework} with AI?
             </h2>
-            <p className="text-text-secondary mb-6">
-              Immediate PDF download. Works with Claude, ChatGPT, and Gemini.
+            <p className="text-text-secondary mb-2">
+              Works with Claude, ChatGPT, and Gemini. Start your first AI session in under 1 hour.
+            </p>
+            <p className="text-sm text-gold/80 mb-6">
+              500+ entrepreneurs are already using these frameworks.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <BuyButton
@@ -257,7 +263,7 @@ export default async function ProductPage({ params }: Props) {
                 paddleSuccessUrl={`${siteUrl}/thank-you?product=${encodeURIComponent(book.title)}`}
                 className="text-lg px-8 py-4"
               >
-                Buy {book.title} — $17
+                Get {book.title} — $17
               </BuyButton>
               <BuyButton
                 href={bundleUrl}
@@ -268,9 +274,16 @@ export default async function ProductPage({ params }: Props) {
                 Get All 6 Books — $47
               </BuyButton>
             </div>
-            <p className="text-xs text-text-muted mt-4">
-              7-day money-back guarantee · No questions asked
-            </p>
+            <div className="flex items-center justify-center gap-4 mt-4 text-xs text-text-muted">
+              <span className="flex items-center gap-1">
+                <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                7-day money-back guarantee
+              </span>
+              <span className="flex items-center gap-1">
+                <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                No account required
+              </span>
+            </div>
           </div>
         </section>
 
