@@ -153,7 +153,22 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <p className="text-lg text-text-secondary">{post.description}</p>
         </header>
         <div className="prose prose-invert prose-gold max-w-none">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
+          <ReactMarkdown
+            remarkPlugins={[remarkGfm]}
+            components={{
+              // eslint-disable-next-line @next/next/no-img-element
+              img: ({ src, alt, ...props }) => {
+                const srcStr = typeof src === 'string' ? src : '';
+                const fallbackAlt = srcStr ? srcStr.split('/').pop()?.replace(/[-_]/g, ' ').replace(/\.\w+$/, '') || 'article image' : 'article image';
+                return (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={srcStr} alt={alt || fallbackAlt} loading="lazy" {...props} />
+                );
+              },
+            }}
+          >
+            {post.content}
+          </ReactMarkdown>
         </div>
       </article>
       {/* Product CTA */}
