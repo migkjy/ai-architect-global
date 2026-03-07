@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const t = useTranslations("nav");
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-navy-dark/90 backdrop-blur-md border-b border-white/5">
@@ -16,16 +18,16 @@ export default function Header() {
 
         <nav className="hidden md:flex items-center gap-6 text-sm text-text-secondary">
           <Link href="/products" className="hover:text-text-primary transition-colors">
-            All Books
+            {t("products")}
           </Link>
           <Link href="/bundle" className="hover:text-text-primary transition-colors">
-            Bundle
+            {t("bundle")}
           </Link>
           <Link href="/blog" className="hover:text-text-primary transition-colors">
-            Blog
+            {t("blog")}
           </Link>
           <Link href="/about" className="hover:text-text-primary transition-colors">
-            About
+            {t("about")}
           </Link>
         </nav>
 
@@ -34,7 +36,7 @@ export default function Header() {
             href="/bundle"
             className="hidden md:inline-flex bg-gold text-navy-dark px-4 py-2 rounded-lg text-sm font-bold hover:bg-gold-light transition-colors"
           >
-            Get Bundle — $47
+            {t("getBundle")}
           </Link>
 
           {/* Mobile: CTA button */}
@@ -42,7 +44,7 @@ export default function Header() {
             href="/bundle"
             className="md:hidden bg-gold text-navy-dark px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-gold-light transition-colors"
           >
-            $47 Bundle
+            {t("bundleShort")}
           </Link>
 
           {/* Hamburger */}
@@ -70,16 +72,16 @@ export default function Header() {
       {mobileOpen && (
         <div id="mobile-nav" className="md:hidden bg-navy-dark border-t border-white/5 px-4 py-4 flex flex-col gap-4 text-sm text-text-secondary" role="navigation" aria-label="Mobile navigation">
           <Link href="/products" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
-            All Books
+            {t("products")}
           </Link>
           <Link href="/bundle" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
-            Bundle — All 6 for $47
+            {t("getBundle")}
           </Link>
           <Link href="/blog" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
-            Blog
+            {t("blog")}
           </Link>
           <Link href="/about" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
-            About
+            {t("about")}
           </Link>
         </div>
       )}

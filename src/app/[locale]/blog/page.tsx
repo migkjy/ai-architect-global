@@ -2,6 +2,7 @@ import { getAllPosts } from "@/lib/blog";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
@@ -51,8 +52,10 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const t = await getTranslations("blog");
   const posts = getAllPosts();
   const canonicalUrl = locale === "en" ? `${SITE_URL}/blog` : `${SITE_URL}/${locale}/blog`;
+  const dateLocale = locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US";
 
   const collectionPageJsonLd = {
     "@context": "https://schema.org",
@@ -99,15 +102,15 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
       />
       <main className="max-w-4xl mx-auto px-4 py-16">
         <div className="mb-12 text-center">
-          <h1 className="text-4xl font-bold mb-4">AI Business Blog</h1>
-          <p className="text-lg text-text-secondary">Practical AI strategies for entrepreneurs and small business owners</p>
+          <h1 className="text-4xl font-bold mb-4">{t("title")}</h1>
+          <p className="text-lg text-text-secondary">{t("subtitle")}</p>
         </div>
         <div className="grid gap-8">
           {posts.map((post) => (
             <article key={post.slug} className="border border-white/10 rounded-xl p-6 hover:border-gold/40 transition-colors">
               <div className="flex items-center gap-3 text-sm text-text-secondary mb-3">
-                <time dateTime={post.date}>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</time>
-                <span>·</span>
+                <time dateTime={post.date}>{new Date(post.date).toLocaleDateString(dateLocale, { year: "numeric", month: "long", day: "numeric" })}</time>
+                <span>&middot;</span>
                 <span>{post.readingTime}</span>
               </div>
               <h2 className="text-xl font-semibold mb-2">
@@ -123,8 +126,8 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
           ))}
         </div>
         <div className="mt-16 pt-8 border-t border-white/10 text-center">
-          <p className="text-text-secondary mb-2">Get weekly AI business frameworks delivered to your inbox.</p>
-          <p className="text-xs text-text-muted">500+ entrepreneurs subscribed · Every Friday · No spam</p>
+          <p className="text-text-secondary mb-2">{t("weeklyFrameworks")}</p>
+          <p className="text-xs text-text-muted">{t("subscriberCount")}</p>
         </div>
       </main>
     </>

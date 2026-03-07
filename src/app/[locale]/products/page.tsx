@@ -3,6 +3,7 @@ import Link from "next/link";
 import { books, bundle, getBundleUrl, getBundlePaddlePriceId, getProductUrl } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
 import { setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "All 6 AI Business Framework Guides — AI Architect Series",
@@ -16,6 +17,9 @@ export const metadata: Metadata = {
 export default async function ProductsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  const t = await getTranslations("products");
+  const tc = await getTranslations("common");
 
   const bundleUrl = getBundleUrl();
   const bundlePaddlePriceId = getBundlePaddlePriceId();
@@ -55,17 +59,17 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
       {/* Header */}
       <div className="max-w-5xl mx-auto px-4 text-center mb-14">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
-          <span className="gradient-gold">All 6 Books</span>
+          <span className="gradient-gold">{t("title")}</span>
         </h1>
         <p className="text-text-secondary text-lg mb-6 max-w-2xl mx-auto">
-          Each guide turns one world-class business framework into a step-by-step AI system — designed to work on your specific business, not a generic example.
+          {t("subtitle")}
         </p>
         <div className="inline-flex items-center gap-3 bg-gold/10 border border-gold/20 rounded-xl px-6 py-3">
-          <span className="text-text-secondary text-sm">Individual books:</span>
-          <span className="text-gold font-bold">$17 each</span>
-          <span className="text-text-muted text-xs">or</span>
+          <span className="text-text-secondary text-sm">{t("individualPrice")}</span>
+          <span className="text-gold font-bold">$17</span>
+          <span className="text-text-muted text-xs">{tc("orGetAll").split("$")[0]}</span>
           <Link href="/bundle" className="text-gold font-bold hover:text-gold-light transition-colors">
-            All 6 for $47 →
+            $47 &rarr;
           </Link>
         </div>
       </div>
@@ -75,14 +79,12 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
         <div className="bg-surface/60 border border-gold/20 rounded-2xl p-6 md:p-8 card-glow flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
             <div className="inline-block bg-gold text-navy-dark text-xs font-bold px-3 py-1 rounded-full mb-3">
-              BEST VALUE
+              {t("bestValue")}
             </div>
             <h2 className="text-xl md:text-2xl font-bold mb-2">
-              <span className="gradient-gold">Complete Bundle — All 6 Books</span>
+              <span className="gradient-gold">{t("bundleTitle")}</span>
             </h2>
-            <p className="text-text-secondary text-sm">
-              Six AI-powered systems for marketing, branding, traffic, copywriting, product launches, and content — one price.
-            </p>
+            <p className="text-text-secondary text-sm">{t("bundleSub")}</p>
           </div>
           <div className="flex flex-col items-start md:items-end gap-2 shrink-0">
             <div className="flex items-center gap-3">
@@ -96,9 +98,9 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
               paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
               className="text-sm px-6 py-2.5"
             >
-              Get All 6 Books — ${bundle.price}
+              {tc("getAllBooks")} &mdash; ${bundle.price}
             </BuyButton>
-            <p className="text-xs text-text-muted">Instant download · 7-day guarantee</p>
+            <p className="text-xs text-text-muted">{t("instantGuarantee")}</p>
           </div>
         </div>
       </div>
@@ -116,7 +118,6 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
                 className="bg-surface/60 border border-white/5 rounded-2xl p-6 md:p-8 card-glow hover:border-gold/10 transition-all"
               >
                 <div className="flex flex-col md:flex-row gap-6">
-                  {/* Book Icon & Vol */}
                   <div className="shrink-0 flex flex-row md:flex-col items-center gap-4 md:gap-2 md:w-24">
                     <div className="w-16 h-16 bg-navy-dark/60 border border-gold/10 rounded-2xl flex items-center justify-center text-3xl">
                       {book.icon}
@@ -127,7 +128,6 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
                     </div>
                   </div>
 
-                  {/* Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-3">
                       <div>
@@ -142,13 +142,13 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
                           paddleSuccessUrl={`${siteUrl}/thank-you?product=${encodeURIComponent(book.title)}`}
                           className="text-sm px-5 py-2"
                         >
-                          Buy Now
+                          {tc("buyNow")}
                         </BuyButton>
                         <Link
                           href={`/products/${book.slug}`}
                           className="text-xs text-text-secondary hover:text-gold transition-colors"
                         >
-                          Full details →
+                          {tc("fullDetails")} &rarr;
                         </Link>
                       </div>
                     </div>
