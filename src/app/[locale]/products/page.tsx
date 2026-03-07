@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { books, bundle, getBundleUrl, getProductUrl } from "@/lib/products";
+import { books, bundle, getBundleUrl, getBundlePaddlePriceId, getProductUrl } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
 import { setRequestLocale } from "next-intl/server";
 
@@ -18,6 +18,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
   setRequestLocale(locale);
 
   const bundleUrl = getBundleUrl();
+  const bundlePaddlePriceId = getBundlePaddlePriceId();
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
   const jsonLd = {
@@ -89,7 +90,12 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
               <span className="bg-red-500 text-white text-xs font-bold px-2 py-0.5 rounded">SAVE ${bundle.originalPrice - bundle.price}</span>
             </div>
             <div className="text-3xl font-bold text-gold">${bundle.price}</div>
-            <BuyButton href={bundleUrl} className="text-sm px-6 py-2.5">
+            <BuyButton
+              href={bundleUrl}
+              paddlePriceId={bundlePaddlePriceId}
+              paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
+              className="text-sm px-6 py-2.5"
+            >
               Get All 6 Books
             </BuyButton>
           </div>
@@ -101,6 +107,8 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
         <div className="space-y-6">
           {books.map((book) => {
             const productUrl = getProductUrl(book.envKey);
+            const bookPaddlePriceId =
+              (process.env[book.paddlePriceEnvKey] as string | undefined) ?? undefined;
             return (
               <div
                 key={book.id}
@@ -127,7 +135,12 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
                       </div>
                       <div className="shrink-0 flex flex-col items-start md:items-end gap-2">
                         <div className="text-2xl font-bold text-gold">$17</div>
-                        <BuyButton href={productUrl} className="text-sm px-5 py-2">
+                        <BuyButton
+                          href={productUrl}
+                          paddlePriceId={bookPaddlePriceId}
+                          paddleSuccessUrl={`${siteUrl}/thank-you?product=${encodeURIComponent(book.title)}`}
+                          className="text-sm px-5 py-2"
+                        >
                           Buy Now
                         </BuyButton>
                         <Link

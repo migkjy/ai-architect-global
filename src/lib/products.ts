@@ -11,6 +11,8 @@ export type Book = {
   icon: string;
   color: string;
   envKey: string;
+  /** Paddle Price ID 환경변수 키 (예: PADDLE_PRICE_ID_VOL1) */
+  paddlePriceEnvKey: string;
   highlights: string[];
   caseStudy: {
     result: string;
@@ -44,6 +46,7 @@ export const books: Book[] = [
     icon: "🎯",
     color: "from-blue-500/20 to-purple-500/20",
     envKey: "NEXT_PUBLIC_LS_PRODUCT_1_URL",
+    paddlePriceEnvKey: "PADDLE_PRICE_ID_VOL1",
     highlights: [
       "Value Ladder — 5-step customer ascension model",
       "Hook-Story-Offer — AI content framework",
@@ -84,6 +87,7 @@ export const books: Book[] = [
     icon: "🔳",
     color: "from-purple-500/20 to-pink-500/20",
     envKey: "NEXT_PUBLIC_LS_PRODUCT_2_URL",
+    paddlePriceEnvKey: "PADDLE_PRICE_ID_VOL2",
     highlights: [
       "Mass Movement Design",
       "The Epiphany Bridge storytelling",
@@ -124,6 +128,7 @@ export const books: Book[] = [
     icon: "📝",
     color: "from-green-500/20 to-teal-500/20",
     envKey: "NEXT_PUBLIC_LS_PRODUCT_3_URL",
+    paddlePriceEnvKey: "PADDLE_PRICE_ID_VOL3",
     highlights: [
       "Dream Customer Avatar AI generation",
       "Dream 100 Strategy — 60-day roadmap",
@@ -165,6 +170,7 @@ export const books: Book[] = [
     icon: "🧠",
     color: "from-orange-500/20 to-red-500/20",
     envKey: "NEXT_PUBLIC_LS_PRODUCT_4_URL",
+    paddlePriceEnvKey: "PADDLE_PRICE_ID_VOL4",
     highlights: [
       "Personal Story Mining — 5-step process",
       "Hero's Journey Story Formula",
@@ -206,6 +212,7 @@ export const books: Book[] = [
     icon: "⚙️",
     color: "from-cyan-500/20 to-blue-500/20",
     envKey: "NEXT_PUBLIC_LS_PRODUCT_5_URL",
+    paddlePriceEnvKey: "PADDLE_PRICE_ID_VOL5",
     highlights: [
       "PLF 4-Phase Structure automated",
       "9 Mental Triggers embedded by AI",
@@ -247,6 +254,7 @@ export const books: Book[] = [
     icon: "✏️",
     color: "from-violet-500/20 to-purple-500/20",
     envKey: "NEXT_PUBLIC_LS_PRODUCT_6_URL",
+    paddlePriceEnvKey: "PADDLE_PRICE_ID_VOL6",
     highlights: [
       "Category Design — become the obvious leader",
       "Infinite Ideas Matrix — 20 ideas from 1 topic",
@@ -286,6 +294,9 @@ export const bundle: Bundle = {
   envKey: "NEXT_PUBLIC_LS_BUNDLE_URL",
 };
 
+/** Bundle Paddle Price ID 환경변수 키 */
+export const BUNDLE_PADDLE_PRICE_ENV_KEY = "PADDLE_PRICE_ID_BUNDLE";
+
 export function getBundleUrl(): string {
   const base = process.env.NEXT_PUBLIC_LS_BUNDLE_URL ?? "#";
   if (base === "#") return "#";
@@ -314,4 +325,23 @@ export function getProductUrl(envKey: string): string {
 
 export function getBookBySlug(slug: string): Book | undefined {
   return books.find((b) => b.slug === slug);
+}
+
+// ─────────────────────────────────────────
+// Paddle 헬퍼: Price ID 조회
+// ─────────────────────────────────────────
+
+/**
+ * 번들 Paddle Price ID를 환경변수에서 반환.
+ * 미설정 시 undefined 반환 → BuyButton이 "#" 처리
+ */
+export function getBundlePaddlePriceId(): string | undefined {
+  return process.env[BUNDLE_PADDLE_PRICE_ENV_KEY] as string | undefined;
+}
+
+/**
+ * 책 paddlePriceEnvKey 기준으로 Paddle Price ID를 환경변수에서 반환.
+ */
+export function getBookPaddlePriceId(paddlePriceEnvKey: string): string | undefined {
+  return process.env[paddlePriceEnvKey] as string | undefined;
 }

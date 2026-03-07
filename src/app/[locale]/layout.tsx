@@ -192,6 +192,31 @@ export default async function LocaleLayout({
         <Script id="ga4-ai-architect-io" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-76C0HSW5LB');`}
         </Script>
+        {/* Paddle Billing — overlay checkout */}
+        <Script
+          src="https://cdn.paddle.com/paddle/v2/paddle.js"
+          strategy="afterInteractive"
+          onLoad={undefined}
+        />
+        <Script id="paddle-init" strategy="afterInteractive">
+          {`
+            (function() {
+              var checkPaddle = setInterval(function() {
+                if (typeof window.Paddle !== 'undefined') {
+                  clearInterval(checkPaddle);
+                  var env = '${process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT ?? "sandbox"}';
+                  if (env === 'sandbox' && window.Paddle.Environment) {
+                    window.Paddle.Environment.set('sandbox');
+                  }
+                  var token = '${process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN ?? ""}';
+                  if (token && window.Paddle.Setup) {
+                    window.Paddle.Setup({ token: token });
+                  }
+                }
+              }, 100);
+            })();
+          `}
+        </Script>
         <MetaPixel />
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-navy text-text-primary">
