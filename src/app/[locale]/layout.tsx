@@ -6,12 +6,13 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import "../globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import dynamic from "next/dynamic";
+const Analytics = dynamic(() => import("@vercel/analytics/react").then(m => ({ default: m.Analytics })));
+const SpeedInsights = dynamic(() => import("@vercel/speed-insights/next").then(m => ({ default: m.SpeedInsights })));
 import { routing } from "@/i18n/routing";
 import { MetaPixel } from "@/components/MetaPixel";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
-import ScrollSubscribeBanner from "@/components/ScrollSubscribeBanner";
+const ExitIntentPopup = dynamic(() => import("@/components/ExitIntentPopup"));
+const ScrollSubscribeBanner = dynamic(() => import("@/components/ScrollSubscribeBanner"));
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 const OG_IMAGE = `${SITE_URL}/og-image`;
@@ -198,8 +199,8 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(siteJsonLd)) }}
         />
         {/* GA4: ai-driven-architect.com — 자비스 자동 삽입 */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-76C0HSW5LB" strategy="afterInteractive" />
-        <Script id="ga4-ai-architect-io" strategy="afterInteractive">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-76C0HSW5LB" strategy="lazyOnload" />
+        <Script id="ga4-ai-architect-io" strategy="lazyOnload">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-76C0HSW5LB');`}
         </Script>
         {/* Paddle Billing — overlay checkout (Client Token 미설정 시 로드하지 않음) */}
@@ -207,9 +208,9 @@ export default async function LocaleLayout({
           <>
             <Script
               src="https://cdn.paddle.com/paddle/v2/paddle.js"
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
-            <Script id="paddle-init" strategy="afterInteractive">
+            <Script id="paddle-init" strategy="lazyOnload">
               {`
                 (function() {
                   var checkPaddle = setInterval(function() {
