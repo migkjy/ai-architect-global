@@ -162,6 +162,11 @@ export default async function LocaleLayout({
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://cdn.paddle.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://cdn.paddle.com" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <link
           rel="preload"
           as="style"
