@@ -91,6 +91,11 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
       name: names[locale] ?? names.en,
       url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`,
       description: descriptions[locale] ?? descriptions.en,
+      potentialAction: {
+        "@type": "SearchAction",
+        target: `${siteUrl}/products/{search_term_string}`,
+        "query-input": "required name=search_term_string",
+      },
     },
     {
       "@context": "https://schema.org",

@@ -25,35 +25,49 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
   const bundlePaddlePriceId = getBundlePaddlePriceId();
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "AI Architect Series — All Books",
-    description: "6 AI-powered PDF guides that turn proven business frameworks into executable AI systems.",
-    numberOfItems: books.length,
-    itemListElement: books.map((book, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "Product",
-        name: book.title,
-        description: book.shortDescription,
-        url: `${siteUrl}/products/${book.slug}`,
-        offers: {
-          "@type": "Offer",
-          price: "17",
-          priceCurrency: "USD",
-          availability: "https://schema.org/InStock",
+  function escapeJsonLd(json: string): string {
+    return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
+  }
+
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "All Books", item: `${siteUrl}/products` },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "AI Architect Series — All Books",
+      description: "6 AI-powered PDF guides that turn proven business frameworks into executable AI systems.",
+      numberOfItems: books.length,
+      itemListElement: books.map((book, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Product",
+          name: book.title,
+          description: book.shortDescription,
+          url: `${siteUrl}/products/${book.slug}`,
+          offers: {
+            "@type": "Offer",
+            price: "17",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+          },
         },
-      },
-    })),
-  };
+      })),
+    },
+  ];
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
       />
     <div className="min-h-screen pt-24 pb-20">
       {/* Header */}

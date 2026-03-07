@@ -37,14 +37,25 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const t = await getTranslations("about");
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-      { "@type": "ListItem", position: 2, name: "About", item: `${siteUrl}/about` },
-    ],
-  };
+  const aboutPageJsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      name: "About AI Architect Series",
+      url: `${siteUrl}/about`,
+      description: "Bridge the gap between reading and executing proven business frameworks with AI-powered tools.",
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      mainEntity: { "@id": `${siteUrl}/#organization` },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "About", item: `${siteUrl}/about` },
+      ],
+    },
+  ];
 
   const approaches = [
     { title: t("approach1Title"), desc: t("approach1Desc") },
@@ -57,7 +68,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
     <div className="min-h-screen pt-24 pb-20">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(breadcrumbJsonLd)) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(aboutPageJsonLd)) }}
       />
       <div className="max-w-3xl mx-auto px-4">
         {/* Hero */}
