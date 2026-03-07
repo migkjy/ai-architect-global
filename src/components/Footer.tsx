@@ -32,6 +32,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-text-secondary">
               <li><Link href="/bundle" className="hover:text-gold transition-colors">Complete Bundle — $47</Link></li>
               <li><Link href="/products" className="hover:text-gold transition-colors">Individual Books — $17 each</Link></li>
+              <li><Link href="/blog" className="hover:text-gold transition-colors">Blog</Link></li>
               <li><Link href="/about" className="hover:text-gold transition-colors">About</Link></li>
             </ul>
           </div>

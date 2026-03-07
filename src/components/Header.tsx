@@ -21,6 +21,9 @@ export default function Header() {
           <Link href="/bundle" className="hover:text-text-primary transition-colors">
             Bundle
           </Link>
+          <Link href="/blog" className="hover:text-text-primary transition-colors">
+            Blog
+          </Link>
           <Link href="/about" className="hover:text-text-primary transition-colors">
             About
           </Link>
@@ -71,6 +74,9 @@ export default function Header() {
           </Link>
           <Link href="/bundle" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
             Bundle — All 6 for $47
+          </Link>
+          <Link href="/blog" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
+            Blog
           </Link>
           <Link href="/about" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
             About
