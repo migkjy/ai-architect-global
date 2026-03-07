@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { books, getBookBySlug, getBundleUrl, getBundlePaddlePriceId, getProductUrl } from "@/lib/products";
+import { getAllPosts } from "@/lib/blog";
 import BuyButton from "@/components/BuyButton";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -286,6 +287,34 @@ export default async function ProductPage({ params }: Props) {
             </div>
           </div>
         </section>
+
+        {/* Related Blog Articles */}
+        {(() => {
+          const blogPosts = getAllPosts().slice(0, 3);
+          if (blogPosts.length === 0) return null;
+          return (
+            <div className="max-w-4xl mx-auto px-4 mt-16">
+              <h2 className="text-xl font-bold mb-6">Related Articles</h2>
+              <div className="grid gap-4">
+                {blogPosts.map((post) => (
+                  <Link
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className="block border border-white/10 rounded-xl p-4 hover:border-gold/40 transition-colors"
+                  >
+                    <div className="text-xs text-text-muted mb-1">
+                      <time dateTime={post.date}>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</time>
+                      <span className="mx-2">&middot;</span>
+                      <span>{post.readingTime}</span>
+                    </div>
+                    <h3 className="font-semibold text-text-primary hover:text-gold transition-colors mb-1">{post.title}</h3>
+                    <p className="text-xs text-text-secondary line-clamp-2">{post.description}</p>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
 
         {/* Other Books */}
         <div className="max-w-4xl mx-auto px-4 mt-16">

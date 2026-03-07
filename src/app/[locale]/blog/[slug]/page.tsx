@@ -156,7 +156,29 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.content}</ReactMarkdown>
         </div>
       </article>
-      <div className="mt-16 pt-8 border-t border-white/10 text-center">
+      {/* Product CTA */}
+      <div className="mt-12 p-6 bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl">
+        <h3 className="text-lg font-bold mb-2">Ready to Execute These Frameworks with AI?</h3>
+        <p className="text-text-secondary text-sm mb-4">
+          The AI Architect Series gives you ready-to-use system prompts that turn these strategies into actionable AI workflows for your business.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <Link
+            href="/bundle"
+            className="inline-flex items-center justify-center px-6 py-3 bg-gold text-navy-dark rounded-xl font-bold text-sm hover:bg-gold-light transition-colors"
+          >
+            Get All 6 Books — $47
+          </Link>
+          <Link
+            href="/products"
+            className="inline-flex items-center justify-center px-6 py-3 border border-white/10 rounded-xl font-semibold text-sm text-text-secondary hover:border-gold/30 hover:text-gold transition-all"
+          >
+            View Individual Books
+          </Link>
+        </div>
+      </div>
+
+      <div className="mt-8 pt-8 border-t border-white/10 text-center">
         <p className="text-text-secondary mb-2">Get weekly AI business frameworks — every Friday.</p>
         <p className="text-xs text-text-muted">500+ entrepreneurs subscribed · No spam · Unsubscribe anytime</p>
       </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { books, bundle, getBundleUrl, getProductUrl } from "@/lib/products";
+import { getAllPosts } from "@/lib/blog";
 import BuyButton from "@/components/BuyButton";
 import FaqAccordion from "@/components/FaqAccordion";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
@@ -124,6 +125,7 @@ const faqs = [
 ];
 
 const bundleUrl = getBundleUrl();
+const latestPosts = getAllPosts().slice(0, 3);
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -493,6 +495,46 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </div>
       </section>
+
+      {/* Latest Blog Posts */}
+      {latestPosts.length > 0 && (
+        <section className="py-20">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Latest from the Blog</h2>
+              <p className="text-text-secondary">AI strategies, frameworks, and case studies for entrepreneurs.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {latestPosts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group bg-surface/60 border border-white/5 rounded-2xl p-6 hover:border-gold/20 transition-all card-glow"
+                >
+                  <div className="text-xs text-text-muted mb-3">
+                    <time dateTime={post.date}>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</time>
+                    <span className="mx-2">&middot;</span>
+                    <span>{post.readingTime}</span>
+                  </div>
+                  <h3 className="font-bold text-text-primary mb-2 group-hover:text-gold transition-colors line-clamp-2">{post.title}</h3>
+                  <p className="text-sm text-text-secondary line-clamp-3">{post.description}</p>
+                </Link>
+              ))}
+            </div>
+            <div className="text-center mt-8">
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 text-gold hover:text-gold-light transition-colors font-semibold"
+              >
+                View all articles
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Bundle CTA — Pricing Comparison */}
       <section className="py-24 relative overflow-hidden">
