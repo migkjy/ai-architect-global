@@ -20,7 +20,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-text-primary mb-3 text-sm">{t("books")}</h3>
+            <p className="font-semibold text-text-primary mb-3 text-sm">{t("books")}</p>
             <ul className="space-y-2 text-sm text-text-secondary">
               <li><Link href="/products/ai-marketing-architect" className="hover:text-gold transition-colors">AI Marketing Architect</Link></li>
               <li><Link href="/products/ai-brand-architect" className="hover:text-gold transition-colors">AI Brand Architect</Link></li>
@@ -32,7 +32,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-text-primary mb-3 text-sm">{t("info")}</h3>
+            <p className="font-semibold text-text-primary mb-3 text-sm">{t("info")}</p>
             <ul className="space-y-2 text-sm text-text-secondary">
               <li><Link href="/bundle" className="hover:text-gold transition-colors">{t("completeBundle")}</Link></li>
               <li><Link href="/products" className="hover:text-gold transition-colors">{t("individualBooks")}</Link></li>
@@ -43,7 +43,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold text-text-primary mb-3 text-sm">Related Services</h3>
+            <p className="font-semibold text-text-primary mb-3 text-sm">Related Services</p>
             <ul className="space-y-2 text-sm text-text-secondary">
               <li>
                 <a href="https://richbukae.com?utm_source=ai-architect&utm_medium=footer&utm_campaign=ecosystem" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
