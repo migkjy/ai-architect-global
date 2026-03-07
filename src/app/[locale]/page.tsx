@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { books, bundle, getBundleUrl, getProductUrl } from "@/lib/products";
 import { getAllPosts } from "@/lib/blog";
+import dynamic from "next/dynamic";
 import BuyButton from "@/components/BuyButton";
-import FaqAccordion from "@/components/FaqAccordion";
-import StickyMobileCTA from "@/components/StickyMobileCTA";
+const FaqAccordion = dynamic(() => import("@/components/FaqAccordion"));
+const StickyMobileCTA = dynamic(() => import("@/components/StickyMobileCTA"));
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 
