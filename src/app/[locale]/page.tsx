@@ -154,20 +154,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   const dateLocale = locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US";
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "AI Architect Series",
-    url: siteUrl,
-    description:
-      "6 AI-powered PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's business frameworks into executable AI systems.",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteUrl}/products/{search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
-  };
-
   const faqPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -201,10 +187,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(faqPageJsonLd)) }}
