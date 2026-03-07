@@ -97,7 +97,7 @@ export default function NotFound() {
             </form>
           )}
           {status === "error" && (
-            <p className="text-red-400 text-xs mt-2">An error occurred. Please try again.</p>
+            <p role="alert" className="text-red-400 text-xs mt-2">An error occurred. Please try again.</p>
           )}
         </div>
       </div>
