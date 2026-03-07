@@ -59,6 +59,14 @@ export default function Footer() {
           </div>
         </div>
 
+        <div className="border-t border-white/5 pt-6 pb-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-text-muted">
+          <Link href="/terms" className="hover:text-gold transition-colors">Terms of Service</Link>
+          <span className="text-white/10">|</span>
+          <Link href="/privacy" className="hover:text-gold transition-colors">Privacy Policy</Link>
+          <span className="text-white/10">|</span>
+          <Link href="/refund" className="hover:text-gold transition-colors">Refund Policy</Link>
+        </div>
+
         <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-muted">
           <p>© {new Date().getFullYear()} AI Architect Series. All rights reserved.</p>
           <div className="flex items-center gap-4">
