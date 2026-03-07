@@ -114,6 +114,7 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
       },
       sameAs: [
         "https://richbukae.com",
+        "https://aihubkorea.kr",
       ],
       contactPoint: {
         "@type": "ContactPoint",

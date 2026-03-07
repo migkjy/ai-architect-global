@@ -74,6 +74,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     headline: post.title,
     description: post.description,
     datePublished: post.date,
+    image: `${siteUrl}/og-image`,
     url: `${siteUrl}/blog/${slug}`,
     inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
     author: {
