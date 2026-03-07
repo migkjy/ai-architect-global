@@ -16,7 +16,7 @@ export default function Header() {
           <span className="text-text-secondary text-sm font-normal ml-1.5">Series</span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6 text-sm text-text-secondary">
+        <nav className="hidden md:flex items-center gap-6 text-sm text-text-secondary" aria-label="Main navigation">
           <Link href="/products" className="hover:text-text-primary transition-colors">
             {t("products")}
           </Link>
@@ -28,6 +28,9 @@ export default function Header() {
           </Link>
           <Link href="/about" className="hover:text-text-primary transition-colors">
             {t("about")}
+          </Link>
+          <Link href="/faq" className="hover:text-text-primary transition-colors">
+            {t("faq")}
           </Link>
         </nav>
 
@@ -82,6 +85,9 @@ export default function Header() {
           </Link>
           <Link href="/about" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
             {t("about")}
+          </Link>
+          <Link href="/faq" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
+            {t("faq")}
           </Link>
         </div>
       )}
