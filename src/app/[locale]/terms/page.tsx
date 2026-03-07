@@ -4,9 +4,9 @@ import { setRequestLocale } from "next-intl/server";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — AI Architect",
+  title: "Terms of Service — AI Architect Series",
   description:
-    "Terms of Service for AI Architect. Digital product license, payment terms via Paddle, and usage guidelines.",
+    "Terms of Service for AI Architect Series by NEWBIZSOFT. Digital product license, payment terms via Paddle, and usage guidelines.",
   alternates: {
     canonical: `${SITE_URL}/terms`,
   },
