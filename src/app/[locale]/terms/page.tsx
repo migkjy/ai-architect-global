@@ -6,7 +6,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architec
 export const metadata: Metadata = {
   title: "Terms of Service — AI Architect Series",
   description:
-    "Terms of Service for AI Architect Series. Digital product license, payment terms via Paddle, and usage guidelines.",
+    "Terms of Service for AI Architect Series by NEWBIZSOFT. Digital product license, payment terms via Paddle, and usage guidelines.",
   alternates: {
     canonical: `${SITE_URL}/terms`,
   },
@@ -35,7 +35,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">1. Agreement to Terms</h2>
             <p>
-              By purchasing or accessing any product from <strong className="text-text-primary">AI Architect Series</strong> (operated as AI-Driven Architect, website: <span className="text-gold">ai-driven-architect.com</span>), you agree to be bound by these Terms of Service. If you do not agree to these terms, do not purchase or use our products.
+              By purchasing or accessing any product from <strong className="text-text-primary">AI Architect Series</strong>, operated by <strong className="text-text-primary">NEWBIZSOFT</strong> (website: <span className="text-gold">ai-driven-architect.com</span>), you agree to be bound by these Terms of Service. If you do not agree to these terms, do not purchase or use our products.
             </p>
           </section>
 
@@ -61,7 +61,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">3. License Grant</h2>
             <p className="mb-3">
-              Upon purchase, AI Architect Series grants you a <strong className="text-text-primary">non-exclusive, non-transferable, personal-use license</strong> to:
+              Upon purchase, NEWBIZSOFT grants you a <strong className="text-text-primary">non-exclusive, non-transferable, personal-use license</strong> to:
             </p>
             <ul className="list-disc list-inside space-y-1 ml-2">
               <li>Download and store the PDF on your personal devices</li>
@@ -93,7 +93,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
               <li>Collecting and processing payment securely</li>
               <li>Managing applicable sales tax and VAT</li>
               <li>Issuing receipts and invoices</li>
-              <li>Processing refund requests as directed by AI Architect Series</li>
+              <li>Processing refund requests as directed by NEWBIZSOFT</li>
             </ul>
             <p className="mt-3">
               Prices are listed in USD. Currency conversion (if applicable) is handled by your payment provider.
@@ -111,7 +111,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">6. Intellectual Property</h2>
             <p className="mb-3">
-              All content within AI Architect Series products — including text, prompts, frameworks, illustrations, and compilations — is the intellectual property of AI-Driven Architect and is protected by applicable copyright laws.
+              All content within AI Architect Series products — including text, prompts, frameworks, illustrations, and compilations — is the intellectual property of NEWBIZSOFT and is protected by applicable copyright laws.
             </p>
             <p>
               The frameworks referenced in our guides (such as DotCom Secrets, Copywriting Secrets, Launch, etc.) are the works of their respective authors. Our guides represent original AI implementation systems and are not affiliated with, endorsed by, or sponsored by the original authors or publishers.
@@ -136,7 +136,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">8. Limitation of Liability</h2>
             <p>
-              To the maximum extent permitted by applicable law, AI-Driven Architect shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our products. Our total liability for any claim arising from a product purchase shall not exceed the amount you paid for that product.
+              To the maximum extent permitted by applicable law, NEWBIZSOFT shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our products. Our total liability for any claim arising from a product purchase shall not exceed the amount you paid for that product.
             </p>
           </section>
 
