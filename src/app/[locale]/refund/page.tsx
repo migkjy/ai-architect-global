@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
@@ -169,6 +170,15 @@ export default async function RefundPage({ params }: { params: Promise<{ locale:
             </p>
           </section>
 
+          <nav className="pt-8 border-t border-white/10" aria-label="Related pages">
+            <p className="text-xs font-semibold text-text-secondary/60 uppercase tracking-wider mb-3">Related Pages</p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/terms" className="text-sm text-gold hover:text-gold-light transition-colors">Terms of Service</Link>
+              <Link href="/privacy" className="text-sm text-gold hover:text-gold-light transition-colors">Privacy Policy</Link>
+              <Link href="/faq" className="text-sm text-gold hover:text-gold-light transition-colors">FAQ</Link>
+              <Link href="/bundle" className="text-sm text-gold hover:text-gold-light transition-colors">Bundle</Link>
+            </div>
+          </nav>
         </div>
       </div>
     </div>

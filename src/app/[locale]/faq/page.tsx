@@ -167,6 +167,17 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
             {t("ctaButton")}
           </Link>
         </div>
+
+        <nav className="mt-10 pt-8 border-t border-white/10" aria-label="Related pages">
+          <p className="text-xs font-semibold text-text-secondary/60 uppercase tracking-wider mb-3">Related Pages</p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/products" className="text-sm text-gold hover:text-gold-light transition-colors">Products</Link>
+            <Link href="/blog" className="text-sm text-gold hover:text-gold-light transition-colors">Blog</Link>
+            <Link href="/refund" className="text-sm text-gold hover:text-gold-light transition-colors">Refund Policy</Link>
+            <Link href="/terms" className="text-sm text-gold hover:text-gold-light transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="text-sm text-gold hover:text-gold-light transition-colors">Privacy Policy</Link>
+          </div>
+        </nav>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
@@ -188,6 +189,15 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
             </p>
           </section>
 
+          <nav className="pt-8 border-t border-white/10" aria-label="Related pages">
+            <p className="text-xs font-semibold text-text-secondary/60 uppercase tracking-wider mb-3">Related Pages</p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/privacy" className="text-sm text-gold hover:text-gold-light transition-colors">Privacy Policy</Link>
+              <Link href="/refund" className="text-sm text-gold hover:text-gold-light transition-colors">Refund Policy</Link>
+              <Link href="/faq" className="text-sm text-gold hover:text-gold-light transition-colors">FAQ</Link>
+              <Link href="/products" className="text-sm text-gold hover:text-gold-light transition-colors">Products</Link>
+            </div>
+          </nav>
         </div>
       </div>
     </div>
