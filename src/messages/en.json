@@ -246,19 +246,19 @@
   "exitPopup": {
     "successTitle": "You're on the list!",
     "successDesc": "Check your inbox for the AI Architecture Design sample.",
-    "badge": "500+ entrepreneurs inside",
+    "badge": "1,800+ entrepreneurs inside",
     "title": "Before You Go — Free Framework Inside",
-    "subtitle": "Join 500+ entrepreneurs getting AI-powered business frameworks every week",
+    "subtitle": "Join 1,800+ entrepreneurs getting AI-powered business frameworks every week",
     "benefit1": "AI Framework preview — cut 50%+ strategy time",
     "benefit2": "3 ready-to-use system prompts (Claude / ChatGPT)",
     "benefit3": "Weekly AI business insight — every Friday",
-    "cta": "Send Me the Free Framework",
+    "cta": "Get Free Framework Now",
     "noSpam": "No spam. Unsubscribe anytime.",
     "dismiss": "No thanks, I don't need free frameworks"
   },
   "scrollBanner": {
     "title": "AI Framework Preview — Free",
-    "badge": "500+ entrepreneurs already inside",
+    "badge": "1,800+ entrepreneurs already inside",
     "success": "Check your inbox for the framework sample!",
     "cta": "Get Free Sample",
     "error": "Something went wrong. Try again."
