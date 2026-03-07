@@ -230,9 +230,9 @@ export default async function LocaleLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <ScrollSubscribeBanner />
+          <ExitIntentPopup />
         </NextIntlClientProvider>
-        <ScrollSubscribeBanner />
-        <ExitIntentPopup />
         <Analytics />
         <SpeedInsights />
       </body>

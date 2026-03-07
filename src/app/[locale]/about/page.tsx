@@ -3,6 +3,7 @@ import Link from "next/link";
 import { bundle, getBundleUrl } from "@/lib/products";
 import BuyButton from "@/components/BuyButton";
 import { setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "About AI Architect Series — Why We Built AI-Powered Business Framework Guides",
@@ -33,6 +34,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const t = await getTranslations("about");
+
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -42,6 +45,13 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       { "@type": "ListItem", position: 2, name: "About", item: `${siteUrl}/about` },
     ],
   };
+
+  const approaches = [
+    { title: t("approach1Title"), desc: t("approach1Desc") },
+    { title: t("approach2Title"), desc: t("approach2Desc") },
+    { title: t("approach3Title"), desc: t("approach3Desc") },
+    { title: t("approach4Title"), desc: t("approach4Desc") },
+  ];
 
   return (
     <div className="min-h-screen pt-24 pb-20">
@@ -53,58 +63,35 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         {/* Hero */}
         <div className="mb-16">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="gradient-gold">Why We Built This</span>
+            <span className="gradient-gold">{t("title")}</span>
           </h1>
           <p className="text-text-secondary text-lg leading-relaxed mb-6">
-            The business books that shaped the modern online economy — DotCom Secrets, Expert Secrets,
-            Traffic Secrets, Copywriting Secrets, Launch, The Art and Business of Online Writing — are
-            genuinely brilliant. The frameworks inside them work. The results they&apos;ve produced are real.
+            {t("intro1")}
           </p>
           <p className="text-text-secondary text-lg leading-relaxed mb-6">
-            The problem isn&apos;t the frameworks. The problem is the gap between understanding a framework
-            and executing it on your specific business, for your specific customer, in your specific market.
+            {t("intro2")}
           </p>
           <p className="text-text-secondary text-lg leading-relaxed">
-            Most people who read these books end up with better theory and the same results.
+            {t("intro3")}
           </p>
         </div>
 
         {/* The Insight */}
         <div className="bg-gold/5 border border-gold/20 rounded-2xl p-8 mb-16">
-          <h2 className="text-2xl font-bold mb-4 gradient-gold">The Insight</h2>
+          <h2 className="text-2xl font-bold mb-4 gradient-gold">{t("insightTitle")}</h2>
           <p className="text-text-secondary leading-relaxed mb-4">
-            AI has fundamentally changed what&apos;s possible for solo entrepreneurs and small teams.
-            You can now load a world-class framework into a system prompt, describe your business,
-            and have the AI apply that framework — specifically to your situation — in minutes.
+            {t("insightP1")}
           </p>
           <p className="text-text-secondary leading-relaxed">
-            The AI Architect Series was built to make that accessible. Not as a course. Not as a
-            membership. As a practical PDF guide that closes the gap between framework and execution.
+            {t("insightP2")}
           </p>
         </div>
 
         {/* How We Approach It */}
         <div className="mb-16">
-          <h2 className="text-2xl font-bold mb-6">Our Approach</h2>
+          <h2 className="text-2xl font-bold mb-6">{t("approachTitle")}</h2>
           <div className="space-y-6">
-            {[
-              {
-                title: "Source fidelity first",
-                desc: "Every guide is built on the original framework — not a paraphrase, not a summary. The AI systems apply the actual framework steps from the actual books.",
-              },
-              {
-                title: "Specific over generic",
-                desc: "Generic AI advice is everywhere. Each guide is designed to produce strategies specific to your business, not a theoretical example.",
-              },
-              {
-                title: "Results over completion",
-                desc: "We don't measure success by whether you finish reading the guide. We measure it by whether you run your first AI-assisted strategy session within 5 days.",
-              },
-              {
-                title: "Works with the tools you already use",
-                desc: "No proprietary platform. No subscription. Every system prompt works with Claude, ChatGPT, and Gemini — tools you likely already pay for.",
-              },
-            ].map((item) => (
+            {approaches.map((item) => (
               <div key={item.title} className="flex gap-4">
                 <div className="w-1.5 bg-gold/30 rounded-full shrink-0" />
                 <div>
@@ -118,10 +105,9 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
         {/* The Frameworks */}
         <div className="mb-16">
-          <h2 className="text-2xl font-bold mb-6">The Frameworks</h2>
+          <h2 className="text-2xl font-bold mb-6">{t("frameworksTitle")}</h2>
           <p className="text-text-secondary mb-6">
-            The AI Architect Series covers six books from four authors who collectively represent
-            the most systematic approach to building online businesses documented anywhere:
+            {t("frameworksIntro")}
           </p>
           <div className="space-y-3">
             {[
@@ -146,20 +132,20 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         {/* CTA */}
         <div className="bg-surface/60 border border-gold/20 rounded-2xl p-8 text-center card-glow">
           <h2 className="text-2xl font-bold mb-3">
-            Ready to Close the Execution Gap?
+            {t("ctaTitle")}
           </h2>
           <p className="text-text-secondary mb-6">
-            Six frameworks. Six AI systems. Immediate PDF download.
+            {t("ctaSubtitle")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <BuyButton href={bundleUrl} className="text-lg py-4">
-              Get Complete Bundle — ${bundle.price}
+              {t("ctaBundle")} &mdash; ${bundle.price}
             </BuyButton>
             <Link
               href="/products"
               className="inline-flex items-center justify-center px-6 py-4 rounded-xl font-semibold text-text-secondary border border-white/10 hover:border-gold/30 hover:text-gold transition-all"
             >
-              View Individual Books
+              {t("ctaViewBooks")}
             </Link>
           </div>
         </div>
