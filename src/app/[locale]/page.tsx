@@ -202,9 +202,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             <span className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide uppercase">
               6 World-Class Frameworks + AI
             </span>
-            <span className="text-text-muted text-xs">
-              Used by 500+ entrepreneurs and marketers worldwide
-            </span>
+            <div className="flex items-center gap-2 text-xs text-text-muted">
+              <span className="inline-flex items-center gap-1">
+                <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+                Used by 500+ entrepreneurs worldwide
+              </span>
+              <span className="text-white/20">·</span>
+              <span>7-day money-back guarantee</span>
+            </div>
           </div>
 
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
@@ -219,9 +224,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             No more &ldquo;how do I apply this?&rdquo; Just results.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <BuyButton href={bundleUrl} className="text-lg px-10 py-4 animate-pulse-subtle">
-              Get Complete Bundle — ${bundle.price}
+              Get All 6 Books — ${bundle.price}
             </BuyButton>
             <Link
               href="/products"
@@ -230,8 +235,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               View Individual Books — $17 each
             </Link>
           </div>
+          <p className="text-center text-xs text-text-muted mb-8">
+            Instant PDF download. No account required. 7-day money-back guarantee.
+          </p>
 
-          <div className="flex flex-wrap justify-center gap-3 text-xs text-text-muted">
+          <div className="flex flex-wrap justify-center gap-3 text-xs text-text-muted" aria-label="Purchase benefits">
             <span className="flex items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full">
               <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
@@ -557,13 +565,16 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                 </li>
               </ul>
               <BuyButton href={bundleUrl} className="w-full text-lg py-4 animate-pulse-subtle">
-                Get the Complete Bundle — ${bundle.price}
+                Get All 6 Books — ${bundle.price}
               </BuyButton>
+              <p className="text-xs text-text-muted mt-3">
+                Instant PDF download · 7-day money-back guarantee · No questions asked
+              </p>
             </div>
           </div>
 
           <p className="text-center text-text-muted text-xs mt-8">
-            Source books retail for ~$175+. Strategy consulting to apply them: $2,000-$10,000+.
+            Source books retail for ~$175+. Strategy consulting to apply them: $2,000–$10,000+.
           </p>
         </div>
       </section>
