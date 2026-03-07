@@ -81,6 +81,27 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
     },
     {
       "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "NEWBIZSOFT",
+      url: siteUrl,
+      description: "AI-powered business tools for entrepreneurs and small teams.",
+      brand: {
+        "@type": "Brand",
+        name: "AI Architect Series",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: "contact@newbizsoft.com",
+        contactType: "customer service",
+      },
+      sameAs: [
+        "https://richbukae.com",
+        "https://aihubkorea.kr",
+      ],
+    },
+    {
+      "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
@@ -96,6 +117,20 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
     { title: t("approach4Title"), desc: t("approach4Desc") },
   ];
 
+  const stats = [
+    { value: t("stat1Value"), label: t("stat1Label") },
+    { value: t("stat2Value"), label: t("stat2Label") },
+    { value: t("stat3Value"), label: t("stat3Label") },
+    { value: t("stat4Value"), label: t("stat4Label") },
+  ];
+
+  const results = [
+    { metric: t("result1Metric"), who: t("result1Who") },
+    { metric: t("result2Metric"), who: t("result2Who") },
+    { metric: t("result3Metric"), who: t("result3Who") },
+    { metric: t("result4Metric"), who: t("result4Who") },
+  ];
+
   return (
     <div className="min-h-screen pt-24 pb-20">
       <script
@@ -104,19 +139,43 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       />
       <div className="max-w-3xl mx-auto px-4">
         {/* Hero */}
-        <div className="mb-16">
+        <div className="mb-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="gradient-gold">{t("title")}</span>
           </h1>
-          <p className="text-text-secondary text-lg leading-relaxed mb-6">
+          <p className="text-text-secondary text-lg leading-relaxed mb-4">
             {t("intro1")}
           </p>
-          <p className="text-text-secondary text-lg leading-relaxed mb-6">
+          <p className="text-text-secondary text-lg leading-relaxed mb-4">
             {t("intro2")}
           </p>
-          <p className="text-text-secondary text-lg leading-relaxed">
+          <p className="text-text-secondary text-lg leading-relaxed mb-8">
             {t("intro3")}
           </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <BuyButton href={bundleUrl} className="text-base py-3">
+              {t("heroCta")}
+            </BuyButton>
+            <Link
+              href="/products"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-text-secondary border border-white/10 hover:border-gold/30 hover:text-gold transition-all text-base"
+            >
+              {t("heroCtaSecondary")}
+            </Link>
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div className="mb-16">
+          <h2 className="text-xl font-bold mb-6 text-text-primary">{t("statsTitle")}</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {stats.map((stat) => (
+              <div key={stat.label} className="bg-surface/60 border border-white/5 rounded-xl p-4 text-center">
+                <div className="text-3xl font-bold gradient-gold mb-1">{stat.value}</div>
+                <div className="text-xs text-text-secondary leading-tight">{stat.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* The Insight */}
@@ -130,6 +189,16 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </p>
         </div>
 
+        {/* Why AI Architect Series */}
+        <div className="mb-16">
+          <h2 className="text-2xl font-bold mb-6">{t("whyTitle")}</h2>
+          <div className="space-y-4">
+            <p className="text-text-secondary leading-relaxed">{t("whyP1")}</p>
+            <p className="text-text-secondary leading-relaxed">{t("whyP2")}</p>
+            <p className="text-text-secondary leading-relaxed font-medium text-text-primary">{t("whyP3")}</p>
+          </div>
+        </div>
+
         {/* How We Approach It */}
         <div className="mb-16">
           <h2 className="text-2xl font-bold mb-6">{t("approachTitle")}</h2>
@@ -141,6 +210,19 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
                   <h3 className="font-bold text-text-primary mb-1">{item.title}</h3>
                   <p className="text-text-secondary text-sm leading-relaxed">{item.desc}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Real Results */}
+        <div className="mb-16">
+          <h2 className="text-2xl font-bold mb-6">{t("resultsTitle")}</h2>
+          <div className="grid gap-3">
+            {results.map((r) => (
+              <div key={r.metric} className="bg-surface/60 border border-white/5 rounded-xl p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <span className="text-lg font-bold gradient-gold">{r.metric}</span>
+                <span className="text-sm text-text-secondary">{r.who}</span>
               </div>
             ))}
           </div>
@@ -172,14 +254,21 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </div>
         </div>
 
+        {/* Who We Are */}
+        <div className="mb-16 bg-surface/40 border border-white/5 rounded-2xl p-8">
+          <h2 className="text-2xl font-bold mb-4">{t("whoTitle")}</h2>
+          <p className="text-text-secondary leading-relaxed mb-3">{t("whoP1")}</p>
+          <p className="text-text-secondary leading-relaxed">{t("whoP2")}</p>
+        </div>
+
         {/* Blog cross-link */}
         <div className="mb-16 p-5 bg-white/5 border border-white/10 rounded-xl">
-          <p className="text-sm text-text-secondary mb-1">Latest insights</p>
+          <p className="text-sm text-text-secondary mb-1">{t("blogCrossLinkLabel")}</p>
           <Link
             href="/blog"
             className="text-gold hover:text-gold-light font-medium text-sm transition-colors"
           >
-            Read our blog for AI business frameworks and strategies →
+            {t("blogCrossLinkText")} &rarr;
           </Link>
         </div>
 
@@ -191,7 +280,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           <p className="text-text-secondary mb-6">
             {t("ctaSubtitle")}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
             <BuyButton href={bundleUrl} className="text-lg py-4">
               {t("ctaBundle")} &mdash; ${bundle.price}
             </BuyButton>
@@ -202,6 +291,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
               {t("ctaViewBooks")}
             </Link>
           </div>
+          <p className="text-xs text-text-muted">{t("ctaGuarantee")}</p>
         </div>
       </div>
     </div>
