@@ -8,7 +8,7 @@ import { getTranslations } from "next-intl/server";
 export const metadata: Metadata = {
   title: "About AI Architect Series — Why We Built AI-Powered Business Framework Guides",
   description:
-    "Bridge the gap between reading and executing proven business frameworks. AI Architect turns DotCom Secrets, PLF, and Copywriting Secrets into AI-powered systems you can run today.",
+    "Bridge the gap between reading and executing proven business frameworks. AI Architect turns DotCom Secrets, PLF, and Copywriting Secrets into AI systems.",
   keywords: [
     "AI Architect Series",
     "AI business framework",

@@ -12,7 +12,7 @@ import { getTranslations } from "next-intl/server";
 const homeMeta: Record<string, { title: string; description: string; ogDescription: string; twitterDescription: string }> = {
   en: {
     title: "AI Architect Series — You've Read the Books. Now Let AI Execute the Frameworks.",
-    description: "6 AI-powered PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into executable systems you can run today. Bundle: $47. Individual books: $17.",
+    description: "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, and Jim Edwards' frameworks into executable systems. Bundle $47, individual $17. Start today.",
     ogDescription: "6 AI-powered PDF guides turn world-class business frameworks into executable systems. Bundle: $47.",
     twitterDescription: "6 PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards frameworks into AI-powered systems. Bundle $47.",
   },

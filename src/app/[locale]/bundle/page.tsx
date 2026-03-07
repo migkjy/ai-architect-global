@@ -10,7 +10,7 @@ const BUNDLE_URL = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-arc
 export const metadata: Metadata = {
   title: "Complete Bundle — All 6 AI Architect Books for $47",
   description:
-    "Get all 6 AI Architect books in one bundle for $47. Apply Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven frameworks with AI. Save $55 vs buying individually. Instant PDF download. 7-day money-back guarantee.",
+    "All 6 AI Architect books for $47. Apply Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven frameworks with AI. Save $55. Instant PDF download.",
   keywords: [
     "AI Architect bundle",
     "AI business framework bundle",

@@ -6,7 +6,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architec
 export const metadata: Metadata = {
   title: "Terms of Service — AI Architect Series",
   description:
-    "Terms of Service for AI Architect Series by NEWBIZSOFT. Digital product license, payment terms via Paddle, and usage guidelines.",
+    "Terms of Service for AI Architect Series by NEWBIZSOFT. Digital product license, payment terms via Paddle, refund policy, and usage guidelines explained.",
   alternates: {
     canonical: `${SITE_URL}/terms`,
   },

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | AI Architect Series",
   },
   description:
-    "Stop reading about proven business frameworks. Start using them. The AI Architect Series puts Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's systems into AI-powered tools that work on your specific business.",
+    "Turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven business frameworks into AI-powered systems. 6 PDF guides + AI Skills. Bundle $47.",
   keywords: [
     "AI marketing automation",
     "Russell Brunson DotCom Secrets AI",

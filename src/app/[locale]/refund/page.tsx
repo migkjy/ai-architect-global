@@ -6,7 +6,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architec
 export const metadata: Metadata = {
   title: "Refund Policy — AI Architect Series",
   description:
-    "14-day money-back guarantee on all AI Architect Series digital products. Simple, no-hassle refund process via email.",
+    "14-day money-back guarantee on all AI Architect Series digital products. Simple refund process via email. No questions asked, full refund within 24 hours.",
   alternates: {
     canonical: `${SITE_URL}/refund`,
   },

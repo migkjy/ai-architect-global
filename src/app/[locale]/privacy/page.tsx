@@ -6,7 +6,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architec
 export const metadata: Metadata = {
   title: "Privacy Policy — AI Architect Series",
   description:
-    "Privacy Policy for AI Architect Series. How we collect, use, and protect your personal information in compliance with GDPR.",
+    "Privacy Policy for AI Architect Series by NEWBIZSOFT. Learn how we collect, use, and protect your personal data in compliance with GDPR and international law.",
   alternates: {
     canonical: `${SITE_URL}/privacy`,
   },
