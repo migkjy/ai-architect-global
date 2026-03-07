@@ -144,10 +144,42 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
             </article>
           ))}
         </div>
+        {/* Product CTA */}
+        <div className="mt-16 p-6 bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl text-center">
+          <h2 className="text-lg font-bold mb-2">Turn These Strategies into AI-Powered Action</h2>
+          <p className="text-text-secondary text-sm mb-4">
+            Get ready-to-use AI system prompts that execute proven business frameworks automatically.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/bundle"
+              className="inline-flex items-center justify-center px-6 py-3 bg-gold text-navy-dark rounded-xl font-bold text-sm hover:bg-gold-light transition-colors"
+            >
+              Get the Complete Bundle
+            </Link>
+            <Link
+              href="/products"
+              className="inline-flex items-center justify-center px-6 py-3 border border-white/10 rounded-xl font-semibold text-sm text-text-secondary hover:border-gold/30 hover:text-gold transition-all"
+            >
+              Browse Individual Books
+            </Link>
+          </div>
+        </div>
+
         <div className="mt-16 pt-8 border-t border-white/10 text-center">
           <p className="text-text-secondary mb-2">{t("weeklyFrameworks")}</p>
           <p className="text-xs text-text-muted">{t("subscriberCount")}</p>
         </div>
+
+        {/* Related pages */}
+        <nav className="mt-8 pt-6 border-t border-white/10" aria-label="Related pages">
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link href="/products" className="text-sm text-gold hover:text-gold-light transition-colors">Products</Link>
+            <Link href="/bundle" className="text-sm text-gold hover:text-gold-light transition-colors">Bundle</Link>
+            <Link href="/about" className="text-sm text-gold hover:text-gold-light transition-colors">About</Link>
+            <Link href="/faq" className="text-sm text-gold hover:text-gold-light transition-colors">FAQ</Link>
+          </div>
+        </nav>
       </main>
     </>
   );
