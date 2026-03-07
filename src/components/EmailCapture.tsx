@@ -53,29 +53,51 @@ export default function EmailCapture({
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`flex flex-col sm:flex-row gap-2 ${className}`}>
-      <label htmlFor="email-capture-input" className="sr-only">
-        Email address
-      </label>
-      <input
-        id="email-capture-input"
-        type="email"
-        required
-        placeholder="your@email.com"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        aria-describedby={status === "error" ? "email-capture-error" : undefined}
-        className="flex-1 px-4 py-3 rounded-xl bg-navy-dark/80 border border-white/10 text-text-primary placeholder:text-text-muted focus:border-gold/40 focus:outline-none text-sm"
-      />
-      <button
-        type="submit"
-        className="px-6 py-3 bg-gold text-navy-dark font-bold rounded-xl hover:bg-gold-light transition-all transform hover:scale-105 text-sm whitespace-nowrap"
-      >
-        {buttonText}
-      </button>
-      {status === "error" && (
-        <p id="email-capture-error" role="alert" className="text-red-400 text-xs mt-1">Something went wrong. Try again.</p>
-      )}
-    </form>
+    <div className={className}>
+      <div className="mb-3 flex flex-wrap items-center gap-2 text-xs text-text-secondary">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/10 border border-gold/20 px-3 py-1 font-semibold text-gold">
+          1,800+ subscribers
+        </span>
+      </div>
+      <ul className="mb-4 space-y-1.5 text-sm text-text-secondary">
+        <li className="flex items-center gap-2">
+          <span className="text-gold shrink-0">&#10003;</span>
+          AI architecture trends &amp; new templates
+        </li>
+        <li className="flex items-center gap-2">
+          <span className="text-gold shrink-0">&#10003;</span>
+          3 ready-to-use system prompts weekly
+        </li>
+        <li className="flex items-center gap-2">
+          <span className="text-gold shrink-0">&#10003;</span>
+          Exclusive subscriber discounts
+        </li>
+      </ul>
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
+        <label htmlFor="email-capture-input" className="sr-only">
+          Email address
+        </label>
+        <input
+          id="email-capture-input"
+          type="email"
+          required
+          placeholder="Enter your work email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          aria-describedby={status === "error" ? "email-capture-error" : undefined}
+          className="flex-1 px-4 py-3 rounded-xl bg-navy-dark/80 border border-white/10 text-text-primary placeholder:text-text-muted focus:border-gold/40 focus:outline-none text-sm"
+        />
+        <button
+          type="submit"
+          className="px-6 py-3 bg-gold text-navy-dark font-bold rounded-xl hover:bg-gold-light transition-all transform hover:scale-105 text-sm whitespace-nowrap"
+        >
+          {buttonText}
+        </button>
+        {status === "error" && (
+          <p id="email-capture-error" role="alert" className="text-red-400 text-xs mt-1">Something went wrong. Try again.</p>
+        )}
+      </form>
+      <p className="mt-2 text-xs text-text-muted">Free &middot; No spam &middot; Unsubscribe anytime</p>
+    </div>
   );
 }
