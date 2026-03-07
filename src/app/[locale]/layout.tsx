@@ -10,8 +10,10 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { routing } from "@/i18n/routing";
 import { MetaPixel } from "@/components/MetaPixel";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
-import ScrollSubscribeBanner from "@/components/ScrollSubscribeBanner";
+import dynamic from "next/dynamic";
+
+const ExitIntentPopup = dynamic(() => import("@/components/ExitIntentPopup"));
+const ScrollSubscribeBanner = dynamic(() => import("@/components/ScrollSubscribeBanner"));
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 const OG_IMAGE = `${SITE_URL}/og-image`;
