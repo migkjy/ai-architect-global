@@ -119,7 +119,11 @@
     "worksWithStart": "Claude, ChatGPT, Gemini 호환. 1시간 이내에 첫 AI 세션 시작.",
     "entrepreneursUsing": "500명 이상의 기업가가 이 프레임워크를 활용 중.",
     "noAccount": "계정 불필요",
-    "basedOn": "원저: {framework}"
+    "basedOn": "원저: {framework}",
+    "bundleSavings": "번들이면 권당 {perBook}에 6권 모두",
+    "bundleSavingsDetail": "개별: {individual} — 번들 구매 시 총 {save} 절약",
+    "pairsWellWith": "함께 읽으면 효과가 배가되는 책",
+    "pairsWellDesc": "이 가이드와 시너지를 내는 책들입니다."
   },
   "home": {
     "results": {

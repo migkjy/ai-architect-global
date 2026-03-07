@@ -167,8 +167,18 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
               >
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="shrink-0 flex flex-row md:flex-col items-center gap-4 md:gap-2 md:w-24">
-                    <div className="w-16 h-16 bg-navy-dark/60 border border-gold/10 rounded-2xl flex items-center justify-center text-3xl">
+                    <div className="relative w-16 h-16 bg-navy-dark/60 border border-gold/10 rounded-2xl flex items-center justify-center text-3xl">
                       {book.icon}
+                      {book.isBestseller && (
+                        <span className="absolute -top-2 -right-2 bg-gold text-navy-dark text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">
+                          BEST
+                        </span>
+                      )}
+                      {book.isNew && (
+                        <span className="absolute -top-2 -right-2 bg-green-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">
+                          NEW
+                        </span>
+                      )}
                     </div>
                     <div className="text-center">
                       <div className="text-xs text-gold/70 font-bold">Vol. {book.vol}</div>
