@@ -29,6 +29,9 @@ export default function Header() {
           <Link href="/about" className="hover:text-text-primary transition-colors">
             {t("about")}
           </Link>
+          <Link href="/faq" className="hover:text-text-primary transition-colors">
+            {t("faq")}
+          </Link>
         </nav>
 
         <div className="flex items-center gap-3">
@@ -82,6 +85,9 @@ export default function Header() {
           </Link>
           <Link href="/about" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
             {t("about")}
+          </Link>
+          <Link href="/faq" className="hover:text-text-primary transition-colors" onClick={() => setMobileOpen(false)}>
+            {t("faq")}
           </Link>
         </div>
       )}
