@@ -7,55 +7,81 @@ import FaqAccordion from "@/components/FaqAccordion";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
 import { setRequestLocale } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "AI Architect Series — You've Read the Books. Now Let AI Execute the Frameworks.",
-  description:
-    "6 AI-powered PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into executable systems you can run today. Bundle: $47. Individual books: $17.",
-  keywords: [
-    "AI business framework",
-    "Russell Brunson AI",
-    "DotCom Secrets AI system",
-    "Jeff Walker Product Launch Formula AI",
-    "Jim Edwards Copywriting Secrets AI",
-    "Nicolas Cole AI writing",
-    "AI sales funnel automation",
-    "business PDF guide",
-    "AI marketing system",
-    "online business AI",
-  ],
-  openGraph: {
+const homeMeta: Record<string, { title: string; description: string; ogDescription: string; twitterDescription: string }> = {
+  en: {
     title: "AI Architect Series — You've Read the Books. Now Let AI Execute the Frameworks.",
-    description:
-      "6 AI-powered PDF guides turn world-class business frameworks into executable systems. Bundle: $47.",
-    url: "https://ai-driven-architect.com",
-    type: "website",
-    locale: "en_US",
-    siteName: "AI Architect Series",
-    images: [
-      {
-        url: "https://ai-driven-architect.com/og-image",
-        width: 1200,
-        height: 630,
-        alt: "AI Architect Series — 6 AI-Powered Business Frameworks",
-      },
-    ],
+    description: "6 AI-powered PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into executable systems you can run today. Bundle: $47. Individual books: $17.",
+    ogDescription: "6 AI-powered PDF guides turn world-class business frameworks into executable systems. Bundle: $47.",
+    twitterDescription: "6 PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards frameworks into AI-powered systems. Bundle $47.",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "AI Architect Series — Let AI Execute the Frameworks",
-    description:
-      "6 PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards frameworks into AI-powered systems. Bundle $47.",
-    images: ["https://ai-driven-architect.com/og-image"],
+  ko: {
+    title: "AI Architect Series — 세계적 비즈니스 프레임워크를 AI로 실행하세요.",
+    description: "Russell Brunson, Jeff Walker, Jim Edwards, Nicolas Cole의 프레임워크를 AI 시스템으로 전환하는 6권의 PDF 가이드. 번들: $47.",
+    ogDescription: "세계적 비즈니스 프레임워크를 AI로 자동화하는 6권의 실행 가이드. 번들: $47.",
+    twitterDescription: "Russell Brunson, Jeff Walker 프레임워크를 AI 시스템으로 전환. 번들 $47.",
   },
-  alternates: {
-    canonical: "https://ai-driven-architect.com",
-    languages: {
-      en: "https://ai-driven-architect.com",
-      ko: "https://ai-driven-architect.com/ko",
-      ja: "https://ai-driven-architect.com/ja",
-    },
+  ja: {
+    title: "AI Architect Series — ビジネスフレームワークをAIで実行しよう。",
+    description: "Russell Brunson、Jeff Walker、Jim Edwards、Nicolas Coleのフレームワークを実行可能なAIシステムに変換する6冊のPDFガイド。バンドル: $47。",
+    ogDescription: "世界クラスのビジネスフレームワークをAIで自動化する6冊の実行ガイド。バンドル: $47。",
+    twitterDescription: "Russell Brunson、Jeff WalkerのフレームワークをAIシステムに変換。バンドル $47。",
   },
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const meta = homeMeta[locale] ?? homeMeta.en;
+  const canonicalUrl = locale === "en" ? siteUrl : `${siteUrl}/${locale}`;
+  const ogLocale = locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US";
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: [
+      "AI business framework",
+      "Russell Brunson AI",
+      "DotCom Secrets AI system",
+      "Jeff Walker Product Launch Formula AI",
+      "Jim Edwards Copywriting Secrets AI",
+      "Nicolas Cole AI writing",
+      "AI sales funnel automation",
+      "business PDF guide",
+      "AI marketing system",
+      "online business AI",
+    ],
+    openGraph: {
+      title: meta.title,
+      description: meta.ogDescription,
+      url: canonicalUrl,
+      type: "website",
+      locale: ogLocale,
+      siteName: "AI Architect Series",
+      images: [
+        {
+          url: `${siteUrl}/og-image`,
+          width: 1200,
+          height: 630,
+          alt: "AI Architect Series — 6 AI-Powered Business Frameworks",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.twitterDescription,
+      images: [`${siteUrl}/og-image`],
+    },
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        en: siteUrl,
+        ko: `${siteUrl}/ko`,
+        ja: `${siteUrl}/ja`,
+      },
+    },
+  };
+}
 
 const results = [
   { metric: "500+", label: "Entrepreneurs & marketers using these frameworks" },
