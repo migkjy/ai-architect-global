@@ -15,7 +15,6 @@ const ExitIntentPopup = dynamic(() => import("@/components/ExitIntentPopup"));
 const ScrollSubscribeBanner = dynamic(() => import("@/components/ScrollSubscribeBanner"));
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
-const OG_IMAGE = `${SITE_URL}/og-image`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -47,21 +46,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "AI Architect Series",
     url: SITE_URL,
-    images: [
-      {
-        url: OG_IMAGE,
-        width: 1200,
-        height: 630,
-        alt: "AI Architect Series — 6 AI-Powered Business Frameworks",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI Architect Series — 6 World-Class Frameworks, Fully Automated with AI",
     description:
       "Stop reading business books. Start running the frameworks with AI. 6 PDF guides that make DotCom Secrets, PLF, Copywriting Secrets, and more executable today.",
-    images: [OG_IMAGE],
   },
   robots: {
     index: true,
