@@ -39,20 +39,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       url: canonicalUrl,
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Architect Series",
-      images: [
-        {
-          url: `${siteUrl}/og-image`,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [`${siteUrl}/og-image`],
     },
     alternates: {
       canonical: canonicalUrl,
