@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-navy-dark border-t border-white/5 py-12">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="font-bold text-lg mb-3">
               <span className="gradient-gold">AI Architect</span>
@@ -33,6 +33,27 @@ export default function Footer() {
               <li><Link href="/bundle" className="hover:text-gold transition-colors">Complete Bundle — $47</Link></li>
               <li><Link href="/products" className="hover:text-gold transition-colors">Individual Books — $17 each</Link></li>
               <li><Link href="/about" className="hover:text-gold transition-colors">About</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-semibold text-text-primary mb-3 text-sm">Related Services</h3>
+            <ul className="space-y-2 text-sm text-text-secondary">
+              <li>
+                <a href="https://richbukae.com?utm_source=ai-architect&utm_medium=footer&utm_campaign=ecosystem" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
+                  리치부캐 — AI 비즈니스 도서 ↗
+                </a>
+              </li>
+              <li>
+                <a href="https://aihubkorea.kr?utm_source=ai-architect&utm_medium=footer&utm_campaign=ecosystem" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
+                  AIHub Korea — AI 도구 허브 ↗
+                </a>
+              </li>
+              <li>
+                <a href="https://apppro.kr?utm_source=ai-architect&utm_medium=footer&utm_campaign=ecosystem" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
+                  앱프로 — AI 앱/MVP 개발 ↗
+                </a>
+              </li>
             </ul>
           </div>
         </div>
