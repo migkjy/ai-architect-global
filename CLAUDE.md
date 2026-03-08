@@ -6,8 +6,8 @@ AI Native Playbook 글로벌 랜딩 페이지 / 판매 플랫폼 (Lemon Squeezy 
 ## 리브랜딩 (2026-03-08 완료)
 - **변경 전**: AI Driven Architect
 - **변경 후**: AI Native Playbook
-- **신규 도메인**: ai-native-playbook.com (DNS 연결 대기 중)
-- **기존 도메인**: ai-driven-architect.com (당분간 병행)
+- **주 도메인**: ai-native-playbook.com (DNS 활성, SSL 발급)
+- **기존 도메인**: ai-driven-architect.com (301 리다이렉트 → ai-native-playbook.com)
 
 ## 기술 스택
 - 프레임워크: Next.js 16

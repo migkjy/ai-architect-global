@@ -4,12 +4,13 @@
 - **서비스**: AI Native Playbook 글로벌 SaaS (리브랜딩 완료 2026-03-08)
 - **기술스택**: Next.js 16, TypeScript, Tailwind CSS, Paddle(결제), Neon(DB)
 - **배포**: Vercel (git push 트리거)
-- **도메인**: ai-driven-architect.com (기존), ai-native-playbook.com (신규 DNS 대기)
+- **도메인**: ai-native-playbook.com (주 도메인, DNS 활성)
+- **기존 도메인**: ai-driven-architect.com → 301 리다이렉트 설정 완료 (vercel.json)
 
 ## 리브랜딩 (2026-03-08)
 - AI Driven Architect -> AI Native Playbook
 - 코드/콘텐츠/SEO 전면 교체 완료
-- 신규 도메인 DNS 연결 대기 중
+- 신규 도메인 DNS 활성 + 301 리다이렉트 완료 (2026-03-08)
 
 ## 브랜치 규칙
 - 개발: `main` -> staging: `staging` -> production: `production`
@@ -28,9 +29,14 @@
 - CEO 블로커: NEXT_PUBLIC_PADDLE_CLIENT_TOKEN
 - 일본어 제품 추가 제작 금지 (CEO 지시)
 
+## 도메인 마이그레이션 (2026-03-08 완료)
+- Vercel env NEXT_PUBLIC_SITE_URL = https://ai-native-playbook.com (production/preview/development)
+- vercel.json 301 리다이렉트: ai-driven-architect.com + www → ai-native-playbook.com
+- 소스코드 58파일 246건 교체 (c794cd7)
+- PR #56: main → staging (VP QA 대기)
+
 ## 다음 과업 후보
 - Paddle Client Token 적용 (심사 완료 시)
-- 신규 도메인 DNS 연결
 - 추가 블로그 콘텐츠
 
 ---
