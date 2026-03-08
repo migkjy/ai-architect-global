@@ -8,7 +8,7 @@ export default async function Footer() {
   return (
     <footer className="bg-navy-dark border-t border-white/5 py-12">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="font-bold text-lg mb-3">
               <span className="gradient-gold">AI Native Playbook</span>
@@ -42,26 +42,6 @@ export default async function Footer() {
             </ul>
           </div>
 
-          <div>
-            <p className="font-semibold text-text-primary mb-3 text-sm">Related Services</p>
-            <ul className="space-y-2 text-sm text-text-secondary">
-              <li>
-                <a href="https://richbukae.com?utm_source=ai-architect&utm_medium=footer&utm_campaign=ecosystem" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                  richbukae.com
-                </a>
-              </li>
-              <li>
-                <a href="https://aihubkorea.kr?utm_source=ai-architect&utm_medium=footer&utm_campaign=ecosystem" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                  AIHub Korea
-                </a>
-              </li>
-              <li>
-                <a href="https://apppro.kr?utm_source=ai-architect&utm_medium=footer&utm_campaign=ecosystem" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                  AppPro
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
 
         <div className="border-t border-white/5 pt-6 pb-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs text-text-muted">
