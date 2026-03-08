@@ -44,3 +44,13 @@ npm run build
 - PR은 반드시 main → staging으로 생성
 - staging → production 머지는 VP만 수행
 - 긴급 핫픽스도 staging 경유 필수 (예외 없음)
+
+## 소통 프로토콜
+- 자비스에게 보고: `scripts/project-reply.sh "메시지" "ai-architect-global"`
+- VP/CEO에게 직접 보고 금지 (자비스 경유)
+- 에스컬레이션: 프로젝트 세션 -> 자비스 -> VP -> CEO
+- shared-memory: `/Users/nbs22/(Claude)/(claude).projects/shared-memory/`
+
+## 프로젝트 지식 (Knowledge)
+- 세션 시작 시 `.claude/knowledge/context.md` 반드시 읽기
+- 세션 종료 전 작업 결과를 `context.md`에 업데이트
