@@ -62,8 +62,6 @@ export async function POST(request: Request) {
       createdAt: new Date().toISOString(),
     };
 
-    console.log(`[order] New order: ${order.lsOrderId} | ${order.customerEmail} | ${order.productName}`);
-
     try {
       await sendConfirmationEmail(order);
     } catch (emailErr) {
@@ -83,7 +81,6 @@ export async function POST(request: Request) {
 async function sendConfirmationEmail(order: Order): Promise<void> {
   const brevoKey = process.env.BREVO_API_KEY;
   if (!brevoKey) {
-    console.warn("[email] BREVO_API_KEY not set, skipping confirmation email");
     return;
   }
 
