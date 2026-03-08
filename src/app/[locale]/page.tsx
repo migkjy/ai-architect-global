@@ -2,16 +2,21 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { books, bundle, getBundleUrl, getProductUrl } from "@/lib/products";
 import { getAllPosts } from "@/lib/blog";
-import BuyButton from "@/components/BuyButton";
-import FaqAccordion from "@/components/FaqAccordion";
-import StickyMobileCTA from "@/components/StickyMobileCTA";
+import dynamic from "next/dynamic";
+const BuyButton = dynamic(() => import("@/components/BuyButton"), {
+  loading: () => <span className="inline-block h-12 w-48 animate-pulse bg-gold/20 rounded-xl" />,
+});
+const FaqAccordion = dynamic(() => import("@/components/FaqAccordion"), {
+  loading: () => <div className="h-64 animate-pulse bg-surface/30 rounded-xl" />,
+});
+const StickyMobileCTA = dynamic(() => import("@/components/StickyMobileCTA"));
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 
 const homeMeta: Record<string, { title: string; description: string; ogDescription: string; twitterDescription: string }> = {
   en: {
     title: "AI Architect Series — You've Read the Books. Now Let AI Execute the Frameworks.",
-    description: "6 AI-powered PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into executable systems you can run today. Bundle: $47. Individual books: $17.",
+    description: "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, and Jim Edwards' frameworks into executable systems. Bundle $47, individual $17. Start today.",
     ogDescription: "6 AI-powered PDF guides turn world-class business frameworks into executable systems. Bundle: $47.",
     twitterDescription: "6 PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards frameworks into AI-powered systems. Bundle $47.",
   },
@@ -153,20 +158,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   const dateLocale = locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US";
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "AI Architect Series",
-    url: siteUrl,
-    description:
-      "6 AI-powered PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's business frameworks into executable AI systems.",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: `${siteUrl}/products/{search_term_string}`,
-      "query-input": "required name=search_term_string",
-    },
-  };
-
   const faqPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -200,10 +191,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(faqPageJsonLd)) }}

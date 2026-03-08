@@ -9,6 +9,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architec
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "faqPage" });
+  const canonicalUrl = locale === "en" ? `${SITE_URL}/faq` : `${SITE_URL}/${locale}/faq`;
 
   return {
     title: t("title"),
@@ -21,7 +22,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       "AI Architect system requirements",
     ],
     alternates: {
-      canonical: `${SITE_URL}/faq`,
+      canonical: canonicalUrl,
+      languages: {
+        en: `${SITE_URL}/faq`,
+        ko: `${SITE_URL}/ko/faq`,
+        ja: `${SITE_URL}/ja/faq`,
+      },
     },
   };
 }
@@ -161,6 +167,17 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
             {t("ctaButton")}
           </Link>
         </div>
+
+        <nav className="mt-10 pt-8 border-t border-white/10" aria-label="Related pages">
+          <p className="text-xs font-semibold text-text-secondary/60 uppercase tracking-wider mb-3">Related Pages</p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/products" className="text-sm text-gold hover:text-gold-light transition-colors">Products</Link>
+            <Link href="/blog" className="text-sm text-gold hover:text-gold-light transition-colors">Blog</Link>
+            <Link href="/refund" className="text-sm text-gold hover:text-gold-light transition-colors">Refund Policy</Link>
+            <Link href="/terms" className="text-sm text-gold hover:text-gold-light transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="text-sm text-gold hover:text-gold-light transition-colors">Privacy Policy</Link>
+          </div>
+        </nav>
       </div>
     </div>
   );

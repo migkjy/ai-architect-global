@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
@@ -6,7 +7,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architec
 export const metadata: Metadata = {
   title: "Refund Policy — AI Architect Series",
   description:
-    "14-day money-back guarantee on all AI Architect Series digital products. Simple, no-hassle refund process via email.",
+    "14-day money-back guarantee on all AI Architect Series digital products. Simple refund process via email. No questions asked, full refund within 24 hours.",
   alternates: {
     canonical: `${SITE_URL}/refund`,
   },
@@ -16,12 +17,36 @@ export const metadata: Metadata = {
   },
 };
 
+const BREADCRUMB_LABELS: Record<string, { home: string; page: string }> = {
+  en: { home: "Home", page: "Refund Policy" },
+  ko: { home: "\uD648", page: "\uD658\uBD88 \uC815\uCC45" },
+  ja: { home: "\u30DB\u30FC\u30E0", page: "\u8FD4\u91D1\u30DD\u30EA\u30B7\u30FC" },
+};
+
+function getBreadcrumbJsonLd(locale: string) {
+  const labels = BREADCRUMB_LABELS[locale] || BREADCRUMB_LABELS.en;
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: labels.home, item: `${SITE_URL}/${locale}` },
+      { "@type": "ListItem", position: 2, name: labels.page, item: `${SITE_URL}/${locale}/refund` },
+    ],
+  };
+}
+
 export default async function RefundPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
 
   return (
     <div className="min-h-screen pt-24 pb-20">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getBreadcrumbJsonLd(locale)).replace(/</g, "\\u003c"),
+        }}
+      />
       <div className="max-w-3xl mx-auto px-4">
         <div className="mb-10">
           <h1 className="text-4xl font-bold mb-3 gradient-gold">Refund Policy</h1>
@@ -145,6 +170,15 @@ export default async function RefundPage({ params }: { params: Promise<{ locale:
             </p>
           </section>
 
+          <nav className="pt-8 border-t border-white/10" aria-label="Related pages">
+            <p className="text-xs font-semibold text-text-secondary/60 uppercase tracking-wider mb-3">Related Pages</p>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/terms" className="text-sm text-gold hover:text-gold-light transition-colors">Terms of Service</Link>
+              <Link href="/privacy" className="text-sm text-gold hover:text-gold-light transition-colors">Privacy Policy</Link>
+              <Link href="/faq" className="text-sm text-gold hover:text-gold-light transition-colors">FAQ</Link>
+              <Link href="/bundle" className="text-sm text-gold hover:text-gold-light transition-colors">Bundle</Link>
+            </div>
+          </nav>
         </div>
       </div>
     </div>

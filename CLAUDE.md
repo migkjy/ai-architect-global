@@ -27,6 +27,11 @@ npm run build
 - 타 프로젝트 파일 수정 금지
 - 작업 완료 후 반드시 commit + push
 
+## 제품/콘텐츠 규칙 (CEO 지시 2026-03-07)
+- **일본어 제품 추가 제작 금지** — 현재 영어/한국어 제품만 유지
+- 기존 일본어 SEO 메타데이터(title, description, hreflang 등)는 현행 유지
+- 일본어 신규 콘텐츠(블로그, 상품 설명 등) 생성 금지
+
 ## Git 브랜치 규칙 (CEO 지시 2026-03-07)
 - **main → production 직행 PR 절대 금지**
 - 브랜치 흐름: `main` → `staging` → `production`

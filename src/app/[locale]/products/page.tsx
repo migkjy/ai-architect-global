@@ -1,18 +1,53 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { books, bundle, getBundleUrl, getBundlePaddlePriceId, getProductUrl } from "@/lib/products";
-import BuyButton from "@/components/BuyButton";
+import dynamic from "next/dynamic";
+const BuyButton = dynamic(() => import("@/components/BuyButton"));
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-  title: "All 6 AI Business Framework Guides — AI Architect Series",
-  description:
-    "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into executable AI systems. $17 each or $47 for the complete bundle.",
-  alternates: {
-    canonical: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"}/products`,
+const productsMeta: Record<string, { title: string; description: string }> = {
+  en: {
+    title: "All 6 AI Business Framework Guides — AI Architect Series",
+    description: "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into executable AI systems. $17 each or $47 for the complete bundle.",
+  },
+  ko: {
+    title: "AI 비즈니스 프레임워크 가이드 6권 — AI Architect Series",
+    description: "Russell Brunson, Jeff Walker, Jim Edwards, Nicolas Cole의 프레임워크를 실행 가능한 AI 시스템으로 변환하는 6권의 PDF 가이드. 개별 $17, 번들 $47.",
+  },
+  ja: {
+    title: "AIビジネスフレームワークガイド全6冊 — AI Architect Series",
+    description: "Russell Brunson、Jeff Walker、Jim Edwards、Nicolas Coleのフレームワークを実行可能なAIシステムに変換する6冊のPDFガイド。個別$17、バンドル$47。",
   },
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const meta = productsMeta[locale] ?? productsMeta.en;
+  const canonicalUrl = locale === "en" ? `${siteUrl}/products` : `${siteUrl}/${locale}/products`;
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: canonicalUrl,
+      languages: {
+        en: `${siteUrl}/products`,
+        ko: `${siteUrl}/ko/products`,
+        ja: `${siteUrl}/ja/products`,
+      },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      type: "website",
+      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      siteName: "AI Architect Series",
+      url: canonicalUrl,
+    },
+  };
+}
 
 export default async function ProductsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -25,35 +60,49 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
   const bundlePaddlePriceId = getBundlePaddlePriceId();
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "AI Architect Series — All Books",
-    description: "6 AI-powered PDF guides that turn proven business frameworks into executable AI systems.",
-    numberOfItems: books.length,
-    itemListElement: books.map((book, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "Product",
-        name: book.title,
-        description: book.shortDescription,
-        url: `${siteUrl}/products/${book.slug}`,
-        offers: {
-          "@type": "Offer",
-          price: "17",
-          priceCurrency: "USD",
-          availability: "https://schema.org/InStock",
+  function escapeJsonLd(json: string): string {
+    return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
+  }
+
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
+        { "@type": "ListItem", position: 2, name: "All Books", item: `${siteUrl}/products` },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "AI Architect Series — All Books",
+      description: "6 AI-powered PDF guides that turn proven business frameworks into executable AI systems.",
+      numberOfItems: books.length,
+      itemListElement: books.map((book, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "Product",
+          name: book.title,
+          description: book.shortDescription,
+          url: `${siteUrl}/products/${book.slug}`,
+          offers: {
+            "@type": "Offer",
+            price: "17",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+          },
         },
-      },
-    })),
-  };
+      })),
+    },
+  ];
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }}
       />
     <div className="min-h-screen pt-24 pb-20">
       {/* Header */}
@@ -119,8 +168,18 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
               >
                 <div className="flex flex-col md:flex-row gap-6">
                   <div className="shrink-0 flex flex-row md:flex-col items-center gap-4 md:gap-2 md:w-24">
-                    <div className="w-16 h-16 bg-navy-dark/60 border border-gold/10 rounded-2xl flex items-center justify-center text-3xl">
+                    <div className="relative w-16 h-16 bg-navy-dark/60 border border-gold/10 rounded-2xl flex items-center justify-center text-3xl">
                       {book.icon}
+                      {book.isBestseller && (
+                        <span className="absolute -top-2 -right-2 bg-gold text-navy-dark text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">
+                          BEST
+                        </span>
+                      )}
+                      {book.isNew && (
+                        <span className="absolute -top-2 -right-2 bg-green-500 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full leading-none">
+                          NEW
+                        </span>
+                      )}
                     </div>
                     <div className="text-center">
                       <div className="text-xs text-gold/70 font-bold">Vol. {book.vol}</div>

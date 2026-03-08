@@ -6,12 +6,31 @@ import { getTranslations } from "next-intl/server";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  const canonicalUrl = locale === "en" ? `${SITE_URL}/blog` : `${SITE_URL}/${locale}/blog`;
-  return {
+const blogMeta: Record<string, { title: string; description: string; ogDescription: string }> = {
+  en: {
     title: "AI Business Blog | AI Architect Series",
     description: "Discover practical AI tools, marketing automation strategies, and business growth tactics. Free guides for entrepreneurs who want to scale with AI frameworks.",
+    ogDescription: "Free AI tools, marketing automation guides, and business growth strategies for entrepreneurs who want to scale smarter.",
+  },
+  ko: {
+    title: "AI 비즈니스 블로그 | AI Architect Series",
+    description: "실용적인 AI 도구, 마케팅 자동화 전략, 비즈니스 성장 전술을 확인하세요. AI 프레임워크로 확장하려는 기업가를 위한 무료 가이드.",
+    ogDescription: "기업가를 위한 무료 AI 도구, 마케팅 자동화 가이드, 비즈니스 성장 전략.",
+  },
+  ja: {
+    title: "AIビジネスブログ | AI Architect Series",
+    description: "実践的なAIツール、マーケティング自動化戦略、ビジネス成長戦術をご紹介。AIフレームワークで事業を拡大したい起業家のための無料ガイド。",
+    ogDescription: "起業家のための無料AIツール、マーケティング自動化ガイド、ビジネス成長戦略。",
+  },
+};
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const meta = blogMeta[locale] ?? blogMeta.en;
+  const canonicalUrl = locale === "en" ? `${SITE_URL}/blog` : `${SITE_URL}/${locale}/blog`;
+  return {
+    title: meta.title,
+    description: meta.description,
     keywords: [
       "AI business blog",
       "AI marketing automation",
@@ -29,8 +48,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       },
     },
     openGraph: {
-      title: "AI Business Blog | AI Architect Series",
-      description: "Free AI tools, marketing automation guides, and business growth strategies for entrepreneurs who want to scale smarter.",
+      title: meta.title,
+      description: meta.ogDescription,
       type: "website",
       url: canonicalUrl,
       siteName: "AI Architect Series",
@@ -38,8 +57,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     twitter: {
       card: "summary_large_image",
-      title: "AI Business Blog | AI Architect Series",
-      description: "Practical AI tools, marketing automation, and business growth strategies for entrepreneurs and small business owners.",
+      title: meta.title,
+      description: meta.ogDescription,
     },
   };
 }
@@ -125,10 +144,42 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
             </article>
           ))}
         </div>
+        {/* Product CTA */}
+        <div className="mt-16 p-6 bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl text-center">
+          <h2 className="text-lg font-bold mb-2">Turn These Strategies into AI-Powered Action</h2>
+          <p className="text-text-secondary text-sm mb-4">
+            Get ready-to-use AI system prompts that execute proven business frameworks automatically.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/bundle"
+              className="inline-flex items-center justify-center px-6 py-3 bg-gold text-navy-dark rounded-xl font-bold text-sm hover:bg-gold-light transition-colors"
+            >
+              Get the Complete Bundle
+            </Link>
+            <Link
+              href="/products"
+              className="inline-flex items-center justify-center px-6 py-3 border border-white/10 rounded-xl font-semibold text-sm text-text-secondary hover:border-gold/30 hover:text-gold transition-all"
+            >
+              Browse Individual Books
+            </Link>
+          </div>
+        </div>
+
         <div className="mt-16 pt-8 border-t border-white/10 text-center">
           <p className="text-text-secondary mb-2">{t("weeklyFrameworks")}</p>
           <p className="text-xs text-text-muted">{t("subscriberCount")}</p>
         </div>
+
+        {/* Related pages */}
+        <nav className="mt-8 pt-6 border-t border-white/10" aria-label="Related pages">
+          <div className="flex flex-wrap gap-3 justify-center">
+            <Link href="/products" className="text-sm text-gold hover:text-gold-light transition-colors">Products</Link>
+            <Link href="/bundle" className="text-sm text-gold hover:text-gold-light transition-colors">Bundle</Link>
+            <Link href="/about" className="text-sm text-gold hover:text-gold-light transition-colors">About</Link>
+            <Link href="/faq" className="text-sm text-gold hover:text-gold-light transition-colors">FAQ</Link>
+          </div>
+        </nav>
       </main>
     </>
   );

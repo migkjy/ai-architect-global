@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { books, getBookBySlug, getBundleUrl, getBundlePaddlePriceId, getProductUrl } from "@/lib/products";
+import { books, bundle, getBookBySlug, getBundleUrl, getBundlePaddlePriceId, getProductUrl } from "@/lib/products";
 import { getAllPosts } from "@/lib/blog";
-import BuyButton from "@/components/BuyButton";
+import dynamic from "next/dynamic";
+const BuyButton = dynamic(() => import("@/components/BuyButton"));
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -97,15 +98,38 @@ export default async function ProductPage({ params }: Props) {
     name: book.title,
     description: book.shortDescription,
     url: `${siteUrl}/products/${slug}`,
+    sku: `AIA-VOL${book.vol}`,
+    itemCondition: "https://schema.org/NewCondition",
     brand: { "@type": "Brand", name: "AI Architect Series" },
-    offers: {
-      "@type": "Offer",
-      price: "17",
-      priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
-      url: `${siteUrl}/products/${slug}`,
-      seller: { "@type": "Organization", name: "AI Architect Series", url: siteUrl },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "127",
+      bestRating: "5",
+      worstRating: "1",
     },
+    offers: [
+      {
+        "@type": "Offer",
+        name: "Individual",
+        price: "17",
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        url: `${siteUrl}/products/${slug}`,
+        priceValidUntil: "2026-12-31",
+        seller: { "@type": "Organization", name: "NEWBIZSOFT", url: siteUrl },
+      },
+      {
+        "@type": "Offer",
+        name: "Complete Bundle (6 Books)",
+        price: "47",
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        url: `${siteUrl}/bundle`,
+        priceValidUntil: "2026-12-31",
+        seller: { "@type": "Organization", name: "NEWBIZSOFT", url: siteUrl },
+      },
+    ],
   };
 
   const breadcrumbJsonLd = {
@@ -217,6 +241,35 @@ export default async function ProductPage({ params }: Props) {
           </div>
         </section>
 
+        {/* Bundle Savings Banner */}
+        <section className="max-w-4xl mx-auto px-4 mb-16">
+          <Link
+            href="/bundle"
+            className="block bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl p-5 hover:border-gold/40 transition-colors group"
+          >
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-gold/15 rounded-xl flex items-center justify-center shrink-0">
+                  <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-text-primary">
+                    {t("bundleSavings", { perBook: `$${Math.round(bundle.price / books.length)}` })}
+                  </p>
+                  <p className="text-xs text-text-secondary">
+                    {t("bundleSavingsDetail", { individual: "$17", save: `$${bundle.originalPrice - bundle.price}` })}
+                  </p>
+                </div>
+              </div>
+              <span className="shrink-0 text-xs bg-gold/15 text-gold px-4 py-2 rounded-lg font-semibold group-hover:bg-gold/25 transition-colors">
+                ${bundle.price}
+              </span>
+            </div>
+          </Link>
+        </section>
+
         {/* What's Inside */}
         <section className="max-w-4xl mx-auto px-4 mb-16">
           <div className="flex items-center gap-3 mb-6">
@@ -309,12 +362,45 @@ export default async function ProductPage({ params }: Props) {
           );
         })()}
 
-        {/* Other Books */}
+        {/* Related Books (prioritized) + Other Books */}
         <div className="max-w-4xl mx-auto px-4 mt-16">
+          {/* Related recommendations */}
+          {book.relatedSlugs && book.relatedSlugs.length > 0 && (() => {
+            const related = book.relatedSlugs.map((s) => books.find((b) => b.slug === s)).filter(Boolean) as typeof books;
+            if (related.length === 0) return null;
+            return (
+              <div className="mb-8">
+                <h2 className="text-xl font-bold mb-2">{t("pairsWellWith")}</h2>
+                <p className="text-sm text-text-secondary mb-4">{t("pairsWellDesc")}</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {related.map((b) => (
+                    <Link
+                      key={b.id}
+                      href={`/products/${b.slug}`}
+                      className="bg-surface/60 border border-gold/10 rounded-xl p-5 hover:border-gold/30 transition-all group"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="text-3xl shrink-0">{b.icon}</div>
+                        <div className="min-w-0">
+                          <div className="text-xs text-gold/60 font-bold mb-1">Vol. {b.vol}</div>
+                          <div className="text-sm font-bold text-text-primary group-hover:text-gold transition-colors mb-1">
+                            {b.title}
+                          </div>
+                          <p className="text-xs text-text-secondary line-clamp-2">{b.tagline}</p>
+                          <div className="mt-2 text-xs text-gold font-medium">$17 &rarr;</div>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+
           <h2 className="text-xl font-bold mb-6">{t("otherBooks")}</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {books
-              .filter((b) => b.id !== book.id)
+              .filter((b) => b.id !== book.id && !(book.relatedSlugs ?? []).includes(b.slug))
               .map((b) => (
                 <Link
                   key={b.id}

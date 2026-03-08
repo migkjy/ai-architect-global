@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { books } from "@/lib/products";
 
 export function generateStaticParams() {
   const posts = getAllPosts();
@@ -39,20 +40,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       url: canonicalUrl,
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Architect Series",
-      images: [
-        {
-          url: `${siteUrl}/og-image`,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
     },
     twitter: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [`${siteUrl}/og-image`],
     },
     alternates: {
       canonical: canonicalUrl,
@@ -78,6 +70,28 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     .filter((p) => p.tags.some((t) => post.tags.includes(t)))
     .slice(0, 3);
   const otherPosts = relatedPosts.length > 0 ? relatedPosts : allPosts.filter((p) => p.slug !== slug).slice(0, 3);
+
+  const TAG_TO_PRODUCT_SLUG: Record<string, string> = {
+    "Russell Brunson": "ai-marketing-architect",
+    "DotCom Secrets": "ai-marketing-architect",
+    "AI funnel": "ai-marketing-architect",
+    "Expert Secrets": "ai-brand-architect",
+    "Jeff Walker": "ai-launch-architect",
+    "Product Launch Formula": "ai-launch-architect",
+    "Jim Edwards": "ai-copywriting-architect",
+    "Copywriting Secrets": "ai-copywriting-architect",
+    "Nicolas Cole": "ai-content-architect",
+    "online writing": "ai-content-architect",
+    "AI marketing": "ai-marketing-architect",
+    "marketing automation": "ai-marketing-architect",
+    "email marketing": "ai-marketing-architect",
+  };
+  const matchedSlugs = new Set<string>();
+  post.tags.forEach((tag) => {
+    const productSlug = TAG_TO_PRODUCT_SLUG[tag];
+    if (productSlug) matchedSlugs.add(productSlug);
+  });
+  const relatedProducts = books.filter((b) => matchedSlugs.has(b.slug)).slice(0, 2);
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
@@ -192,6 +206,27 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </Link>
         </div>
       </div>
+
+      {relatedProducts.length > 0 && (
+        <div className="mt-6 space-y-3">
+          <p className="text-xs text-text-secondary uppercase tracking-wider">Related in This Topic</p>
+          {relatedProducts.map((book) => (
+            <Link
+              key={book.slug}
+              href={`/products/${book.slug}`}
+              className="block border border-white/10 rounded-xl p-4 hover:border-gold/30 transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">{book.icon}</span>
+                <div>
+                  <p className="font-semibold text-text-primary text-sm">{book.title}</p>
+                  <p className="text-xs text-text-secondary line-clamp-1">{book.tagline}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
 
       <div className="mt-8 pt-8 border-t border-white/10 text-center">
         <p className="text-text-secondary mb-2">Get weekly AI business frameworks — every Friday.</p>
