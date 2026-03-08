@@ -1,11 +1,55 @@
 import { NextResponse } from "next/server";
+import { headers } from "next/headers";
+import {
+  isHoneypotFilled,
+  checkRateLimit,
+  validateSubscribeInput,
+  verifyTurnstile,
+} from "@/lib/spam-protection";
 
 export async function POST(request: Request) {
   try {
-    const { email, name } = await request.json();
+    const body = await request.json();
+    const { email, name, website, turnstileToken } = body;
 
-    if (!email || typeof email !== "string" || !email.includes("@")) {
-      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
+    // Layer 1: Honeypot
+    if (isHoneypotFilled(website)) {
+      // Silent success to not reveal detection
+      return NextResponse.json({ success: true });
+    }
+
+    // Layer 2: Rate limiting
+    const headersList = await headers();
+    const ip =
+      headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      headersList.get("x-real-ip") ||
+      "unknown";
+    const rateCheck = checkRateLimit(ip);
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
+
+    // Layer 3: Input validation
+    const validation = validateSubscribeInput({ email, name });
+    if (!validation.valid) {
+      return NextResponse.json(
+        { error: validation.reason },
+        { status: 400 }
+      );
+    }
+
+    // Layer 4: Turnstile verification
+    if (turnstileToken) {
+      const turnstileValid = await verifyTurnstile(turnstileToken);
+      if (!turnstileValid) {
+        return NextResponse.json(
+          { error: "Verification failed" },
+          { status: 400 }
+        );
+      }
     }
 
     const sanitizedEmail = email.trim().toLowerCase();
