@@ -19,6 +19,7 @@ export default function ScrollSubscribeBanner() {
   const isBlogPage = pathname?.includes("/blog");
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const t = useTranslations("scrollBanner");
 
@@ -66,7 +67,7 @@ export default function ScrollSubscribeBanner() {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, website }),
       });
       if (res.ok) {
         setStatus("success");
@@ -103,6 +104,18 @@ export default function ScrollSubscribeBanner() {
           </p>
         ) : (
           <form onSubmit={handleSubmit} className="flex-1 flex gap-2">
+            <div className="absolute opacity-0 -z-10 h-0 overflow-hidden" aria-hidden="true">
+              <label htmlFor="scroll-website">Website</label>
+              <input
+                id="scroll-website"
+                type="text"
+                name="website"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
             <label htmlFor="scroll-email" className="sr-only">Email address</label>
             <input
               id="scroll-email"

@@ -1,11 +1,55 @@
 import { NextResponse } from "next/server";
+import { headers } from "next/headers";
+import {
+  isHoneypotFilled,
+  checkRateLimit,
+  validateSubscribeInput,
+  verifyTurnstile,
+} from "@/lib/spam-protection";
 
 export async function POST(request: Request) {
   try {
-    const { email, name } = await request.json();
+    const body = await request.json();
+    const { email, name, website, turnstileToken } = body;
 
-    if (!email || typeof email !== "string" || !email.includes("@")) {
-      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
+    // Layer 1: Honeypot
+    if (isHoneypotFilled(website)) {
+      // Silent success to not reveal detection
+      return NextResponse.json({ success: true });
+    }
+
+    // Layer 2: Rate limiting
+    const headersList = await headers();
+    const ip =
+      headersList.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      headersList.get("x-real-ip") ||
+      "unknown";
+    const rateCheck = checkRateLimit(ip);
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429 }
+      );
+    }
+
+    // Layer 3: Input validation
+    const validation = validateSubscribeInput({ email, name });
+    if (!validation.valid) {
+      return NextResponse.json(
+        { error: validation.reason },
+        { status: 400 }
+      );
+    }
+
+    // Layer 4: Turnstile verification
+    if (turnstileToken) {
+      const turnstileValid = await verifyTurnstile(turnstileToken);
+      if (!turnstileValid) {
+        return NextResponse.json(
+          { error: "Verification failed" },
+          { status: 400 }
+        );
+      }
     }
 
     const sanitizedEmail = email.trim().toLowerCase();
@@ -36,10 +80,10 @@ export async function POST(request: Request) {
         });
 
         if (!res.ok && res.status !== 204) {
-          console.warn("[Subscribe] Brevo save failed:", await res.text());
+          await res.text();
         }
-      } catch (err) {
-        console.warn("[Subscribe] Brevo API error:", err);
+      } catch {
+        // Brevo API error - subscriber still saved
       }
 
       // 리드마그넷 transactional email (AI 건축 설계 샘플 패키지)
@@ -63,8 +107,8 @@ export async function POST(request: Request) {
             htmlContent: `<div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#1a1a1a;padding:24px"><h1 style="color:#1e3a5f;">Your AI Framework Preview is Ready</h1><p>Thanks for joining the AI Architect community${name ? `, ${name}` : ""}!</p><p>Here's what you get:</p><ul style="line-height:2;"><li><strong>AI Framework Preview</strong> -- Core concepts from 6 world-class frameworks</li><li><strong>3 System Prompts</strong> -- Ready to paste into Claude or ChatGPT</li><li><strong>Early-bird discount</strong> -- When we launch</li></ul><div style="text-align:center;margin:28px 0;"><a href="https://ai-driven-architect.com/products" style="display:inline-block;background:#f59e0b;color:#1a1a1a;padding:14px 32px;border-radius:8px;font-weight:bold;text-decoration:none;">Explore AI Architect Series</a></div><p style="color:#888;font-size:12px;margin-top:32px;border-top:1px solid #eee;padding-top:16px;text-align:center;"><a href="https://ai-driven-architect.com" style="color:#1e3a5f;text-decoration:none;">AI Architect Series</a></p></div>`,
           }),
         });
-      } catch (err) {
-        console.warn("[Subscribe] Lead magnet email failed:", err);
+      } catch {
+        // Lead magnet email failed - subscriber still saved
       }
 
       // Welcome 시퀀스 (D+0, D+3, D+7)
@@ -111,15 +155,9 @@ export async function POST(request: Request) {
             "api-key": brevoApiKey,
           },
           body: JSON.stringify(body),
-        }).catch((err) =>
-          console.warn(
-            `[Subscribe] Welcome D+${mail.delayDays} failed:`,
-            err,
-          ),
-        );
+        }).catch(() => {});
       }
     } else {
-      console.log(`[subscribe] New signup (no Brevo): ${sanitizedEmail}`);
     }
 
     return NextResponse.json({ success: true });

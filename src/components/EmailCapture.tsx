@@ -19,6 +19,7 @@ export default function EmailCapture({
   className = "",
 }: EmailCaptureProps) {
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   async function handleSubmit(e: React.FormEvent) {
@@ -29,7 +30,7 @@ export default function EmailCapture({
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, website }),
       });
       if (res.ok) {
         setStatus("success");
@@ -74,6 +75,18 @@ export default function EmailCapture({
         </li>
       </ul>
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
+        <div className="absolute opacity-0 -z-10 h-0 overflow-hidden" aria-hidden="true">
+          <label htmlFor="ec-website">Website</label>
+          <input
+            id="ec-website"
+            type="text"
+            name="website"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
         <label htmlFor="email-capture-input" className="sr-only">
           Email address
         </label>
