@@ -298,7 +298,7 @@ export const books: Book[] = [
 ];
 
 export const bundle: Bundle = {
-  title: "AI Architect Series — Complete Bundle",
+  title: "AI Native Playbook Series — Complete Bundle",
   subtitle: "All 6 Books + Bonuses",
   price: 47,
   originalPrice: 102,
@@ -313,7 +313,7 @@ export function getBundleUrl(): string {
   const base = process.env.NEXT_PUBLIC_LS_BUNDLE_URL ?? "#";
   if (base === "#") return "#";
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
   const redirect = encodeURIComponent(
     `${siteUrl}/thank-you?product=Complete+Bundle`
   );
@@ -327,8 +327,8 @@ export function getProductUrl(envKey: string): string {
   if (base === "#") return "#";
   const book = books.find((b) => b.envKey === envKey);
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
-  const productName = encodeURIComponent(book?.title ?? "AI Architect");
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
+  const productName = encodeURIComponent(book?.title ?? "AI Native Playbook");
   const redirect = encodeURIComponent(
     `${siteUrl}/thank-you?product=${productName}`
   );

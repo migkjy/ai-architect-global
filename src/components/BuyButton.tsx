@@ -123,7 +123,7 @@ export default function BuyButton({
       e.preventDefault();
 
       const siteUrl =
-        process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+        process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
 
       window.Paddle.Checkout.open({
         items: [{ priceId: paddlePriceId!, quantity: 1 }],

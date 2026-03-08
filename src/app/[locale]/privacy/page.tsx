@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — AI Architect Series",
+  title: "Privacy Policy — AI Native Playbook Series",
   description:
-    "Privacy Policy for AI Architect Series by NEWBIZSOFT. Learn how we collect, use, and protect your personal data in compliance with GDPR and international law.",
+    "Privacy Policy for AI Native Playbook Series by NEWBIZSOFT. Learn how we collect, use, and protect your personal data in compliance with GDPR and international law.",
   alternates: {
     canonical: `${SITE_URL}/privacy`,
   },
@@ -61,7 +61,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
             <h2 className="text-xl font-semibold text-text-primary mb-4">1. Introduction</h2>
             <p>
               NEWBIZSOFT (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), operating the website{" "}
-              <span className="text-gold">ai-driven-architect.com</span> under the service name <strong className="text-text-primary">AI Architect Series</strong>, is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit our website or purchase our products.
+              <span className="text-gold">ai-native-playbook.com</span> under the service name <strong className="text-text-primary">AI Native Playbook Series</strong>, is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit our website or purchase our products.
             </p>
           </section>
 
@@ -180,8 +180,8 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
             </ul>
             <p className="mt-3">
               To exercise any of these rights, contact us at{" "}
-              <a href="mailto:contact@ai-driven-architect.com" className="text-gold hover:underline">
-                contact@ai-driven-architect.com
+              <a href="mailto:contact@ai-native-playbook.com" className="text-gold hover:underline">
+                contact@ai-native-playbook.com
               </a>. We will respond within 30 days.
             </p>
           </section>
@@ -211,8 +211,8 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
             <h2 className="text-xl font-semibold text-text-primary mb-4">11. Contact Us</h2>
             <p>
               For privacy-related questions or to exercise your rights, contact us at:{" "}
-              <a href="mailto:contact@ai-driven-architect.com" className="text-gold hover:underline">
-                contact@ai-driven-architect.com
+              <a href="mailto:contact@ai-native-playbook.com" className="text-gold hover:underline">
+                contact@ai-native-playbook.com
               </a>
             </p>
           </section>

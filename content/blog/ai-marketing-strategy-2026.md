@@ -75,7 +75,7 @@ Within 90 days: $600/month became $5,000/month. Not because the AI was magical â
 
 ## Getting Started Today
 
-You do not need to read six business books to execute these frameworks. The [AI Architect Series](/products) packages each framework into a ready-to-use AI system prompt. Load the prompt into Claude or ChatGPT, describe your business, and the AI immediately applies the framework.
+You do not need to read six business books to execute these frameworks. The [AI Native Playbook Series](/products) packages each framework into a ready-to-use AI system prompt. Load the prompt into Claude or ChatGPT, describe your business, and the AI immediately applies the framework.
 
 Each guide includes:
 - The complete framework explanation

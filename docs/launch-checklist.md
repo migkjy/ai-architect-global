@@ -9,7 +9,7 @@
 
 ### Gallery Images (5 required, max 1270x760px)
 1. [ ] **Hero Shot**: All 6 book covers arranged on dark background with gold accents + tagline
-2. [ ] **Problem/Solution**: Split screen -- "Without Framework" (generic AI) vs "With AI Architect" (specific strategy)
+2. [ ] **Problem/Solution**: Split screen -- "Without Framework" (generic AI) vs "With AI Native Playbook" (specific strategy)
 3. [ ] **Product Grid**: 6 volumes with icons, titles, source frameworks (DotCom Secrets, Expert Secrets, etc.)
 4. [ ] **How It Works**: 4-step flow diagram (Download -> Load Prompt -> Describe Business -> Get Strategy)
 5. [ ] **Results Dashboard**: Key metrics from case studies with gold highlight numbers

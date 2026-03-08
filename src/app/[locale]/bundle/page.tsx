@@ -8,25 +8,25 @@ import { getTranslations } from "next-intl/server";
 
 const bundleMeta: Record<string, { title: string; description: string; ogDescription: string }> = {
   en: {
-    title: "Complete Bundle — All 6 AI Architect Books for $47",
-    description: "All 6 AI Architect books for $47. Apply Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven frameworks with AI. Save $55. Instant PDF download.",
+    title: "Complete Bundle — All 6 AI Native Playbook Books for $47",
+    description: "All 6 AI Native Playbook books for $47. Apply Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven frameworks with AI. Save $55. Instant PDF download.",
     ogDescription: "Six AI-powered systems for marketing, branding, traffic, copywriting, product launches, and content. One price. Instant PDF download.",
   },
   ko: {
-    title: "완전 번들 — AI Architect 6권 전체 $47",
-    description: "AI Architect 6권 전체 $47. Russell Brunson, Jeff Walker, Jim Edwards, Nicolas Cole의 프레임워크를 AI로 실행. $55 절약. 즉시 PDF 다운로드.",
+    title: "완전 번들 — AI Native Playbook 6권 전체 $47",
+    description: "AI Native Playbook 6권 전체 $47. Russell Brunson, Jeff Walker, Jim Edwards, Nicolas Cole의 프레임워크를 AI로 실행. $55 절약. 즉시 PDF 다운로드.",
     ogDescription: "마케팅, 브랜딩, 트래픽, 카피라이팅, 제품 런칭, 콘텐츠를 위한 6개 AI 시스템. 하나의 가격. 즉시 다운로드.",
   },
   ja: {
-    title: "完全バンドル — AI Architect全6冊 $47",
-    description: "AI Architect全6冊を$47で。Russell Brunson、Jeff Walker、Jim Edwards、Nicolas Coleの実証済みフレームワークをAIで実行。$55お得。即時PDFダウンロード。",
+    title: "完全バンドル — AI Native Playbook全6冊 $47",
+    description: "AI Native Playbook全6冊を$47で。Russell Brunson、Jeff Walker、Jim Edwards、Nicolas Coleの実証済みフレームワークをAIで実行。$55お得。即時PDFダウンロード。",
     ogDescription: "マーケティング、ブランディング、トラフィック、コピーライティング、製品ローンチ、コンテンツのための6つのAIシステム。一つの価格。即時ダウンロード。",
   },
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
   const meta = bundleMeta[locale] ?? bundleMeta.en;
   const canonicalUrl = locale === "en" ? `${siteUrl}/bundle` : `${siteUrl}/${locale}/bundle`;
 
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: meta.title,
     description: meta.description,
     keywords: [
-      "AI Architect bundle",
+      "AI Native Playbook bundle",
       "AI business framework bundle",
       "Russell Brunson Jeff Walker AI",
       "DotCom Secrets Expert Secrets AI",
@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: meta.ogDescription,
       type: "website",
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
-      siteName: "AI Architect Series",
+      siteName: "AI Native Playbook Series",
       url: canonicalUrl,
     },
     twitter: {
@@ -75,11 +75,11 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
 
   const t = await getTranslations("bundle");
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
 
   const bonusItems = [
     {
-      title: "AI Architect Master Template",
+      title: "AI Native Playbook Master Template",
       description: locale === "ja" ? "6つのフレームワーク全体でAIプロンプトを体系的に整理・再利用するためのNotionデータベース。" : locale === "ko" ? "6가지 프레임워크 전체에서 AI 프롬프트를 체계적으로 정리하고 재사용하기 위한 Notion 데이터베이스." : "A Notion database for organizing and reusing your AI prompts systematically across all 6 frameworks.",
       icon: "📋",
     },
@@ -159,14 +159,14 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
     description:
       "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's business frameworks into executable AI systems.",
     url: `${siteUrl}/bundle`,
-    brand: { "@type": "Brand", name: "AI Architect Series" },
+    brand: { "@type": "Brand", name: "AI Native Playbook Series" },
     offers: {
       "@type": "Offer",
       price: bundle.price.toString(),
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
       url: `${siteUrl}/bundle`,
-      seller: { "@type": "Organization", name: "AI Architect Series", url: siteUrl },
+      seller: { "@type": "Organization", name: "AI Native Playbook Series", url: siteUrl },
     },
   };
 
@@ -174,7 +174,7 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "AI Architect Series", item: siteUrl },
+      { "@type": "ListItem", position: 1, name: "AI Native Playbook Series", item: siteUrl },
       { "@type": "ListItem", position: 2, name: "Complete Bundle", item: `${siteUrl}/bundle` },
     ],
   };

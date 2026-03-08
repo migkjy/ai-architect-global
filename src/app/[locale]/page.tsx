@@ -15,19 +15,19 @@ import { getTranslations } from "next-intl/server";
 
 const homeMeta: Record<string, { title: string; description: string; ogDescription: string; twitterDescription: string }> = {
   en: {
-    title: "AI Architect Series — You've Read the Books. Now Let AI Execute the Frameworks.",
+    title: "AI Native Playbook Series — You've Read the Books. Now Let AI Execute the Frameworks.",
     description: "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, and Jim Edwards' frameworks into executable systems. Bundle $47, individual $17. Start today.",
     ogDescription: "6 AI-powered PDF guides turn world-class business frameworks into executable systems. Bundle: $47.",
     twitterDescription: "6 PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards frameworks into AI-powered systems. Bundle $47.",
   },
   ko: {
-    title: "AI Architect Series — 세계적 비즈니스 프레임워크를 AI로 실행하세요.",
+    title: "AI Native Playbook Series — 세계적 비즈니스 프레임워크를 AI로 실행하세요.",
     description: "Russell Brunson, Jeff Walker, Jim Edwards, Nicolas Cole의 프레임워크를 AI 시스템으로 전환하는 6권의 PDF 가이드. 번들: $47.",
     ogDescription: "세계적 비즈니스 프레임워크를 AI로 자동화하는 6권의 실행 가이드. 번들: $47.",
     twitterDescription: "Russell Brunson, Jeff Walker 프레임워크를 AI 시스템으로 전환. 번들 $47.",
   },
   ja: {
-    title: "AI Architect Series — ビジネスフレームワークをAIで実行しよう。",
+    title: "AI Native Playbook Series — ビジネスフレームワークをAIで実行しよう。",
     description: "Russell Brunson、Jeff Walker、Jim Edwards、Nicolas Coleのフレームワークを実行可能なAIシステムに変換する6冊のPDFガイド。バンドル: $47。",
     ogDescription: "世界クラスのビジネスフレームワークをAIで自動化する6冊の実行ガイド。バンドル: $47。",
     twitterDescription: "Russell Brunson、Jeff WalkerのフレームワークをAIシステムに変換。バンドル $47。",
@@ -36,7 +36,7 @@ const homeMeta: Record<string, { title: string; description: string; ogDescripti
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
   const meta = homeMeta[locale] ?? homeMeta.en;
   const canonicalUrl = locale === "en" ? siteUrl : `${siteUrl}/${locale}`;
   const ogLocale = locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US";
@@ -62,13 +62,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       url: canonicalUrl,
       type: "website",
       locale: ogLocale,
-      siteName: "AI Architect Series",
+      siteName: "AI Native Playbook Series",
       images: [
         {
           url: `${siteUrl}/og-image`,
           width: 1200,
           height: 630,
-          alt: "AI Architect Series — 6 AI-Powered Business Frameworks",
+          alt: "AI Native Playbook Series — 6 AI-Powered Business Frameworks",
         },
       ],
     },
@@ -103,7 +103,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const tt = await getTranslations("testimonials");
   const tr = await getTranslations("caseStudies");
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
 
   const results = [
     { metric: t("results.metric1"), label: t("results.label1") },
@@ -174,7 +174,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const bookListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "AI Architect Series — 6 Books",
+    name: "AI Native Playbook Series — 6 Books",
     description: "6 AI-powered PDF guides for business framework automation",
     numberOfItems: books.length,
     itemListElement: books.map((book, idx) => ({

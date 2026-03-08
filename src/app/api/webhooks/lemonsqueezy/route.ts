@@ -55,7 +55,7 @@ export async function POST(request: Request) {
       customerEmail: attrs?.user_email ?? "",
       customerName: attrs?.user_name ?? "",
       productId: String(attrs?.first_order_item?.product_id ?? ""),
-      productName: attrs?.first_order_item?.product_name ?? "AI Architect",
+      productName: attrs?.first_order_item?.product_name ?? "AI Native Playbook",
       variantId: String(attrs?.first_order_item?.variant_id ?? ""),
       amount: attrs?.total ?? 0,
       currency: attrs?.currency ?? "USD",
@@ -92,8 +92,8 @@ async function sendConfirmationEmail(order: Order): Promise<void> {
     },
     body: JSON.stringify({
       sender: {
-        name: "AI Architect Series",
-        email: "hello@ai-architect.io",
+        name: "AI Native Playbook Series",
+        email: "hello@ai-native-playbook.com",
       },
       to: [{ email: order.customerEmail, name: order.customerName }],
       subject: `Your ${order.productName} is ready to download`,
@@ -114,7 +114,7 @@ async function sendConfirmationEmail(order: Order): Promise<void> {
             If you have any issues, reply to this email and we'll help you right away.
           </p>
           <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
-          <p style="color: #999; font-size: 12px;">AI Architect Series | ai-architect.io</p>
+          <p style="color: #999; font-size: 12px;">AI Native Playbook Series | ai-native-playbook.com</p>
         </div>
       `,
     }),

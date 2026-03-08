@@ -14,13 +14,13 @@ import { MetaPixel } from "@/components/MetaPixel";
 const ExitIntentPopup = dynamic(() => import("@/components/ExitIntentPopup"));
 const ScrollSubscribeBanner = dynamic(() => import("@/components/ScrollSubscribeBanner"));
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "AI Architect Series — 6 World-Class Frameworks, Fully Automated with AI",
-    template: "%s | AI Architect Series",
+    default: "AI Native Playbook Series — 6 World-Class Frameworks, Fully Automated with AI",
+    template: "%s | AI Native Playbook Series",
   },
   description:
     "Turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven business frameworks into AI-powered systems. 6 PDF guides + AI Skills. Bundle $47.",
@@ -37,19 +37,19 @@ export const metadata: Metadata = {
     "online business",
     "AI content strategy",
   ],
-  authors: [{ name: "AI Architect Series" }],
+  authors: [{ name: "AI Native Playbook Series" }],
   openGraph: {
-    title: "AI Architect Series — 6 World-Class Frameworks, Fully Automated with AI",
+    title: "AI Native Playbook Series — 6 World-Class Frameworks, Fully Automated with AI",
     description:
-      "The AI Architect Series puts Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's systems into AI-powered tools that execute for your specific business.",
+      "The AI Native Playbook Series puts Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's systems into AI-powered tools that execute for your specific business.",
     type: "website",
     locale: "en_US",
-    siteName: "AI Architect Series",
+    siteName: "AI Native Playbook Series",
     url: SITE_URL,
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Architect Series — 6 World-Class Frameworks, Fully Automated with AI",
+    title: "AI Native Playbook Series — 6 World-Class Frameworks, Fully Automated with AI",
     description:
       "Stop reading business books. Start running the frameworks with AI. 6 PDF guides that make DotCom Secrets, PLF, Copywriting Secrets, and more executable today.",
   },
@@ -75,7 +75,7 @@ export function generateStaticParams() {
 
 function buildSiteJsonLd(locale: string, siteUrl: string) {
   const names: Record<string, string> = {
-    en: "AI Architect Series",
+    en: "AI Native Playbook Series",
     ko: "AI 아키텍트 시리즈",
     ja: "AI アーキテクトシリーズ",
   };
@@ -106,7 +106,7 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
       {
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
-        name: "AI Architect Series",
+        name: "AI Native Playbook Series",
         url: siteUrl,
         description: descriptions[locale] ?? descriptions.en,
         logo: {
@@ -201,7 +201,7 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(siteJsonLd)) }}
         />
-        {/* GA4: ai-driven-architect.com — 자비스 자동 삽입 */}
+        {/* GA4: ai-native-playbook.com — 자비스 자동 삽입 */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-76C0HSW5LB" strategy="lazyOnload" />
         <Script id="ga4-ai-architect-io" strategy="lazyOnload">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-76C0HSW5LB');`}

@@ -3,7 +3,7 @@ import Link from "next/link";
 import NotFoundSubscribeForm from "@/components/NotFoundSubscribeForm";
 
 export const metadata: Metadata = {
-  title: "Page Not Found | AI Architect Series",
+  title: "Page Not Found | AI Native Playbook Series",
   robots: {
     index: false,
     follow: false,

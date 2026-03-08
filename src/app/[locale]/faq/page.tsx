@@ -4,7 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import { getBundleUrl } from "@/lib/products";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -15,11 +15,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t("title"),
     description: t("subtitle"),
     keywords: [
-      "AI Architect FAQ",
+      "AI Native Playbook FAQ",
       "AI business framework questions",
       "AI PDF guide help",
-      "AI Architect refund policy",
-      "AI Architect system requirements",
+      "AI Native Playbook refund policy",
+      "AI Native Playbook system requirements",
     ],
     alternates: {
       canonical: canonicalUrl,

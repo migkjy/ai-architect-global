@@ -88,4 +88,4 @@ Month 6: 20 minutes per piece (you've refined every prompt)
 
 ---
 
-The AI Architect Series includes the complete prompt library for this pipeline, with versions optimized for different content types: blog posts, newsletters, social media, and email sequences.
+The AI Native Playbook Series includes the complete prompt library for this pipeline, with versions optimized for different content types: blog posts, newsletters, social media, and email sequences.
