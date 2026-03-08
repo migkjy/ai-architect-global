@@ -1,8 +1,8 @@
-# ai-architect.io SEO/UX Improvement Plan
+# ai-native-playbook.com SEO/UX Improvement Plan
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Increase organic traffic to ai-architect.io by adding multilingual blog content, improving internal linking, and optimizing performance.
+**Goal:** Increase organic traffic to ai-native-playbook.com by adding multilingual blog content, improving internal linking, and optimizing performance.
 
 **Architecture:** Add 3 new SEO-optimized blog posts (en/ko/ja topics), add a "Latest from Blog" section to the landing page linking blog to products, strengthen blog-to-product CTAs, and optimize font loading + critical CSS.
 
@@ -178,7 +178,7 @@ Between the article closing tag and the newsletter text div, add a product CTA:
 <div className="mt-12 p-6 bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl">
   <h3 className="text-lg font-bold mb-2">Ready to Execute These Frameworks with AI?</h3>
   <p className="text-text-secondary text-sm mb-4">
-    The AI Architect Series gives you ready-to-use system prompts that turn these strategies into actionable AI workflows for your business.
+    The AI Native Playbook Series gives you ready-to-use system prompts that turn these strategies into actionable AI workflows for your business.
   </p>
   <div className="flex flex-col sm:flex-row gap-3">
     <Link

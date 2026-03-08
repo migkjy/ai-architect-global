@@ -2,7 +2,7 @@
 title: "The Complete AI Business Blueprint for 2026 — From Zero to Automated Revenue"
 description: "A step-by-step guide to building AI-powered revenue streams. Learn how to automate content, customer acquisition, and sales as a solopreneur."
 date: "2026-03-01"
-author: "AI Architect"
+author: "AI Native Playbook"
 tags: ["AI business", "automation", "solopreneur", "revenue", "blueprint"]
 keywords: ["AI business blueprint", "business automation", "AI revenue", "solopreneur AI", "automated income"]
 featured: false
@@ -349,4 +349,4 @@ Pick one model. Build one product. Get one customer. Then repeat.
 
 ---
 
-*Explore AI-powered business frameworks and guides at [AI Architect](https://ai-architect.io).*
+*Explore AI-powered business frameworks and guides at [AI Native Playbook](https://ai-native-playbook.com).*

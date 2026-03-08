@@ -142,7 +142,7 @@ async function sendConfirmationEmail(order: Order): Promise<void> {
     return;
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
   const downloadUrl = `${siteUrl}/download?token=${order.downloadToken}`;
 
   const res = await fetch("https://api.brevo.com/v3/smtp/email", {
@@ -152,7 +152,7 @@ async function sendConfirmationEmail(order: Order): Promise<void> {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      sender: { name: "AI Architect Series", email: "hello@ai-architect.io" },
+      sender: { name: "AI Native Playbook Series", email: "hello@ai-native-playbook.com" },
       to: [{ email: order.customerEmail, name: order.customerName }],
       subject: `Your ${order.productName} is ready to download`,
       htmlContent: `
@@ -171,7 +171,7 @@ async function sendConfirmationEmail(order: Order): Promise<void> {
             This download link is valid for 30 days. If you need a new link, reply to this email.
           </p>
           <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
-          <p style="color: #999; font-size: 12px;">AI Architect Series | ai-architect.io</p>
+          <p style="color: #999; font-size: 12px;">AI Native Playbook Series | ai-native-playbook.com</p>
         </div>
       `,
     }),
@@ -218,7 +218,7 @@ import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
-  title: "Thank You for Your Purchase | AI Architect Series",
+  title: "Thank You for Your Purchase | AI Native Playbook Series",
   description: "Your AI Architect PDF is ready. Check your email for the download link.",
   robots: { index: false, follow: false },
 };
@@ -233,7 +233,7 @@ export default async function ThankYouPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const sp = await searchParams;
-  const productName = sp.product ?? "AI Architect Series";
+  const productName = sp.product ?? "AI Native Playbook Series";
 
   return (
     <div className="min-h-screen pt-32 pb-20">
@@ -295,10 +295,10 @@ export default async function ThankYouPage({
             Didn&apos;t receive your email? Check your spam folder, or contact us:
           </p>
           <a
-            href="mailto:hello@ai-architect.io"
+            href="mailto:hello@ai-native-playbook.com"
             className="text-gold hover:text-gold-light transition-colors font-semibold"
           >
-            hello@ai-architect.io
+            hello@ai-native-playbook.com
           </a>
         </div>
 
@@ -398,7 +398,7 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
-  title: "Download Your Purchase | AI Architect Series",
+  title: "Download Your Purchase | AI Native Playbook Series",
   description: "Access your AI Architect PDF downloads.",
   robots: { index: false, follow: false },
 };
@@ -425,8 +425,8 @@ export default async function DownloadPage({
           </p>
           <p className="text-text-secondary text-sm">
             Need help? Contact{" "}
-            <a href="mailto:hello@ai-architect.io" className="text-gold hover:text-gold-light">
-              hello@ai-architect.io
+            <a href="mailto:hello@ai-native-playbook.com" className="text-gold hover:text-gold-light">
+              hello@ai-native-playbook.com
             </a>
           </p>
         </div>
@@ -506,10 +506,10 @@ LEMONSQUEEZY_WEBHOOK_SECRET=your-webhook-signing-secret
 BREVO_API_KEY=xkeysib-your-brevo-api-key
 
 # Site URL (used for OG images, sitemap, email links, etc.)
-NEXT_PUBLIC_SITE_URL=https://ai-architect.io
+NEXT_PUBLIC_SITE_URL=https://ai-native-playbook.com
 
 # Lemon Squeezy Thank You redirect URL (set per product in LS dashboard):
-# https://ai-architect.io/thank-you?product=AI+Architect+Series
+# https://ai-native-playbook.com/thank-you?product=AI+Architect+Series
 ```
 
 **Step 2: Commit**
@@ -536,7 +536,7 @@ In `src/lib/products.ts`, modify:
 export function getBundleUrl(): string {
   const base = process.env.NEXT_PUBLIC_LS_BUNDLE_URL ?? "#";
   if (base === "#") return "#";
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
   const redirectUrl = encodeURIComponent(`${siteUrl}/thank-you?product=Complete+Bundle`);
   return `${base}?checkout[custom][redirect_url]=${redirectUrl}`;
 }
@@ -545,7 +545,7 @@ export function getProductUrl(envKey: string): string {
   const base = (process.env[envKey as keyof typeof process.env] as string | undefined) ?? "#";
   if (base === "#") return "#";
   const book = books.find((b) => b.envKey === envKey);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-architect.io";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
   const productName = encodeURIComponent(book?.title ?? "AI Architect");
   const redirectUrl = encodeURIComponent(`${siteUrl}/thank-you?product=${productName}`);
   return `${base}?checkout[custom][redirect_url]=${redirectUrl}`;
@@ -595,8 +595,8 @@ git commit -m "feat: complete payment-to-delivery flow for Lemon Squeezy integra
 These items require CEO action and cannot be implemented by the PL:
 
 1. **Lemon Squeezy Product Registration**: Create 7 products (6 individual + 1 bundle) in LS dashboard
-2. **LS Webhook Setup**: In LS Dashboard > Settings > Webhooks, add endpoint `https://ai-architect.io/api/webhooks/lemonsqueezy` with `order_created` event
-3. **LS Thank-You Redirect**: Set redirect URL per product to `https://ai-architect.io/thank-you?product={ProductName}`
+2. **LS Webhook Setup**: In LS Dashboard > Settings > Webhooks, add endpoint `https://ai-native-playbook.com/api/webhooks/lemonsqueezy` with `order_created` event
+3. **LS Thank-You Redirect**: Set redirect URL per product to `https://ai-native-playbook.com/thank-you?product={ProductName}`
 4. **Environment Variables**: Set `LEMONSQUEEZY_WEBHOOK_SECRET` and all `NEXT_PUBLIC_LS_PRODUCT_*_URL` in Vercel
 5. **Brevo**: Set `BREVO_API_KEY` in Vercel (already exists for other projects)
 6. **LS PDF Upload**: Upload PDF files to each LS product (LS handles file delivery natively)

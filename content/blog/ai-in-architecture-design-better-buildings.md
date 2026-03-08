@@ -98,4 +98,4 @@ The transition to AI-assisted architecture isn't about replacing what architects
 
 ---
 
-*The AI Architect Series provides frameworks and prompt systems designed specifically for architecture and design professionals. [Explore the full collection](/products) to accelerate your AI integration.*
+*The AI Native Playbook Series provides frameworks and prompt systems designed specifically for architecture and design professionals. [Explore the full collection](/products) to accelerate your AI integration.*

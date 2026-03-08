@@ -8,22 +8,22 @@ import { getTranslations } from "next-intl/server";
 
 const aboutMeta: Record<string, { title: string; description: string }> = {
   en: {
-    title: "About AI Architect Series — Why We Built AI-Powered Business Framework Guides",
-    description: "Bridge the gap between reading and executing proven business frameworks. AI Architect turns DotCom Secrets, PLF, and Copywriting Secrets into AI systems.",
+    title: "About AI Native Playbook Series — Why We Built AI-Powered Business Framework Guides",
+    description: "Bridge the gap between reading and executing proven business frameworks. AI Native Playbook turns DotCom Secrets, PLF, and Copywriting Secrets into AI systems.",
   },
   ko: {
-    title: "AI Architect Series 소개 — AI 기반 비즈니스 프레임워크 가이드를 만든 이유",
-    description: "비즈니스 프레임워크를 읽는 것과 실행하는 것 사이의 갭을 해소합니다. AI Architect가 DotCom Secrets, PLF, Copywriting Secrets를 AI 시스템으로 전환합니다.",
+    title: "AI Native Playbook Series 소개 — AI 기반 비즈니스 프레임워크 가이드를 만든 이유",
+    description: "비즈니스 프레임워크를 읽는 것과 실행하는 것 사이의 갭을 해소합니다. AI Native Playbook이 DotCom Secrets, PLF, Copywriting Secrets를 AI 시스템으로 전환합니다.",
   },
   ja: {
-    title: "AI Architect Seriesについて — AIビジネスフレームワークガイドを作った理由",
-    description: "ビジネスフレームワークを読むことと実行することのギャップを埋めます。AI ArchitectがDotCom Secrets、PLF、Copywriting SecretsをAIシステムに変換。",
+    title: "AI Native Playbook Seriesについて — AIビジネスフレームワークガイドを作った理由",
+    description: "ビジネスフレームワークを読むことと実行することのギャップを埋めます。AI Native PlaybookがDotCom Secrets、PLF、Copywriting SecretsをAIシステムに変換。",
   },
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
   const meta = aboutMeta[locale] ?? aboutMeta.en;
   const canonicalUrl = locale === "en" ? `${siteUrl}/about` : `${siteUrl}/${locale}/about`;
 
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: meta.title,
     description: meta.description,
     keywords: [
-      "AI Architect Series",
+      "AI Native Playbook Series",
       "AI business framework",
       "Russell Brunson AI",
       "Jeff Walker AI",
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: meta.description,
       type: "website",
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
-      siteName: "AI Architect Series",
+      siteName: "AI Native Playbook Series",
       url: canonicalUrl,
     },
   };
@@ -69,12 +69,12 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
   const t = await getTranslations("about");
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
   const aboutPageJsonLd = [
     {
       "@context": "https://schema.org",
       "@type": "AboutPage",
-      name: "About AI Architect Series",
+      name: "About AI Native Playbook Series",
       url: `${siteUrl}/about`,
       description: "Bridge the gap between reading and executing proven business frameworks with AI-powered tools.",
       isPartOf: { "@id": `${siteUrl}/#website` },
@@ -89,7 +89,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       description: "AI-powered business tools for entrepreneurs and small teams.",
       brand: {
         "@type": "Brand",
-        name: "AI Architect Series",
+        name: "AI Native Playbook Series",
       },
       contactPoint: {
         "@type": "ContactPoint",
@@ -190,7 +190,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </p>
         </div>
 
-        {/* Why AI Architect Series */}
+        {/* Why AI Native Playbook Series */}
         <div className="mb-16">
           <h2 className="text-2xl font-bold mb-6">{t("whyTitle")}</h2>
           <div className="space-y-4">

@@ -17,7 +17,7 @@ export default async function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-navy-dark/90 backdrop-blur-md border-b border-white/5">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between relative">
         <Link href="/" className="font-bold text-lg">
-          <span className="gradient-gold">AI Architect</span>
+          <span className="gradient-gold">AI Native Playbook</span>
           <span className="text-text-secondary text-sm font-normal ml-1.5">Series</span>
         </Link>
 

@@ -54,7 +54,7 @@ export async function POST(request: Request) {
 
       // 첫 번째 line item에서 상품 정보 추출
       const firstItem = tx?.details?.line_items?.[0];
-      const productName: string = firstItem?.product?.name ?? "AI Architect";
+      const productName: string = firstItem?.product?.name ?? "AI Native Playbook";
       const productId: string = firstItem?.product?.id ?? "";
       const priceId: string = firstItem?.price?.id ?? "";
 
@@ -117,7 +117,7 @@ async function sendPaddleConfirmationEmail(
   }
 
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
 
   const res = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
@@ -127,8 +127,8 @@ async function sendPaddleConfirmationEmail(
     },
     body: JSON.stringify({
       sender: {
-        name: "AI Architect Series",
-        email: "hello@ai-driven-architect.com",
+        name: "AI Native Playbook Series",
+        email: "hello@ai-native-playbook.com",
       },
       to: [{ email: order.customerEmail, name: order.customerName }],
       subject: `Your ${order.productName} is ready to download`,
@@ -153,7 +153,7 @@ async function sendPaddleConfirmationEmail(
             If you have any issues, reply to this email and we'll help you right away.
           </p>
           <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
-          <p style="color: #999; font-size: 12px;">AI Architect Series | ai-driven-architect.com</p>
+          <p style="color: #999; font-size: 12px;">AI Native Playbook Series | ai-native-playbook.com</p>
         </div>
       `,
     }),

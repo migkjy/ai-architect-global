@@ -146,4 +146,4 @@ The architects who master AI rendering gain the ability to communicate design in
 
 ---
 
-*The [AI Architect Series](/products) includes prompt frameworks specifically designed for architectural visualization workflows. From concept renders to client presentations, get structured systems that produce consistent, professional results.*
+*The [AI Native Playbook Series](/products) includes prompt frameworks specifically designed for architectural visualization workflows. From concept renders to client presentations, get structured systems that produce consistent, professional results.*

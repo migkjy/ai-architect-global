@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const book = getBookBySlug(slug);
   if (!book) return {};
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
   const canonicalUrl = `${siteUrl}/products/${slug}`;
   return {
     title: `${book.title} — ${book.subtitle}`,
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "AI business framework",
       "AI PDF guide",
       "business automation",
-      "AI Architect Series",
+      "AI Native Playbook Series",
       "digital download",
     ],
     alternates: {
@@ -52,14 +52,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: book.shortDescription,
       type: "website",
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
-      siteName: "AI Architect Series",
+      siteName: "AI Native Playbook Series",
       url: canonicalUrl,
       images: [
         {
           url: `${siteUrl}/og-image`,
           width: 1200,
           height: 630,
-          alt: `${book.title} — AI Architect Series`,
+          alt: `${book.title} — AI Native Playbook Series`,
         },
       ],
     },
@@ -89,7 +89,7 @@ export default async function ProductPage({ params }: Props) {
     (process.env[book.paddlePriceEnvKey] as string | undefined) ?? undefined;
   const bundlePaddlePriceId = getBundlePaddlePriceId();
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
   const dateLocale = locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US";
 
   const jsonLd = {
@@ -100,7 +100,7 @@ export default async function ProductPage({ params }: Props) {
     url: `${siteUrl}/products/${slug}`,
     sku: `AIA-VOL${book.vol}`,
     itemCondition: "https://schema.org/NewCondition",
-    brand: { "@type": "Brand", name: "AI Architect Series" },
+    brand: { "@type": "Brand", name: "AI Native Playbook Series" },
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.8",
@@ -136,7 +136,7 @@ export default async function ProductPage({ params }: Props) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "AI Architect Series", item: siteUrl },
+      { "@type": "ListItem", position: 1, name: "AI Native Playbook Series", item: siteUrl },
       { "@type": "ListItem", position: 2, name: t("title"), item: `${siteUrl}/products` },
       { "@type": "ListItem", position: 3, name: book.title, item: `${siteUrl}/products/${slug}` },
     ],

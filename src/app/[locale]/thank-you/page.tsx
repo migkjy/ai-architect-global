@@ -3,9 +3,9 @@ import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
-  title: "Thank You for Your Purchase | AI Architect Series",
+  title: "Thank You for Your Purchase | AI Native Playbook Series",
   description:
-    "Your AI Architect PDF is ready. Check your email for the download link.",
+    "Your AI Native Playbook PDF is ready. Check your email for the download link.",
   robots: { index: false, follow: false },
 };
 
@@ -19,7 +19,7 @@ export default async function ThankYouPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const sp = await searchParams;
-  const productName = sp.product ?? "AI Architect Series";
+  const productName = sp.product ?? "AI Native Playbook Series";
 
   return (
     <div className="min-h-screen pt-32 pb-20">
@@ -96,10 +96,10 @@ export default async function ThankYouPage({
             us:
           </p>
           <a
-            href="mailto:hello@ai-architect.io"
+            href="mailto:hello@ai-native-playbook.com"
             className="text-gold hover:text-gold-light transition-colors font-semibold"
           >
-            hello@ai-architect.io
+            hello@ai-native-playbook.com
           </a>
         </div>
 
