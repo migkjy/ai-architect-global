@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — AI Architect Series",
+  title: "Terms of Service — AI Native Playbook Series",
   description:
-    "Terms of Service for AI Architect Series by NEWBIZSOFT. Digital product license, payment terms via Paddle, refund policy, and usage guidelines explained.",
+    "Terms of Service for AI Native Playbook Series by NEWBIZSOFT. Digital product license, payment terms via Paddle, refund policy, and usage guidelines explained.",
   alternates: {
     canonical: `${SITE_URL}/terms`,
   },
@@ -60,14 +60,14 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">1. Agreement to Terms</h2>
             <p>
-              By purchasing or accessing any product from <strong className="text-text-primary">AI Architect Series</strong>, operated by <strong className="text-text-primary">NEWBIZSOFT</strong> (website: <span className="text-gold">ai-driven-architect.com</span>), you agree to be bound by these Terms of Service. If you do not agree to these terms, do not purchase or use our products.
+              By purchasing or accessing any product from <strong className="text-text-primary">AI Native Playbook Series</strong>, operated by <strong className="text-text-primary">NEWBIZSOFT</strong> (website: <span className="text-gold">ai-native-playbook.com</span>), you agree to be bound by these Terms of Service. If you do not agree to these terms, do not purchase or use our products.
             </p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">2. Products and Digital Goods</h2>
             <p className="mb-3">
-              AI Architect Series sells digital products in PDF format ("Products"). These include but are not limited to:
+              AI Native Playbook Series sells digital products in PDF format ("Products"). These include but are not limited to:
             </p>
             <ul className="list-disc list-inside space-y-1 ml-2">
               <li>AI Marketing Architect</li>
@@ -136,7 +136,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">6. Intellectual Property</h2>
             <p className="mb-3">
-              All content within AI Architect Series products — including text, prompts, frameworks, illustrations, and compilations — is the intellectual property of NEWBIZSOFT and is protected by applicable copyright laws.
+              All content within AI Native Playbook Series products — including text, prompts, frameworks, illustrations, and compilations — is the intellectual property of NEWBIZSOFT and is protected by applicable copyright laws.
             </p>
             <p>
               The frameworks referenced in our guides (such as DotCom Secrets, Copywriting Secrets, Launch, etc.) are the works of their respective authors. Our guides represent original AI implementation systems and are not affiliated with, endorsed by, or sponsored by the original authors or publishers.
@@ -146,7 +146,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">7. Disclaimer of Warranties</h2>
             <p className="mb-3">
-              AI Architect Series products are provided &quot;as is&quot; without warranty of any kind. We do not guarantee:
+              AI Native Playbook Series products are provided &quot;as is&quot; without warranty of any kind. We do not guarantee:
             </p>
             <ul className="list-disc list-inside space-y-1 ml-2">
               <li>Specific business results or revenue from using our products</li>
@@ -183,8 +183,8 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
             <h2 className="text-xl font-semibold text-text-primary mb-4">11. Contact</h2>
             <p>
               For questions about these Terms of Service, please contact us at:{" "}
-              <a href="mailto:contact@ai-driven-architect.com" className="text-gold hover:underline">
-                contact@ai-driven-architect.com
+              <a href="mailto:contact@ai-native-playbook.com" className="text-gold hover:underline">
+                contact@ai-native-playbook.com
               </a>
             </p>
           </section>

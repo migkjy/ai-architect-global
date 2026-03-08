@@ -14,7 +14,7 @@ Paste the prompt into Claude/ChatGPT. Describe your business. Get a tailored str
 
 6 books. 6 AI systems. $47 bundle.
 
-ai-architect.io
+ai-native-playbook.com
 ```
 
 ### Variant B: Results-First
@@ -25,18 +25,18 @@ A newsletter writer hit 2,400 subscribers in 90 days.
 
 They all used the same thing: proven business frameworks + AI.
 
-The AI Architect Series turns 6 bestselling frameworks into executable AI systems.
+The AI Native Playbook Series turns 6 bestselling frameworks into executable AI systems.
 
 No courses. No platforms. Just PDF guides with AI prompts that work.
 
-ai-architect.io
+ai-native-playbook.com
 ```
 
 ### Variant C: How-It-Works
 ```
 What if you could have Russell Brunson, Jeff Walker, and Jim Edwards as your AI business coach?
 
-That's what the AI Architect Series does:
+That's what the AI Native Playbook Series does:
 
 1. Download a 20-page PDF guide
 2. Copy the system prompt into Claude or ChatGPT
@@ -45,7 +45,7 @@ That's what the AI Architect Series does:
 
 6 frameworks. 6 AI systems. Instant download.
 
-ai-architect.io
+ai-native-playbook.com
 ```
 
 ---
@@ -75,7 +75,7 @@ Bundle of all 6 is $47. Individual books are $17.
 
 Would love feedback from anyone who's tried to apply these frameworks before. What was the hardest part?
 
-[Link: ai-architect.io]
+[Link: ai-native-playbook.com]
 
 ### r/ArtificialIntelligence
 **Title:** Using structured system prompts to make AI actually useful for business strategy (not just chatting)
@@ -97,13 +97,13 @@ Works with Claude, ChatGPT, Gemini -- any AI tool that supports system prompts.
 
 Interested in the technical approach? The key insight is that structured system prompts with embedded decision trees outperform generic instructions by a large margin for domain-specific tasks.
 
-[Link: ai-architect.io]
+[Link: ai-native-playbook.com]
 
 ### r/SideProject
 **Title:** Launched my first digital product: AI-powered business framework guides ($47 bundle)
 
 **Body:**
-After months of work, I just launched the AI Architect Series -- 6 PDF guides that turn bestselling business frameworks into AI system prompts.
+After months of work, I just launched the AI Native Playbook Series -- 6 PDF guides that turn bestselling business frameworks into AI system prompts.
 
 Stack: Next.js + Tailwind CSS, hosted on Vercel, payments via Lemon Squeezy.
 
@@ -112,7 +112,7 @@ The product itself is simple (PDF guides), but the value is in the system prompt
 Bundle: $47 for all 6
 Individual: $17 each
 
-Would appreciate any feedback on the landing page: ai-architect.io
+Would appreciate any feedback on the landing page: ai-native-playbook.com
 
 ---
 
@@ -133,7 +133,7 @@ So I built something: AI system prompts that encode each framework.
 
 You paste the prompt into Claude or ChatGPT, describe your business, and the AI walks through the framework step by step -- customized for your product, your customer, your market.
 
-I packaged this into 6 PDF guides called the AI Architect Series:
+I packaged this into 6 PDF guides called the AI Native Playbook Series:
 
 - AI Marketing Architect (DotCom Secrets)
 - AI Brand Architect (Expert Secrets)

@@ -4,21 +4,21 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
 
 const blogMeta: Record<string, { title: string; description: string; ogDescription: string }> = {
   en: {
-    title: "AI Business Blog | AI Architect Series",
+    title: "AI Business Blog | AI Native Playbook Series",
     description: "Discover practical AI tools, marketing automation strategies, and business growth tactics. Free guides for entrepreneurs who want to scale with AI frameworks.",
     ogDescription: "Free AI tools, marketing automation guides, and business growth strategies for entrepreneurs who want to scale smarter.",
   },
   ko: {
-    title: "AI 비즈니스 블로그 | AI Architect Series",
+    title: "AI 비즈니스 블로그 | AI Native Playbook Series",
     description: "실용적인 AI 도구, 마케팅 자동화 전략, 비즈니스 성장 전술을 확인하세요. AI 프레임워크로 확장하려는 기업가를 위한 무료 가이드.",
     ogDescription: "기업가를 위한 무료 AI 도구, 마케팅 자동화 가이드, 비즈니스 성장 전략.",
   },
   ja: {
-    title: "AIビジネスブログ | AI Architect Series",
+    title: "AIビジネスブログ | AI Native Playbook Series",
     description: "実践的なAIツール、マーケティング自動化戦略、ビジネス成長戦術をご紹介。AIフレームワークで事業を拡大したい起業家のための無料ガイド。",
     ogDescription: "起業家のための無料AIツール、マーケティング自動化ガイド、ビジネス成長戦略。",
   },
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       "business growth strategies",
       "AI tools for entrepreneurs",
       "sales funnel automation",
-      "AI Architect Series blog",
+      "AI Native Playbook Series blog",
     ],
     alternates: {
       canonical: canonicalUrl,
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: meta.ogDescription,
       type: "website",
       url: canonicalUrl,
-      siteName: "AI Architect Series",
+      siteName: "AI Native Playbook Series",
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
     },
     twitter: {
@@ -79,12 +79,12 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
   const collectionPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "AI Business Blog | AI Architect Series",
+    name: "AI Business Blog | AI Native Playbook Series",
     description: "Practical AI tools, marketing automation, and business growth strategies for entrepreneurs and small business owners.",
     url: canonicalUrl,
     publisher: {
       "@type": "Organization",
-      name: "AI Architect Series",
+      name: "AI Native Playbook Series",
       url: SITE_URL,
     },
     hasPart: posts.map((post) => ({
@@ -95,7 +95,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
       url: `${SITE_URL}/blog/${post.slug}`,
       author: {
         "@type": "Organization",
-        name: "AI Architect Series",
+        name: "AI Native Playbook Series",
       },
     })),
   };
@@ -104,7 +104,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "AI Architect Series", item: SITE_URL },
+      { "@type": "ListItem", position: 1, name: "AI Native Playbook Series", item: SITE_URL },
       { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
     ],
   };

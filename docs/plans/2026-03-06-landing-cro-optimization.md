@@ -2,7 +2,7 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Maximize conversion rate on ai-architect.io landing page for Product Hunt launch traffic by fixing dead CTA links, adding social proof, improving pricing psychology, adding email capture, and enhancing mobile experience.
+**Goal:** Maximize conversion rate on ai-native-playbook.com landing page for Product Hunt launch traffic by fixing dead CTA links, adding social proof, improving pricing psychology, adding email capture, and enhancing mobile experience.
 
 **Architecture:** All changes are in the existing Next.js 16 + Tailwind CSS landing page. No new dependencies needed. BuyButton component gets "coming soon" mode with email capture. New client components for email signup, testimonials, and urgency elements are added to the main page. All text in English (global target).
 

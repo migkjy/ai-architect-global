@@ -1,12 +1,12 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "AI Architect Series";
+export const alt = "AI Native Playbook Series";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 const LOCALE_TITLE: Record<string, string> = {
-  en: "AI Architect Series",
+  en: "AI Native Playbook Series",
   ko: "AI 아키텍트 시리즈",
   ja: "AIアーキテクトシリーズ",
 };
@@ -98,7 +98,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
             fontWeight: "600",
           }}
         >
-          ai-driven-architect.com
+          ai-native-playbook.com
         </div>
       </div>
     ),

@@ -97,4 +97,4 @@ The designers who thrive with AI tools are those who treat them as skilled assis
 
 ---
 
-*Looking for AI frameworks designed for design professionals? The [AI Architect Series](/products) provides prompt systems and workflows specifically built for architecture and interior design practices.*
+*Looking for AI frameworks designed for design professionals? The [AI Native Playbook Series](/products) provides prompt systems and workflows specifically built for architecture and interior design practices.*

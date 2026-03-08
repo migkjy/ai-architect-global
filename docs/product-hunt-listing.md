@@ -1,7 +1,7 @@
 # Product Hunt Listing Draft
 
 ## Product Name
-AI Architect Series
+AI Native Playbook Series
 
 ## Tagline (60 chars max)
 Turn business book frameworks into AI-powered execution systems
@@ -30,7 +30,7 @@ Turn business book frameworks into AI-powered execution systems
 
 Hey Product Hunt!
 
-I built the AI Architect Series because I kept running into the same problem: I'd read a great business book (DotCom Secrets, Launch, Copywriting Secrets...) and then have no idea how to actually apply the frameworks to MY business.
+I built the AI Native Playbook Series because I kept running into the same problem: I'd read a great business book (DotCom Secrets, Launch, Copywriting Secrets...) and then have no idea how to actually apply the frameworks to MY business.
 
 So I created system prompts that encode each framework into AI. You paste the prompt into Claude or ChatGPT, describe your business, and get a complete strategy built on a proven framework -- not generic AI advice.
 

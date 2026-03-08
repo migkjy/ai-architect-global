@@ -95,4 +95,4 @@ After 30 days: analyze and iterate
 
 ---
 
-The AI Architect Series includes ready-to-use prompt templates for all seven email types in a complete nurture sequence. Get the complete system with your subscription.
+The AI Native Playbook Series includes ready-to-use prompt templates for all seven email types in a complete nurture sequence. Get the complete system with your subscription.

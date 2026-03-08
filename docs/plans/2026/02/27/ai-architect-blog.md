@@ -161,7 +161,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "AI Business Blog | AI Architect Series",
+  title: "AI Business Blog | AI Native Playbook Series",
   description: "Practical AI tools, marketing automation, and business growth strategies for entrepreneurs and small business owners.",
 };
 
@@ -258,7 +258,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <div className="mt-16 pt-8 border-t border-gray-200 text-center">
         <p className="text-gray-600 mb-4">Ready to apply AI to your business?</p>
         <Link href="/bundle" className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-          Get the AI Architect Series →
+          Get the AI Native Playbook Series →
         </Link>
       </div>
     </main>

@@ -11,7 +11,7 @@ export default async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="font-bold text-lg mb-3">
-              <span className="gradient-gold">AI Architect</span>
+              <span className="gradient-gold">AI Native Playbook</span>
               <span className="text-text-secondary text-sm font-normal ml-1.5">Series</span>
             </div>
             <p className="text-text-secondary text-sm leading-relaxed">
@@ -73,7 +73,7 @@ export default async function Footer() {
         </div>
 
         <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-muted">
-          <p>&copy; {new Date().getFullYear()} AI Architect Series. {t("rights")}.</p>
+          <p>&copy; {new Date().getFullYear()} AI Native Playbook Series. {t("rights")}.</p>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5">
               <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">

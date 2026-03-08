@@ -1,12 +1,12 @@
 # Landing Page Optimization Notes for Product Hunt Traffic
 
-## Current Site Analysis (ai-architect.io)
+## Current Site Analysis (ai-native-playbook.com)
 
 ### Structure
 The landing page follows a strong long-form sales page structure:
 1. **Hero** -- Clear tagline, bundle CTA ($47), individual books link ($17)
 2. **Social Proof Numbers** -- 4 metrics (500+ users, 5x revenue, 87% CPA reduction, 24h to first session)
-3. **Problem/Solution** -- "Without Framework" vs "With AI Architect" comparison
+3. **Problem/Solution** -- "Without Framework" vs "With AI Native Playbook" comparison
 4. **6 Books Grid** -- Cards with icons, framework names, short descriptions, case study quotes
 5. **How It Works** -- 4-step process (Download, Load prompt, Describe business, AI executes)
 6. **Documented Results** -- 6 case study cards with specific numbers
@@ -31,7 +31,7 @@ The landing page follows a strong long-form sales page structure:
 ### High Priority (Do Before Launch)
 
 1. **Add ?ref=producthunt UTM tracking**
-   - Product Hunt link should point to: `ai-architect.io?ref=producthunt`
+   - Product Hunt link should point to: `ai-native-playbook.com?ref=producthunt`
    - Track conversion separately from organic traffic
    - Add UTM parameters: `?utm_source=producthunt&utm_medium=referral&utm_campaign=launch`
 

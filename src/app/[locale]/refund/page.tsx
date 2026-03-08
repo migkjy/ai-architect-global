@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
 
 export const metadata: Metadata = {
-  title: "Refund Policy — AI Architect Series",
+  title: "Refund Policy — AI Native Playbook Series",
   description:
-    "14-day money-back guarantee on all AI Architect Series digital products. Simple refund process via email. No questions asked, full refund within 24 hours.",
+    "14-day money-back guarantee on all AI Native Playbook Series digital products. Simple refund process via email. No questions asked, full refund within 24 hours.",
   alternates: {
     canonical: `${SITE_URL}/refund`,
   },
@@ -75,7 +75,7 @@ export default async function RefundPage({ params }: { params: Promise<{ locale:
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">1. Our Guarantee</h2>
             <p>
-              AI Architect Series offers a <strong className="text-text-primary">14-day money-back guarantee</strong> on all digital products, including individual guides and the Complete Bundle. We want you to feel confident in your purchase.
+              AI Native Playbook Series offers a <strong className="text-text-primary">14-day money-back guarantee</strong> on all digital products, including individual guides and the Complete Bundle. We want you to feel confident in your purchase.
             </p>
             <p className="mt-3">
               Because we believe in our products, we offer this guarantee with no hoops to jump through. Your satisfaction matters more to us than a single sale.
@@ -106,8 +106,8 @@ export default async function RefundPage({ params }: { params: Promise<{ locale:
                   desc: (
                     <>
                       Email us at{" "}
-                      <a href="mailto:contact@ai-driven-architect.com" className="text-gold hover:underline">
-                        contact@ai-driven-architect.com
+                      <a href="mailto:contact@ai-native-playbook.com" className="text-gold hover:underline">
+                        contact@ai-native-playbook.com
                       </a>{" "}
                       with the subject line: <span className="text-text-primary font-mono text-sm bg-surface/60 px-1.5 py-0.5 rounded">Refund Request — [Your Order Number]</span>
                     </>
@@ -161,8 +161,8 @@ export default async function RefundPage({ params }: { params: Promise<{ locale:
             <h2 className="text-xl font-semibold text-text-primary mb-4">6. Contact</h2>
             <p>
               For any questions about our refund policy, please contact us at:{" "}
-              <a href="mailto:contact@ai-driven-architect.com" className="text-gold hover:underline">
-                contact@ai-driven-architect.com
+              <a href="mailto:contact@ai-native-playbook.com" className="text-gold hover:underline">
+                contact@ai-native-playbook.com
               </a>
             </p>
             <p className="mt-3">

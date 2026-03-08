@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getPostBySlug(slug);
   if (!post) return {};
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
   const canonicalUrl = `${siteUrl}/blog/${slug}`;
 
   return {
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     keywords: [
       ...post.tags,
       "AI business framework",
-      "AI Architect Series",
+      "AI Native Playbook Series",
     ],
     openGraph: {
       title: post.title,
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       modifiedTime: post.date,
       url: canonicalUrl,
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
-      siteName: "AI Architect Series",
+      siteName: "AI Native Playbook Series",
     },
     twitter: {
       card: "summary_large_image",
@@ -93,7 +93,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   });
   const relatedProducts = books.filter((b) => matchedSlugs.has(b.slug)).slice(0, 2);
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -107,12 +107,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
     author: {
       "@type": "Organization",
-      name: "AI Architect Series",
+      name: "AI Native Playbook Series",
       url: siteUrl,
     },
     publisher: {
       "@type": "Organization",
-      name: "AI Architect Series",
+      name: "AI Native Playbook Series",
       url: siteUrl,
       logo: {
         "@type": "ImageObject",
@@ -132,7 +132,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "AI Architect Series", item: siteUrl },
+      { "@type": "ListItem", position: 1, name: "AI Native Playbook Series", item: siteUrl },
       { "@type": "ListItem", position: 2, name: "Blog", item: `${siteUrl}/blog` },
       { "@type": "ListItem", position: 3, name: post.title, item: `${siteUrl}/blog/${slug}` },
     ],
@@ -189,7 +189,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <div className="mt-12 p-6 bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl">
         <h3 className="text-lg font-bold mb-2">Ready to Execute These Frameworks with AI?</h3>
         <p className="text-text-secondary text-sm mb-4">
-          The AI Architect Series gives you ready-to-use system prompts that turn these strategies into actionable AI workflows for your business.
+          The AI Native Playbook Series gives you ready-to-use system prompts that turn these strategies into actionable AI workflows for your business.
         </p>
         <div className="flex flex-col sm:flex-row gap-3">
           <Link
@@ -262,7 +262,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div>
           <p className="text-text-secondary/60 text-xs mb-1">Korean readers</p>
           <p className="text-text-primary text-sm font-medium">AI business content in Korean</p>
-          <p className="text-text-secondary text-xs">Richbukae — AI Architect guides for Korean entrepreneurs</p>
+          <p className="text-text-secondary text-xs">Richbukae — AI Native Playbook guides for Korean entrepreneurs</p>
         </div>
         <a
           href="https://richbukae.com?utm_source=ai-architect&utm_medium=blog&utm_campaign=ecosystem"

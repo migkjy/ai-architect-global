@@ -60,7 +60,7 @@ export async function GET() {
             marginBottom: "20px",
           }}
         >
-          AI Architect Series
+          AI Native Playbook Series
         </div>
 
         <div
