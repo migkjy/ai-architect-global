@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function NotFoundSubscribeForm() {
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -14,7 +15,7 @@ export default function NotFoundSubscribeForm() {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, source: "404-page" }),
+        body: JSON.stringify({ email, source: "404-page", website }),
       });
       const data = await res.json();
       if (res.ok || data.success) {
@@ -34,6 +35,18 @@ export default function NotFoundSubscribeForm() {
   return (
     <>
       <form onSubmit={handleSubmit} className="flex gap-2">
+        <div className="absolute opacity-0 -z-10 h-0 overflow-hidden" aria-hidden="true">
+          <label htmlFor="nf-website">Website</label>
+          <input
+            id="nf-website"
+            type="text"
+            name="website"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
         <label htmlFor="nf-email" className="sr-only">Email address</label>
         <input
           id="nf-email"

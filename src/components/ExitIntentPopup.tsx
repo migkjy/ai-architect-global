@@ -20,6 +20,7 @@ export default function ExitIntentPopup() {
   const isBlogPage = pathname?.includes("/blog");
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const t = useTranslations("exitPopup");
@@ -87,7 +88,7 @@ export default function ExitIntentPopup() {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, website }),
       });
       const data = await res.json();
       if (res.ok || data.success) {
@@ -175,6 +176,18 @@ export default function ExitIntentPopup() {
             </ul>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              <div className="absolute opacity-0 -z-10 h-0 overflow-hidden" aria-hidden="true">
+                <label htmlFor="exit-website">Website</label>
+                <input
+                  id="exit-website"
+                  type="text"
+                  name="website"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
               <label htmlFor="exit-popup-email" className="sr-only">
                 Email address
               </label>
