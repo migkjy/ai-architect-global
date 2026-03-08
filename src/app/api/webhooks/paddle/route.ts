@@ -38,8 +38,6 @@ export async function POST(request: Request) {
     const event = JSON.parse(rawBody);
     const eventType: string = event.event_type ?? "";
 
-    console.log(`[paddle-webhook] Event received: ${eventType}`);
-
     // transaction.completed: 결제 완료
     if (eventType === "transaction.completed") {
       const tx = event.data;
@@ -77,10 +75,6 @@ export async function POST(request: Request) {
         createdAt: new Date().toISOString(),
       };
 
-      console.log(
-        `[paddle-order] New order: ${order.lsOrderId} | ${order.customerEmail} | ${order.productName}`
-      );
-
       try {
         await sendPaddleConfirmationEmail(order, tx?.id ?? "");
       } catch (emailErr) {
@@ -93,9 +87,6 @@ export async function POST(request: Request) {
     // transaction.payment_failed: 결제 실패 로깅
     if (eventType === "transaction.payment_failed") {
       const tx = event.data;
-      console.warn(
-        `[paddle-webhook] Payment failed for transaction: ${tx?.id}`
-      );
       return NextResponse.json({ received: true });
     }
 
@@ -122,9 +113,6 @@ async function sendPaddleConfirmationEmail(
 ): Promise<void> {
   const brevoKey = process.env.BREVO_API_KEY;
   if (!brevoKey) {
-    console.warn(
-      "[paddle-email] BREVO_API_KEY not set, skipping confirmation email"
-    );
     return;
   }
 
