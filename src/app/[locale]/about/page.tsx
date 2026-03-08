@@ -42,7 +42,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       canonical: canonicalUrl,
       languages: {
         en: `${siteUrl}/about`,
-        ko: `${siteUrl}/ko/about`,
         ja: `${siteUrl}/ja/about`,
       },
     },
@@ -96,10 +95,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         email: "contact@newbizsoft.com",
         contactType: "customer service",
       },
-      sameAs: [
-        "https://richbukae.com",
-        "https://aihubkorea.kr",
-      ],
+      sameAs: [],
     },
     {
       "@context": "https://schema.org",
