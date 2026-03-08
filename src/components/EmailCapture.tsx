@@ -74,7 +74,7 @@ export default function EmailCapture({
           Exclusive subscriber discounts
         </li>
       </ul>
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <div className="absolute opacity-0 -z-10 h-0 overflow-hidden" aria-hidden="true">
           <label htmlFor="ec-website">Website</label>
           <input
