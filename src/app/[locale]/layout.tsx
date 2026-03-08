@@ -115,10 +115,7 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
           width: 1200,
           height: 630,
         },
-        sameAs: [
-          "https://richbukae.com",
-          "https://aihubkorea.kr",
-        ],
+        sameAs: [],
         contactPoint: {
           "@type": "ContactPoint",
           email: "contact@newbizsoft.com",
