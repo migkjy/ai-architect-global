@@ -228,7 +228,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
                     </div>
 
                     <div className="mt-4 pt-4 border-t border-white/5">
-                      <span className="text-xs text-gold/60 font-semibold">Real result: </span>
+                      <span className="text-xs text-gold/60 font-semibold">Documented result: </span>
                       <span className="text-xs text-text-secondary italic">&ldquo;{book.caseStudy.result}&rdquo;</span>
                     </div>
                   </div>
