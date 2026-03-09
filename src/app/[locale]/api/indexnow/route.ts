@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 
 const INDEXNOW_KEY = "aiarchitectglobal2026indexnow";
-const INDEXNOW_HOST = "ai-native-playbook.com";
+const INDEXNOW_HOST = "ai-driven-architect.com";
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 
 // GET: 모든 블로그 포스트 URL을 IndexNow에 일괄 제출 (en locale 기준)

@@ -98,7 +98,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
             fontWeight: "600",
           }}
         >
-          ai-native-playbook.com
+          ai-driven-architect.com
         </div>
       </div>
     ),
