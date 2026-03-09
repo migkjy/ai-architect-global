@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { books } from "@/lib/products";
 import { getAllPosts } from "@/lib/blog";
 
-const BASE_URL = "https://ai-native-playbook.com";
+const BASE_URL = "https://ai-driven-architect.com";
 
 // 로캘 prefix 없는 영어 canonical URL
 function canonicalUrl(path: string): string {

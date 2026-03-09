@@ -93,7 +93,7 @@ async function sendConfirmationEmail(order: Order): Promise<void> {
     body: JSON.stringify({
       sender: {
         name: "AI Native Playbook Series",
-        email: "hello@ai-native-playbook.com",
+        email: "hello@ai-driven-architect.com",
       },
       to: [{ email: order.customerEmail, name: order.customerName }],
       subject: `Your ${order.productName} is ready to download`,
@@ -114,7 +114,7 @@ async function sendConfirmationEmail(order: Order): Promise<void> {
             If you have any issues, reply to this email and we'll help you right away.
           </p>
           <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
-          <p style="color: #999; font-size: 12px;">AI Native Playbook Series | ai-native-playbook.com</p>
+          <p style="color: #999; font-size: 12px;">AI Native Playbook Series | ai-driven-architect.com</p>
         </div>
       `,
     }),

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 declare global {
@@ -16,8 +15,6 @@ const SUBSCRIBED_KEY = "ai_architect_subscribed";
 const DISMISS_DAYS = 14;
 
 export default function ExitIntentPopup() {
-  const pathname = usePathname();
-  const isBlogPage = pathname?.includes("/blog");
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
@@ -33,7 +30,6 @@ export default function ExitIntentPopup() {
   }, []);
 
   useEffect(() => {
-    if (!isBlogPage) return;
     if (typeof window !== "undefined" && window.innerWidth < 768) return;
     try {
       if (localStorage.getItem(SUBSCRIBED_KEY)) return;

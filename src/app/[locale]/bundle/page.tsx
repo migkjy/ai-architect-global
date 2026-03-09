@@ -26,7 +26,7 @@ const bundleMeta: Record<string, { title: string; description: string; ogDescrip
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
   const meta = bundleMeta[locale] ?? bundleMeta.en;
   const canonicalUrl = locale === "en" ? `${siteUrl}/bundle` : `${siteUrl}/${locale}/bundle`;
 
@@ -75,7 +75,7 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
 
   const t = await getTranslations("bundle");
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
   const bonusItems = [
     {

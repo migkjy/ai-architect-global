@@ -14,7 +14,7 @@ import { MetaPixel } from "@/components/MetaPixel";
 const ExitIntentPopup = dynamic(() => import("@/components/ExitIntentPopup"));
 const ScrollSubscribeBanner = dynamic(() => import("@/components/ScrollSubscribeBanner"));
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -198,7 +198,7 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(siteJsonLd)) }}
         />
-        {/* GA4: ai-native-playbook.com — 자비스 자동 삽입 */}
+        {/* GA4: ai-driven-architect.com — 자비스 자동 삽입 */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-76C0HSW5LB" strategy="lazyOnload" />
         <Script id="ga4-ai-architect-io" strategy="lazyOnload">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-76C0HSW5LB');`}
@@ -228,9 +228,9 @@ export default async function LocaleLayout({
             </Script>
           </>
         )}
-        <MetaPixel />
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-navy text-text-primary">
+        <MetaPixel />
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:rounded-md focus:bg-gold focus:px-4 focus:py-2 focus:text-navy-dark focus:text-sm focus:font-medium">
           Skip to content
         </a>
