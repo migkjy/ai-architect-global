@@ -46,12 +46,21 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "AI Native Playbook Series",
     url: SITE_URL,
+    images: [
+      {
+        url: `${SITE_URL}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: "AI Native Playbook Series — 6 World-Class Frameworks",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "AI Native Playbook Series — 6 World-Class Frameworks, Fully Automated with AI",
     description:
       "Stop reading business books. Start running the frameworks with AI. 6 PDF guides that make DotCom Secrets, PLF, Copywriting Secrets, and more executable today.",
+    images: [`${SITE_URL}/opengraph-image`],
   },
   robots: {
     index: true,

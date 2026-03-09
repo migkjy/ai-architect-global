@@ -29,6 +29,28 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         ja: `${SITE_URL}/ja/faq`,
       },
     },
+    openGraph: {
+      title: t("title"),
+      description: t("subtitle"),
+      url: canonicalUrl,
+      type: "website",
+      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      siteName: "AI Native Playbook Series",
+      images: [
+        {
+          url: `${SITE_URL}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: "AI Native Playbook Series FAQ",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("subtitle"),
+      images: [`${SITE_URL}/opengraph-image`],
+    },
   };
 }
 
