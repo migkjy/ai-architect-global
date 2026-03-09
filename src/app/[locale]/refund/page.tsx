@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
 export const metadata: Metadata = {
   title: "Refund Policy — AI Native Playbook Series",
@@ -106,8 +106,8 @@ export default async function RefundPage({ params }: { params: Promise<{ locale:
                   desc: (
                     <>
                       Email us at{" "}
-                      <a href="mailto:contact@ai-native-playbook.com" className="text-gold hover:underline">
-                        contact@ai-native-playbook.com
+                      <a href="mailto:contact@ai-driven-architect.com" className="text-gold hover:underline">
+                        contact@ai-driven-architect.com
                       </a>{" "}
                       with the subject line: <span className="text-text-primary font-mono text-sm bg-surface/60 px-1.5 py-0.5 rounded">Refund Request — [Your Order Number]</span>
                     </>
@@ -161,8 +161,8 @@ export default async function RefundPage({ params }: { params: Promise<{ locale:
             <h2 className="text-xl font-semibold text-text-primary mb-4">6. Contact</h2>
             <p>
               For any questions about our refund policy, please contact us at:{" "}
-              <a href="mailto:contact@ai-native-playbook.com" className="text-gold hover:underline">
-                contact@ai-native-playbook.com
+              <a href="mailto:contact@ai-driven-architect.com" className="text-gold hover:underline">
+                contact@ai-driven-architect.com
               </a>
             </p>
             <p className="mt-3">

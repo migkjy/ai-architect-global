@@ -117,7 +117,7 @@ async function sendPaddleConfirmationEmail(
   }
 
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
   const res = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
@@ -128,7 +128,7 @@ async function sendPaddleConfirmationEmail(
     body: JSON.stringify({
       sender: {
         name: "AI Native Playbook Series",
-        email: "hello@ai-native-playbook.com",
+        email: "hello@ai-driven-architect.com",
       },
       to: [{ email: order.customerEmail, name: order.customerName }],
       subject: `Your ${order.productName} is ready to download`,
@@ -153,7 +153,7 @@ async function sendPaddleConfirmationEmail(
             If you have any issues, reply to this email and we'll help you right away.
           </p>
           <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;" />
-          <p style="color: #999; font-size: 12px;">AI Native Playbook Series | ai-native-playbook.com</p>
+          <p style="color: #999; font-size: 12px;">AI Native Playbook Series | ai-driven-architect.com</p>
         </div>
       `,
     }),

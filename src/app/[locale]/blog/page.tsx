@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
 const blogMeta: Record<string, { title: string; description: string; ogDescription: string }> = {
   en: {

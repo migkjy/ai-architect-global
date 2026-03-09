@@ -79,7 +79,7 @@ export default async function Image({ params }: { params: { slug: string; locale
             fontWeight: "600",
           }}
         >
-          ai-native-playbook.com
+          ai-driven-architect.com
         </div>
       </div>
     ),

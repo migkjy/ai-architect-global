@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
 export const metadata: Metadata = {
   title: "Terms of Service — AI Native Playbook Series",
@@ -60,7 +60,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">1. Agreement to Terms</h2>
             <p>
-              By purchasing or accessing any product from <strong className="text-text-primary">AI Native Playbook Series</strong>, operated by <strong className="text-text-primary">NEWBIZSOFT</strong> (website: <span className="text-gold">ai-native-playbook.com</span>), you agree to be bound by these Terms of Service. If you do not agree to these terms, do not purchase or use our products.
+              By purchasing or accessing any product from <strong className="text-text-primary">AI Native Playbook Series</strong>, operated by <strong className="text-text-primary">NEWBIZSOFT</strong> (website: <span className="text-gold">ai-driven-architect.com</span>), you agree to be bound by these Terms of Service. If you do not agree to these terms, do not purchase or use our products.
             </p>
           </section>
 
@@ -183,8 +183,8 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
             <h2 className="text-xl font-semibold text-text-primary mb-4">11. Contact</h2>
             <p>
               For questions about these Terms of Service, please contact us at:{" "}
-              <a href="mailto:contact@ai-native-playbook.com" className="text-gold hover:underline">
-                contact@ai-native-playbook.com
+              <a href="mailto:contact@ai-driven-architect.com" className="text-gold hover:underline">
+                contact@ai-driven-architect.com
               </a>
             </p>
           </section>

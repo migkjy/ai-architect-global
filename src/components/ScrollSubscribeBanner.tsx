@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 declare global {
@@ -15,8 +14,6 @@ const DISMISS_KEY = "ai_architect_scroll_dismissed";
 const SUBSCRIBED_KEY = "ai_architect_subscribed";
 
 export default function ScrollSubscribeBanner() {
-  const pathname = usePathname();
-  const isBlogPage = pathname?.includes("/blog");
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
@@ -31,7 +28,6 @@ export default function ScrollSubscribeBanner() {
   }, []);
 
   useEffect(() => {
-    if (!isBlogPage) return;
     try {
       if (localStorage.getItem(SUBSCRIBED_KEY)) return;
       if (sessionStorage.getItem(DISMISS_KEY)) return;
