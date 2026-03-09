@@ -27,7 +27,7 @@ export async function GET() {
   const res = await fetch(INDEXNOW_ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "application/json; charset=utf-8" },
-    body: JSON.stringify({ host: INDEXNOW_HOST, key: INDEXNOW_KEY, urlList: urls }),
+    body: JSON.stringify({ host: INDEXNOW_HOST, key: INDEXNOW_KEY, keyLocation: `https://ai-driven-architect.com/${INDEXNOW_KEY}.txt`, urlList: urls }),
   });
 
   return NextResponse.json({ submitted: urls.length, status: res.status });
