@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
       "remark-gfm",
       "@vercel/analytics",
       "@vercel/speed-insights",
+      "@sentry/nextjs",
     ],
   },
   turbopack: {
