@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { books } from "@/lib/products";
 import { getAllPosts } from "@/lib/blog";
+import { patterns } from "@/lib/patterns";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
@@ -41,6 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "about", changeFrequency: "monthly", priority: 0.6, lastModified: new Date("2026-03-01") },
     { path: "faq", changeFrequency: "monthly", priority: 0.7, lastModified: new Date("2026-03-01") },
     { path: "blog", changeFrequency: "weekly", priority: 0.8, lastModified: new Date("2026-03-10") },
+    { path: "patterns", changeFrequency: "monthly", priority: 0.8, lastModified: new Date("2026-03-11") },
     { path: "terms", changeFrequency: "yearly", priority: 0.3, lastModified: new Date("2025-01-01") },
     { path: "privacy", changeFrequency: "yearly", priority: 0.3, lastModified: new Date("2025-01-01") },
     { path: "refund", changeFrequency: "yearly", priority: 0.3, lastModified: new Date("2025-01-01") },
@@ -60,7 +62,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(post.date),
   }));
 
-  const allRoutes = [...staticRoutes, ...productRoutes, ...blogRoutes];
+  const patternRoutes: RouteEntry[] = patterns.map((p) => ({
+    path: `patterns/${p.slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+    lastModified: new Date("2026-03-11"),
+  }));
+
+  const allRoutes = [...staticRoutes, ...productRoutes, ...blogRoutes, ...patternRoutes];
   const result: MetadataRoute.Sitemap = [];
 
   // 1. prefix 없는 영어 canonical URL (hreflang alternates 포함)
