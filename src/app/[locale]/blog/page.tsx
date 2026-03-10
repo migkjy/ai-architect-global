@@ -8,9 +8,9 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architec
 
 const blogMeta: Record<string, { title: string; description: string; ogDescription: string }> = {
   en: {
-    title: "AI Business Blog | AI Native Playbook Series",
-    description: "Discover practical AI tools, marketing automation strategies, and business growth tactics. Free guides for entrepreneurs who want to scale with AI frameworks.",
-    ogDescription: "Free AI tools, marketing automation guides, and business growth strategies for entrepreneurs who want to scale smarter.",
+    title: "AI Business Automation Blog | AI Native Playbook Series",
+    description: "Practical guides on AI business automation, AI marketing playbook strategies, and AI agent skills. Free frameworks for entrepreneurs building AI-native businesses.",
+    ogDescription: "Free AI business automation guides, AI marketing playbook strategies, and AI agent skills for entrepreneurs who want to scale with AI-powered frameworks.",
   },
   ko: {
     title: "AI 비즈니스 블로그 | AI Native Playbook Series",
@@ -32,11 +32,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: meta.title,
     description: meta.description,
     keywords: [
-      "AI business blog",
+      "AI business automation blog",
+      "AI marketing playbook",
+      "AI native business guide",
+      "business automation with AI",
+      "AI agent skills",
+      "AI powered marketing framework",
       "AI marketing automation",
-      "business growth strategies",
+      "business growth strategies with AI",
       "AI tools for entrepreneurs",
-      "sales funnel automation",
+      "AI sales funnel automation",
       "AI Native Playbook Series blog",
     ],
     alternates: {

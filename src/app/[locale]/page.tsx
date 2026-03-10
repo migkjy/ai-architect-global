@@ -12,10 +12,10 @@ import { getTranslations } from "next-intl/server";
 
 const homeMeta: Record<string, { title: string; description: string; ogDescription: string; twitterDescription: string }> = {
   en: {
-    title: "AI Native Playbook Series — You've Read the Books. Now Let AI Execute the Frameworks.",
-    description: "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, and Jim Edwards' frameworks into executable systems. Bundle $47, individual $17. Start today.",
-    ogDescription: "6 AI-powered PDF guides turn world-class business frameworks into executable systems. Bundle: $47.",
-    twitterDescription: "6 PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards frameworks into AI-powered systems. Bundle $47.",
+    title: "AI Native Playbook Series — Business Automation with AI. 6 World-Class Frameworks.",
+    description: "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, and Jim Edwards' frameworks into business automation systems. AI native guide + agent skills. Bundle $47, individual $17.",
+    ogDescription: "6 AI native guides turn world-class business frameworks into executable automation systems. AI marketing playbook + agent skills. Bundle: $47.",
+    twitterDescription: "Business automation with AI. 6 PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards frameworks into AI-powered systems. Bundle $47.",
   },
   ko: {
     title: "AI Native Playbook Series — 세계적 비즈니스 프레임워크를 AI로 실행하세요.",
@@ -42,16 +42,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: meta.title,
     description: meta.description,
     keywords: [
-      "AI business framework",
+      "AI business automation",
+      "AI marketing playbook",
+      "AI native business guide",
+      "business automation with AI",
+      "AI powered marketing framework",
+      "AI agent skills",
       "Russell Brunson AI",
       "DotCom Secrets AI system",
       "Jeff Walker Product Launch Formula AI",
       "Jim Edwards Copywriting Secrets AI",
       "Nicolas Cole AI writing",
       "AI sales funnel automation",
-      "business PDF guide",
       "AI marketing system",
-      "online business AI",
+      "online business AI tools",
     ],
     openGraph: {
       title: meta.title,
