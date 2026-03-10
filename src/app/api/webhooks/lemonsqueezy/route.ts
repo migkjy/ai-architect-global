@@ -51,7 +51,7 @@ export async function POST(request: Request) {
     const attrs = event.data?.attributes;
     const order: Order = {
       id: crypto.randomUUID(),
-      lsOrderId: String(event.data?.id ?? ""),
+      paddleTransactionId: String(event.data?.id ?? ""), // legacy LS order ID
       customerEmail: attrs?.user_email ?? "",
       customerName: attrs?.user_name ?? "",
       productId: String(attrs?.first_order_item?.product_id ?? ""),
@@ -103,7 +103,7 @@ async function sendConfirmationEmail(order: Order): Promise<void> {
           <p>Hi ${order.customerName || "there"},</p>
           <p>Your order for <strong>${order.productName}</strong> has been confirmed.</p>
           <div style="background: #f8f9fa; border-radius: 8px; padding: 20px; margin: 20px 0;">
-            <p style="margin: 0 0 10px 0;"><strong>Order ID:</strong> ${order.lsOrderId}</p>
+            <p style="margin: 0 0 10px 0;"><strong>Order ID:</strong> ${order.paddleTransactionId}</p>
             <p style="margin: 0;"><strong>Amount:</strong> $${(order.amount / 100).toFixed(2)} ${order.currency}</p>
           </div>
           <p>You can download your PDF from your Lemon Squeezy receipt:</p>

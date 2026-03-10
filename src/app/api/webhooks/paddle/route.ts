@@ -3,11 +3,16 @@ import { verifyPaddleWebhook } from "@/lib/paddle";
 import type { Order } from "@/lib/orders";
 import crypto from "crypto";
 
+// Simple in-memory dedup for serverless (best-effort)
+// Prevents duplicate emails when Paddle retries webhooks
+const processedTransactions = new Set<string>();
+const MAX_PROCESSED = 1000;
+
 /**
  * Paddle Webhook 핸들러
  *
  * 처리 이벤트:
- * - transaction.completed: 결제 완료 → 구매 확인 이메일 발송
+ * - transaction.completed: 결제 완료 → 구매 확인 이메일 발송 + CEO 텔레그램 알림
  * - transaction.payment_failed: 결제 실패 (로깅)
  *
  * 검증: Paddle-Signature 헤더 (HMAC-SHA256)
@@ -41,9 +46,30 @@ export async function POST(request: Request) {
     // transaction.completed: 결제 완료
     if (eventType === "transaction.completed") {
       const tx = event.data;
+      const txId: string = tx?.id ?? "";
+
+      // Idempotency: skip if already processed
+      if (txId && processedTransactions.has(txId)) {
+        console.log(`[paddle-webhook] Duplicate transaction ${txId}, skipping`);
+        return NextResponse.json({ received: true, duplicate: true });
+      }
+      if (txId) {
+        processedTransactions.add(txId);
+        // Prevent memory leak in long-running instances
+        if (processedTransactions.size > MAX_PROCESSED) {
+          const first = processedTransactions.values().next().value;
+          if (first) processedTransactions.delete(first);
+        }
+      }
+
+      // Paddle Billing v2: billing_details at top level, fallback to customer object
       const customerEmail: string =
-        tx?.customer?.email ?? tx?.details?.billing_details?.email ?? "";
+        tx?.billing_details?.email ??
+        tx?.customer?.email ??
+        tx?.details?.billing_details?.email ??
+        "";
       const customerName: string =
+        tx?.billing_details?.name ??
         tx?.customer?.name ??
         [
           tx?.details?.billing_details?.first_name ?? "",
@@ -52,19 +78,25 @@ export async function POST(request: Request) {
           .join(" ")
           .trim();
 
-      // 첫 번째 line item에서 상품 정보 추출
-      const firstItem = tx?.details?.line_items?.[0];
-      const productName: string = firstItem?.product?.name ?? "AI Native Playbook";
+      // 상품 정보: tx.items (v2) or tx.details.line_items (fallback)
+      const firstItem = tx?.items?.[0] ?? tx?.details?.line_items?.[0];
+      const productName: string =
+        firstItem?.product?.name ??
+        firstItem?.price?.description ??
+        "AI Native Playbook";
       const productId: string = firstItem?.product?.id ?? "";
       const priceId: string = firstItem?.price?.id ?? "";
 
-      // 금액: grand_total (센트 단위)
-      const amount: number = tx?.details?.totals?.grand_total ?? 0;
+      // 금액: Paddle sends as string in cents
+      const amount: number =
+        typeof tx?.details?.totals?.grand_total === "string"
+          ? parseInt(tx.details.totals.grand_total, 10)
+          : tx?.details?.totals?.grand_total ?? 0;
       const currency: string = tx?.currency_code ?? "USD";
 
       const order: Order = {
         id: crypto.randomUUID(),
-        lsOrderId: tx?.id ?? "", // Paddle transaction ID
+        paddleTransactionId: txId,
         customerEmail,
         customerName,
         productId,
@@ -75,10 +107,18 @@ export async function POST(request: Request) {
         createdAt: new Date().toISOString(),
       };
 
+      // Send confirmation email
       try {
-        await sendPaddleConfirmationEmail(order, tx?.id ?? "");
+        await sendPaddleConfirmationEmail(order, txId);
       } catch (emailErr) {
         console.error("[paddle-order] Email send failed:", emailErr);
+      }
+
+      // Notify CEO via Telegram
+      try {
+        await notifyPurchaseTelegram(order, txId);
+      } catch (notifyErr) {
+        console.error("[paddle-order] Telegram notify failed:", notifyErr);
       }
 
       return NextResponse.json({ received: true, orderId: order.id });
@@ -87,6 +127,9 @@ export async function POST(request: Request) {
     // transaction.payment_failed: 결제 실패 로깅
     if (eventType === "transaction.payment_failed") {
       const tx = event.data;
+      console.warn(
+        `[paddle-webhook] Payment failed: txn=${tx?.id}, customer=${tx?.customer_id}`
+      );
       return NextResponse.json({ received: true });
     }
 
@@ -104,8 +147,8 @@ export async function POST(request: Request) {
 /**
  * Paddle 구매 확인 이메일 발송 (Brevo)
  *
- * LemonSqueezy와 달리 Paddle은 자체 영수증을 발송하지만,
- * 추가 확인 이메일 + PDF 다운로드 링크를 별도 발송한다.
+ * Paddle은 자체 영수증을 발송하지만,
+ * 추가 확인 이메일 + PDF 다운로드 안내를 별도 발송한다.
  */
 async function sendPaddleConfirmationEmail(
   order: Order,
@@ -162,5 +205,35 @@ async function sendPaddleConfirmationEmail(
   if (!res.ok) {
     const errText = await res.text();
     throw new Error(`Brevo API error: ${res.status} ${errText}`);
+  }
+}
+
+/**
+ * CEO 텔레그램 알림 — 결제 완료 시 즉시 통보
+ */
+async function notifyPurchaseTelegram(
+  order: Order,
+  paddleTransactionId: string
+): Promise<void> {
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!botToken || !chatId) return;
+
+  const message = [
+    `New Purchase!`,
+    `Product: ${order.productName}`,
+    `Amount: $${(order.amount / 100).toFixed(2)} ${order.currency}`,
+    `Customer: ${order.customerEmail}`,
+    `Transaction: ${paddleTransactionId}`,
+  ].join("\n");
+
+  try {
+    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: chatId, text: message }),
+    });
+  } catch (err) {
+    console.error("[paddle-webhook] Telegram notification failed:", err);
   }
 }
