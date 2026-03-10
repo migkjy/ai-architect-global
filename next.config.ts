@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
       "reading-time",
       "@vercel/analytics",
       "@vercel/speed-insights",
+      "@sentry/nextjs",
     ],
   },
   turbopack: {
