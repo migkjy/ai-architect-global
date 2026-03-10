@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { books, bundle, getBundleUrl, getProductUrl } from "@/lib/products";
+import { books, bundle, getBundleUrl } from "@/lib/products";
 import { getAllPosts } from "@/lib/blog";
 import dynamic from "next/dynamic";
 const BuyButton = dynamic(() => import("@/components/BuyButton"), {
@@ -89,12 +89,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const bundleUrl = getBundleUrl();
-const latestPosts = getAllPosts().slice(0, 3);
-
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  const bundleUrl = getBundleUrl();
+  const latestPosts = getAllPosts().slice(0, 3);
 
   const t = await getTranslations("home");
   const th = await getTranslations("hero");

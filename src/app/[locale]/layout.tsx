@@ -1,18 +1,25 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
-import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
+import { Inter } from "next/font/google";
 import "../globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import IntlClientShell from "@/components/IntlClientShell";
 import dynamic from "next/dynamic";
 const Analytics = dynamic(() => import("@vercel/analytics/react").then(m => ({ default: m.Analytics })));
 const SpeedInsights = dynamic(() => import("@vercel/speed-insights/next").then(m => ({ default: m.SpeedInsights })));
 import { routing } from "@/i18n/routing";
 import { MetaPixel } from "@/components/MetaPixel";
-const ExitIntentPopup = dynamic(() => import("@/components/ExitIntentPopup"));
-const ScrollSubscribeBanner = dynamic(() => import("@/components/ScrollSubscribeBanner"));
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+  preload: true,
+});
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
@@ -75,6 +82,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: SITE_URL,
+    languages: {
+      en: SITE_URL,
+      ja: `${SITE_URL}/ja`,
+      "x-default": SITE_URL,
+    },
   },
 };
 
@@ -103,11 +115,6 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
         url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`,
         description: descriptions[locale] ?? descriptions.en,
         inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
-        potentialAction: {
-          "@type": "SearchAction",
-          target: `${siteUrl}/products/{search_term_string}`,
-          "query-input": "required name=search_term_string",
-        },
         publisher: {
           "@id": `${siteUrl}/#organization`,
         },
@@ -165,14 +172,12 @@ export default async function LocaleLayout({
   const siteJsonLd = buildSiteJsonLd(locale, SITE_URL);
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={inter.variable}>
       <head>
         {hreflangLinks.map((link) => (
           <link key={link.hrefLang} rel={link.rel} hrefLang={link.hrefLang} href={link.href} />
         ))}
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         {process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN && (
@@ -182,32 +187,11 @@ export default async function LocaleLayout({
           </>
         )}
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
-        <link
-          rel="preload"
-          as="style"
-          crossOrigin="anonymous"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-        />
-        <link
-          rel="stylesheet"
-          media="print"
-          crossOrigin="anonymous"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-          // @ts-expect-error onload is valid HTML attribute
-          onLoad="this.media='all'"
-        />
-        <noscript>
-          <link
-            rel="stylesheet"
-            crossOrigin="anonymous"
-            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-          />
-        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(siteJsonLd)) }}
         />
-        {/* GA4: ai-driven-architect.com — 자비스 자동 삽입 */}
+        {/* GA4 */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-76C0HSW5LB" strategy="lazyOnload" />
         <Script id="ga4-ai-architect-io" strategy="lazyOnload">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-76C0HSW5LB');`}
@@ -238,18 +222,16 @@ export default async function LocaleLayout({
           </>
         )}
       </head>
-      <body className="antialiased min-h-screen flex flex-col bg-navy text-text-primary">
+      <body className="antialiased min-h-screen flex flex-col bg-navy text-text-primary font-sans">
         <MetaPixel />
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:rounded-md focus:bg-gold focus:px-4 focus:py-2 focus:text-navy-dark focus:text-sm focus:font-medium">
           Skip to content
         </a>
-        <NextIntlClientProvider messages={messages}>
-          <Header />
+        <Header />
+        <IntlClientShell messages={messages} locale={locale}>
           <main id="main-content" className="flex-1">{children}</main>
-          <Footer />
-          <ScrollSubscribeBanner />
-          <ExitIntentPopup />
-        </NextIntlClientProvider>
+        </IntlClientShell>
+        <Footer />
         <Analytics />
         <SpeedInsights />
       </body>
