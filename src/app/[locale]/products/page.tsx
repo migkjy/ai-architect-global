@@ -6,18 +6,21 @@ const BuyButton = dynamic(() => import("@/components/BuyButton"));
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 
-const productsMeta: Record<string, { title: string; description: string }> = {
+const productsMeta: Record<string, { title: string; description: string; ogDescription: string }> = {
   en: {
-    title: "All 6 AI Business Framework Guides — AI Native Playbook Series",
-    description: "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into executable AI systems. $17 each or $47 for the complete bundle.",
+    title: "All 6 AI Business Automation Guides — AI Native Playbook Series",
+    description: "6 AI native business guides that turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into business automation with AI. AI marketing playbook + agent skills. $17 each or $47 bundle.",
+    ogDescription: "6 AI-powered business automation guides. Apply world-class marketing frameworks with AI agent skills. Individual $17 or complete bundle $47.",
   },
   ko: {
     title: "AI 비즈니스 프레임워크 가이드 6권 — AI Native Playbook Series",
     description: "Russell Brunson, Jeff Walker, Jim Edwards, Nicolas Cole의 프레임워크를 실행 가능한 AI 시스템으로 변환하는 6권의 PDF 가이드. 개별 $17, 번들 $47.",
+    ogDescription: "세계적 비즈니스 프레임워크를 AI로 자동화하는 6권의 가이드. 개별 $17 또는 번들 $47.",
   },
   ja: {
     title: "AIビジネスフレームワークガイド全6冊 — AI Native Playbook Series",
     description: "Russell Brunson、Jeff Walker、Jim Edwards、Nicolas Coleのフレームワークを実行可能なAIシステムに変換する6冊のPDFガイド。個別$17、バンドル$47。",
+    ogDescription: "世界クラスのビジネスフレームワークをAIで自動化する6冊のガイド。個別$17またはバンドル$47。",
   },
 };
 
@@ -26,10 +29,25 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
   const meta = productsMeta[locale] ?? productsMeta.en;
   const canonicalUrl = locale === "en" ? `${siteUrl}/products` : `${siteUrl}/${locale}/products`;
+  const ogDescription = (meta as typeof productsMeta.en).ogDescription ?? meta.description;
 
   return {
     title: meta.title,
     description: meta.description,
+    keywords: [
+      "AI business automation guides",
+      "AI marketing playbook",
+      "AI native business guide",
+      "business automation with AI",
+      "AI agent skills",
+      "AI powered marketing framework",
+      "Russell Brunson AI guide",
+      "Jeff Walker AI guide",
+      "Jim Edwards AI guide",
+      "Nicolas Cole AI guide",
+      "AI sales funnel",
+      "AI copywriting",
+    ],
     alternates: {
       canonical: canonicalUrl,
       languages: {
@@ -40,25 +58,25 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     openGraph: {
       title: meta.title,
-      description: meta.description,
+      description: ogDescription,
       type: "website",
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Native Playbook Series",
       url: canonicalUrl,
       images: [
         {
-          url: `${siteUrl}/og-image`,
+          url: `${siteUrl}/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: "AI Native Playbook Series — All 6 Books",
+          alt: "AI Native Playbook Series — 6 AI Business Automation Guides",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
       title: meta.title,
-      description: meta.description,
-      images: [`${siteUrl}/og-image`],
+      description: ogDescription,
+      images: [`${siteUrl}/opengraph-image`],
     },
   };
 }

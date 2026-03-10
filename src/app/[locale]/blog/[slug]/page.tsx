@@ -28,7 +28,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: post.description,
     keywords: [
       ...post.tags,
-      "AI business framework",
+      "AI business automation",
+      "AI marketing playbook",
+      "AI native business guide",
+      "business automation with AI",
       "AI Native Playbook Series",
     ],
     openGraph: {

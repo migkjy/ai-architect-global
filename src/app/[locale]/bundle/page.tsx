@@ -8,9 +8,9 @@ import { getTranslations } from "next-intl/server";
 
 const bundleMeta: Record<string, { title: string; description: string; ogDescription: string }> = {
   en: {
-    title: "Complete Bundle — All 6 AI Native Playbook Books for $47",
-    description: "All 6 AI Native Playbook books for $47. Apply Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven frameworks with AI. Save $55. Instant PDF download.",
-    ogDescription: "Six AI-powered systems for marketing, branding, traffic, copywriting, product launches, and content. One price. Instant PDF download.",
+    title: "Complete Bundle — All 6 AI Business Automation Guides for $47",
+    description: "Get all 6 AI native business guides for $47. Business automation with AI: marketing, copywriting, product launches, content strategy. Russell Brunson, Jeff Walker, Jim Edwards frameworks. Save $55.",
+    ogDescription: "Six AI-powered business automation systems: marketing funnels, brand building, traffic, copywriting, product launches, and content. One AI marketing playbook bundle. Instant PDF download.",
   },
   ko: {
     title: "완전 번들 — AI Native Playbook 6권 전체 $47",
@@ -34,12 +34,18 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: meta.title,
     description: meta.description,
     keywords: [
-      "AI Native Playbook bundle",
-      "AI business framework bundle",
+      "AI business automation bundle",
+      "AI marketing playbook bundle",
+      "AI native business guide bundle",
+      "business automation with AI",
+      "AI powered marketing framework",
+      "AI agent skills bundle",
       "Russell Brunson Jeff Walker AI",
       "DotCom Secrets Expert Secrets AI",
       "Product Launch Formula AI",
       "Copywriting Secrets AI",
+      "AI sales funnel automation",
+      "complete AI business system",
     ],
     alternates: {
       canonical: canonicalUrl,
@@ -56,11 +62,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Native Playbook Series",
       url: canonicalUrl,
+      images: [
+        {
+          url: `${siteUrl}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: "AI Native Playbook Complete Bundle — 6 AI Business Automation Guides",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: meta.title,
       description: meta.ogDescription,
+      images: [`${siteUrl}/opengraph-image`],
     },
   };
 }

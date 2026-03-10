@@ -16,7 +16,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     description: t("subtitle"),
     keywords: [
       "AI Native Playbook FAQ",
-      "AI business framework questions",
+      "AI business automation FAQ",
+      "AI marketing playbook questions",
+      "AI native business guide help",
+      "business automation with AI questions",
+      "AI agent skills FAQ",
       "AI PDF guide help",
       "AI Native Playbook refund policy",
       "AI Native Playbook system requirements",
