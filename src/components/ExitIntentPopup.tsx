@@ -41,8 +41,8 @@ export default function ExitIntentPopup({ labels, variant = "A" }: { labels: Exi
     } catch {}
   }, []);
 
+  // Exit intent detection (desktop: mouseleave, mobile: 45s timer)
   useEffect(() => {
-    if (typeof window !== "undefined" && window.innerWidth < 768) return;
     try {
       if (localStorage.getItem(SUBSCRIBED_KEY)) return;
       const dismissed = localStorage.getItem(DISMISS_KEY);
@@ -52,6 +52,17 @@ export default function ExitIntentPopup({ labels, variant = "A" }: { labels: Exi
       }
     } catch {}
 
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
+    if (isMobile) {
+      // Mobile: show after 45 seconds of browsing
+      const timer = setTimeout(() => {
+        setVisible(true);
+      }, 45000);
+      return () => clearTimeout(timer);
+    }
+
+    // Desktop: exit intent detection
     function handleMouseLeave(e: MouseEvent) {
       if (e.clientY <= 0) {
         setVisible(true);
