@@ -220,7 +220,7 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
                 href={bundleUrl}
                 paddlePriceId={bundlePaddlePriceId}
                 paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
-                className="w-full text-lg py-4 animate-pulse-subtle"
+                className="w-full text-lg py-4 "
               >
                 {t("getComplete")} &mdash; ${bundle.price}
               </BuyButton>
@@ -344,7 +344,7 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
                 href={bundleUrl}
                 paddlePriceId={bundlePaddlePriceId}
                 paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
-                className="w-full text-lg py-4 animate-pulse-subtle"
+                className="w-full text-lg py-4 "
               >
                 {t("getComplete")} &mdash; ${bundle.price}
               </BuyButton>
