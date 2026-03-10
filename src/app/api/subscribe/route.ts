@@ -70,11 +70,7 @@ export async function POST(request: Request) {
           body: JSON.stringify({
             email: sanitizedEmail,
             attributes,
-            listIds: [
-              process.env.BREVO_LIST_ID
-                ? parseInt(process.env.BREVO_LIST_ID, 10)
-                : 7,
-            ],
+            listIds: [12], // ai-architect 전용 리스트 12번 고정
             updateEnabled: true,
           }),
         });
