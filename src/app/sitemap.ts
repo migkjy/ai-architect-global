@@ -18,6 +18,7 @@ function localizedUrl(locale: string, path: string): string {
 function buildAlternates(path: string): Record<string, string> {
   return {
     en: localizedUrl("en", path),
+    ko: localizedUrl("ko", path),
     ja: localizedUrl("ja", path),
     "x-default": canonicalUrl(path),
   };
@@ -75,7 +76,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   // 2. /en/, /ko/, /ja/ 로캘 prefix URL
-  for (const locale of ["en", "ja"] as const) {
+  for (const locale of ["en", "ko", "ja"] as const) {
     for (const route of allRoutes) {
       result.push({
         url: localizedUrl(locale, route.path),

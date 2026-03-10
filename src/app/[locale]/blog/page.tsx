@@ -44,6 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       languages: {
         en: `${SITE_URL}/blog`,
         ja: `${SITE_URL}/ja/blog`,
+        "x-default": `${SITE_URL}/blog`,
       },
     },
     openGraph: {
@@ -77,24 +78,40 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
 
   const collectionPageJsonLd = {
     "@context": "https://schema.org",
-    "@type": "CollectionPage",
+    "@type": ["CollectionPage", "Blog"],
     name: "AI Business Blog | AI Native Playbook Series",
     description: "Practical AI tools, marketing automation, and business growth strategies for entrepreneurs and small business owners.",
     url: canonicalUrl,
+    inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
     publisher: {
       "@type": "Organization",
       name: "AI Native Playbook Series",
       url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/opengraph-image`,
+        width: 1200,
+        height: 630,
+      },
     },
     hasPart: posts.map((post) => ({
       "@type": "BlogPosting",
       headline: post.title,
       description: post.description,
       datePublished: post.date,
+      dateModified: post.date,
       url: `${SITE_URL}/blog/${post.slug}`,
+      keywords: post.tags.join(", "),
       author: {
         "@type": "Organization",
         name: "AI Native Playbook Series",
+        url: SITE_URL,
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "AI Native Playbook Series",
+        url: SITE_URL,
       },
     })),
   };

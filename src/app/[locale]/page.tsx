@@ -85,6 +85,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         en: siteUrl,
         ko: `${siteUrl}/ko`,
         ja: `${siteUrl}/ja`,
+        "x-default": siteUrl,
       },
     },
   };
@@ -181,8 +182,21 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     itemListElement: books.map((book, idx) => ({
       "@type": "ListItem",
       position: idx + 1,
-      name: book.title,
-      url: `${siteUrl}/products/${book.slug}`,
+      item: {
+        "@type": "Product",
+        name: book.title,
+        description: book.shortDescription,
+        url: `${siteUrl}/products/${book.slug}`,
+        sku: `AIA-VOL${book.vol}`,
+        brand: { "@type": "Brand", name: "AI Native Playbook Series" },
+        offers: {
+          "@type": "Offer",
+          price: "17",
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+          priceValidUntil: "2026-12-31",
+        },
+      },
     })),
   };
 
