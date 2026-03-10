@@ -52,12 +52,6 @@ export default function NotFound() {
             Back to Home
           </Link>
           <Link
-            href="/ko"
-            className="border border-gold/30 text-text-secondary px-6 py-3 rounded-xl hover:border-gold/60 hover:text-text-primary transition-all"
-          >
-            한국어 홈
-          </Link>
-          <Link
             href="/ja"
             className="border border-gold/30 text-text-secondary px-6 py-3 rounded-xl hover:border-gold/60 hover:text-text-primary transition-all"
           >

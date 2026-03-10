@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { books, bundle, getBundleUrl, getProductUrl } from "@/lib/products";
+import { books, bundle, getBundleUrl } from "@/lib/products";
 import { getAllPosts } from "@/lib/blog";
 import dynamic from "next/dynamic";
 const BuyButton = dynamic(() => import("@/components/BuyButton"), {
@@ -89,12 +89,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const bundleUrl = getBundleUrl();
-const latestPosts = getAllPosts().slice(0, 3);
-
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  const bundleUrl = getBundleUrl();
+  const latestPosts = getAllPosts().slice(0, 3);
 
   const t = await getTranslations("home");
   const th = await getTranslations("hero");
@@ -581,6 +581,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <section className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold/3 to-transparent pointer-events-none" />
         <div className="max-w-4xl mx-auto px-4 relative z-10">
+          {/* Launch Pricing Urgency */}
+          <div className="mb-8 bg-gold/10 border border-gold/30 rounded-xl px-5 py-3 text-center max-w-lg mx-auto">
+            <p className="text-sm text-gold font-semibold">
+              Launch pricing — $47 for all 6 books. Price increases as new volumes are added.
+            </p>
+          </div>
           <h2 className="text-3xl md:text-5xl font-bold mb-10 text-center">
             <span className="gradient-gold">{t("choosePath")}</span>
           </h2>
