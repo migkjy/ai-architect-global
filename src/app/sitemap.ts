@@ -2,7 +2,8 @@ import type { MetadataRoute } from "next";
 import { books } from "@/lib/products";
 import { getAllPosts } from "@/lib/blog";
 
-const BASE_URL = "https://ai-driven-architect.com";
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+const SITE_LAST_MODIFIED = new Date("2026-03-10");
 
 // 로캘 prefix 없는 영어 canonical URL
 function canonicalUrl(path: string): string {
@@ -34,21 +35,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   };
 
   const staticRoutes: RouteEntry[] = [
-    { path: "", changeFrequency: "weekly", priority: 1 },
-    { path: "products", changeFrequency: "weekly", priority: 0.9 },
-    { path: "bundle", changeFrequency: "weekly", priority: 0.9 },
-    { path: "about", changeFrequency: "monthly", priority: 0.6 },
-    { path: "faq", changeFrequency: "monthly", priority: 0.7 },
-    { path: "blog", changeFrequency: "weekly", priority: 0.8 },
-    { path: "terms", changeFrequency: "yearly", priority: 0.3 },
-    { path: "privacy", changeFrequency: "yearly", priority: 0.3 },
-    { path: "refund", changeFrequency: "yearly", priority: 0.3 },
+    { path: "", changeFrequency: "weekly", priority: 1, lastModified: SITE_LAST_MODIFIED },
+    { path: "products", changeFrequency: "weekly", priority: 0.9, lastModified: SITE_LAST_MODIFIED },
+    { path: "bundle", changeFrequency: "weekly", priority: 0.9, lastModified: SITE_LAST_MODIFIED },
+    { path: "about", changeFrequency: "monthly", priority: 0.6, lastModified: SITE_LAST_MODIFIED },
+    { path: "faq", changeFrequency: "monthly", priority: 0.7, lastModified: SITE_LAST_MODIFIED },
+    { path: "blog", changeFrequency: "weekly", priority: 0.8, lastModified: SITE_LAST_MODIFIED },
+    { path: "terms", changeFrequency: "yearly", priority: 0.3, lastModified: SITE_LAST_MODIFIED },
+    { path: "privacy", changeFrequency: "yearly", priority: 0.3, lastModified: SITE_LAST_MODIFIED },
+    { path: "refund", changeFrequency: "yearly", priority: 0.3, lastModified: SITE_LAST_MODIFIED },
   ];
 
   const productRoutes: RouteEntry[] = books.map((book) => ({
     path: `products/${book.slug}`,
     changeFrequency: "monthly" as const,
     priority: 0.8,
+    lastModified: SITE_LAST_MODIFIED,
   }));
 
   const blogRoutes: RouteEntry[] = blogPosts.map((post) => ({
@@ -65,7 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const route of allRoutes) {
     result.push({
       url: canonicalUrl(route.path),
-      lastModified: route.lastModified ?? new Date(),
+      lastModified: route.lastModified ?? SITE_LAST_MODIFIED,
       changeFrequency: route.changeFrequency,
       priority: route.priority,
       alternates: {
@@ -79,7 +81,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const route of allRoutes) {
       result.push({
         url: localizedUrl(locale, route.path),
-        lastModified: route.lastModified ?? new Date(),
+        lastModified: route.lastModified ?? SITE_LAST_MODIFIED,
         changeFrequency: route.changeFrequency,
         // 로캘 prefix URL은 canonical보다 낮은 priority
         priority: Math.max(route.priority - 0.1, 0.1),
