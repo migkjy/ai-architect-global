@@ -3,6 +3,7 @@ title: "Building an AI Content Pipeline: From Idea to Published in 45 Minutes"
 description: "A step-by-step guide to building a content production pipeline that runs on AI. Go from idea to published article in 45 minutes without sacrificing quality or authenticity."
 date: "2026-02-28"
 excerpt: "A step-by-step guide to building a content production system that runs on AI — without sacrificing quality or authenticity."
+locale: "en"
 ---
 
 # Building an AI Content Pipeline: From Idea to Published in 45 Minutes

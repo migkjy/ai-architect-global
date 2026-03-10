@@ -12,11 +12,6 @@ const blogMeta: Record<string, { title: string; description: string; ogDescripti
     description: "Discover practical AI tools, marketing automation strategies, and business growth tactics. Free guides for entrepreneurs who want to scale with AI frameworks.",
     ogDescription: "Free AI tools, marketing automation guides, and business growth strategies for entrepreneurs who want to scale smarter.",
   },
-  ko: {
-    title: "AI 비즈니스 블로그 | AI Native Playbook Series",
-    description: "실용적인 AI 도구, 마케팅 자동화 전략, 비즈니스 성장 전술을 확인하세요. AI 프레임워크로 확장하려는 기업가를 위한 무료 가이드.",
-    ogDescription: "기업가를 위한 무료 AI 도구, 마케팅 자동화 가이드, 비즈니스 성장 전략.",
-  },
   ja: {
     title: "AIビジネスブログ | AI Native Playbook Series",
     description: "実践的なAIツール、マーケティング自動化戦略、ビジネス成長戦術をご紹介。AIフレームワークで事業を拡大したい起業家のための無料ガイド。",
@@ -43,7 +38,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       canonical: canonicalUrl,
       languages: {
         en: `${SITE_URL}/blog`,
-        ko: `${SITE_URL}/ko/blog`,
         ja: `${SITE_URL}/ja/blog`,
       },
     },
@@ -53,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "website",
       url: canonicalUrl,
       siteName: "AI Native Playbook Series",
-      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      locale: locale === "ja" ? "ja_JP" : "en_US",
     },
     twitter: {
       card: "summary_large_image",
@@ -72,9 +66,9 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
 
   const t = await getTranslations("blog");
-  const posts = getAllPosts();
+  const posts = getAllPosts(locale);
   const canonicalUrl = locale === "en" ? `${SITE_URL}/blog` : `${SITE_URL}/${locale}/blog`;
-  const dateLocale = locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US";
+  const dateLocale = locale === "ja" ? "ja-JP" : "en-US";
 
   const collectionPageJsonLd = {
     "@context": "https://schema.org",

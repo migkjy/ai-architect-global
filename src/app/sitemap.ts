@@ -25,7 +25,8 @@ function buildAlternates(path: string): Record<string, string> {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const blogPosts = getAllPosts();
+  const enBlogPosts = getAllPosts("en");
+  const jaBlogPosts = getAllPosts("ja");
 
   type RouteEntry = {
     path: string;
@@ -53,18 +54,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: SITE_LAST_MODIFIED,
   }));
 
-  const blogRoutes: RouteEntry[] = blogPosts.map((post) => ({
+  const enBlogRoutes: RouteEntry[] = enBlogPosts.map((post) => ({
     path: `blog/${post.slug}`,
     changeFrequency: "monthly" as const,
     priority: 0.7,
     lastModified: new Date(post.date),
   }));
 
-  const allRoutes = [...staticRoutes, ...productRoutes, ...blogRoutes];
+  const jaBlogRoutes: RouteEntry[] = jaBlogPosts.map((post) => ({
+    path: `blog/${post.slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+    lastModified: new Date(post.date),
+  }));
+
+  const sharedRoutes = [...staticRoutes, ...productRoutes];
   const result: MetadataRoute.Sitemap = [];
 
   // 1. prefix 없는 영어 canonical URL (hreflang alternates 포함)
-  for (const route of allRoutes) {
+  for (const route of [...sharedRoutes, ...enBlogRoutes]) {
     result.push({
       url: canonicalUrl(route.path),
       lastModified: route.lastModified ?? SITE_LAST_MODIFIED,
@@ -76,17 +84,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // 2. /en/, /ko/, /ja/ 로캘 prefix URL
-  for (const locale of ["en", "ja"] as const) {
-    for (const route of allRoutes) {
-      result.push({
-        url: localizedUrl(locale, route.path),
-        lastModified: route.lastModified ?? SITE_LAST_MODIFIED,
-        changeFrequency: route.changeFrequency,
-        // 로캘 prefix URL은 canonical보다 낮은 priority
-        priority: Math.max(route.priority - 0.1, 0.1),
-      });
-    }
+  // 2. /en/ prefix URL — 영어 블로그만
+  for (const route of [...sharedRoutes, ...enBlogRoutes]) {
+    result.push({
+      url: localizedUrl("en", route.path),
+      lastModified: route.lastModified ?? SITE_LAST_MODIFIED,
+      changeFrequency: route.changeFrequency,
+      priority: Math.max(route.priority - 0.1, 0.1),
+    });
+  }
+
+  // 3. /ja/ prefix URL — 일본어 블로그만
+  for (const route of [...sharedRoutes, ...jaBlogRoutes]) {
+    result.push({
+      url: localizedUrl("ja", route.path),
+      lastModified: route.lastModified ?? SITE_LAST_MODIFIED,
+      changeFrequency: route.changeFrequency,
+      priority: Math.max(route.priority - 0.1, 0.1),
+    });
   }
 
   return result;

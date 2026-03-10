@@ -11,11 +11,12 @@ export interface BlogPost {
   description: string;
   date: string;
   tags: string[];
+  locale: string;
   readingTime: string;
   content: string;
 }
 
-export function getAllPosts(): Omit<BlogPost, "content">[] {
+export function getAllPosts(locale?: string): Omit<BlogPost, "content">[] {
   if (!fs.existsSync(BLOG_DIR)) return [];
   const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
   return files
@@ -30,9 +31,11 @@ export function getAllPosts(): Omit<BlogPost, "content">[] {
         description: data.description ?? "",
         date: data.date ?? "",
         tags: data.tags ?? [],
+        locale: data.locale ?? "en",
         readingTime: stats.text,
       };
     })
+    .filter((post) => !locale || post.locale === locale)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
@@ -48,6 +51,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     description: data.description ?? "",
     date: data.date ?? "",
     tags: data.tags ?? [],
+    locale: data.locale ?? "en",
     readingTime: stats.text,
     content,
   };
