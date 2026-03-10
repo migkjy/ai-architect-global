@@ -158,6 +158,8 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <head>
+        <meta name="naver-site-verification" content="a6ff1a6273de52eee09a6d7965035cb60726a641" />
+        <meta name="naver-site-verification" content="cda8874de26392058a4eacc1de62c73bf59ff7ef" />
         {hreflangLinks.map((link) => (
           <link key={link.hrefLang} rel={link.rel} hrefLang={link.hrefLang} href={link.href} />
         ))}
