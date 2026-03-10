@@ -66,6 +66,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: SITE_URL,
+    languages: {
+      en: SITE_URL,
+      ja: `${SITE_URL}/ja`,
+      "x-default": SITE_URL,
+    },
   },
 };
 
@@ -94,11 +99,6 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
         url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`,
         description: descriptions[locale] ?? descriptions.en,
         inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
-        potentialAction: {
-          "@type": "SearchAction",
-          target: `${siteUrl}/products/{search_term_string}`,
-          "query-input": "required name=search_term_string",
-        },
         publisher: {
           "@id": `${siteUrl}/#organization`,
         },
