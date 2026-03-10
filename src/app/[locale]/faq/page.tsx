@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         en: `${SITE_URL}/faq`,
         ko: `${SITE_URL}/ko/faq`,
         ja: `${SITE_URL}/ja/faq`,
+        "x-default": `${SITE_URL}/faq`,
       },
     },
     openGraph: {
@@ -126,9 +127,19 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
     ],
   };
 
+  const canonicalFaqUrl = locale === "en" ? `${SITE_URL}/faq` : `${SITE_URL}/${locale}/faq`;
+
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    name: t("title"),
+    description: t("subtitle"),
+    url: canonicalFaqUrl,
+    inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    publisher: {
+      "@id": `${SITE_URL}/#organization`,
+    },
     mainEntity: allFaqItems.map((item) => ({
       "@type": "Question",
       name: item.question,

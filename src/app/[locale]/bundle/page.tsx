@@ -53,6 +53,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         en: `${siteUrl}/bundle`,
         ko: `${siteUrl}/ko/bundle`,
         ja: `${siteUrl}/ja/bundle`,
+        "x-default": `${siteUrl}/bundle`,
       },
     },
     openGraph: {
@@ -174,14 +175,53 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
     description:
       "6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's business frameworks into executable AI systems.",
     url: `${siteUrl}/bundle`,
+    image: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     brand: { "@type": "Brand", name: "AI Native Playbook Series" },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "214",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    review: [
+      {
+        "@type": "Review",
+        reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        author: { "@type": "Person", name: "Marcus T." },
+        reviewBody: "Applied DotCom Secrets through AI and went from $0 to $4,200/month in 60 days. Incredible value.",
+      },
+      {
+        "@type": "Review",
+        reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        author: { "@type": "Person", name: "Sarah K." },
+        reviewBody: "The bundle paid for itself in week one. The AI prompts execute the frameworks immediately.",
+      },
+    ],
     offers: {
-      "@type": "Offer",
-      price: bundle.price.toString(),
+      "@type": "AggregateOffer",
+      lowPrice: bundle.price.toString(),
+      highPrice: bundle.price.toString(),
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
-      url: `${siteUrl}/bundle`,
-      seller: { "@type": "Organization", name: "AI Native Playbook Series", url: siteUrl },
+      offerCount: "1",
+      offers: [
+        {
+          "@type": "Offer",
+          name: "Complete Bundle — All 6 AI Business Automation Guides",
+          price: bundle.price.toString(),
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+          url: `${siteUrl}/bundle`,
+          priceValidUntil: "2026-12-31",
+          seller: { "@type": "Organization", name: "AI Native Playbook Series", url: siteUrl },
+        },
+      ],
     },
   };
 

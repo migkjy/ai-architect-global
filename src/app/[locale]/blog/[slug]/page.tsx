@@ -45,10 +45,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       siteName: "AI Native Playbook Series",
       images: [
         {
-          url: `${siteUrl}/og-image`,
+          url: `${siteUrl}/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: post.title,
+          alt: `${post.title} | AI Native Playbook Series`,
         },
       ],
     },
@@ -56,12 +56,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [`${siteUrl}/og-image`],
+      images: [`${siteUrl}/opengraph-image`],
     },
     alternates: {
       canonical: canonicalUrl,
       languages: {
         en: `${siteUrl}/blog/${slug}`,
+        ko: `${siteUrl}/ko/blog/${slug}`,
         ja: `${siteUrl}/ja/blog/${slug}`,
       },
     },
@@ -113,7 +114,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     description: post.description,
     datePublished: post.date,
     dateModified: post.date,
-    image: `${siteUrl}/og-image`,
+    image: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     url: `${siteUrl}/blog/${slug}`,
     inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
     author: {
@@ -127,7 +133,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       url: siteUrl,
       logo: {
         "@type": "ImageObject",
-        url: `${siteUrl}/og-image`,
+        url: `${siteUrl}/opengraph-image`,
         width: 1200,
         height: 630,
       },
@@ -137,6 +143,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       "@id": `${siteUrl}/blog/${slug}`,
     },
     keywords: post.tags.join(", "),
+    wordCount: Math.round(post.content.split(/\s+/).length),
   };
 
   const breadcrumbJsonLd = {

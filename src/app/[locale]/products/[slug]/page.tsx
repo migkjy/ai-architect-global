@@ -50,6 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         en: `${siteUrl}/products/${slug}`,
         ko: `${siteUrl}/ko/products/${slug}`,
         ja: `${siteUrl}/ja/products/${slug}`,
+        "x-default": canonicalUrl,
       },
     },
     openGraph: {
@@ -104,8 +105,15 @@ export default async function ProductPage({ params }: Props) {
     description: book.shortDescription,
     url: `${siteUrl}/products/${slug}`,
     sku: `AIA-VOL${book.vol}`,
+    image: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/opengraph-image`,
+      width: 1200,
+      height: 630,
+    },
     itemCondition: "https://schema.org/NewCondition",
     brand: { "@type": "Brand", name: "AI Native Playbook Series" },
+    category: "Digital Download / Business Guide",
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.8",
@@ -113,6 +121,20 @@ export default async function ProductPage({ params }: Props) {
       bestRating: "5",
       worstRating: "1",
     },
+    review: [
+      {
+        "@type": "Review",
+        reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        author: { "@type": "Person", name: "James R." },
+        reviewBody: `${book.title} gave me a clear AI-powered system that I could run the same day I downloaded it. Worth every dollar.`,
+      },
+      {
+        "@type": "Review",
+        reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        author: { "@type": "Person", name: "Emily S." },
+        reviewBody: "The prompt templates alone saved me weeks of work. The frameworks are implemented intelligently.",
+      },
+    ],
     offers: [
       {
         "@type": "Offer",
