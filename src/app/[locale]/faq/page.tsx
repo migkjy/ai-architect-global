@@ -3,8 +3,6 @@ import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import { getBundleUrl } from "@/lib/products";
-import dynamic from "next/dynamic";
-const BuyButton = dynamic(() => import("@/components/BuyButton"));
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
@@ -34,16 +32,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: t("title"),
       description: t("subtitle"),
-      type: "website",
       url: canonicalUrl,
+      type: "website",
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Native Playbook Series",
       images: [
         {
-          url: `${SITE_URL}/og-image`,
+          url: `${SITE_URL}/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: "AI Native Playbook Series — FAQ",
+          alt: "AI Native Playbook Series FAQ",
         },
       ],
     },
@@ -51,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: "summary_large_image",
       title: t("title"),
       description: t("subtitle"),
-      images: [`${SITE_URL}/og-image`],
+      images: [`${SITE_URL}/opengraph-image`],
     },
   };
 }
@@ -184,9 +182,12 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
         <div className="mt-16 bg-surface/60 border border-gold/20 rounded-2xl p-8 text-center card-glow">
           <h2 className="text-2xl font-bold mb-3">{t("ctaTitle")}</h2>
           <p className="text-text-secondary mb-6">{t("ctaDesc")}</p>
-          <BuyButton href={bundleUrl} className="text-lg px-8 py-4">
+          <Link
+            href={bundleUrl}
+            className="inline-flex items-center justify-center bg-gold text-navy-dark px-8 py-4 rounded-xl font-bold text-lg hover:bg-gold-light transition-colors"
+          >
             {t("ctaButton")}
-          </BuyButton>
+          </Link>
         </div>
 
         <nav className="mt-10 pt-8 border-t border-white/10" aria-label="Related pages">
