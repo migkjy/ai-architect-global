@@ -48,7 +48,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       canonical: canonicalUrl,
       languages: {
         en: `${siteUrl}/products/${slug}`,
-        ko: `${siteUrl}/ko/products/${slug}`,
         ja: `${siteUrl}/ja/products/${slug}`,
         "x-default": canonicalUrl,
       },

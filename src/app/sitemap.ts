@@ -35,21 +35,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   };
 
   const staticRoutes: RouteEntry[] = [
-    { path: "", changeFrequency: "weekly", priority: 1 },
-    { path: "products", changeFrequency: "weekly", priority: 0.9 },
-    { path: "bundle", changeFrequency: "weekly", priority: 0.9 },
-    { path: "about", changeFrequency: "monthly", priority: 0.6 },
-    { path: "faq", changeFrequency: "monthly", priority: 0.7 },
-    { path: "blog", changeFrequency: "weekly", priority: 0.8 },
-    { path: "terms", changeFrequency: "yearly", priority: 0.3 },
-    { path: "privacy", changeFrequency: "yearly", priority: 0.3 },
-    { path: "refund", changeFrequency: "yearly", priority: 0.3 },
+    { path: "", changeFrequency: "monthly", priority: 1, lastModified: new Date("2026-03-08") },
+    { path: "products", changeFrequency: "monthly", priority: 0.9, lastModified: new Date("2026-03-08") },
+    { path: "bundle", changeFrequency: "monthly", priority: 0.9, lastModified: new Date("2026-03-08") },
+    { path: "about", changeFrequency: "monthly", priority: 0.6, lastModified: new Date("2026-03-01") },
+    { path: "faq", changeFrequency: "monthly", priority: 0.7, lastModified: new Date("2026-03-01") },
+    { path: "blog", changeFrequency: "weekly", priority: 0.8, lastModified: new Date("2026-03-10") },
+    { path: "terms", changeFrequency: "yearly", priority: 0.3, lastModified: new Date("2025-01-01") },
+    { path: "privacy", changeFrequency: "yearly", priority: 0.3, lastModified: new Date("2025-01-01") },
+    { path: "refund", changeFrequency: "yearly", priority: 0.3, lastModified: new Date("2025-01-01") },
   ];
 
   const productRoutes: RouteEntry[] = books.map((book) => ({
     path: `products/${book.slug}`,
     changeFrequency: "monthly" as const,
     priority: 0.8,
+    lastModified: new Date("2026-03-08"),
   }));
 
   const blogRoutes: RouteEntry[] = blogPosts.map((post) => ({
