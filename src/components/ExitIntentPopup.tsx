@@ -27,7 +27,7 @@ type ExitIntentPopupLabels = {
   dismiss: string;
 };
 
-export default function ExitIntentPopup({ labels }: { labels: ExitIntentPopupLabels }) {
+export default function ExitIntentPopup({ labels, variant = "A" }: { labels: ExitIntentPopupLabels; variant?: string }) {
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
@@ -96,7 +96,7 @@ export default function ExitIntentPopup({ labels }: { labels: ExitIntentPopupLab
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, website }),
+        body: JSON.stringify({ email, website, source: `exit-intent-${variant}` }),
       });
       const data = await res.json();
       if (res.ok || data.success) {

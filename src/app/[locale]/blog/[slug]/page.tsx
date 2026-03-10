@@ -62,8 +62,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       canonical: canonicalUrl,
       languages: {
         en: `${siteUrl}/blog/${slug}`,
-        ko: `${siteUrl}/ko/blog/${slug}`,
         ja: `${siteUrl}/ja/blog/${slug}`,
+        "x-default": canonicalUrl,
       },
     },
   };

@@ -20,7 +20,7 @@ type ScrollSubscribeBannerLabels = {
   error: string;
 };
 
-export default function ScrollSubscribeBanner({ labels }: { labels: ScrollSubscribeBannerLabels }) {
+export default function ScrollSubscribeBanner({ labels, variant = "A" }: { labels: ScrollSubscribeBannerLabels; variant?: string }) {
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
@@ -69,7 +69,7 @@ export default function ScrollSubscribeBanner({ labels }: { labels: ScrollSubscr
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, website }),
+        body: JSON.stringify({ email, website, source: `scroll-banner-${variant}` }),
       });
       if (res.ok) {
         setStatus("success");
