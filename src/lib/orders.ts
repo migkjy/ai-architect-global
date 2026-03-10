@@ -2,7 +2,7 @@ import crypto from "crypto";
 
 export interface Order {
   id: string;
-  lsOrderId: string;
+  paddleTransactionId: string;
   customerEmail: string;
   customerName: string;
   productId: string;
