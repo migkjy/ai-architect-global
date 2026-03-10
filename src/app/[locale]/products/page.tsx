@@ -54,6 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         en: `${siteUrl}/products`,
         ko: `${siteUrl}/ko/products`,
         ja: `${siteUrl}/ja/products`,
+        "x-default": `${siteUrl}/products`,
       },
     },
     openGraph: {
@@ -96,6 +97,8 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
     return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
   }
 
+  const canonicalProductsUrl = locale === "en" ? `${siteUrl}/products` : `${siteUrl}/${locale}/products`;
+
   const jsonLd = [
     {
       "@context": "https://schema.org",
@@ -104,6 +107,16 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
         { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
         { "@type": "ListItem", position: 2, name: "All Books", item: `${siteUrl}/products` },
       ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: "All 6 AI Business Automation Guides — AI Native Playbook Series",
+      description: "6 AI-powered PDF guides that turn proven business frameworks into executable AI systems.",
+      url: canonicalProductsUrl,
+      inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      publisher: { "@id": `${siteUrl}/#organization` },
     },
     {
       "@context": "https://schema.org",
@@ -119,11 +132,16 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
           name: book.title,
           description: book.shortDescription,
           url: `${siteUrl}/products/${book.slug}`,
+          sku: `AIA-VOL${book.vol}`,
+          brand: { "@type": "Brand", name: "AI Native Playbook Series" },
+          category: "Digital Download / Business Guide",
           offers: {
             "@type": "Offer",
             price: "17",
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
+            priceValidUntil: "2026-12-31",
+            url: `${siteUrl}/products/${book.slug}`,
           },
         },
       })),

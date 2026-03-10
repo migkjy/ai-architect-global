@@ -88,6 +88,7 @@ export const metadata: Metadata = {
     canonical: SITE_URL,
     languages: {
       en: SITE_URL,
+      ko: `${SITE_URL}/ko`,
       ja: `${SITE_URL}/ja`,
       "x-default": SITE_URL,
     },
@@ -122,24 +123,37 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
         publisher: {
           "@id": `${siteUrl}/#organization`,
         },
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${siteUrl}/blog?q={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
+        },
       },
       {
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
         name: "AI Native Playbook Series",
+        legalName: "NEWBIZSOFT",
         url: siteUrl,
         description: descriptions[locale] ?? descriptions.en,
         logo: {
           "@type": "ImageObject",
+          "@id": `${siteUrl}/#logo`,
           url: `${siteUrl}/opengraph-image`,
           width: 1200,
           height: 630,
+          caption: "AI Native Playbook Series",
         },
+        image: { "@id": `${siteUrl}/#logo` },
         sameAs: [],
         contactPoint: {
           "@type": "ContactPoint",
           email: "contact@newbizsoft.com",
           contactType: "customer service",
+          availableLanguage: ["English", "Korean", "Japanese"],
         },
       },
     ],
@@ -189,12 +203,15 @@ export default async function LocaleLayout({
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN && (
           <>
             <link rel="preconnect" href="https://cdn.paddle.com" crossOrigin="anonymous" />
             <link rel="dns-prefetch" href="https://cdn.paddle.com" />
           </>
         )}
+        <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
         <script
           type="application/ld+json"
