@@ -1,7 +1,5 @@
 "use client";
 
-import { NextIntlClientProvider } from "next-intl";
-import type { AbstractIntlMessages } from "next-intl";
 import dynamic from "next/dynamic";
 
 const ExitIntentPopup = dynamic(() => import("@/components/ExitIntentPopup"), {
@@ -11,20 +9,42 @@ const ScrollSubscribeBanner = dynamic(() => import("@/components/ScrollSubscribe
   ssr: false,
 });
 
+type ExitPopupLabels = {
+  successTitle: string;
+  successDesc: string;
+  badge: string;
+  title: string;
+  subtitle: string;
+  benefit1: string;
+  benefit2: string;
+  benefit3: string;
+  cta: string;
+  noSpam: string;
+  dismiss: string;
+};
+
+type ScrollBannerLabels = {
+  title: string;
+  badge: string;
+  success: string;
+  cta: string;
+  error: string;
+};
+
 export default function IntlClientShell({
-  messages,
-  locale,
   children,
+  exitPopupLabels,
+  scrollBannerLabels,
 }: {
-  messages: AbstractIntlMessages;
-  locale: string;
   children: React.ReactNode;
+  exitPopupLabels: ExitPopupLabels;
+  scrollBannerLabels: ScrollBannerLabels;
 }) {
   return (
-    <NextIntlClientProvider messages={messages} locale={locale}>
+    <>
       {children}
-      <ScrollSubscribeBanner />
-      <ExitIntentPopup />
-    </NextIntlClientProvider>
+      <ScrollSubscribeBanner labels={scrollBannerLabels} />
+      <ExitIntentPopup labels={exitPopupLabels} />
+    </>
   );
 }

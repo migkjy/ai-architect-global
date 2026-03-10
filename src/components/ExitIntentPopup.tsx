@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { useTranslations } from "next-intl";
 
 declare global {
   interface Window {
@@ -14,13 +13,26 @@ const DISMISS_KEY = "ai_architect_exit_dismissed";
 const SUBSCRIBED_KEY = "ai_architect_subscribed";
 const DISMISS_DAYS = 14;
 
-export default function ExitIntentPopup() {
+type ExitIntentPopupLabels = {
+  successTitle: string;
+  successDesc: string;
+  badge: string;
+  title: string;
+  subtitle: string;
+  benefit1: string;
+  benefit2: string;
+  benefit3: string;
+  cta: string;
+  noSpam: string;
+  dismiss: string;
+};
+
+export default function ExitIntentPopup({ labels }: { labels: ExitIntentPopupLabels }) {
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
-  const t = useTranslations("exitPopup");
 
   const dismiss = useCallback(() => {
     setVisible(false);
@@ -132,42 +144,42 @@ export default function ExitIntentPopup() {
               <span className="text-gold text-3xl">&#10003;</span>
             </div>
             <h2 id="exit-popup-title" className="text-xl font-bold text-text-primary mb-2">
-              {t("successTitle")}
+              {labels.successTitle}
             </h2>
             <p className="text-text-secondary text-sm">
-              {t("successDesc")}
+              {labels.successDesc}
             </p>
           </div>
         ) : (
           <>
             <div className="text-center mb-5">
               <div className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-3 py-1 rounded-full mb-3 uppercase tracking-wide">
-                {t("badge")}
+                {labels.badge}
               </div>
               <p className="text-2xl mb-2">&#128218;</p>
               <h2
                 id="exit-popup-title"
                 className="text-xl font-bold text-text-primary mb-1"
               >
-                {t("title")}
+                {labels.title}
               </h2>
               <p className="text-text-secondary text-sm">
-                {t("subtitle")}
+                {labels.subtitle}
               </p>
             </div>
 
             <ul className="mb-5 space-y-2 text-sm text-text-secondary">
               <li className="flex items-center gap-2.5">
                 <span className="text-gold shrink-0">&#10003;</span>
-                <span>{t("benefit1")}</span>
+                <span>{labels.benefit1}</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="text-gold shrink-0">&#10003;</span>
-                <span>{t("benefit2")}</span>
+                <span>{labels.benefit2}</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <span className="text-gold shrink-0">&#10003;</span>
-                <span>{t("benefit3")}</span>
+                <span>{labels.benefit3}</span>
               </li>
             </ul>
 
@@ -202,7 +214,7 @@ export default function ExitIntentPopup() {
                 disabled={status === "loading"}
                 className="w-full px-6 py-3 bg-gold text-navy-dark font-bold rounded-xl hover:bg-gold-light transition-all text-sm disabled:opacity-50"
               >
-                {status === "loading" ? "..." : t("cta")}
+                {status === "loading" ? "..." : labels.cta}
               </button>
               {status === "error" && (
                 <p role="alert" className="text-center text-xs text-red-400">
@@ -212,14 +224,14 @@ export default function ExitIntentPopup() {
             </form>
 
             <p className="mt-3 text-center text-xs text-text-muted">
-              {t("noSpam")}
+              {labels.noSpam}
             </p>
 
             <button
               onClick={dismiss}
               className="mt-3 block w-full text-center text-xs text-text-muted hover:text-text-secondary transition-colors"
             >
-              {t("dismiss")}
+              {labels.dismiss}
             </button>
           </>
         )}
