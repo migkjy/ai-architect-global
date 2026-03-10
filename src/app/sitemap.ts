@@ -14,11 +14,11 @@ function localizedUrl(locale: string, path: string): string {
   return path ? `${BASE_URL}/${locale}/${path}` : `${BASE_URL}/${locale}`;
 }
 
-// hreflang alternates — 영어는 prefix 없는 canonical + /en/ 둘 다 포함
+// hreflang alternates — /ko 는 301 리다이렉트로 차단되어 있으므로 제외
+// CEO 지시: richbukae 가격 충돌 방지를 위해 /ko 접근 차단 유지
 function buildAlternates(path: string): Record<string, string> {
   return {
     en: localizedUrl("en", path),
-    ko: localizedUrl("ko", path),
     ja: localizedUrl("ja", path),
     "x-default": canonicalUrl(path),
   };
@@ -75,8 +75,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // 2. /en/, /ko/, /ja/ 로캘 prefix URL
-  for (const locale of ["en", "ko", "ja"] as const) {
+  // 2. /en/, /ja/ 로캘 prefix URL (/ko 제외 — 301 리다이렉트 차단)
+  for (const locale of ["en", "ja"] as const) {
     for (const route of allRoutes) {
       result.push({
         url: localizedUrl(locale, route.path),

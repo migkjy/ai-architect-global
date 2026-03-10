@@ -13,6 +13,8 @@ export default function robots(): MetadataRoute.Robots {
           "/_next/",
           "/thank-you",
           "/og-image",
+          "/ko",
+          "/ko/",
         ],
       },
       {
