@@ -202,8 +202,6 @@ export default async function LocaleLayout({
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN && (
           <>
             <link rel="preconnect" href="https://cdn.paddle.com" crossOrigin="anonymous" />
