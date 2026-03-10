@@ -6,9 +6,6 @@ import dynamic from "next/dynamic";
 const BuyButton = dynamic(() => import("@/components/BuyButton"), {
   loading: () => <span className="inline-block h-12 w-48 animate-pulse bg-gold/20 rounded-xl" />,
 });
-const FaqAccordion = dynamic(() => import("@/components/FaqAccordion"), {
-  loading: () => <div className="h-64 animate-pulse bg-surface/30 rounded-xl" />,
-});
 const StickyMobileCTA = dynamic(() => import("@/components/StickyMobileCTA"));
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
@@ -231,7 +228,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-            <BuyButton href={bundleUrl} className="text-lg px-10 py-4 animate-pulse-subtle">
+            <BuyButton href={bundleUrl} className="text-lg px-10 py-4">
               {th("cta")} &mdash; ${bundle.price}
             </BuyButton>
             <Link
@@ -652,7 +649,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   {tc("moneyBack")}
                 </li>
               </ul>
-              <BuyButton href={bundleUrl} className="w-full text-lg py-4 animate-pulse-subtle">
+              <BuyButton href={bundleUrl} className="w-full text-lg py-4">
                 {th("cta")} &mdash; ${bundle.price}
               </BuyButton>
               <p className="text-xs text-text-muted mt-3">
@@ -680,15 +677,49 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ — native details for zero JS */}
       <section className="py-20 bg-navy-dark/40">
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">{t("faqTitle")}</h2>
-          <FaqAccordion faqs={faqs} />
+          <div className="space-y-3">
+            {faqs.map((faq, idx) => (
+              <details
+                key={faq.q}
+                className="group bg-surface/60 border border-white/5 rounded-xl overflow-hidden hover:border-gold/20 transition-colors"
+              >
+                <summary className="flex items-center justify-between p-6 cursor-pointer list-none select-none">
+                  <h3 className="font-semibold text-text-primary pr-4">{faq.q}</h3>
+                  <svg
+                    className="w-5 h-5 text-gold shrink-0 transition-transform group-open:rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                  </svg>
+                </summary>
+                <div id={`faq-home-answer-${idx}`} className="px-6 pb-6">
+                  <p className="text-text-secondary text-sm leading-relaxed">{faq.a}</p>
+                </div>
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
-      <StickyMobileCTA bundlePrice={bundle.price} bundleUrl={bundleUrl} />
+      <StickyMobileCTA
+        bundlePrice={bundle.price}
+        bundleUrl={bundleUrl}
+        labels={{
+          completeBundle: t("completeBundle"),
+          instantDownload: tc("instantDownload"),
+          moneyBack: tc("moneyBack"),
+          comingSoon: tc("comingSoon"),
+          getBundle: tc("getBundle"),
+        }}
+      />
     </>
   );
 }

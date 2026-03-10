@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import Header from "@/components/Header";
@@ -161,7 +161,10 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
 
-  const messages = await getMessages();
+  const [tExit, tScroll] = await Promise.all([
+    getTranslations({ locale, namespace: "exitPopup" }),
+    getTranslations({ locale, namespace: "scrollBanner" }),
+  ]);
 
   const hreflangLinks = routing.locales.map((loc) => ({
     rel: "alternate" as const,
@@ -230,7 +233,28 @@ export default async function LocaleLayout({
           Skip to content
         </a>
         <Header />
-        <IntlClientShell messages={messages} locale={locale}>
+        <IntlClientShell
+          exitPopupLabels={{
+            successTitle: tExit("successTitle"),
+            successDesc: tExit("successDesc"),
+            badge: tExit("badge"),
+            title: tExit("title"),
+            subtitle: tExit("subtitle"),
+            benefit1: tExit("benefit1"),
+            benefit2: tExit("benefit2"),
+            benefit3: tExit("benefit3"),
+            cta: tExit("cta"),
+            noSpam: tExit("noSpam"),
+            dismiss: tExit("dismiss"),
+          }}
+          scrollBannerLabels={{
+            title: tScroll("title"),
+            badge: tScroll("badge"),
+            success: tScroll("success"),
+            cta: tScroll("cta"),
+            error: tScroll("error"),
+          }}
+        >
           <main id="main-content" className="flex-1">{children}</main>
         </IntlClientShell>
         <Footer />

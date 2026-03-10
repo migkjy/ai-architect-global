@@ -14,6 +14,9 @@ const nextConfig: NextConfig = {
       "remark-gfm",
     ],
   },
+  turbopack: {
+    root: __dirname,
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
