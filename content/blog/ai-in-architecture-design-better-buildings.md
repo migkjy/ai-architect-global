@@ -3,6 +3,7 @@ title: "AI in Architecture: How Architects Are Using AI to Design Better Buildin
 description: "Discover how architects are leveraging AI tools to streamline design workflows, optimize building performance, and create innovative structures. A practical guide for architecture professionals."
 date: "2026-03-07"
 tags: ["AI architecture", "AI building design", "AI for architects", "generative design", "architectural technology"]
+locale: "en"
 ---
 
 # AI in Architecture: How Architects Are Using AI to Design Better Buildings

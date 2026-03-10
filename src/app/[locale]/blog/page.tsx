@@ -66,7 +66,7 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
 
   const t = await getTranslations("blog");
-  const posts = getAllPosts();
+  const posts = getAllPosts(locale);
   const canonicalUrl = locale === "en" ? `${SITE_URL}/blog` : `${SITE_URL}/${locale}/blog`;
   const dateLocale = locale === "ja" ? "ja-JP" : "en-US";
 

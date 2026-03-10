@@ -3,6 +3,7 @@ title: "AI Marketing Automation for Small Business — Save 10 Hours Per Week"
 description: "Practical AI marketing automation strategies for small business owners. Email sequences, social media content, and customer follow-up on autopilot."
 date: "2026-02-19"
 tags: ["AI marketing", "marketing automation", "email marketing", "social media", "small business"]
+locale: "en"
 ---
 
 Most small business owners spend 10 to 15 hours per week on marketing tasks that AI can now handle in a fraction of the time. This guide shows you the three highest-leverage automation systems to build first: email sequences, social media content, and customer follow-up.

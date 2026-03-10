@@ -4,6 +4,7 @@ description: "A step-by-step guide to building AI-powered revenue streams. Learn
 date: "2026-03-01"
 author: "AI Native Playbook"
 tags: ["AI business", "automation", "solopreneur", "revenue", "blueprint"]
+locale: "en"
 keywords: ["AI business blueprint", "business automation", "AI revenue", "solopreneur AI", "automated income"]
 featured: false
 ---
