@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { getCtaVariant, CTA_VARIANTS, type CtaVariant } from "@/lib/cta-config";
 
 declare global {
   interface Window {
@@ -15,12 +16,20 @@ type EmailCaptureProps = {
 };
 
 export default function EmailCapture({
-  buttonText = "Notify Me at Launch",
+  buttonText,
   className = "",
 }: EmailCaptureProps) {
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [variant, setVariant] = useState<CtaVariant>("A");
+
+  useEffect(() => {
+    setVariant(getCtaVariant());
+  }, []);
+
+  const copy = CTA_VARIANTS.emailCapture[variant];
+  const resolvedButtonText = buttonText ?? copy.buttonText;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -30,7 +39,7 @@ export default function EmailCapture({
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, website }),
+        body: JSON.stringify({ email, website, source: `email-capture-${variant}` }),
       });
       if (res.ok) {
         setStatus("success");
@@ -57,22 +66,16 @@ export default function EmailCapture({
     <div className={className}>
       <div className="mb-3 flex flex-wrap items-center gap-2 text-xs text-text-secondary">
         <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/10 border border-gold/20 px-3 py-1 font-semibold text-gold">
-          1,800+ subscribers
+          {copy.badge}
         </span>
       </div>
       <ul className="mb-4 space-y-1.5 text-sm text-text-secondary">
-        <li className="flex items-center gap-2">
-          <span className="text-gold shrink-0">&#10003;</span>
-          AI architecture trends &amp; new templates
-        </li>
-        <li className="flex items-center gap-2">
-          <span className="text-gold shrink-0">&#10003;</span>
-          3 ready-to-use system prompts weekly
-        </li>
-        <li className="flex items-center gap-2">
-          <span className="text-gold shrink-0">&#10003;</span>
-          Exclusive subscriber discounts
-        </li>
+        {copy.benefits.map((benefit, i) => (
+          <li key={i} className="flex items-center gap-2">
+            <span className="text-gold shrink-0">&#10003;</span>
+            {benefit}
+          </li>
+        ))}
       </ul>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <div className="absolute opacity-0 -z-10 h-0 overflow-hidden" aria-hidden="true">
@@ -104,13 +107,13 @@ export default function EmailCapture({
           type="submit"
           className="px-6 py-3 bg-gold text-navy-dark font-bold rounded-xl hover:bg-gold-light transition-all transform hover:scale-105 text-sm whitespace-nowrap"
         >
-          {buttonText}
+          {resolvedButtonText}
         </button>
         {status === "error" && (
           <p id="email-capture-error" role="alert" className="text-red-400 text-xs mt-1">Something went wrong. Try again.</p>
         )}
       </form>
-      <p className="mt-2 text-xs text-text-muted">Free &middot; No spam &middot; Unsubscribe anytime</p>
+      <p className="mt-2 text-xs text-text-muted">{copy.footer}</p>
     </div>
   );
 }
