@@ -62,7 +62,7 @@ export default async function ThankYouPage({
               {
                 step: "2",
                 title: "Download your PDF",
-                desc: "Click the download link in the email, or access it directly from your Lemon Squeezy receipt.",
+                desc: "Click the download link in the email. You can also access your receipt at customer.paddle.com.",
               },
               {
                 step: "3",
