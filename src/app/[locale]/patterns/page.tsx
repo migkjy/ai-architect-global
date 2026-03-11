@@ -98,6 +98,34 @@ export default async function PatternsPage({
             </Link>
           ))}
         </div>
+
+        {/* Related Pages */}
+        <div className="mt-16 pt-8 border-t border-gray-200">
+          <h2 className="mb-4 text-lg font-semibold">Explore More</h2>
+          <div className="grid gap-4 sm:grid-cols-3">
+            <Link
+              href="/products"
+              className="rounded-lg border border-gray-200 p-4 transition hover:border-blue-200 hover:bg-blue-50"
+            >
+              <h3 className="font-medium">AI Native Playbook Series</h3>
+              <p className="mt-1 text-sm text-gray-500">PDF guides with AI Agent Skills for each framework</p>
+            </Link>
+            <Link
+              href="/bundle"
+              className="rounded-lg border border-gray-200 p-4 transition hover:border-blue-200 hover:bg-blue-50"
+            >
+              <h3 className="font-medium">Bundle Package</h3>
+              <p className="mt-1 text-sm text-gray-500">All 6 guides + AI Skills at a discounted price</p>
+            </Link>
+            <Link
+              href="/blog"
+              className="rounded-lg border border-gray-200 p-4 transition hover:border-blue-200 hover:bg-blue-50"
+            >
+              <h3 className="font-medium">Blog</h3>
+              <p className="mt-1 text-sm text-gray-500">AI business insights, tips, and case studies</p>
+            </Link>
+          </div>
+        </div>
       </main>
     </>
   );
