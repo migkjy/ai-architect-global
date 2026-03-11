@@ -31,10 +31,7 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   async redirects() {
-    return [
-      { source: "/pricing", destination: "/en/products", permanent: true },
-      { source: "/:locale/pricing", destination: "/:locale/products", permanent: true },
-    ];
+    return [];
   },
   async rewrites() {
     return [
