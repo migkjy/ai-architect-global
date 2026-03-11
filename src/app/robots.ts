@@ -10,13 +10,48 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
         disallow: [
           "/api/",
-          "/_next/",
+          "/_next/static/",
           "/admin/",
           "/thank-you",
-          "/opengraph-image",
+          "/opengraph-image*",
+          "/icon*",
+          "/apple-icon*",
           "/ko",
           "/ko/",
         ],
+        crawlDelay: 10,
+      },
+      {
+        userAgent: "GPTBot",
+        disallow: "/",
+      },
+      {
+        userAgent: "ChatGPT-User",
+        disallow: "/",
+      },
+      {
+        userAgent: "Google-Extended",
+        disallow: "/",
+      },
+      {
+        userAgent: "CCBot",
+        disallow: "/",
+      },
+      {
+        userAgent: "anthropic-ai",
+        disallow: "/",
+      },
+      {
+        userAgent: "ClaudeBot",
+        disallow: "/",
+      },
+      {
+        userAgent: "cohere-ai",
+        disallow: "/",
+      },
+      {
+        userAgent: "Bytespider",
+        disallow: "/",
       },
     ],
     sitemap: [
