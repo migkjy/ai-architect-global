@@ -21,6 +21,7 @@ export function generateMetadata(): Metadata {
       description: "5 proven business frameworks automated with AI.",
       url: `${BASE_URL}/patterns`,
       type: "website",
+      images: [{ url: `${BASE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Architecture Patterns" }],
     },
     alternates: {
       canonical: `${BASE_URL}/patterns`,

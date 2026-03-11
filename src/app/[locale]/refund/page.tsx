@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   title: "Refund Policy — AI Native Playbook Series",
   description:
     "14-day money-back guarantee on all AI Native Playbook Series digital products. Simple refund process via email. No questions asked, full refund within 24 hours.",
+  openGraph: {
+    title: "Refund Policy — AI Native Playbook Series",
+    description: "14-day money-back guarantee. Simple refund process via email.",
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
+  },
   alternates: {
     canonical: `${SITE_URL}/refund`,
   },

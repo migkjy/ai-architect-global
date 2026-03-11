@@ -6,7 +6,7 @@ export default async function Footer() {
   const tn = await getTranslations("nav");
 
   return (
-    <footer className="bg-navy-dark border-t border-white/5 py-12">
+    <footer className="bg-navy-dark border-t border-white/5 py-12" aria-label="Site footer">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>

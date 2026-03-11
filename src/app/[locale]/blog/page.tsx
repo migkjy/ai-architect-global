@@ -59,6 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       url: canonicalUrl,
       siteName: "AI Native Playbook Series",
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: meta.title }],
     },
     twitter: {
       card: "summary_large_image",
