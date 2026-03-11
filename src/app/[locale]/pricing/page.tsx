@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { books, bundle, getBundleUrl, getBundlePaddlePriceId } from "@/lib/products";
+import { books, bundle, getBundleUrl, getBundlePaddlePriceId, getBookPaddlePriceId, getProductUrl } from "@/lib/products";
 import dynamic from "next/dynamic";
 const BuyButton = dynamic(() => import("@/components/BuyButton"));
 import { setRequestLocale } from "next-intl/server";
@@ -126,6 +126,9 @@ export default async function PricingPage({
 
   const bundleUrl = getBundleUrl();
   const bundlePaddlePriceId = getBundlePaddlePriceId();
+  const vol1 = books[0]; // AI Marketing Architect (Vol 1)
+  const vol1PaddlePriceId = getBookPaddlePriceId(vol1.paddlePriceEnvKey);
+  const vol1Url = getProductUrl(vol1.envKey);
   const savedAmount = bundle.originalPrice - bundle.price;
   const savePct = Math.round((savedAmount / bundle.originalPrice) * 100);
 
@@ -219,12 +222,21 @@ export default async function PricingPage({
                 ))}
               </ul>
 
+              <BuyButton
+                href={vol1Url}
+                paddlePriceId={vol1PaddlePriceId}
+                paddleSuccessUrl={`${SITE_URL}/thank-you?product=${encodeURIComponent(vol1.title)}`}
+                variant="secondary"
+                className="w-full"
+              >
+                Start with Volume 1 — $17
+              </BuyButton>
               <Link
                 href="/products"
-                className="inline-flex items-center justify-center px-8 py-3 rounded-xl font-bold transition-all transform hover:scale-105 bg-surface border-2 border-gold/30 text-gold hover:border-gold/60 hover:bg-gold/5 w-full text-center"
+                className="block text-center text-sm text-text-secondary hover:text-gold transition-colors mt-3"
                 data-testid="cta-individual"
               >
-                Start with Volume 1
+                Browse all volumes &rarr;
               </Link>
             </div>
 
