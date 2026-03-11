@@ -89,24 +89,6 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
     },
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "@id": `${siteUrl}/#organization`,
-      name: "NEWBIZSOFT",
-      url: siteUrl,
-      description: "AI-powered business tools for entrepreneurs and small teams.",
-      brand: {
-        "@type": "Brand",
-        name: "AI Native Playbook Series",
-      },
-      contactPoint: {
-        "@type": "ContactPoint",
-        email: "contact@newbizsoft.com",
-        contactType: "customer service",
-      },
-      sameAs: [],
-    },
-    {
-      "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
