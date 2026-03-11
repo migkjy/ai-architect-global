@@ -67,6 +67,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: "summary_large_image",
       title: meta.title,
       description: meta.ogDescription,
+      images: [`${SITE_URL}/opengraph-image`],
     },
   };
 }
