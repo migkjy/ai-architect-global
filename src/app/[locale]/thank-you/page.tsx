@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
+import { GA4PurchaseComplete } from "@/components/GA4PurchaseComplete";
 
 export const metadata: Metadata = {
   title: "Thank You for Your Purchase | AI Native Playbook Series",
@@ -23,6 +24,7 @@ export default async function ThankYouPage({
 
   return (
     <div className="min-h-screen pt-32 pb-20">
+      <GA4PurchaseComplete productName={productName} />
       <div className="max-w-2xl mx-auto px-4 text-center">
         <div className="w-20 h-20 bg-green-500/10 border border-green-500/20 rounded-full flex items-center justify-center mx-auto mb-8">
           <svg

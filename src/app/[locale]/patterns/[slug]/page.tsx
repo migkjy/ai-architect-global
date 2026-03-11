@@ -213,6 +213,17 @@ export default async function PatternPage({
             ))}
           </div>
         </section>
+
+        {/* Quick Links */}
+        <nav className="mt-12 pt-8 border-t border-gray-200" aria-label="Related pages">
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Quick Links</p>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/bundle" className="text-sm text-blue-600 hover:text-blue-800 transition-colors">Bundle Package</Link>
+            <Link href="/products" className="text-sm text-blue-600 hover:text-blue-800 transition-colors">All Products</Link>
+            <Link href="/blog" className="text-sm text-blue-600 hover:text-blue-800 transition-colors">Blog</Link>
+            <Link href="/faq" className="text-sm text-blue-600 hover:text-blue-800 transition-colors">FAQ</Link>
+          </div>
+        </nav>
       </main>
     </>
   );
