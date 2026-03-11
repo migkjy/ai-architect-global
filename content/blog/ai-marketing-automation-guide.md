@@ -2,6 +2,7 @@
 title: "AI Marketing Automation for Small Business — Save 10 Hours Per Week"
 description: "Practical AI marketing automation strategies for small business owners. Email sequences, social media content, and customer follow-up on autopilot."
 date: "2026-02-19"
+category: "AI Marketing"
 tags: ["AI marketing", "marketing automation", "email marketing", "social media", "small business"]
 ---
 

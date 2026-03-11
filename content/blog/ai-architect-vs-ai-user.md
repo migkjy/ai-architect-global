@@ -2,6 +2,7 @@
 title: "AI Architect vs. AI User: Why the Gap Is Growing in 2026"
 description: "Using AI tools and architecting AI systems are fundamentally different skills. Learn why the gap between AI users and AI architects is accelerating in 2026 and how to bridge it."
 date: "2026-02-28"
+category: "Business Strategy"
 excerpt: "Using AI tools and architecting AI systems are fundamentally different skills. Here's why the gap between them is accelerating."
 ---
 

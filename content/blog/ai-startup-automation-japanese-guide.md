@@ -2,6 +2,7 @@
 title: "2026年 AIスタートアップ自動化ガイド — ビジネスフレームワークをAIで実行する方法"
 description: "Russell BrunsonやJeff WalkerのビジネスフレームワークをAIで自動化する実践ガイド。起業家のためのステップバイステップ解説。"
 date: "2026-03-07"
+category: "AI Automation"
 tags: ["AI スタートアップ", "AI マーケティング", "ビジネス自動化", "AI フレームワーク", "起業家 AI", "デジタルマーケティング"]
 ---
 

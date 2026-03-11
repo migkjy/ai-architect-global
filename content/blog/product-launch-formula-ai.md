@@ -2,6 +2,7 @@
 title: "Product Launch Formula with AI — Jeff Walker's PLF Automated"
 description: "Use AI to execute Jeff Walker's Product Launch Formula. Automate your prelaunch content, email sequences, and post-launch follow-up."
 date: "2026-02-22"
+category: "AI Marketing"
 tags: ["Jeff Walker", "Product Launch Formula", "AI launch", "email sequence", "launch strategy"]
 ---
 

@@ -2,6 +2,7 @@
 title: "50 ChatGPT Prompts Every Entrepreneur Needs in 2026"
 description: "Ready-to-use ChatGPT prompts for marketing copy, customer service, business planning, and content creation. Copy and customize for your business."
 date: "2026-02-20"
+category: "AI Automation"
 tags: ["ChatGPT prompts", "entrepreneur", "business prompts", "AI copywriting", "productivity"]
 ---
 

@@ -2,6 +2,7 @@
 title: "Best AI Tools for Small Business in 2026 — Complete Guide"
 description: "ChatGPT, Claude, and other AI tools compared for small business owners. Practical guide to choosing and using AI to save time and grow revenue."
 date: "2026-02-18"
+category: "AI Tools"
 tags: ["AI tools", "small business", "ChatGPT", "Claude", "productivity"]
 ---
 

@@ -1,8 +1,10 @@
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, getAllCategories, getAllTags } from "@/lib/blog";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
+import { Suspense } from "react";
+import BlogFilterClient from "@/components/blog/BlogFilterClient";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
@@ -73,12 +75,22 @@ function escapeJsonLd(json: string): string {
   return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
 }
 
-export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function BlogPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ category?: string; tag?: string }>;
+}) {
   const { locale } = await params;
+  const { category: activeCategory = "", tag: activeTag = "" } = await searchParams;
   setRequestLocale(locale);
 
   const t = await getTranslations("blog");
   const posts = getAllPosts();
+  const categories = getAllCategories();
+  const topTags = getAllTags();
+
   const canonicalUrl = locale === "en" ? `${SITE_URL}/blog` : `${SITE_URL}/${locale}/blog`;
   const dateLocale = locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US";
 
@@ -146,26 +158,18 @@ export default async function BlogPage({ params }: { params: Promise<{ locale: s
           <h1 className="text-4xl font-bold mb-4">{t("title")}</h1>
           <p className="text-lg text-text-secondary">{t("subtitle")}</p>
         </div>
-        <div className="grid gap-8">
-          {posts.map((post) => (
-            <article key={post.slug} className="border border-white/10 rounded-xl p-6 hover:border-gold/40 transition-colors">
-              <div className="flex items-center gap-3 text-sm text-text-secondary mb-3">
-                <time dateTime={post.date}>{new Date(post.date).toLocaleDateString(dateLocale, { year: "numeric", month: "long", day: "numeric" })}</time>
-                <span>&middot;</span>
-                <span>{post.readingTime}</span>
-              </div>
-              <h2 className="text-xl font-semibold mb-2">
-                <Link href={`/blog/${post.slug}`} className="hover:text-gold transition-colors">{post.title}</Link>
-              </h2>
-              <p className="text-text-secondary mb-4">{post.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {post.tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className="text-xs bg-gold/10 text-gold px-2 py-1 rounded-full">{tag}</span>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
+
+        <Suspense fallback={<div className="animate-pulse h-24 bg-white/5 rounded-xl mb-8" />}>
+          <BlogFilterClient
+            posts={posts}
+            categories={categories}
+            topTags={topTags}
+            activeCategory={activeCategory}
+            activeTag={activeTag}
+            dateLocale={dateLocale}
+          />
+        </Suspense>
+
         {/* Product CTA */}
         <div className="mt-16 p-6 bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl text-center">
           <h2 className="text-lg font-bold mb-2">Turn These Strategies into AI-Powered Action</h2>
