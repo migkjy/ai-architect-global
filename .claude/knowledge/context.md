@@ -15,23 +15,26 @@
 - 개발: `main` -> staging: `staging` -> production: `production`
 - main->production 직행 PR 절대 금지, staging 경유 필수
 
-## 최근 주요 변경 (2026-03-07~08)
-- 리브랜딩 전면 실행 (rebrand-code-pl, rebrand-pdf-pl)
-- Paddle 상품 7개 + Price 7개 + Webhook + 환경변수 설정
-- 법적 페이지 /terms /privacy /refund 직접 200 반환
-- 블로그 3편 + 랜딩 블로그 섹션 + 크로스링크
-- 블로그 SEO 심화: CollectionPage+BlogPosting+sitemap+IndexNow
-- sitemap 법적 3페이지 추가 + IndexNow 104URLs
+## 최근 주요 변경 (2026-03-11)
+- Paddle Checkout 활성화 (커밋 2659f58):
+  - /pricing → /products 301 리다이렉트 제거 → /en/pricing 직접 접근 가능
+  - Individual 티어에 Vol 1 Paddle Buy 버튼 추가 ($17)
+  - Bundle 티어 Paddle Buy 버튼 유지 ($47)
+  - Paddle 코드 인프라 전체 확인: Paddle.js, BuyButton, Webhook, Email, Telegram 완료
+
+## 이전 주요 변경 (2026-03-07~10)
+- 리브랜딩 전면 실행, Paddle 상품 7개 + Webhook + 환경변수 설정
+- 법적 페이지, 블로그 3편, SEO 심화, Technical SEO 강화
 
 ## 알려진 이슈
-- Paddle Client Token (waiting_external — Paddle 심사 1-3일)
-- CEO 블로커: NEXT_PUBLIC_PADDLE_CLIENT_TOKEN
+- Paddle Client Token (waiting_external — Paddle 심사 대기)
+- CEO 블로커: .env에 Paddle 환경변수 미설정 (NEXT_PUBLIC_PADDLE_CLIENT_TOKEN 등)
 - 일본어 제품 추가 제작 금지 (CEO 지시)
 
 ## 다음 과업 후보
-- Paddle Client Token 적용 (심사 완료 시)
+- Paddle 환경변수 설정 (.env + Vercel) — 키 발급 후 즉시
 - 신규 도메인 DNS 연결
 - 추가 블로그 콘텐츠
 
 ---
-*마지막 업데이트: 2026-03-08 (Phase 1 초기화)*
+*마지막 업데이트: 2026-03-11 (Paddle Checkout 활성화)*
