@@ -2,6 +2,7 @@
 title: "How to Use AI with Russell Brunson's DotCom Secrets Framework"
 description: "Apply Russell Brunson's Value Ladder, Hook-Story-Offer, and Soap Opera Sequence using AI tools. Step-by-step guide for online entrepreneurs."
 date: "2026-02-21"
+category: "AI Marketing"
 tags: ["Russell Brunson", "DotCom Secrets", "AI funnel", "Value Ladder", "marketing"]
 locale: "en"
 ---

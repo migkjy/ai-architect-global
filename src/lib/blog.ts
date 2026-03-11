@@ -11,12 +11,12 @@ export interface BlogPost {
   description: string;
   date: string;
   tags: string[];
-  locale: string;
+  category: string;
   readingTime: string;
   content: string;
 }
 
-export function getAllPosts(locale?: string): Omit<BlogPost, "content">[] {
+export function getAllPosts(): Omit<BlogPost, "content">[] {
   if (!fs.existsSync(BLOG_DIR)) return [];
   const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
   return files
@@ -31,11 +31,10 @@ export function getAllPosts(locale?: string): Omit<BlogPost, "content">[] {
         description: data.description ?? "",
         date: data.date ?? "",
         tags: data.tags ?? [],
-        locale: data.locale ?? "en",
+        category: data.category ?? "General",
         readingTime: stats.text,
       };
     })
-    .filter((post) => !locale || post.locale === locale)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
@@ -51,8 +50,32 @@ export function getPostBySlug(slug: string): BlogPost | null {
     description: data.description ?? "",
     date: data.date ?? "",
     tags: data.tags ?? [],
-    locale: data.locale ?? "en",
+    category: data.category ?? "General",
     readingTime: stats.text,
     content,
   };
+}
+
+export function getPostsByCategory(category: string): Omit<BlogPost, "content">[] {
+  return getAllPosts().filter((post) => post.category === category);
+}
+
+export function getAllCategories(): string[] {
+  const posts = getAllPosts();
+  const categories = Array.from(new Set(posts.map((p) => p.category)));
+  return categories.sort();
+}
+
+export function getAllTags(): string[] {
+  const posts = getAllPosts();
+  const tagCounts: Record<string, number> = {};
+  for (const post of posts) {
+    for (const tag of post.tags) {
+      tagCounts[tag] = (tagCounts[tag] ?? 0) + 1;
+    }
+  }
+  return Object.entries(tagCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+    .map(([tag]) => tag);
 }

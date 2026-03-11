@@ -2,6 +2,7 @@
 title: "How to Create Stunning Architectural Renders with AI — Step by Step"
 description: "A step-by-step guide to creating professional architectural renders using AI tools. Learn the complete workflow from model preparation to final output for architects and designers."
 date: "2026-03-07"
+category: "Architecture & Design"
 tags: ["AI architectural rendering", "AI render tutorial", "architectural visualization", "AI rendering workflow", "design technology"]
 locale: "en"
 ---
