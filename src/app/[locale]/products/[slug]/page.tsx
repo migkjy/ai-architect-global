@@ -143,7 +143,7 @@ export default async function ProductPage({ params }: Props) {
         availability: "https://schema.org/InStock",
         url: `${siteUrl}/products/${slug}`,
         priceValidUntil: "2026-12-31",
-        seller: { "@type": "Organization", name: "NEWBIZSOFT", url: siteUrl },
+        seller: { "@type": "Organization", name: "AI Architect", url: siteUrl },
       },
       {
         "@type": "Offer",
@@ -153,7 +153,7 @@ export default async function ProductPage({ params }: Props) {
         availability: "https://schema.org/InStock",
         url: `${siteUrl}/bundle`,
         priceValidUntil: "2026-12-31",
-        seller: { "@type": "Organization", name: "NEWBIZSOFT", url: siteUrl },
+        seller: { "@type": "Organization", name: "AI Architect", url: siteUrl },
       },
     ],
   };
