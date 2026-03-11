@@ -13,8 +13,12 @@ const nextConfig: NextConfig = {
       "next-intl",
       "react-markdown",
       "remark-gfm",
+      "gray-matter",
+      "reading-time",
       "@vercel/analytics",
       "@vercel/speed-insights",
+      "@sentry/nextjs",
+      "@tailwindcss/typography",
     ],
   },
   turbopack: {
