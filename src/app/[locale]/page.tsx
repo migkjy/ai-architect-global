@@ -417,6 +417,30 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
+      {/* Free Guide CTA Banner */}
+      <section className="py-16 bg-gradient-to-r from-gold/5 via-gold/10 to-gold/5 border-y border-gold/10">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <span className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-3 py-1 rounded-full tracking-wide uppercase mb-4">
+            Free Resource
+          </span>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">
+            Get Your Free AI Starter Guide
+          </h2>
+          <p className="text-text-secondary max-w-xl mx-auto mb-6">
+            Not ready to buy? Start with our free guide — learn how AI can automate 6 proven business frameworks in just 15 minutes.
+          </p>
+          <Link
+            href="/free-guide"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold transition-all transform hover:scale-105 bg-gold text-navy-dark hover:bg-gold-light"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+            Download Free Guide
+          </Link>
+        </div>
+      </section>
+
       {/* Books Preview */}
       <section id="books" className="py-20 bg-navy-dark/40">
         <div className="max-w-6xl mx-auto px-4">
