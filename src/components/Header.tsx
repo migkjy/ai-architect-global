@@ -7,6 +7,7 @@ export default async function Header() {
 
   const navItems = [
     { href: "/products", label: t("products") },
+    { href: "/pricing", label: t("pricing") },
     { href: "/bundle", label: t("bundle") },
     { href: "/blog", label: t("blog") },
     { href: "/about", label: t("about") },
