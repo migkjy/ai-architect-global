@@ -1,6 +1,6 @@
 ---
 title: "Top 5 AI Tools for Interior Design in 2026"
-description: "A practical comparison of the best AI tools for interior designers in 2026. From AI rendering to space planning, discover which tools deliver real results for design professionals."
+description: "Best AI tools for interior designers in 2026, compared. From AI rendering to space planning — find out which tools deliver real results for design pros."
 date: "2026-03-07"
 category: "AI Tools"
 tags: ["AI interior design", "AI design tools", "AI rendering", "interior design technology", "design automation"]

@@ -1,6 +1,6 @@
 ---
 title: "How to Create an AI Marketing Strategy in 2026 — A Step-by-Step Framework"
-description: "Learn how to build a complete AI marketing strategy using proven frameworks from Russell Brunson and Jeff Walker. Practical steps for entrepreneurs and small business owners."
+description: "Build a complete AI marketing strategy using Russell Brunson and Jeff Walker frameworks. Actionable steps for entrepreneurs and small business owners."
 date: "2026-03-07"
 category: "AI Marketing"
 tags: ["AI marketing strategy", "AI marketing 2026", "marketing automation", "AI business framework", "Russell Brunson AI", "digital marketing AI"]

@@ -44,6 +44,7 @@ function getAllRoutes(): RouteEntry[] {
     { path: "faq", changeFrequency: "monthly", priority: 0.7, lastModified: new Date("2026-03-01") },
     { path: "blog", changeFrequency: "weekly", priority: 0.8, lastModified: new Date("2026-03-10") },
     { path: "patterns", changeFrequency: "monthly", priority: 0.8, lastModified: new Date("2026-03-11") },
+    { path: "free-guide", changeFrequency: "monthly", priority: 0.7, lastModified: new Date("2026-03-12") },
     { path: "terms", changeFrequency: "yearly", priority: 0.3, lastModified: new Date("2025-01-01") },
     { path: "privacy", changeFrequency: "yearly", priority: 0.3, lastModified: new Date("2025-01-01") },
     { path: "refund", changeFrequency: "yearly", priority: 0.3, lastModified: new Date("2025-01-01") },

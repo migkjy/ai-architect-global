@@ -1,8 +1,9 @@
 ---
 title: "Building an AI Content Pipeline: From Idea to Published in 45 Minutes"
-description: "A step-by-step guide to building a content production pipeline that runs on AI. Go from idea to published article in 45 minutes without sacrificing quality or authenticity."
+description: "Build a repeatable AI content pipeline that takes you from idea to published article in 45 minutes — without sacrificing quality or your authentic voice."
 date: "2026-02-28"
 category: "AI Automation"
+tags: ["AI content pipeline", "content automation", "AI writing", "content marketing", "AI productivity"]
 excerpt: "A step-by-step guide to building a content production system that runs on AI — without sacrificing quality or authenticity."
 ---
 
