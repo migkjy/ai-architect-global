@@ -137,7 +137,7 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
         name: "AI Native Playbook Series",
-        legalName: "NEWBIZSOFT",
+        legalName: "AI Architect",
         url: siteUrl,
         description: descriptions[locale] ?? descriptions.en,
         logo: {
