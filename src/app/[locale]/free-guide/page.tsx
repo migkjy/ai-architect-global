@@ -40,6 +40,13 @@ export async function generateMetadata({
         },
       ],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: "Free AI Business Automation Starter Guide",
+      description:
+        "Get a free guide that shows you how to use AI to automate 6 proven business frameworks. Instant PDF download.",
+      images: [`${SITE_URL}/opengraph-image`],
+    },
     robots: {
       index: true,
       follow: true,
