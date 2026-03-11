@@ -116,6 +116,8 @@ export default function BuyButton({
   }
 
   function handleBuyClick(e: React.MouseEvent) {
+    window.gtag?.("event", "cta_click", { event_category: "engagement", event_label: "buy_button", cta_location: "pricing" });
+    window.gtag?.("event", "purchase_start", { event_category: "ecommerce", event_label: String(children) });
     window.gtag?.("event", "buy_click", { item_name: String(children) });
     window.fbq?.("track", "InitiateCheckout", { content_name: String(children) });
 

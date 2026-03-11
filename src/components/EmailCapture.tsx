@@ -35,6 +35,8 @@ export default function EmailCapture({
     e.preventDefault();
     if (!email) return;
 
+    window.gtag?.("event", "signup_start", { event_category: "lead", event_label: `email-capture-${variant}` });
+
     try {
       const res = await fetch("/api/subscribe", {
         method: "POST",
@@ -44,6 +46,7 @@ export default function EmailCapture({
       if (res.ok) {
         setStatus("success");
         setEmail("");
+        window.gtag?.("event", "signup_complete", { event_category: "lead", event_label: `email-capture-${variant}` });
         window.gtag?.("event", "email_capture", { source: "email-capture-form" });
         window.fbq?.('track', 'Lead');
       } else {
