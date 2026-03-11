@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
 import Script from "next/script";
 import { notFound } from "next/navigation";
@@ -111,6 +111,12 @@ export async function generateMetadata({
   };
 }
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0f0f23",
+};
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -210,7 +216,6 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={inter.variable}>
       <head>
-        <meta name="theme-color" content="#0f0f23" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="naver-site-verification" content="a6ff1a6273de52eee09a6d7965035cb60726a641" />
         <meta name="naver-site-verification" content="cda8874de26392058a4eacc1de62c73bf59ff7ef" />
@@ -228,6 +233,9 @@ export default async function LocaleLayout({
         )}
         <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        {process.env.NEXT_PUBLIC_POSTHOG_KEY && (
+          <link rel="dns-prefetch" href="https://us.i.posthog.com" />
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(siteJsonLd)) }}
@@ -265,13 +273,18 @@ export default async function LocaleLayout({
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-navy text-text-primary font-sans">
         <MetaPixel />
+        {/* PostHog pageview tracking — isolated Suspense so it never blocks paint */}
         <Suspense fallback={null}>
-          <PostHogProvider>
-            <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:rounded-md focus:bg-gold focus:px-4 focus:py-2 focus:text-navy-dark focus:text-sm focus:font-medium">
-              Skip to content
-            </a>
-            <Header />
-            <IntlClientShell
+          <PostHogProvider>{null}</PostHogProvider>
+        </Suspense>
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:rounded-md focus:bg-gold focus:px-4 focus:py-2 focus:text-navy-dark focus:text-sm focus:font-medium">
+          Skip to content
+        </a>
+        <Header />
+        <main id="main-content" className="flex-1">{children}</main>
+        <Footer />
+        {/* Deferred interactive overlays — loaded after main content */}
+        <IntlClientShell
           exitPopupLabels={{
             successTitle: tExit("successTitle"),
             successDesc: tExit("successDesc"),
@@ -292,12 +305,7 @@ export default async function LocaleLayout({
             cta: tScroll("cta"),
             error: tScroll("error"),
           }}
-        >
-          <main id="main-content" className="flex-1">{children}</main>
-        </IntlClientShell>
-            <Footer />
-          </PostHogProvider>
-        </Suspense>
+        />
         <Analytics />
         <SpeedInsights />
       </body>

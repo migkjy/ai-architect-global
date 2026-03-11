@@ -33,12 +33,15 @@ type ScrollBannerLabels = {
   error: string;
 };
 
+/**
+ * Renders only the deferred interactive overlays (exit intent popup + scroll banner).
+ * <main> content is intentionally kept outside this client boundary in layout.tsx
+ * so server-rendered page content is not included in the client JS bundle.
+ */
 export default function IntlClientShell({
-  children,
   exitPopupLabels,
   scrollBannerLabels,
 }: {
-  children: React.ReactNode;
   exitPopupLabels: ExitPopupLabels;
   scrollBannerLabels: ScrollBannerLabels;
 }) {
@@ -61,7 +64,6 @@ export default function IntlClientShell({
 
   return (
     <>
-      {children}
       <ScrollSubscribeBanner labels={abScrollLabels} variant={variant} />
       <ExitIntentPopup labels={abExitLabels} variant={variant} />
     </>
