@@ -19,6 +19,7 @@ const nextConfig: NextConfig = {
       "@vercel/speed-insights",
       "@sentry/nextjs",
       "@tailwindcss/typography",
+      "posthog-js",
     ],
   },
   turbopack: {
