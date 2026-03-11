@@ -147,7 +147,6 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
           caption: "AI Native Playbook Series",
         },
         image: { "@id": `${siteUrl}/#logo` },
-        sameAs: [],
         contactPoint: {
           "@type": "ContactPoint",
           email: "contact@newbizsoft.com",
