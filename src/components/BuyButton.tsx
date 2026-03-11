@@ -63,12 +63,13 @@ export default function BuyButton({
 
     if (checkPaddle()) return;
 
+    // Use shorter initial delay to catch already-loaded Paddle, then back off
     const interval = setInterval(() => {
       if (checkPaddle()) clearInterval(interval);
-    }, 200);
+    }, 300);
 
-    // 5초 후 포기 (Paddle.js 미로드 = Client Token 미설정)
-    const timeout = setTimeout(() => clearInterval(interval), 5000);
+    // 4초 후 포기 (Paddle.js 미로드 = Client Token 미설정)
+    const timeout = setTimeout(() => clearInterval(interval), 4000);
 
     return () => {
       clearInterval(interval);

@@ -32,6 +32,11 @@ function PostHogPageview() {
   return null;
 }
 
+/**
+ * PostHog pageview tracker.
+ * Rendered inside an isolated <Suspense> in layout.tsx so it never blocks
+ * the main content paint. Pass children={null} when used for tracking only.
+ */
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
   if (!process.env.NEXT_PUBLIC_POSTHOG_KEY) {
     return <>{children}</>;
