@@ -75,6 +75,22 @@ export const CTA_VARIANTS = {
       successDesc: "Your first insights are on the way.",
     },
   },
+  pricingPage: {
+    A: {
+      bundleCta: "Get the Bundle — Save 54%",
+      volumeCta: "Start with Volume 1",
+      enterpriseCta: "Contact Us",
+      bundleBadge: "BEST VALUE",
+      popularBadge: "MOST POPULAR",
+    },
+    B: {
+      bundleCta: "Unlock All 6 Frameworks — Save 54%",
+      volumeCta: "Try Volume 1 — Just $17",
+      enterpriseCta: "Get Custom Package",
+      bundleBadge: "SAVE $55",
+      popularBadge: "RECOMMENDED",
+    },
+  },
 } as const;
 
 const VARIANT_KEY = "ai_architect_cta_variant";

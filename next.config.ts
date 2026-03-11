@@ -18,6 +18,7 @@ const nextConfig: NextConfig = {
       "@vercel/analytics",
       "@vercel/speed-insights",
       "@sentry/nextjs",
+      "@tailwindcss/typography",
     ],
   },
   turbopack: {

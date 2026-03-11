@@ -218,7 +218,7 @@ export default function ExitIntentPopup({ labels, variant = "A" }: { labels: Exi
                 placeholder="Enter your work email"
                 required
                 autoFocus
-                className="w-full px-4 py-3 rounded-xl bg-navy-dark/80 border border-white/10 text-text-primary placeholder:text-text-muted focus:border-gold/40 focus:outline-none text-sm"
+                className="w-full px-4 py-3 rounded-xl bg-navy-dark/80 border border-white/10 text-text-primary placeholder:text-text-muted focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/30 text-sm"
               />
               <button
                 type="submit"

@@ -38,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: RouteEntry[] = [
     { path: "", changeFrequency: "monthly", priority: 1, lastModified: new Date("2026-03-08") },
     { path: "products", changeFrequency: "monthly", priority: 0.9, lastModified: new Date("2026-03-08") },
+    { path: "pricing", changeFrequency: "monthly", priority: 0.9, lastModified: new Date("2026-03-11") },
     { path: "bundle", changeFrequency: "monthly", priority: 0.9, lastModified: new Date("2026-03-08") },
     { path: "about", changeFrequency: "monthly", priority: 0.6, lastModified: new Date("2026-03-01") },
     { path: "faq", changeFrequency: "monthly", priority: 0.7, lastModified: new Date("2026-03-01") },

@@ -194,6 +194,8 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={inter.variable}>
       <head>
+        <meta name="theme-color" content="#0f0f23" />
+        <link rel="manifest" href="/manifest.json" />
         <meta name="naver-site-verification" content="a6ff1a6273de52eee09a6d7965035cb60726a641" />
         <meta name="naver-site-verification" content="cda8874de26392058a4eacc1de62c73bf59ff7ef" />
         {hreflangLinks.map((link) => (
