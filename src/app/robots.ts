@@ -11,6 +11,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           "/api/",
           "/_next/",
+          "/admin/",
           "/thank-you",
           "/og-image",
           "/ko",
