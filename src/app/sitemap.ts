@@ -25,15 +25,15 @@ function buildAlternates(path: string): Record<string, string> {
   };
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const blogPosts = getAllPosts();
+type RouteEntry = {
+  path: string;
+  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+  priority: number;
+  lastModified?: Date;
+};
 
-  type RouteEntry = {
-    path: string;
-    changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
-    priority: number;
-    lastModified?: Date;
-  };
+function getAllRoutes(): RouteEntry[] {
+  const blogPosts = getAllPosts();
 
   const staticRoutes: RouteEntry[] = [
     { path: "", changeFrequency: "monthly", priority: 1, lastModified: new Date("2026-03-08") },
@@ -70,12 +70,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date("2026-03-11"),
   }));
 
-  const allRoutes = [...staticRoutes, ...productRoutes, ...blogRoutes, ...patternRoutes];
-  const result: MetadataRoute.Sitemap = [];
+  return [...staticRoutes, ...productRoutes, ...blogRoutes, ...patternRoutes];
+}
 
-  // 1. prefix 없는 영어 canonical URL (hreflang alternates 포함)
-  for (const route of allRoutes) {
-    result.push({
+// Next.js가 자동으로 /sitemap.xml을 sitemap index로 생성
+// /sitemap/0.xml = canonical URLs (hreflang alternates 포함)
+// /sitemap/1.xml = /en/ prefix URLs
+// /sitemap/2.xml = /ja/ prefix URLs
+export async function generateSitemaps() {
+  return [{ id: 0 }, { id: 1 }, { id: 2 }];
+}
+
+export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
+  const allRoutes = getAllRoutes();
+
+  if (id === 0) {
+    // Canonical URLs (prefix 없는 영어) + hreflang alternates
+    return allRoutes.map((route) => ({
       url: canonicalUrl(route.path),
       lastModified: route.lastModified ?? new Date(),
       changeFrequency: route.changeFrequency,
@@ -83,21 +94,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       alternates: {
         languages: buildAlternates(route.path),
       },
-    });
+    }));
   }
 
-  // 2. /en/, /ja/ 로캘 prefix URL (/ko 제외 — 301 리다이렉트 차단)
-  for (const locale of ["en", "ja"] as const) {
-    for (const route of allRoutes) {
-      result.push({
-        url: localizedUrl(locale, route.path),
-        lastModified: route.lastModified ?? new Date(),
-        changeFrequency: route.changeFrequency,
-        // 로캘 prefix URL은 canonical보다 낮은 priority
-        priority: Math.max(route.priority - 0.1, 0.1),
-      });
-    }
-  }
-
-  return result;
+  // id 1 = en, id 2 = ja
+  const locale = id === 1 ? "en" : "ja";
+  return allRoutes.map((route) => ({
+    url: localizedUrl(locale, route.path),
+    lastModified: route.lastModified ?? new Date(),
+    changeFrequency: route.changeFrequency,
+    priority: Math.max(route.priority - 0.1, 0.1),
+  }));
 }

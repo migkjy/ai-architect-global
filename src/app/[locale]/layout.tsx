@@ -25,76 +25,91 @@ const inter = Inter({
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: "AI Native Playbook Series — 6 World-Class Frameworks, Fully Automated with AI",
-    template: "%s | AI Native Playbook Series",
-  },
-  description:
-    "Turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven frameworks into AI-powered business automation systems. 6 AI native PDF guides + prompt skills. Bundle $47.",
-  keywords: [
-    "AI business automation",
-    "AI marketing playbook",
-    "AI native business guide",
-    "business automation with AI",
-    "AI powered marketing framework",
-    "AI agent skills",
-    "Russell Brunson DotCom Secrets AI",
-    "Jeff Walker Product Launch Formula AI",
-    "Jim Edwards Copywriting Secrets AI",
-    "Nicolas Cole online writing AI",
-    "AI sales funnel automation",
-    "AI copywriting framework",
-    "AI marketing system",
-    "online business AI tools",
-    "AI content strategy",
-  ],
-  authors: [{ name: "AI Native Playbook Series" }],
-  openGraph: {
-    title: "AI Native Playbook Series — 6 World-Class Frameworks, Fully Automated with AI",
+const OG_LOCALE_MAP: Record<string, string> = {
+  en: "en_US",
+  ja: "ja_JP",
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const ogLocale = OG_LOCALE_MAP[locale] ?? "en_US";
+  const pageUrl = locale === "en" ? SITE_URL : `${SITE_URL}/${locale}`;
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: "AI Native Playbook Series — 6 World-Class Frameworks, Fully Automated with AI",
+      template: "%s | AI Native Playbook Series",
+    },
     description:
-      "The AI Native Playbook Series puts Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's systems into AI-powered tools that execute for your specific business.",
-    type: "website",
-    locale: "en_US",
-    siteName: "AI Native Playbook Series",
-    url: SITE_URL,
-    images: [
-      {
-        url: `${SITE_URL}/opengraph-image`,
-        width: 1200,
-        height: 630,
-        alt: "AI Native Playbook Series — 6 World-Class Frameworks",
-      },
+      "Turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven frameworks into AI-powered business automation systems. 6 AI native PDF guides + prompt skills. Bundle $47.",
+    keywords: [
+      "AI business automation",
+      "AI marketing playbook",
+      "AI native business guide",
+      "business automation with AI",
+      "AI powered marketing framework",
+      "AI agent skills",
+      "Russell Brunson DotCom Secrets AI",
+      "Jeff Walker Product Launch Formula AI",
+      "Jim Edwards Copywriting Secrets AI",
+      "Nicolas Cole online writing AI",
+      "AI sales funnel automation",
+      "AI copywriting framework",
+      "AI marketing system",
+      "online business AI tools",
+      "AI content strategy",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "AI Native Playbook Series — 6 World-Class Frameworks, Fully Automated with AI",
-    description:
-      "Stop reading business books. Start running the frameworks with AI. 6 PDF guides that make DotCom Secrets, PLF, Copywriting Secrets, and more executable today.",
-    images: [`${SITE_URL}/opengraph-image`],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    authors: [{ name: "AI Native Playbook Series" }],
+    openGraph: {
+      title: "AI Native Playbook Series — 6 World-Class Frameworks, Fully Automated with AI",
+      description:
+        "The AI Native Playbook Series puts Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's systems into AI-powered tools that execute for your specific business.",
+      type: "website",
+      locale: ogLocale,
+      siteName: "AI Native Playbook Series",
+      url: pageUrl,
+      images: [
+        {
+          url: `${SITE_URL}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: "AI Native Playbook Series — 6 World-Class Frameworks",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "AI Native Playbook Series — 6 World-Class Frameworks, Fully Automated with AI",
+      description:
+        "Stop reading business books. Start running the frameworks with AI. 6 PDF guides that make DotCom Secrets, PLF, Copywriting Secrets, and more executable today.",
+      images: [`${SITE_URL}/opengraph-image`],
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-  alternates: {
-    canonical: SITE_URL,
-    languages: {
-      en: SITE_URL,
-      ja: `${SITE_URL}/ja`,
-      "x-default": SITE_URL,
+    alternates: {
+      canonical: pageUrl,
+      languages: {
+        en: SITE_URL,
+        ja: `${SITE_URL}/ja`,
+        "x-default": SITE_URL,
+      },
     },
-  },
-};
+  };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
