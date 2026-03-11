@@ -15,12 +15,12 @@ function localizedUrl(locale: string, path: string): string {
   return path ? `${BASE_URL}/${locale}/${path}` : `${BASE_URL}/${locale}`;
 }
 
-// hreflang alternates — /ko 는 301 리다이렉트로 차단되어 있으므로 제외
-// CEO 지시: richbukae 가격 충돌 방지를 위해 /ko 접근 차단 유지
+// hreflang alternates — /ko 와 /ja 는 sitemap에서 제외
+// /ko: CEO 지시로 301 차단 (richbukae 가격 충돌 방지)
+// /ja: GSC 116 에러 원인 — 미사용 로케일이므로 sitemap에서 제거
 function buildAlternates(path: string): Record<string, string> {
   return {
     en: localizedUrl("en", path),
-    ja: localizedUrl("ja", path),
     "x-default": canonicalUrl(path),
   };
 }
@@ -77,9 +77,9 @@ function getAllRoutes(): RouteEntry[] {
 // Next.js가 자동으로 /sitemap.xml을 sitemap index로 생성
 // /sitemap/0.xml = canonical URLs (hreflang alternates 포함)
 // /sitemap/1.xml = /en/ prefix URLs
-// /sitemap/2.xml = /ja/ prefix URLs
+// /ja/ + /ko/ 는 GSC 에러(116건) 원인 — sitemap에서 완전 제외
 export async function generateSitemaps() {
-  return [{ id: 0 }, { id: 1 }, { id: 2 }];
+  return [{ id: 0 }, { id: 1 }];
 }
 
 export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
@@ -98,10 +98,9 @@ export default function sitemap({ id }: { id: number }): MetadataRoute.Sitemap {
     }));
   }
 
-  // id 1 = en, id 2 = ja
-  const locale = id === 1 ? "en" : "ja";
+  // id 1 = en only (/ja/ 제거)
   return allRoutes.map((route) => ({
-    url: localizedUrl(locale, route.path),
+    url: localizedUrl("en", route.path),
     lastModified: route.lastModified ?? new Date(),
     changeFrequency: route.changeFrequency,
     priority: Math.max(route.priority - 0.1, 0.1),
