@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
@@ -11,6 +12,7 @@ import IntlClientShell from "@/components/IntlClientShell";
 import dynamic from "next/dynamic";
 const Analytics = dynamic(() => import("@vercel/analytics/react").then(m => ({ default: m.Analytics })));
 const SpeedInsights = dynamic(() => import("@vercel/speed-insights/next").then(m => ({ default: m.SpeedInsights })));
+const PostHogProvider = dynamic(() => import("@/components/PostHogProvider").then(m => ({ default: m.PostHogProvider })));
 import { routing } from "@/i18n/routing";
 import { MetaPixel } from "@/components/MetaPixel";
 
@@ -248,11 +250,13 @@ export default async function LocaleLayout({
       </head>
       <body className="antialiased min-h-screen flex flex-col bg-navy text-text-primary font-sans">
         <MetaPixel />
-        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:rounded-md focus:bg-gold focus:px-4 focus:py-2 focus:text-navy-dark focus:text-sm focus:font-medium">
-          Skip to content
-        </a>
-        <Header />
-        <IntlClientShell
+        <Suspense fallback={null}>
+          <PostHogProvider>
+            <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:rounded-md focus:bg-gold focus:px-4 focus:py-2 focus:text-navy-dark focus:text-sm focus:font-medium">
+              Skip to content
+            </a>
+            <Header />
+            <IntlClientShell
           exitPopupLabels={{
             successTitle: tExit("successTitle"),
             successDesc: tExit("successDesc"),
@@ -276,7 +280,9 @@ export default async function LocaleLayout({
         >
           <main id="main-content" className="flex-1">{children}</main>
         </IntlClientShell>
-        <Footer />
+            <Footer />
+          </PostHogProvider>
+        </Suspense>
         <Analytics />
         <SpeedInsights />
       </body>
