@@ -7,7 +7,7 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architec
 export const metadata: Metadata = {
   title: "Privacy Policy — AI Native Playbook Series",
   description:
-    "Privacy Policy for AI Native Playbook Series by AI Architect. Learn how we collect, use, and protect your personal data in compliance with GDPR and international law.",
+    "Privacy Policy for AI Native Playbook Series by ai-architect. Learn how we collect, use, and protect your personal data in compliance with GDPR and international law.",
   openGraph: {
     title: "Privacy Policy — AI Native Playbook Series",
     description: "Learn how we collect, use, and protect your personal data.",
@@ -65,7 +65,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">1. Introduction</h2>
             <p>
-              AI Architect (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), operating the website{" "}
+              ai-architect (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), operating the website{" "}
               <span className="text-gold">ai-driven-architect.com</span> under the service name <strong className="text-text-primary">AI Native Playbook Series</strong>, is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit our website or purchase our products.
             </p>
           </section>

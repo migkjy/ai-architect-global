@@ -20,7 +20,7 @@ export async function generateMetadata({
   return {
     title: "Pricing — AI Native Playbook Series",
     description:
-      "Get all 6 AI business automation guides for $47 (save $55) or start with a single volume for $17. Instant PDF download. 7-day money-back guarantee.",
+      "Get all 6 AI business automation guides for $47 (save $55) or start with a single volume for $17. Instant PDF download. 14-day refund policy.",
     keywords: [
       "AI Native Playbook pricing",
       "AI business guide price",
@@ -92,8 +92,8 @@ const pricingFaqs = [
     a: "Individual volumes ($17 each) focus on one specific business framework. The bundle ($47 for all 6) saves you $55 and includes 3 exclusive bonuses: Master Template, Execution Tracker, and Quick Reference Card.",
   },
   {
-    q: "Is there a money-back guarantee?",
-    a: "Yes. Every purchase comes with a 7-day money-back guarantee, no questions asked. If the guides don't deliver value, email us for a full refund.",
+    q: "What is your refund policy?",
+    a: "You may request a full refund within 14 days of purchase, provided the product has not been downloaded. After download, refunds are not available. Download period: 30 days from purchase. Content usage after download: permanent.",
   },
   {
     q: "Can I upgrade from a single volume to the bundle later?",
@@ -194,7 +194,7 @@ export default async function PricingPage({
                   "5-day quickstart checklist",
                   "Works with Claude, ChatGPT, Gemini",
                   "Instant PDF download",
-                  "7-day money-back guarantee",
+                  "14-day refund (before download)",
                 ].map((item) => (
                   <li
                     key={item}
@@ -270,7 +270,7 @@ export default async function PricingPage({
                   "BONUS: Execution Tracker",
                   "BONUS: Quick Reference Card",
                   "Instant PDF download",
-                  "7-day money-back guarantee",
+                  "14-day refund (before download)",
                 ].map((item) => (
                   <li
                     key={item}
@@ -374,10 +374,10 @@ export default async function PricingPage({
             <div className="bg-surface/60 border border-white/5 rounded-xl p-6 text-center">
               <div className="text-3xl mb-2">🛡️</div>
               <p className="font-semibold text-text-primary text-sm">
-                7-Day Money-Back Guarantee
+                14-Day Refund Policy
               </p>
               <p className="text-xs text-text-secondary mt-1">
-                No questions asked. Full refund if not satisfied.
+                Full refund within 14 days if not downloaded.
               </p>
             </div>
             <div className="bg-surface/60 border border-white/5 rounded-xl p-6 text-center">
@@ -643,7 +643,7 @@ export default async function PricingPage({
               Get the Bundle — Save {savePct}%
             </BuyButton>
             <p className="text-xs text-text-muted mt-3">
-              Instant download &middot; 7-day money-back guarantee
+              Instant download &middot; 14-day refund policy
             </p>
           </div>
 
