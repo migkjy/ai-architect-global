@@ -1,0 +1,21 @@
+{
+  "name": "AI Native Playbook Series",
+  "short_name": "AI Playbook",
+  "description": "6 World-Class Frameworks, Fully Automated with AI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0f23",
+  "theme_color": "#0f0f23",
+  "icons": [
+    {
+      "src": "/icon",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-icon",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

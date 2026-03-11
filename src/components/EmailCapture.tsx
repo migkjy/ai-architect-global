@@ -101,7 +101,7 @@ export default function EmailCapture({
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           aria-describedby={status === "error" ? "email-capture-error" : undefined}
-          className="flex-1 px-4 py-3 rounded-xl bg-navy-dark/80 border border-white/10 text-text-primary placeholder:text-text-muted focus:border-gold/40 focus:outline-none text-sm"
+          className="flex-1 px-4 py-3 rounded-xl bg-navy-dark/80 border border-white/10 text-text-primary placeholder:text-text-muted focus:border-gold/40 focus:outline-none focus:ring-2 focus:ring-gold/30 text-sm"
         />
         <button
           type="submit"

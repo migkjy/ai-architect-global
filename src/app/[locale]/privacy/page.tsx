@@ -8,6 +8,11 @@ export const metadata: Metadata = {
   title: "Privacy Policy — AI Native Playbook Series",
   description:
     "Privacy Policy for AI Native Playbook Series by NEWBIZSOFT. Learn how we collect, use, and protect your personal data in compliance with GDPR and international law.",
+  openGraph: {
+    title: "Privacy Policy — AI Native Playbook Series",
+    description: "Learn how we collect, use, and protect your personal data.",
+    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
+  },
   alternates: {
     canonical: `${SITE_URL}/privacy`,
   },
