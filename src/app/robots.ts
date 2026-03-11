@@ -13,23 +13,16 @@ export default function robots(): MetadataRoute.Robots {
           "/_next/",
           "/admin/",
           "/thank-you",
-          "/og-image",
+          "/opengraph-image",
           "/ko",
           "/ko/",
         ],
-      },
-      {
-        // AhrefsBot crawl budget — limit to avoid heavy crawling
-        userAgent: "AhrefsBot",
-        allow: "/",
-        disallow: ["/api/", "/_next/"],
       },
     ],
     sitemap: [
       `${SITE_URL}/sitemap.xml`,
       `${SITE_URL}/sitemap/0.xml`,
       `${SITE_URL}/sitemap/1.xml`,
-      `${SITE_URL}/sitemap/2.xml`,
     ],
     host: SITE_URL,
   };
