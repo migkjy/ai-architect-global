@@ -5,6 +5,9 @@ import {
   checkRateLimit,
   validateSubscribeInput,
 } from "@/lib/spam-protection";
+// ⚠️  Nurture sequence is gated by NURTURE_ENABLED=false inside the module.
+//     CEO 승인 후 nurture-sequence.ts의 NURTURE_ENABLED를 true로 변경하면 활성화됨.
+import { scheduleNurtureSequence } from "@/lib/nurture-sequence";
 
 export async function POST(request: Request) {
   try {
@@ -77,6 +80,10 @@ export async function POST(request: Request) {
       }
       console.error("Brevo API error:", res.status, errorText);
     }
+
+    // Trigger nurture email sequence (no-op while NURTURE_ENABLED=false)
+    // ⚠️  CEO 승인 후 nurture-sequence.ts의 NURTURE_ENABLED를 true로 변경하면 실제 발송됨.
+    void scheduleNurtureSequence(sanitizedEmail, name ?? undefined);
 
     return NextResponse.json({ success: true });
   } catch {
