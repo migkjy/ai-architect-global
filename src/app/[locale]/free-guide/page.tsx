@@ -40,6 +40,13 @@ export async function generateMetadata({
         },
       ],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: "Free AI Business Automation Starter Guide",
+      description:
+        "Get a free guide that shows you how to use AI to automate 6 proven business frameworks. Instant PDF download.",
+      images: [`${SITE_URL}/opengraph-image`],
+    },
     robots: {
       index: true,
       follow: true,
@@ -70,6 +77,10 @@ const benefits = [
   },
 ];
 
+function escapeJsonLd(json: string): string {
+  return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
+}
+
 export default async function FreeGuidePage({
   params,
 }: {
@@ -78,7 +89,47 @@ export default async function FreeGuidePage({
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const canonicalUrl =
+    locale === "en"
+      ? `${SITE_URL}/free-guide`
+      : `${SITE_URL}/${locale}/free-guide`;
+
+  const webPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Free AI Business Automation Starter Guide",
+    description:
+      "Download your free AI starter guide. Learn how to automate marketing funnels, sales copy, and product launches using AI. No purchase required.",
+    url: canonicalUrl,
+    inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Free Guide",
+        item: `${SITE_URL}/free-guide`,
+      },
+    ],
+  };
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(webPageJsonLd)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(breadcrumbJsonLd)) }}
+      />
     <div className="min-h-screen pt-24 pb-20">
       {/* Hook */}
       <section className="text-center max-w-3xl mx-auto px-4 mb-16">
@@ -242,5 +293,6 @@ export default async function FreeGuidePage({
         </div>
       </section>
     </div>
+    </>
   );
 }

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import NotFoundSubscribeForm from "@/components/NotFoundSubscribeForm";
 
 export const metadata: Metadata = {
   title: "Page Not Found | AI Native Playbook Series",
@@ -37,10 +36,6 @@ export default function NotFound() {
             <span className="text-text-secondary/60">KR</span>{" "}
             요청하신 페이지를 찾을 수 없습니다.
           </p>
-          <p className="text-sm opacity-75">
-            <span className="text-text-secondary/60">JP</span>{" "}
-            お探しのページは見つかりませんでした。
-          </p>
         </div>
 
         {/* Primary CTA */}
@@ -51,16 +46,10 @@ export default function NotFound() {
           >
             Back to Home
           </Link>
-          <Link
-            href="/ja"
-            className="border border-gold/30 text-text-secondary px-6 py-3 rounded-xl hover:border-gold/60 hover:text-text-primary transition-all"
-          >
-            日本語 ホーム
-          </Link>
         </div>
 
         {/* Internal navigation links */}
-        <div className="flex flex-wrap gap-2 justify-center mb-10">
+        <div className="flex flex-wrap gap-2 justify-center">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -70,15 +59,6 @@ export default function NotFound() {
               {link.label}
             </Link>
           ))}
-        </div>
-
-        {/* Subscribe CTA */}
-        <div className="border border-gold/20 rounded-2xl p-6 bg-navy-dark/50">
-          <p className="text-sm font-semibold text-gold mb-1">Free AI Business Checklist</p>
-          <p className="text-xs text-text-secondary mb-4">
-            Get weekly AI business insights delivered to your inbox.
-          </p>
-          <NotFoundSubscribeForm />
         </div>
       </div>
     </div>
