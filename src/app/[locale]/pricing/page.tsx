@@ -146,12 +146,57 @@ export default async function PricingPage({
     ],
   };
 
+  const canonicalPricingUrl =
+    locale === "en" ? `${SITE_URL}/pricing` : `${SITE_URL}/${locale}/pricing`;
+
+  const offerCatalogJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    name: "AI Native Playbook Series — Pricing",
+    description:
+      "Get all 6 AI business automation guides for $47 (save $55) or start with a single volume for $17.",
+    url: canonicalPricingUrl,
+    numberOfItems: 2,
+    itemListElement: [
+      {
+        "@type": "Offer",
+        name: "Individual Volume",
+        description:
+          "1 premium PDF guide with AI system prompts, real case studies, and a 5-day quickstart checklist.",
+        price: "17",
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        priceValidUntil: "2026-12-31",
+        url: `${SITE_URL}/products`,
+        seller: { "@id": `${SITE_URL}/#organization` },
+      },
+      {
+        "@type": "Offer",
+        name: "Complete Bundle — All 6 Volumes",
+        description:
+          "All 6 AI business automation guides plus 3 exclusive bonuses: Master Template, Execution Tracker, and Quick Reference Card.",
+        price: String(bundle.price),
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        priceValidUntil: "2026-12-31",
+        url: `${SITE_URL}/bundle`,
+        seller: { "@id": `${SITE_URL}/#organization` },
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: escapeJsonLd(JSON.stringify(breadcrumbJsonLd)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: escapeJsonLd(JSON.stringify(offerCatalogJsonLd)),
         }}
       />
 
