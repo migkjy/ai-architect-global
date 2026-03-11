@@ -7,10 +7,10 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architec
 export const metadata: Metadata = {
   title: "Refund Policy — AI Native Playbook Series",
   description:
-    "14-day money-back guarantee on all AI Native Playbook Series digital products. Simple refund process via email. No questions asked, full refund within 24 hours.",
+    "Refund policy for AI Native Playbook Series digital products. Full refund available within 14 days of purchase if the product has not been downloaded. Download available for 30 days from purchase.",
   openGraph: {
     title: "Refund Policy — AI Native Playbook Series",
-    description: "14-day money-back guarantee. Simple refund process via email.",
+    description: "Full refund within 14 days if not downloaded. Download available for 30 days.",
     images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
   },
   alternates: {
@@ -67,9 +67,9 @@ export default async function RefundPage({ params }: { params: Promise<{ locale:
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
             </svg>
             <div>
-              <p className="font-semibold text-text-primary text-lg">14-Day Money-Back Guarantee</p>
+              <p className="font-semibold text-text-primary text-lg">14-Day Refund Policy</p>
               <p className="text-text-secondary text-sm mt-1">
-                We stand behind our products. If you&apos;re not satisfied for any reason within 14 days of purchase, we&apos;ll issue a full refund — no questions asked.
+                You may request a full refund within <strong className="text-text-primary">14 days</strong> of purchase, provided the product has <strong className="text-text-primary">not been downloaded</strong>. After download, refunds are not available.
               </p>
             </div>
           </div>
@@ -78,30 +78,36 @@ export default async function RefundPage({ params }: { params: Promise<{ locale:
         <div className="prose prose-invert max-w-none space-y-10 text-text-secondary leading-relaxed">
 
           <section>
-            <h2 className="text-xl font-semibold text-text-primary mb-4">1. Our Guarantee</h2>
-            <p>
-              AI Native Playbook Series offers a <strong className="text-text-primary">14-day money-back guarantee</strong> on all digital products, including individual guides and the Complete Bundle. We want you to feel confident in your purchase.
-            </p>
-            <p className="mt-3">
-              Because we believe in our products, we offer this guarantee with no hoops to jump through. Your satisfaction matters more to us than a single sale.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-text-primary mb-4">2. Eligibility</h2>
-            <p className="mb-3">You are eligible for a full refund if:</p>
+            <h2 className="text-xl font-semibold text-text-primary mb-4">1. Refund Eligibility</h2>
+            <p className="mb-3">You are eligible for a full refund if <strong className="text-text-primary">both</strong> of the following conditions are met:</p>
             <ul className="list-disc list-inside space-y-1 ml-2">
               <li>Your refund request is submitted within <strong className="text-text-primary">14 calendar days</strong> of your purchase date</li>
-              <li>The request is made by the original purchaser using the email address associated with the order</li>
+              <li>You have <strong className="text-text-primary">not downloaded</strong> the purchased product</li>
             </ul>
-            <p className="mt-3">
-              We do not require you to provide a reason for the refund, though we appreciate any feedback you&apos;re willing to share to help us improve.
+            <p className="mt-4 font-semibold text-text-primary">Refunds are NOT available if:</p>
+            <ul className="list-disc list-inside space-y-1 ml-2 mt-2">
+              <li>The product has already been downloaded</li>
+              <li>More than 14 days have passed since the purchase date</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-text-primary mb-4">2. Download Period</h2>
+            <p>
+              After purchase, you have <strong className="text-text-primary">30 days</strong> to download your product. The download link is sent via email immediately after purchase. After 30 days, the download link expires.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-text-primary mb-4">3. How to Request a Refund</h2>
-            <p className="mb-4">Requesting a refund is simple:</p>
+            <h2 className="text-xl font-semibold text-text-primary mb-4">3. Content Usage</h2>
+            <p>
+              Once you download the product, you have <strong className="text-text-primary">permanent access</strong> to the downloaded files. There is no expiration on your use of downloaded content.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-text-primary mb-4">4. How to Request a Refund</h2>
+            <p className="mb-4">To request a refund:</p>
 
             <div className="space-y-3">
               {[
@@ -126,7 +132,7 @@ export default async function RefundPage({ params }: { params: Promise<{ locale:
                 {
                   step: "3",
                   title: "Confirmation",
-                  desc: "We will confirm receipt of your refund request within 1 business day.",
+                  desc: "We will confirm receipt of your refund request within 1 business day and verify download status.",
                 },
               ].map((item) => (
                 <div key={item.step} className="flex gap-4 bg-surface/40 border border-white/5 rounded-xl p-4">
@@ -143,9 +149,9 @@ export default async function RefundPage({ params }: { params: Promise<{ locale:
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-text-primary mb-4">4. Refund Processing</h2>
+            <h2 className="text-xl font-semibold text-text-primary mb-4">5. Refund Processing</h2>
             <p className="mb-3">
-              Once we confirm your refund request:
+              Once your refund is approved:
             </p>
             <ul className="list-disc list-inside space-y-1 ml-2">
               <li>The refund is processed through <strong className="text-text-primary">Paddle</strong>, our payment processor</li>
@@ -156,14 +162,17 @@ export default async function RefundPage({ params }: { params: Promise<{ locale:
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-text-primary mb-4">5. After a Refund</h2>
-            <p>
-              Upon issuance of a refund, your license to use the purchased products is revoked. Please delete all downloaded copies of the PDF files. We appreciate your honesty in this matter.
-            </p>
+            <h2 className="text-xl font-semibold text-text-primary mb-4">6. Summary</h2>
+            <div className="bg-surface/40 border border-white/5 rounded-xl p-5 space-y-2">
+              <p><strong className="text-text-primary">Refund window:</strong> 14 days from purchase (before download only)</p>
+              <p><strong className="text-text-primary">Download period:</strong> 30 days from purchase</p>
+              <p><strong className="text-text-primary">Content usage:</strong> Permanent after download</p>
+              <p><strong className="text-text-primary">After download:</strong> Refunds are not available</p>
+            </div>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-text-primary mb-4">6. Contact</h2>
+            <h2 className="text-xl font-semibold text-text-primary mb-4">7. Contact</h2>
             <p>
               For any questions about our refund policy, please contact us at:{" "}
               <a href="mailto:contact@ai-driven-architect.com" className="text-gold hover:underline">
