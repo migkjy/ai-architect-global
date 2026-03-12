@@ -167,7 +167,7 @@ export default async function BlogPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(breadcrumbJsonLd)) }}
       />
-      <main className="max-w-4xl mx-auto px-4 py-16">
+      <div className="max-w-4xl mx-auto px-4 py-16">
         <div className="mb-12 text-center">
           <h1 className="text-4xl font-bold mb-4">{t("title")}</h1>
           <p className="text-lg text-text-secondary">{t("subtitle")}</p>
@@ -221,7 +221,7 @@ export default async function BlogPage({
             <Link href="/faq" className="text-sm text-gold hover:text-gold-light transition-colors">FAQ</Link>
           </div>
         </nav>
-      </main>
+      </div>
     </>
   );
 }

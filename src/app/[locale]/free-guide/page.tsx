@@ -264,6 +264,7 @@ export default async function FreeGuidePage({
                 stroke="currentColor"
                 strokeWidth="1.5"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -287,6 +288,7 @@ export default async function FreeGuidePage({
                 stroke="currentColor"
                 strokeWidth="1.5"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -310,6 +312,7 @@ export default async function FreeGuidePage({
                 stroke="currentColor"
                 strokeWidth="1.5"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"

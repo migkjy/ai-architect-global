@@ -32,7 +32,11 @@ export default function StickyMobileCTA({
   const isDisabled = bundleUrl === "#" || !bundleUrl;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-navy-dark/97 backdrop-blur-md border-t border-gold/20 px-4 py-3 flex items-center justify-between gap-3 shadow-lg">
+    <div
+      className="fixed bottom-0 left-0 right-0 z-50 bg-navy-dark/97 backdrop-blur-md border-t border-gold/20 px-4 py-3 flex items-center justify-between gap-3 shadow-lg"
+      role="region"
+      aria-label="Purchase call to action"
+    >
       <div>
         <div className="text-sm font-bold text-text-primary">
           {labels.completeBundle}
@@ -50,6 +54,7 @@ export default function StickyMobileCTA({
           href={bundleUrl}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label={`${labels.getBundle} — $${bundlePrice} (opens in new tab)`}
           className="bg-gold text-navy-dark px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-gold-light transition-colors whitespace-nowrap"
         >
           {labels.getBundle} &mdash; ${bundlePrice}

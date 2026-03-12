@@ -73,7 +73,7 @@ export default function BlogFilterClient({
   return (
     <div className={isPending ? "opacity-60 transition-opacity" : "transition-opacity"}>
       {/* Category filter */}
-      <div className="mb-6">
+      <div className="mb-6" role="group" aria-label="Filter by category">
         <div className="flex flex-wrap gap-2">
           {allCategories.map((cat) => {
             const isActive = cat === "All" ? !activeCategory : activeCategory === cat;
@@ -81,6 +81,7 @@ export default function BlogFilterClient({
               <button
                 key={cat}
                 onClick={() => handleCategoryChange(cat)}
+                aria-pressed={isActive}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   isActive
                     ? "bg-gold text-navy-dark"
@@ -96,15 +97,17 @@ export default function BlogFilterClient({
 
       {/* Tag filter */}
       {topTags.length > 0 && (
-        <div className="mb-8">
-          <p className="text-xs text-text-muted uppercase tracking-wider mb-3">Filter by tag</p>
-          <div className="flex flex-wrap gap-2">
+        <div className="mb-8" role="group" aria-label="Filter by tag">
+          <p id="tag-filter-label" className="text-xs text-text-muted uppercase tracking-wider mb-3">Filter by tag</p>
+          <div className="flex flex-wrap gap-2" aria-labelledby="tag-filter-label">
             {topTags.map((tag) => {
               const isActive = activeTag === tag;
               return (
                 <button
                   key={tag}
                   onClick={() => handleTagToggle(tag)}
+                  aria-pressed={isActive}
+                  aria-label={isActive ? `Remove tag filter: ${tag}` : `Filter by tag: ${tag}`}
                   className={`text-xs px-3 py-1 rounded-full transition-colors ${
                     isActive
                       ? "bg-gold/20 text-gold border border-gold/40"
@@ -120,7 +123,7 @@ export default function BlogFilterClient({
       )}
 
       {/* Results count */}
-      <p className="text-sm text-text-muted mb-6">
+      <p role="status" aria-live="polite" className="text-sm text-text-muted mb-6">
         {filteredPosts.length} {filteredPosts.length === 1 ? "article" : "articles"}
         {activeCategory ? ` in ${activeCategory}` : ""}
         {activeTag ? ` tagged "${activeTag}"` : ""}
@@ -151,6 +154,8 @@ export default function BlogFilterClient({
                 <span>&middot;</span>
                 <button
                   onClick={() => handleCategoryChange(post.category)}
+                  aria-pressed={activeCategory === post.category}
+                  aria-label={`Filter by category: ${post.category}`}
                   className="text-xs bg-gold/10 text-gold px-2 py-0.5 rounded-full hover:bg-gold/20 transition-colors"
                 >
                   {post.category}
@@ -170,6 +175,8 @@ export default function BlogFilterClient({
                   <button
                     key={tag}
                     onClick={() => handleTagToggle(tag)}
+                    aria-pressed={activeTag === tag}
+                    aria-label={activeTag === tag ? `Remove tag filter: ${tag}` : `Filter by tag: ${tag}`}
                     className={`text-xs px-2 py-1 rounded-full transition-colors ${
                       activeTag === tag
                         ? "bg-gold/20 text-gold border border-gold/40"
