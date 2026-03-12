@@ -94,16 +94,26 @@ export default async function FreeGuidePage({
       ? `${SITE_URL}/free-guide`
       : `${SITE_URL}/${locale}/free-guide`;
 
-  const webPageJsonLd = {
+  const courseJsonLd = {
     "@context": "https://schema.org",
-    "@type": "WebPage",
+    "@type": "Course",
     name: "Free AI Business Automation Starter Guide",
     description:
       "Download your free AI starter guide. Learn how to automate marketing funnels, sales copy, and product launches using AI. No purchase required.",
     url: canonicalUrl,
     inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
-    isPartOf: { "@id": `${SITE_URL}/#website` },
-    publisher: { "@id": `${SITE_URL}/#organization` },
+    isAccessibleForFree: true,
+    educationalLevel: "Beginner",
+    provider: {
+      "@type": "Organization",
+      name: "AI Native Playbook",
+      url: SITE_URL,
+    },
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      courseMode: "online",
+      courseWorkload: "PT30M",
+    },
   };
 
   const breadcrumbJsonLd = {
@@ -124,7 +134,7 @@ export default async function FreeGuidePage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(webPageJsonLd)) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(courseJsonLd)) }}
       />
       <script
         type="application/ld+json"

@@ -70,12 +70,18 @@ export default async function PatternPage({
   const relatedBook = books.find((b) => b.slug === pattern.relatedBookSlug);
   const otherPatterns = patterns.filter((p) => p.slug !== slug);
 
-  const articleJsonLd = {
+  const howToJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: pattern.title,
+    "@type": "HowTo",
+    name: pattern.title,
     description: pattern.description,
     url: `${BASE_URL}/patterns/${slug}`,
+    step: pattern.keySteps.map((step, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: step,
+      text: step,
+    })),
     author: {
       "@type": "Organization",
       name: "AI Native Playbook",
@@ -85,10 +91,6 @@ export default async function PatternPage({
       "@type": "Organization",
       name: "AI Native Playbook",
       url: BASE_URL,
-    },
-    about: {
-      "@type": "Thing",
-      name: `${pattern.sourceBook} by ${pattern.sourceAuthor}`,
     },
   };
 
@@ -121,7 +123,7 @@ export default async function PatternPage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: escapeJsonLd(articleJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(howToJsonLd) }}
       />
       <script
         type="application/ld+json"
