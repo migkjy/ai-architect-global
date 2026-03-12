@@ -92,7 +92,8 @@ export default function ScrollSubscribeBanner({ labels, variant = "A" }: { label
   return (
     <div
       className="fixed bottom-0 left-0 right-0 z-50 border-t border-gold/20 bg-navy/95 backdrop-blur-sm shadow-lg px-4 py-3"
-      role="banner"
+      role="region"
+      aria-label="Newsletter subscription"
     >
       <div className="mx-auto max-w-2xl flex items-center gap-3">
         <div className="hidden sm:flex flex-col shrink-0">
@@ -131,9 +132,15 @@ export default function ScrollSubscribeBanner({ labels, variant = "A" }: { label
             <button
               type="submit"
               disabled={status === "loading"}
+              aria-busy={status === "loading"}
               className="rounded-xl bg-gold px-4 py-1.5 text-sm font-bold text-navy-dark hover:bg-gold-light transition-colors disabled:opacity-50 whitespace-nowrap"
             >
-              {status === "loading" ? "..." : labels.cta}
+              {status === "loading" ? (
+                <span aria-hidden="true">...</span>
+              ) : labels.cta}
+              {status === "loading" && (
+                <span className="sr-only">Submitting...</span>
+              )}
             </button>
           </form>
         )}
@@ -147,7 +154,7 @@ export default function ScrollSubscribeBanner({ labels, variant = "A" }: { label
         </button>
       </div>
       {status === "error" && (
-        <p className="text-center text-xs text-red-400 mt-1">{labels.error}</p>
+        <p role="alert" className="text-center text-xs text-red-400 mt-1">{labels.error}</p>
       )}
     </div>
   );

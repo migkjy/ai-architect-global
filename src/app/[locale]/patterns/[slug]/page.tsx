@@ -130,7 +130,7 @@ export default async function PatternPage({
         dangerouslySetInnerHTML={{ __html: escapeJsonLd(breadcrumbJsonLd) }}
       />
 
-      <main className="mx-auto max-w-4xl px-4 py-12">
+      <div className="mx-auto max-w-4xl px-4 py-12">
         <nav className="mb-8 text-sm text-gray-500">
           <Link href="/" className="hover:text-gray-700">
             Home
@@ -227,7 +227,7 @@ export default async function PatternPage({
             <Link href="/faq" className="text-sm text-blue-600 hover:text-blue-800 transition-colors">FAQ</Link>
           </div>
         </nav>
-      </main>
+      </div>
     </>
   );
 }

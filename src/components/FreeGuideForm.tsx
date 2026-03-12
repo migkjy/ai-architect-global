@@ -61,19 +61,30 @@ export default function FreeGuideForm({ ctaLabel }: FreeGuideFormProps) {
       </div>
 
       <div className="space-y-3">
+        <label htmlFor="free-guide-name" className="sr-only">
+          Your name (optional)
+        </label>
         <input
+          id="free-guide-name"
           type="text"
           placeholder="Your name (optional)"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          autoComplete="name"
           className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-text-primary placeholder:text-text-muted focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-colors"
         />
+        <label htmlFor="free-guide-email" className="sr-only">
+          Email address
+        </label>
         <input
+          id="free-guide-email"
           type="email"
           required
           placeholder="Your email address"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          autoComplete="email"
+          aria-describedby={error ? "free-guide-error" : undefined}
           className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-text-primary placeholder:text-text-muted focus:outline-none focus:border-gold/40 focus:ring-1 focus:ring-gold/20 transition-colors"
         />
         <button
@@ -86,7 +97,7 @@ export default function FreeGuideForm({ ctaLabel }: FreeGuideFormProps) {
       </div>
 
       {error && (
-        <p className="mt-3 text-red-400 text-sm text-center">{error}</p>
+        <p id="free-guide-error" role="alert" className="mt-3 text-red-400 text-sm text-center">{error}</p>
       )}
     </form>
   );
