@@ -1,4 +1,4 @@
-import { getPostBySlug, getAllPosts } from "@/lib/blog";
+import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/lib/blog";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
@@ -96,12 +96,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  const allPosts = getAllPosts();
-  const relatedPosts = allPosts
-    .filter((p) => p.slug !== slug)
-    .filter((p) => p.tags.some((t) => post.tags.includes(t)))
-    .slice(0, 3);
-  const otherPosts = relatedPosts.length > 0 ? relatedPosts : allPosts.filter((p) => p.slug !== slug).slice(0, 3);
+  // Category + tag composite matching for related posts
+  const otherPosts = getRelatedPosts(slug, post.category, post.tags, 3);
 
   const TAG_TO_PRODUCT_SLUG: Record<string, string> = {
     "Russell Brunson": "ai-marketing-architect",
@@ -309,7 +305,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       {/* Related Posts */}
       {otherPosts.length > 0 && (
         <div className="mt-12">
-          <h2 className="text-xl font-bold mb-6">Related Articles</h2>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold">You Might Also Like</h2>
+            <Link
+              href={`/blog/category/${encodeURIComponent(post.category.toLowerCase().replace(/\s+/g, "-"))}`}
+              className="text-xs text-gold hover:underline"
+            >
+              More in {post.category} →
+            </Link>
+          </div>
           <div className="grid gap-4">
             {otherPosts.map((related) => (
               <Link
@@ -317,16 +321,35 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 href={`/blog/${related.slug}`}
                 className="block border border-white/10 rounded-xl p-4 hover:border-gold/40 transition-colors"
               >
-                <div className="text-xs text-text-secondary mb-1">
+                <div className="text-xs text-text-secondary mb-1 flex items-center gap-2 flex-wrap">
                   <time dateTime={related.date}>{new Date(related.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</time>
-                  <span className="mx-2">·</span>
+                  <span>·</span>
                   <span>{related.readingTime}</span>
+                  <span>·</span>
+                  <span className="text-xs bg-gold/10 text-gold px-2 py-0.5 rounded-full">{related.category}</span>
                 </div>
                 <h3 className="font-semibold text-text-primary hover:text-gold transition-colors mb-1">{related.title}</h3>
                 <p className="text-xs text-text-secondary line-clamp-2">{related.description}</p>
               </Link>
             ))}
           </div>
+          {/* Tag navigation */}
+          {post.tags.length > 0 && (
+            <div className="mt-6 pt-4 border-t border-white/10">
+              <p className="text-xs text-text-muted uppercase tracking-wider mb-3">Browse by tag</p>
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag) => (
+                  <Link
+                    key={tag}
+                    href={`/blog/tag/${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, "-"))}`}
+                    className="text-xs px-3 py-1 rounded-full bg-gold/5 text-gold/70 hover:bg-gold/10 hover:text-gold border border-white/5 transition-colors"
+                  >
+                    #{tag}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 

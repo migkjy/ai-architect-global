@@ -225,6 +225,27 @@ export default async function BlogPage({
           <p className="text-xs text-text-muted">{t("subscriberCount")}</p>
         </div>
 
+        {/* Category navigation for crawlers */}
+        {categories.length > 0 && (
+          <nav className="mt-8 pt-6 border-t border-white/10" aria-label="Blog categories">
+            <p className="text-xs text-text-muted uppercase tracking-wider mb-3 text-center">Browse by category</p>
+            <div className="flex flex-wrap gap-2 justify-center">
+              {categories.map((cat) => {
+                const slug = encodeURIComponent(cat.toLowerCase().replace(/\s+/g, "-"));
+                return (
+                  <Link
+                    key={cat}
+                    href={`/blog/category/${slug}`}
+                    className="px-4 py-2 rounded-full text-sm bg-white/5 text-text-secondary hover:bg-white/10 hover:text-white border border-white/10 transition-colors"
+                  >
+                    {cat}
+                  </Link>
+                );
+              })}
+            </div>
+          </nav>
+        )}
+
         {/* Related pages */}
         <nav className="mt-8 pt-6 border-t border-white/10" aria-label="Related pages">
           <div className="flex flex-wrap gap-3 justify-center">

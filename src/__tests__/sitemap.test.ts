@@ -1,33 +1,95 @@
-import { describe, it, expect } from "vitest";
-import sitemap from "@/app/sitemap";
+import { describe, it, expect, vi } from "vitest";
 
-describe("Sitemap", () => {
-  it("canonical sitemap (id=0) includes pricing page", () => {
-    const entries = sitemap({ id: 0 });
-    const pricingEntry = entries.find((e) => e.url.endsWith("/pricing"));
-    expect(pricingEntry).toBeDefined();
-    expect(pricingEntry!.priority).toBeGreaterThanOrEqual(0.8);
+// Mock next/server before importing route handlers
+vi.mock("next/server", () => ({
+  NextResponse: class {
+    body: string;
+    headers: Map<string, string>;
+    constructor(body: string, init?: { headers?: Record<string, string> }) {
+      this.body = body;
+      this.headers = new Map(Object.entries(init?.headers ?? {}));
+    }
+    async text() {
+      return this.body;
+    }
+  },
+}));
+
+describe("sitemap.xml (index)", () => {
+  it("returns valid sitemapindex XML with sub-sitemaps", async () => {
+    const { GET } = await import("@/app/sitemap.xml/route");
+    const response = GET();
+    const xml = await response.text();
+
+    expect(xml).toContain('<?xml version="1.0"');
+    expect(xml).toContain("<sitemapindex");
+    expect(xml).toContain("sitemap-pages.xml");
+    expect(xml).toContain("sitemap-blog.xml");
+    expect(xml).toContain("sitemap-products.xml");
   });
 
-  it("en sitemap (id=1) includes /en/pricing", () => {
-    const entries = sitemap({ id: 1 });
-    const enPricing = entries.find((e) => e.url.includes("/en/pricing"));
-    expect(enPricing).toBeDefined();
+  it("sets correct content-type header", async () => {
+    const { GET } = await import("@/app/sitemap.xml/route");
+    const response = GET();
+    expect(response.headers.get("Content-Type")).toBe(
+      "application/xml; charset=utf-8"
+    );
+  });
+});
+
+describe("sitemap-pages.xml", () => {
+  it("includes /en/pricing page", async () => {
+    const { GET } = await import("@/app/sitemap-pages.xml/route");
+    const response = GET();
+    const xml = await response.text();
+
+    expect(xml).toContain("<urlset");
+    expect(xml).toContain("/en/pricing");
   });
 
-  it("no /ja/ URLs in any sitemap", () => {
-    const canonical = sitemap({ id: 0 });
-    const en = sitemap({ id: 1 });
-    const allEntries = [...canonical, ...en];
-    const jaEntries = allEntries.filter((e) => e.url.includes("/ja/"));
-    expect(jaEntries).toHaveLength(0);
+  it("includes /en/free-guide page", async () => {
+    const { GET } = await import("@/app/sitemap-pages.xml/route");
+    const response = GET();
+    const xml = await response.text();
+
+    expect(xml).toContain("/en/free-guide");
   });
 
-  it("no /ko/ URLs in any sitemap", () => {
-    const canonical = sitemap({ id: 0 });
-    const en = sitemap({ id: 1 });
-    const allEntries = [...canonical, ...en];
-    const koEntries = allEntries.filter((e) => e.url.includes("/ko/"));
-    expect(koEntries).toHaveLength(0);
+  it("does not include /ja/ URLs", async () => {
+    const { GET } = await import("@/app/sitemap-pages.xml/route");
+    const response = GET();
+    const xml = await response.text();
+
+    expect(xml).not.toContain("/ja/");
+  });
+
+  it("does not include /ko/ URLs", async () => {
+    const { GET } = await import("@/app/sitemap-pages.xml/route");
+    const response = GET();
+    const xml = await response.text();
+
+    expect(xml).not.toContain("/ko/");
+  });
+});
+
+describe("sitemap-products.xml", () => {
+  it("returns valid urlset XML with product URLs", async () => {
+    const { GET } = await import("@/app/sitemap-products.xml/route");
+    const response = GET();
+    const xml = await response.text();
+
+    expect(xml).toContain("<urlset");
+    expect(xml).toContain("/en/products/");
+  });
+});
+
+describe("sitemap-blog.xml", () => {
+  it("returns valid urlset XML with blog URLs", async () => {
+    const { GET } = await import("@/app/sitemap-blog.xml/route");
+    const response = GET();
+    const xml = await response.text();
+
+    expect(xml).toContain("<urlset");
+    expect(xml).toContain("/en/blog/");
   });
 });
