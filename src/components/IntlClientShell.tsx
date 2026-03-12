@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import { getCtaVariant, CTA_VARIANTS, type CtaVariant } from "@/lib/cta-config";
 
@@ -37,7 +38,18 @@ type ScrollBannerLabels = {
  * Renders only the deferred interactive overlays (exit intent popup + scroll banner).
  * <main> content is intentionally kept outside this client boundary in layout.tsx
  * so server-rendered page content is not included in the client JS bundle.
+ *
+ * 1페이지 1목적 원칙: homepage paths (/, /en, /ja) suppress all subscribe overlays.
  */
+
+/** Locale-only paths where the homepage (sales page) lives — popups suppressed here. */
+const HOMEPAGE_PATHS = new Set(["/", "/en", "/ja"]);
+
+function isHomepage(pathname: string): boolean {
+  // Match exact locale roots: /, /en, /ja — with or without trailing slash
+  return HOMEPAGE_PATHS.has(pathname) || HOMEPAGE_PATHS.has(pathname.replace(/\/$/, ""));
+}
+
 export default function IntlClientShell({
   exitPopupLabels,
   scrollBannerLabels,
@@ -45,6 +57,7 @@ export default function IntlClientShell({
   exitPopupLabels: ExitPopupLabels;
   scrollBannerLabels: ScrollBannerLabels;
 }) {
+  const pathname = usePathname();
   const [variant, setVariant] = useState<CtaVariant>("A");
 
   useEffect(() => {
@@ -61,6 +74,11 @@ export default function IntlClientShell({
     variant === "B"
       ? { ...exitPopupLabels, ...CTA_VARIANTS.exitIntent.B }
       : exitPopupLabels;
+
+  // 1페이지 1목적 원칙: 홈페이지(판매 전용)에서는 구독 팝업/배너 표시 안 함
+  if (isHomepage(pathname)) {
+    return null;
+  }
 
   return (
     <>
