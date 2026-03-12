@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
+import { GA4LeadComplete } from "@/components/GA4PurchaseComplete";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
@@ -43,6 +44,8 @@ export default async function ThankYouPage({
 
   return (
     <div className="min-h-screen pt-24 pb-20">
+      {/* GA4: fire lead conversion event when thank-you page is viewed */}
+      <GA4LeadComplete source="free-guide-thank-you" />
       <section className="text-center max-w-2xl mx-auto px-4">
         {/* Success icon */}
         <div className="w-20 h-20 bg-gold/10 border border-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">

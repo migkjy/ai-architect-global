@@ -3,6 +3,13 @@
 import { useState, type FormEvent } from "react";
 import { useRouter, useParams } from "next/navigation";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
 interface FreeGuideFormProps {
   ctaLabel?: string;
 }
@@ -22,6 +29,13 @@ export default function FreeGuideForm({ ctaLabel }: FreeGuideFormProps) {
     setError("");
     setLoading(true);
 
+    // GA4: form submit attempt (generate_lead is a recommended GA4 event)
+    window.gtag?.("event", "generate_lead", {
+      event_category: "lead",
+      event_label: "free_guide_form",
+      source: "free-guide-page",
+    });
+
     try {
       const res = await fetch("/api/subscribe-guide", {
         method: "POST",
@@ -33,12 +47,31 @@ export default function FreeGuideForm({ ctaLabel }: FreeGuideFormProps) {
 
       if (!res.ok) {
         setError(data.error || "Something went wrong. Please try again.");
+        window.gtag?.("event", "form_error", {
+          event_category: "lead",
+          event_label: "free_guide_form",
+          error_message: data.error ?? "unknown",
+        });
         return;
       }
+
+      // GA4: successful free guide lead capture
+      window.gtag?.("event", "free_guide_signup", {
+        event_category: "lead",
+        event_label: "free_guide_form",
+        source: "free-guide-page",
+      });
+      // Meta Pixel: Lead event
+      window.fbq?.("track", "Lead", { content_name: "free_guide" });
 
       router.push(`/${locale}/free-guide/thank-you`);
     } catch {
       setError("Network error. Please check your connection and try again.");
+      window.gtag?.("event", "form_error", {
+        event_category: "lead",
+        event_label: "free_guide_form",
+        error_message: "network_error",
+      });
     } finally {
       setLoading(false);
     }
