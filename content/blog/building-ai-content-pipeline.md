@@ -91,4 +91,4 @@ Month 6: 20 minutes per piece (you've refined every prompt)
 
 ---
 
-The AI Native Playbook Series includes the complete prompt library for this pipeline, with versions optimized for different content types: blog posts, newsletters, social media, and email sequences.
+The [AI Native Playbook Series](/en/products) includes the complete prompt library for this pipeline, with versions optimized for different content types: blog posts, newsletters, social media, and email sequences. New to AI systems? Start with the [free guide](/en/free-guide) to understand the foundational principles before building your pipeline.

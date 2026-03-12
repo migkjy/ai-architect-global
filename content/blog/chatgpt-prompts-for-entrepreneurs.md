@@ -118,3 +118,5 @@ A great prompt is a reusable asset. The prompts below are tested, specific, and 
 Every prompt improves with three additions: context about your business, a description of your audience, and the tone you want. A prompt that takes 30 seconds to customize produces output that takes 30 minutes less to edit.
 
 Build a personal prompt library. When you write a prompt that produces great output, save it. Add notes about what worked. Over time, your prompt library becomes a competitive asset that compounds.
+
+Want pre-built prompt systems organized by business framework? The [AI Native Playbook Series](/en/products) packages tested prompts for sales funnels, email sequences, and launch campaigns — ready to load and customize. Or explore our [patterns library](/en/patterns) for structured AI workflow examples.

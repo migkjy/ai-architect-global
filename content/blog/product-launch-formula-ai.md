@@ -73,4 +73,4 @@ A PLF launch is not a one-time event. It's a system. Once you've run the sequenc
 
 AI gets you to "first launch" faster. The frameworks handle the strategy. You handle the relationships.
 
-The AI Native Playbook Series includes an AI-powered PLF tool that walks you through each phase with prompts, templates, and guidance built directly into the workflow — so you're executing the framework, not just reading about it.
+The [AI Native Playbook Series](/en/products) includes an AI-powered PLF tool that walks you through each phase with prompts, templates, and guidance built directly into the workflow — so you're executing the framework, not just reading about it. See how it fits alongside other proven frameworks in our [patterns library](/en/patterns).
