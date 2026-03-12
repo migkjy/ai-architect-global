@@ -32,12 +32,16 @@ export async function generateMetadata({
         "Get a free guide that shows you how to use AI to automate 6 proven business frameworks. Instant PDF download.",
       type: "website",
       url: canonicalUrl,
+      siteName: "AI Native Playbook Series",
+      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
       images: [
         {
-          url: `${SITE_URL}/opengraph-image`,
+          url: locale === "en"
+            ? `${SITE_URL}/free-guide/opengraph-image`
+            : `${SITE_URL}/${locale}/free-guide/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: "Free AI Business Automation Starter Guide",
+          alt: "Free AI Business Guide - AI Native Playbook",
         },
       ],
     },
@@ -46,7 +50,11 @@ export async function generateMetadata({
       title: "Free AI Business Automation Starter Guide",
       description:
         "Get a free guide that shows you how to use AI to automate 6 proven business frameworks. Instant PDF download.",
-      images: [`${SITE_URL}/opengraph-image`],
+      images: [
+        locale === "en"
+          ? `${SITE_URL}/free-guide/opengraph-image`
+          : `${SITE_URL}/${locale}/free-guide/opengraph-image`,
+      ],
     },
     robots: {
       index: true,

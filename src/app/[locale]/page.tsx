@@ -66,7 +66,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       siteName: "AI Native Playbook Series",
       images: [
         {
-          url: `${siteUrl}/og-image`,
+          url: `${siteUrl}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: "AI Native Playbook Series — 6 AI-Powered Business Frameworks",
@@ -77,7 +77,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: "summary_large_image",
       title: meta.title,
       description: meta.twitterDescription,
-      images: [`${siteUrl}/og-image`],
+      images: [`${siteUrl}/opengraph-image`],
     },
     alternates: {
       canonical: canonicalUrl,

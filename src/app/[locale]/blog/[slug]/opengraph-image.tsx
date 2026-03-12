@@ -45,7 +45,7 @@ export default async function Image({ params }: { params: { slug: string; locale
             textTransform: "uppercase",
           }}
         >
-          AI ARCHITECT SERIES — BLOG
+          AI NATIVE PLAYBOOK — BLOG
         </div>
         <div
           style={{
@@ -79,7 +79,7 @@ export default async function Image({ params }: { params: { slug: string; locale
             fontWeight: "600",
           }}
         >
-          ai-driven-architect.com
+          AI Native Playbook Series
         </div>
       </div>
     ),
