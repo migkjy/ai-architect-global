@@ -60,9 +60,15 @@ export default function NotFoundSubscribeForm() {
         <button
           type="submit"
           disabled={status === "loading"}
+          aria-busy={status === "loading"}
           className="rounded-xl bg-gold px-4 py-2 text-sm font-bold text-navy-dark hover:bg-gold-light transition-colors disabled:opacity-50 whitespace-nowrap"
         >
-          {status === "loading" ? "..." : "Get Free"}
+          {status === "loading" ? (
+            <>
+              <span aria-hidden="true">...</span>
+              <span className="sr-only">Submitting...</span>
+            </>
+          ) : "Get Free"}
         </button>
       </form>
       {status === "error" && (

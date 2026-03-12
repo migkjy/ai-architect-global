@@ -158,6 +158,7 @@ export default function BuyButton({
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleBuyClick}
+      aria-label={`${String(children)} (opens in new tab)`}
       className={`inline-flex items-center justify-center px-8 py-3 rounded-xl font-bold transition-all transform hover:scale-105 ${base} ${className}`}
     >
       {children}

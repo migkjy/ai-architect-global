@@ -181,7 +181,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(breadcrumbJsonLd)) }}
       />
-    <main className="max-w-3xl mx-auto px-4 py-16">
+    <div className="max-w-3xl mx-auto px-4 py-16">
       <div className="mb-8">
         <Link href="/blog" className="text-gold hover:underline text-sm">← Back to Blog</Link>
       </div>
@@ -319,7 +319,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       )}
 
-    </main>
+    </div>
     </>
   );
 }

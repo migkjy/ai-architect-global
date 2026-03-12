@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 
 declare global {
   interface Window {
@@ -33,6 +33,7 @@ export default function ExitIntentPopup({ labels, variant = "A" }: { labels: Exi
   const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   const dismiss = useCallback(() => {
     setVisible(false);
@@ -89,9 +90,48 @@ export default function ExitIntentPopup({ labels, variant = "A" }: { labels: Exi
 
   useEffect(() => {
     if (!visible) return;
-    function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") dismiss();
+
+    // Focus first focusable element when dialog opens
+    const dialog = dialogRef.current;
+    if (dialog) {
+      const firstFocusable = dialog.querySelector<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      firstFocusable?.focus();
     }
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        dismiss();
+        return;
+      }
+
+      // Focus trap
+      if (e.key === "Tab" && dialog) {
+        const focusableElements = dialog.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        const focusable = Array.from(focusableElements).filter(
+          (el) => !el.closest('[aria-hidden="true"]')
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    }
+
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [visible, dismiss]);
@@ -140,10 +180,10 @@ export default function ExitIntentPopup({ labels, variant = "A" }: { labels: Exi
         if (e.target === e.currentTarget) dismiss();
       }}
     >
-      <div className="relative w-full max-w-md bg-navy-light border border-gold/20 rounded-2xl p-8 shadow-2xl">
+      <div ref={dialogRef} className="relative w-full max-w-md bg-navy-light border border-gold/20 rounded-2xl p-8 shadow-2xl">
         <button
           onClick={dismiss}
-          aria-label="Close"
+          aria-label="Close popup"
           className="absolute right-4 top-4 text-text-secondary hover:text-text-primary transition-colors text-xl leading-none"
         >
           &times;
@@ -223,9 +263,15 @@ export default function ExitIntentPopup({ labels, variant = "A" }: { labels: Exi
               <button
                 type="submit"
                 disabled={status === "loading"}
+                aria-busy={status === "loading"}
                 className="w-full px-6 py-3 bg-gold text-navy-dark font-bold rounded-xl hover:bg-gold-light transition-all text-sm disabled:opacity-50"
               >
-                {status === "loading" ? "..." : labels.cta}
+                {status === "loading" ? (
+                  <>
+                    <span aria-hidden="true">...</span>
+                    <span className="sr-only">Submitting...</span>
+                  </>
+                ) : labels.cta}
               </button>
               {status === "error" && (
                 <p role="alert" className="text-center text-xs text-red-400">
