@@ -300,6 +300,41 @@
     "cta": "Get Free Sample",
     "error": "Something went wrong. Try again."
   },
+  "blogCta": {
+    "hook": "Still doing AI manually? You're leaving money on the table.",
+    "story": "Most businesses waste 40+ hours/month on tasks AI can handle in minutes.",
+    "offer": "Get the free starter guide with ready-to-use prompts and frameworks.",
+    "ctaButton": "Get My Free Guide →",
+    "label": "Free AI Starter Guide"
+  },
+  "freeGuide": {
+    "socialProof": "Downloaded by 500+ professionals",
+    "ctaButton": "Get My Free Guide →",
+    "microCopy1": "Instant PDF delivery",
+    "microCopy2": "No spam, ever",
+    "microCopy3": "Unsubscribe anytime",
+    "formHeading": "Enter your email to get instant access"
+  },
+  "thankYou": {
+    "socialProof": "Join 500+ business owners who downloaded this guide",
+    "step1Title": "Read Your Starter Guide (15 min)",
+    "step1Desc": "It covers all 6 frameworks and gives you a clear overview of how AI can automate your business.",
+    "step2Title": "Go Deeper on the Blog",
+    "step2Desc": "Explore practical AI strategies, frameworks, and case studies to accelerate your results.",
+    "step3Title": "Explore the Full Playbook Series",
+    "step3Desc": "Ready for the complete system? Get all 6 AI-powered framework guides for your business.",
+    "downloadBtn": "Download Your Free Guide (PDF)",
+    "whatsNext": "Your Next 3 Steps",
+    "deeperLearning": "Continue Learning",
+    "deeperLearningDesc": "Start with these popular articles to get more from your guide:",
+    "blog1Title": "The Complete AI Business Blueprint for 2026",
+    "blog1Slug": "ai-business-blueprint-2026",
+    "blog2Title": "AI Marketing Automation — Save 10 Hours Per Week",
+    "blog2Slug": "ai-marketing-automation-guide",
+    "blog3Title": "50 AI Prompts Every Entrepreneur Needs",
+    "blog3Slug": "chatgpt-prompts-for-entrepreneurs",
+    "exploreProducts": "Explore the Full AI Native Playbook Series →"
+  },
   "faqPage": {
     "title": "Frequently Asked Questions",
     "subtitle": "Everything you need to know about the AI Native Playbook Series — products, payment, downloads, refunds, and technical support.",

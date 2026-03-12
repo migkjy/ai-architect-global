@@ -3,7 +3,11 @@
 import { useState, type FormEvent } from "react";
 import { useRouter, useParams } from "next/navigation";
 
-export default function FreeGuideForm() {
+interface FreeGuideFormProps {
+  ctaLabel?: string;
+}
+
+export default function FreeGuideForm({ ctaLabel }: FreeGuideFormProps) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
@@ -77,17 +81,13 @@ export default function FreeGuideForm() {
           disabled={loading}
           className="w-full px-8 py-4 rounded-xl font-bold text-lg transition-all transform hover:scale-105 bg-gold text-navy-dark hover:bg-gold-light disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
         >
-          {loading ? "Sending..." : "Get Your Free Guide"}
+          {loading ? "Sending..." : (ctaLabel ?? "Get Your Free Guide")}
         </button>
       </div>
 
       {error && (
         <p className="mt-3 text-red-400 text-sm text-center">{error}</p>
       )}
-
-      <p className="mt-3 text-xs text-text-muted text-center">
-        No spam, ever. Unsubscribe anytime.
-      </p>
     </form>
   );
 }
