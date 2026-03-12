@@ -15,10 +15,10 @@ export function generateMetadata(): Metadata {
   return {
     title: "AI Architecture Patterns | AI Native Playbook",
     description:
-      "Proven business frameworks automated with AI. Value Ladder, Mass Movement, Dream 100, Story-Driven Copy, and Product Launch patterns.",
+      "5 proven business frameworks automated with AI — Value Ladder, Mass Movement, Dream 100, Story Copy, Product Launch. Free to use. Start executing now.",
     openGraph: {
       title: "AI Architecture Patterns | AI Native Playbook",
-      description: "5 proven business frameworks automated with AI.",
+      description: "5 proven business frameworks automated with AI — Value Ladder, Mass Movement, Dream 100, Story Copy, and Product Launch. Free to use.",
       url: `${BASE_URL}/patterns`,
       type: "website",
       images: [{ url: `${BASE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Architecture Patterns" }],
