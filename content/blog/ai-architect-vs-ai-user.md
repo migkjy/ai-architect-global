@@ -63,4 +63,4 @@ The tools have stabilized. Claude, ChatGPT, and others are reliable enough to bu
 
 ---
 
-The AI Native Playbook Series from Richbukae provides the complete framework for transitioning from AI user to AI architect. Start with our free guide on the three core principles.
+The AI Native Playbook Series provides the complete framework for transitioning from AI user to AI architect. Start with our [free guide on the three core principles](/en/free-guide), or explore the full [AI Native Playbook collection](/en/products) to build your first AI-powered system.
