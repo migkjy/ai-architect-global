@@ -13,15 +13,27 @@ export function generateStaticParams() {
 
 export function generateMetadata(): Metadata {
   return {
-    title: "AI Architecture Patterns | AI Native Playbook",
+    title: "AI Architecture Patterns — Proven Business Frameworks Automated with AI | AI Native Playbook",
     description:
-      "5 proven business frameworks automated with AI — Value Ladder, Mass Movement, Dream 100, Story Copy, Product Launch. Free to use. Start executing now.",
+      "Explore 5 AI architecture patterns for business automation: Value Ladder, Mass Movement, Dream 100, Story Copy, and Product Launch. Each pattern runs on Claude, ChatGPT, or Gemini.",
+    keywords: [
+      "AI architecture patterns",
+      "AI architect",
+      "AI native playbook",
+      "AI business frameworks",
+      "Value Ladder AI",
+      "Product Launch Formula AI",
+      "DotCom Secrets AI",
+      "business automation AI patterns",
+      "AI marketing patterns",
+      "AI agent patterns",
+    ],
     openGraph: {
-      title: "AI Architecture Patterns | AI Native Playbook",
-      description: "5 proven business frameworks automated with AI — Value Ladder, Mass Movement, Dream 100, Story Copy, and Product Launch. Free to use.",
+      title: "AI Architecture Patterns — Proven Business Frameworks Automated with AI | AI Native Playbook",
+      description: "5 AI architecture patterns for business: Value Ladder, Mass Movement, Dream 100, Story Copy, Product Launch. Free to explore — runs on any AI.",
       url: `${BASE_URL}/patterns`,
       type: "website",
-      images: [{ url: `${BASE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Architecture Patterns" }],
+      images: [{ url: `${BASE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Architecture Patterns — AI Native Playbook" }],
     },
     alternates: {
       canonical: `${BASE_URL}/patterns`,
@@ -52,8 +64,9 @@ export default async function PatternsPage({
   const collectionPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "AI Architecture Patterns",
-    description: "Proven business frameworks automated with AI",
+    name: "AI Architecture Patterns — AI Native Playbook",
+    description: "Proven business frameworks structured as AI architecture patterns — automated with AI for immediate execution",
+    keywords: "AI architecture patterns, AI architect, AI native playbook, business automation AI",
     url: `${BASE_URL}/patterns`,
     mainEntity: {
       "@type": "ItemList",
@@ -87,11 +100,12 @@ export default async function PatternsPage({
         dangerouslySetInnerHTML={{ __html: escapeJsonLd(breadcrumbJsonLd) }}
       />
       <div className="mx-auto max-w-4xl px-4 py-12">
+        <p className="text-sm font-semibold text-gold/70 uppercase tracking-widest mb-3">
+          AI Native Playbook Series
+        </p>
         <h1 className="mb-4 text-3xl font-bold">AI Architecture Patterns</h1>
         <p className="mb-10 text-lg text-gray-600">
-          Proven business frameworks from bestselling authors — automated with
-          AI. Each pattern gives you a step-by-step system you can implement
-          immediately.
+          Proven business frameworks from bestselling authors — structured as AI architecture patterns you can run on Claude, ChatGPT, or Gemini today. Each pattern gives you a reusable, step-by-step AI system for your specific business.
         </p>
 
         <div className="space-y-6">
