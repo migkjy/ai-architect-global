@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
+import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -198,13 +199,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={{
-              // eslint-disable-next-line @next/next/no-img-element
-              img: ({ src, alt, ...props }) => {
+              img: ({ src, alt }) => {
                 const srcStr = typeof src === 'string' ? src : '';
                 const fallbackAlt = srcStr ? srcStr.split('/').pop()?.replace(/[-_]/g, ' ').replace(/\.\w+$/, '') || 'article image' : 'article image';
+                if (!srcStr) return null;
                 return (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={srcStr} alt={alt || fallbackAlt} loading="lazy" {...props} />
+                  <span className="block relative w-full my-6" style={{ aspectRatio: '16/9' }}>
+                    <Image
+                      src={srcStr}
+                      alt={alt || fallbackAlt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 700px"
+                      className="object-contain rounded-lg"
+                      loading="lazy"
+                    />
+                  </span>
                 );
               },
             }}
