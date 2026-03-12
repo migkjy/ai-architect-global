@@ -25,6 +25,11 @@ export function generateMetadata(): Metadata {
     },
     alternates: {
       canonical: `${BASE_URL}/patterns`,
+      languages: {
+        en: `${BASE_URL}/patterns`,
+        ja: `${BASE_URL}/ja/patterns`,
+        "x-default": `${BASE_URL}/patterns`,
+      },
     },
   };
 }
