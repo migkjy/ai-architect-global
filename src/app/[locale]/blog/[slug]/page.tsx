@@ -46,7 +46,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       siteName: "AI Native Playbook Series",
       images: [
         {
-          url: `${siteUrl}/opengraph-image`,
+          url: locale === "en"
+            ? `${siteUrl}/blog/${slug}/opengraph-image`
+            : `${siteUrl}/${locale}/blog/${slug}/opengraph-image`,
           width: 1200,
           height: 630,
           alt: `${post.title} | AI Native Playbook Series`,
@@ -57,7 +59,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       card: "summary_large_image",
       title: post.title,
       description: post.description,
-      images: [`${siteUrl}/opengraph-image`],
+      images: [
+        locale === "en"
+          ? `${siteUrl}/blog/${slug}/opengraph-image`
+          : `${siteUrl}/${locale}/blog/${slug}/opengraph-image`,
+      ],
     },
     alternates: {
       canonical: canonicalUrl,
@@ -118,7 +124,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     dateModified: post.date,
     image: {
       "@type": "ImageObject",
-      url: `${siteUrl}/opengraph-image`,
+      url: locale === "en"
+        ? `${siteUrl}/blog/${slug}/opengraph-image`
+        : `${siteUrl}/${locale}/blog/${slug}/opengraph-image`,
       width: 1200,
       height: 630,
     },
