@@ -203,6 +203,7 @@ export default async function BlogPage({
           <div className="flex flex-wrap gap-3 justify-center">
             <Link href="/products" className="text-sm text-gold hover:text-gold-light transition-colors">Products</Link>
             <Link href="/bundle" className="text-sm text-gold hover:text-gold-light transition-colors">Bundle</Link>
+            <Link href="/free-guide" className="text-sm text-gold hover:text-gold-light transition-colors">Free Guide</Link>
             <Link href="/about" className="text-sm text-gold hover:text-gold-light transition-colors">About</Link>
             <Link href="/faq" className="text-sm text-gold hover:text-gold-light transition-colors">FAQ</Link>
           </div>

@@ -48,7 +48,8 @@
     "completeBundle": "전체 번들 — $47",
     "individualBooks": "개별 도서 — 각 $17",
     "rights": "All rights reserved",
-    "instantPdf": "즉시 PDF 다운로드"
+    "instantPdf": "즉시 PDF 다운로드",
+    "freeGuide": "무료 가이드"
   },
   "blog": {
     "title": "AI 비즈니스 블로그",
