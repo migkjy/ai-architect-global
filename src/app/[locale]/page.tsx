@@ -42,6 +42,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: meta.title,
     description: meta.description,
     keywords: [
+      "AI native playbook",
+      "AI architecture patterns",
+      "AI architect",
       "AI business automation",
       "AI marketing playbook",
       "AI native business guide",
@@ -172,6 +175,24 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     })),
   };
 
+  const webPageJsonLd = locale === "en" ? {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${siteUrl}/#webpage`,
+    url: siteUrl,
+    name: "AI Native Playbook Series — AI Architecture Patterns for Business Automation",
+    description: "6 AI-native guides that turn proven business frameworks into executable AI architecture patterns. For entrepreneurs, marketers, and AI-native builders.",
+    inLanguage: "en-US",
+    isPartOf: { "@id": `${siteUrl}/#website` },
+    about: [
+      { "@type": "Thing", name: "AI Native Playbook" },
+      { "@type": "Thing", name: "AI Architecture Patterns" },
+      { "@type": "Thing", name: "AI Business Automation" },
+      { "@type": "Thing", name: "AI Architect" },
+    ],
+    keywords: "AI native playbook, AI architecture patterns, AI architect, business automation with AI, AI marketing playbook",
+  } : null;
+
   const bookListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -205,6 +226,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
+      {webPageJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(webPageJsonLd)) }}
+        />
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(faqPageJsonLd)) }}
@@ -234,6 +261,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </div>
           </div>
 
+          {locale === "en" && (
+            <p className="text-sm font-semibold text-gold/70 uppercase tracking-widest mb-3">
+              AI Native Playbook Series
+            </p>
+          )}
           <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
             {th("title1")}
             <br />
