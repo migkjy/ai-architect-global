@@ -85,6 +85,8 @@ Each guide includes:
 - Step-by-step implementation guide
 - Real case studies with documented results
 
+Not sure which framework fits your business? Grab our [free AI starter guide](/en/free-guide) first — it compares all six frameworks side by side and gives you 3 prompts to test immediately.
+
 The [Complete Bundle](/bundle) includes all six frameworks for $47 — less than the cost of a single business book.
 
 Stop experimenting. Start executing proven frameworks with AI.

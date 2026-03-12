@@ -12,9 +12,10 @@ declare global {
 
 interface FreeGuideFormProps {
   ctaLabel?: string;
+  variant?: string;
 }
 
-export default function FreeGuideForm({ ctaLabel }: FreeGuideFormProps) {
+export default function FreeGuideForm({ ctaLabel, variant = "A" }: FreeGuideFormProps) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
@@ -34,6 +35,7 @@ export default function FreeGuideForm({ ctaLabel }: FreeGuideFormProps) {
       event_category: "lead",
       event_label: "free_guide_form",
       source: "free-guide-page",
+      variant,
     });
 
     try {
@@ -60,6 +62,7 @@ export default function FreeGuideForm({ ctaLabel }: FreeGuideFormProps) {
         event_category: "lead",
         event_label: "free_guide_form",
         source: "free-guide-page",
+        variant,
       });
       // Meta Pixel: Lead event
       window.fbq?.("track", "Lead", { content_name: "free_guide" });

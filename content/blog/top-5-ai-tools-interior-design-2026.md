@@ -99,4 +99,6 @@ The designers who thrive with AI tools are those who treat them as skilled assis
 
 ---
 
+Getting started with AI in your design practice? Download our [free starter guide](/en/free-guide) for a quick-reference framework comparison and 3 prompts you can use with any AI tool.
+
 *Looking for AI frameworks designed for design professionals? The [AI Native Playbook Series](/products) provides prompt systems and workflows specifically built for architecture and interior design practices.*
