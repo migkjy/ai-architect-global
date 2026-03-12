@@ -11,8 +11,8 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architec
 const blogMeta: Record<string, { title: string; description: string; ogDescription: string }> = {
   en: {
     title: "AI Business Automation Blog | AI Native Playbook Series",
-    description: "Practical guides on AI business automation, AI marketing playbook strategies, and AI agent skills. Free frameworks for entrepreneurs building AI-native businesses.",
-    ogDescription: "Free AI business automation guides, AI marketing playbook strategies, and AI agent skills for entrepreneurs who want to scale with AI-powered frameworks.",
+    description: "AI business automation guides, marketing playbook strategies, and prompt frameworks. Free resources for entrepreneurs building AI-native businesses. Read.",
+    ogDescription: "Free AI business automation guides, marketing playbook strategies, and prompt frameworks for entrepreneurs scaling with AI-powered systems.",
   },
   ko: {
     title: "AI 비즈니스 블로그 | AI Native Playbook Series",

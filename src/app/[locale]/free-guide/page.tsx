@@ -22,14 +22,14 @@ export async function generateMetadata({
   return {
     title: "Free AI Business Automation Starter Guide",
     description:
-      "Download your free AI starter guide. Learn how to automate marketing funnels, sales copy, and product launches using AI. No purchase required.",
+      "Free AI Starter Guide: automate marketing funnels, sales copy, and product launches with AI. No purchase required — instant PDF download, start today.",
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
       title: "Free AI Business Automation Starter Guide",
       description:
-        "Get a free guide that shows you how to use AI to automate 6 proven business frameworks. Instant PDF download.",
+        "Get your free guide and learn to automate marketing funnels, sales copy, and product launches with AI. Instant PDF download — no purchase required.",
       type: "website",
       url: canonicalUrl,
       siteName: "AI Native Playbook Series",
@@ -49,7 +49,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: "Free AI Business Automation Starter Guide",
       description:
-        "Get a free guide that shows you how to use AI to automate 6 proven business frameworks. Instant PDF download.",
+        "Free guide: automate marketing funnels, sales copy, and product launches with AI. Instant PDF download — no purchase required.",
       images: [
         locale === "en"
           ? `${SITE_URL}/free-guide/opengraph-image`

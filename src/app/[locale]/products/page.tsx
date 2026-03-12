@@ -9,7 +9,7 @@ import { getTranslations } from "next-intl/server";
 const productsMeta: Record<string, { title: string; description: string; ogDescription: string }> = {
   en: {
     title: "All 6 AI Business Automation Guides — AI Native Playbook Series",
-    description: "6 AI native business guides that turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's frameworks into business automation with AI. AI marketing playbook + agent skills. $17 each or $47 bundle.",
+    description: "6 AI-native guides turning world-class marketing frameworks into executable AI systems. Prompt skills included — $17 each or $47 complete bundle.",
     ogDescription: "6 AI-powered business automation guides. Apply world-class marketing frameworks with AI agent skills. Individual $17 or complete bundle $47.",
   },
   ko: {
