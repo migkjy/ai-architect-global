@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import dynamic from "next/dynamic";
 
 const FreeGuideForm = dynamic(() => import("@/components/FreeGuideForm"));
@@ -88,6 +89,7 @@ export default async function FreeGuidePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations("freeGuide");
 
   const canonicalUrl =
     locale === "en"
@@ -168,6 +170,14 @@ export default async function FreeGuidePage({
 
       {/* Offer — Email Form */}
       <section className="max-w-xl mx-auto px-4 mb-20">
+        {/* Social proof above the form */}
+        <p className="text-center text-sm text-text-secondary mb-4 flex items-center justify-center gap-2">
+          <svg className="w-4 h-4 text-gold shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M10 1a9 9 0 100 18A9 9 0 0010 1zm3.707 7.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" />
+          </svg>
+          {t("socialProof")}
+        </p>
+
         <div className="bg-surface/60 border border-gold/20 rounded-2xl p-8 md:p-10 relative">
           <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
             <span className="bg-gold text-navy-dark text-xs font-bold px-4 py-1.5 rounded-full">
@@ -176,13 +186,20 @@ export default async function FreeGuidePage({
           </div>
 
           <h2 className="text-xl font-bold text-center mb-2 mt-2">
-            Enter your email to download
+            {t("formHeading")}
           </h2>
           <p className="text-text-secondary text-sm text-center mb-6">
             Instant access. No credit card required.
           </p>
 
-          <FreeGuideForm />
+          <FreeGuideForm ctaLabel={t("ctaButton")} />
+
+          {/* Microcopy trust signals */}
+          <p className="text-center text-xs text-text-muted mt-4 flex items-center justify-center gap-3 flex-wrap">
+            <span>&#10003; {t("microCopy1")}</span>
+            <span>&#10003; {t("microCopy2")}</span>
+            <span>&#10003; {t("microCopy3")}</span>
+          </p>
         </div>
       </section>
 
