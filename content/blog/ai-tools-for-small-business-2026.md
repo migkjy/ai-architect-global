@@ -97,3 +97,5 @@ Start with one tool, not five. Pick the area where you waste the most time — u
 Most small business owners find the highest ROI in this order: ChatGPT or Claude for writing, Zapier for automation, then Midjourney for visuals once the core workflows are in place.
 
 The businesses winning in 2026 aren't the ones using the most AI tools. They're the ones who've built consistent systems around the right AI tools for their specific work.
+
+To go beyond individual tools and build integrated AI systems for your business, explore the [AI Native Playbook Series](/en/products) — or grab the [free guide](/en/free-guide) to see how the system fits together.

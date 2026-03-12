@@ -69,3 +69,5 @@ Automation only compounds if you measure the right metrics. Open rates tell you 
 Set a 90-day review checkpoint. Look at which automated sequences are performing above your baseline and which are underperforming. Double down on what works, rebuild what doesn't.
 
 The businesses that win with marketing automation aren't the ones with the most complex systems. They're the ones that built simple, consistent systems and measured them honestly.
+
+Ready to build your first automated marketing system? The [AI Native Playbook Series](/en/products) includes frameworks and prompt systems for email sequences, social content, and customer follow-up — or start with the [free guide](/en/free-guide) to understand the core principles first.

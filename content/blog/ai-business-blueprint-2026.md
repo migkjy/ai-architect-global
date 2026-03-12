@@ -350,4 +350,4 @@ Pick one model. Build one product. Get one customer. Then repeat.
 
 ---
 
-*Explore AI-powered business frameworks and guides at [AI Native Playbook](https://ai-native-playbook.com).*
+*Explore AI-powered business frameworks and guides in the [AI Native Playbook collection](/en/products), or download the [free guide](/en/free-guide) to start building your AI business system today.*
