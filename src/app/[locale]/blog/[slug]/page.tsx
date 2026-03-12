@@ -2,6 +2,7 @@ import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/lib/blog";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
+import type { Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,6 +10,8 @@ import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { books } from "@/lib/products";
+import BlogInlineCTA from "@/components/BlogInlineCTA";
+import { splitContentAtMidpoint } from "@/lib/blog-content-utils";
 
 export function generateStaticParams() {
   const posts = getAllPosts();
@@ -202,32 +205,50 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
           <p className="text-lg text-text-secondary">{post.description}</p>
         </header>
-        <div className="prose prose-invert prose-gold max-w-none">
-          <ReactMarkdown
-            remarkPlugins={[remarkGfm]}
-            components={{
-              img: ({ src, alt }) => {
-                const srcStr = typeof src === 'string' ? src : '';
-                const fallbackAlt = srcStr ? srcStr.split('/').pop()?.replace(/[-_]/g, ' ').replace(/\.\w+$/, '') || 'article image' : 'article image';
-                if (!srcStr) return null;
-                return (
-                  <span className="block relative w-full my-6" style={{ aspectRatio: '16/9' }}>
-                    <Image
-                      src={srcStr}
-                      alt={alt || fallbackAlt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 700px"
-                      className="object-contain rounded-lg"
-                      loading="lazy"
-                    />
-                  </span>
-                );
-              },
-            }}
-          >
-            {post.content}
-          </ReactMarkdown>
-        </div>
+        {(() => {
+          const { before, after } = splitContentAtMidpoint(post.content);
+          const markdownComponents: Components = {
+            img: ({ src, alt }) => {
+              const srcStr = typeof src === "string" ? src : "";
+              const fallbackAlt = srcStr
+                ? srcStr.split("/").pop()?.replace(/[-_]/g, " ").replace(/\.\w+$/, "") || "article image"
+                : "article image";
+              if (!srcStr) return null;
+              return (
+                <span className="block relative w-full my-6" style={{ aspectRatio: "16/9" }}>
+                  <Image
+                    src={srcStr}
+                    alt={alt || fallbackAlt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 700px"
+                    className="object-contain rounded-lg"
+                    loading="lazy"
+                  />
+                </span>
+              );
+            },
+          };
+
+          return (
+            <>
+              <div className="prose prose-invert prose-gold max-w-none">
+                <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                  {before}
+                </ReactMarkdown>
+              </div>
+
+              {after && <BlogInlineCTA locale={locale} />}
+
+              {after && (
+                <div className="prose prose-invert prose-gold max-w-none">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                    {after}
+                  </ReactMarkdown>
+                </div>
+              )}
+            </>
+          );
+        })()}
       </article>
       {/* Product CTA */}
       <div className="mt-12 p-6 bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl">
@@ -279,7 +300,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="flex items-start gap-3 mb-3">
             <div className="shrink-0 w-9 h-9 bg-gold/20 border border-gold/30 rounded-xl flex items-center justify-center mt-0.5">
               <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0-3-3m3 3 3-3m2 8H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z" />
               </svg>
             </div>
             <div className="flex-1 min-w-0">
