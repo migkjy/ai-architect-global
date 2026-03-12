@@ -287,6 +287,16 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
           })}
         </div>
       </div>
+
+      {/* Related pages */}
+      <nav className="max-w-5xl mx-auto px-4 mt-14 pt-8 border-t border-white/10" aria-label="Related pages">
+        <div className="flex flex-wrap gap-3 justify-center">
+          <Link href="/blog" className="text-sm text-gold hover:text-gold-light transition-colors">Blog</Link>
+          <Link href="/free-guide" className="text-sm text-gold hover:text-gold-light transition-colors">Free Guide</Link>
+          <Link href="/bundle" className="text-sm text-gold hover:text-gold-light transition-colors">Bundle</Link>
+          <Link href="/faq" className="text-sm text-gold hover:text-gold-light transition-colors">FAQ</Link>
+        </div>
+      </nav>
     </div>
     </>
   );
