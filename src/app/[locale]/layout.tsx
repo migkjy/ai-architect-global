@@ -46,7 +46,7 @@ export async function generateMetadata({
       template: "%s | AI Native Playbook Series",
     },
     description:
-      "Turn Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's proven frameworks into AI-powered business automation systems. 6 AI native PDF guides + prompt skills. Bundle $47.",
+      "Turn world-class marketing frameworks into AI automation systems. 6 AI-native PDF guides + prompt skills for entrepreneurs. Start executing — bundle $47.",
     keywords: [
       "AI business automation",
       "AI marketing playbook",
