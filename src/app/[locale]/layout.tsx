@@ -42,12 +42,15 @@ export async function generateMetadata({
   return {
     metadataBase: new URL(SITE_URL),
     title: {
-      default: "AI Native Playbook Series — 6 World-Class Frameworks, Fully Automated with AI",
-      template: "%s | AI Native Playbook Series",
+      default: "AI Native Playbook — AI Architecture Patterns for Business Automation",
+      template: "%s | AI Native Playbook",
     },
     description:
-      "Turn world-class marketing frameworks into AI automation systems. 6 AI-native PDF guides + prompt skills for entrepreneurs. Start executing — bundle $47.",
+      "AI Native Playbook: proven AI architecture patterns that automate world-class business frameworks. 6 AI-native guides for entrepreneurs. Start executing — bundle $47.",
     keywords: [
+      "AI native playbook",
+      "AI architecture patterns",
+      "AI architect",
       "AI business automation",
       "AI marketing playbook",
       "AI native business guide",
@@ -66,27 +69,27 @@ export async function generateMetadata({
     ],
     authors: [{ name: "AI Native Playbook Series" }],
     openGraph: {
-      title: "AI Native Playbook Series — 6 World-Class Frameworks, Fully Automated with AI",
+      title: "AI Native Playbook — AI Architecture Patterns for Business Automation",
       description:
-        "The AI Native Playbook Series puts Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole's systems into AI-powered tools that execute for your specific business.",
+        "The AI Native Playbook puts proven AI architecture patterns into the hands of entrepreneurs. Russell Brunson, Jeff Walker, Jim Edwards systems — automated with AI today.",
       type: "website",
       locale: ogLocale,
-      siteName: "AI Native Playbook Series",
+      siteName: "AI Native Playbook",
       url: pageUrl,
       images: [
         {
           url: `${SITE_URL}/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: "AI Native Playbook Series — 6 World-Class Frameworks",
+          alt: "AI Native Playbook — AI Architecture Patterns",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "AI Native Playbook Series — 6 World-Class Frameworks, Fully Automated with AI",
+      title: "AI Native Playbook — AI Architecture Patterns for Business Automation",
       description:
-        "Stop reading business books. Start running the frameworks with AI. 6 PDF guides that make DotCom Secrets, PLF, Copywriting Secrets, and more executable today.",
+        "Stop reading business books. Start running the frameworks with AI architecture patterns. 6 PDF guides that make DotCom Secrets, PLF, Copywriting Secrets executable today.",
       images: [`${SITE_URL}/opengraph-image`],
     },
     robots: {
@@ -170,6 +173,13 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
           caption: "AI Native Playbook Series",
         },
         image: { "@id": `${siteUrl}/#logo` },
+        knowsAbout: [
+          "AI Native Playbook",
+          "AI Architecture Patterns",
+          "AI Business Automation",
+          "AI Marketing Frameworks",
+          "Business Automation with AI",
+        ],
         contactPoint: {
           "@type": "ContactPoint",
           email: "contact@newbizsoft.com",

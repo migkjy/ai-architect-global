@@ -34,6 +34,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: meta.title,
     description: meta.description,
     keywords: [
+      "AI native playbook blog",
+      "AI architecture patterns",
+      "AI architect",
       "AI business automation blog",
       "AI marketing playbook",
       "AI native business guide",
@@ -188,7 +191,7 @@ export default async function BlogPage({
         <div className="mt-16 p-6 bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl text-center">
           <h2 className="text-lg font-bold mb-2">Turn These Strategies into AI-Powered Action</h2>
           <p className="text-text-secondary text-sm mb-4">
-            Get ready-to-use AI system prompts that execute proven business frameworks automatically.
+            Get ready-to-use AI architecture patterns and system prompts that execute proven business frameworks automatically.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
@@ -198,10 +201,10 @@ export default async function BlogPage({
               Get the Complete Bundle
             </Link>
             <Link
-              href="/products"
+              href="/patterns"
               className="inline-flex items-center justify-center px-6 py-3 border border-white/10 rounded-xl font-semibold text-sm text-text-secondary hover:border-gold/30 hover:text-gold transition-all"
             >
-              Browse Individual Books
+              Explore AI Architecture Patterns
             </Link>
           </div>
         </div>
@@ -214,6 +217,7 @@ export default async function BlogPage({
         {/* Related pages */}
         <nav className="mt-8 pt-6 border-t border-white/10" aria-label="Related pages">
           <div className="flex flex-wrap gap-3 justify-center">
+            <Link href="/patterns" className="text-sm text-gold hover:text-gold-light transition-colors">AI Architecture Patterns</Link>
             <Link href="/products" className="text-sm text-gold hover:text-gold-light transition-colors">Products</Link>
             <Link href="/bundle" className="text-sm text-gold hover:text-gold-light transition-colors">Bundle</Link>
             <Link href="/free-guide" className="text-sm text-gold hover:text-gold-light transition-colors">Free Guide</Link>
