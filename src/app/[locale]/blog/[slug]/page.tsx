@@ -246,6 +246,20 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       )}
 
+      {/* Free Guide CTA */}
+      <div className="mt-6 flex items-center justify-between gap-4 p-4 bg-navy-dark/60 border border-white/10 rounded-xl hover:border-gold/20 transition-colors">
+        <div>
+          <p className="text-sm font-semibold text-text-primary">Free AI Business Guide</p>
+          <p className="text-xs text-text-secondary mt-0.5">Download the free starter guide — no purchase required.</p>
+        </div>
+        <Link
+          href="/free-guide"
+          className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:text-gold-light transition-colors"
+        >
+          Get Free Guide <span aria-hidden="true">→</span>
+        </Link>
+      </div>
+
       <div className="mt-8 pt-8 border-t border-white/10 text-center">
         <p className="text-text-secondary mb-2">Get weekly AI business frameworks — every Friday.</p>
         <p className="text-xs text-text-muted">500+ entrepreneurs subscribed · No spam · Unsubscribe anytime</p>
