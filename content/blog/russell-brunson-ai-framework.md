@@ -80,4 +80,6 @@ The businesses that win with these frameworks are the ones that ship consistentl
 
 AI makes iteration fast enough that consistency becomes achievable for a one-person business. That's the real advantage.
 
+Want to see how these frameworks compare before committing? Our [free AI business guide](/en/free-guide) breaks down all six frameworks in a side-by-side chart and gives you 3 prompts to try today.
+
 If you want these frameworks pre-built as AI-powered tools — so you can run DotCom Secrets, Hook-Story-Offer, and the Soap Opera Sequence with AI guiding each step — the [AI Native Playbook Series](/en/products) gives you exactly that. Browse the [patterns library](/en/patterns) to see how these frameworks integrate into a complete AI business system.

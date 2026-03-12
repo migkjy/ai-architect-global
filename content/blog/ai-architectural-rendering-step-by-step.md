@@ -147,4 +147,6 @@ The architects who master AI rendering gain the ability to communicate design in
 
 ---
 
+**New to AI-powered design workflows?** Our [free AI starter guide](/en/free-guide) walks you through the foundational frameworks and includes 3 ready-to-use prompts you can apply to your next rendering project.
+
 *The [AI Native Playbook Series](/products) includes prompt frameworks specifically designed for architectural visualization workflows. From concept renders to client presentations, get structured systems that produce consistent, professional results.*
