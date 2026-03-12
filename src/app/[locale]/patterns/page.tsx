@@ -81,7 +81,7 @@ export default async function PatternsPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: escapeJsonLd(breadcrumbJsonLd) }}
       />
-      <main className="mx-auto max-w-4xl px-4 py-12">
+      <div className="mx-auto max-w-4xl px-4 py-12">
         <h1 className="mb-4 text-3xl font-bold">AI Architecture Patterns</h1>
         <p className="mb-10 text-lg text-gray-600">
           Proven business frameworks from bestselling authors — automated with
@@ -137,7 +137,7 @@ export default async function PatternsPage({
             </Link>
           </div>
         </div>
-      </main>
+      </div>
     </>
   );
 }
