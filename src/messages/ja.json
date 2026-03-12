@@ -300,6 +300,41 @@
     "cta": "無料サンプルを入手",
     "error": "エラーが発生しました。もう一度お試しください。"
   },
+  "blogCta": {
+    "hook": "まだAIを手動で使っていますか？お金を無駄にしています。",
+    "story": "ほとんどのビジネスは、AIが数分で処理できるタスクに月40時間以上を無駄にしています。",
+    "offer": "すぐに使えるプロンプトとフレームワークが含まれた無料スタータガイドを手に入れましょう。",
+    "ctaButton": "無料ガイドを入手 →",
+    "label": "無料AIスタータガイド"
+  },
+  "freeGuide": {
+    "socialProof": "500人以上のプロフェッショナルがダウンロード済み",
+    "ctaButton": "無料ガイドを入手 →",
+    "microCopy1": "即時PDF配信",
+    "microCopy2": "スパムなし",
+    "microCopy3": "いつでも解除可能",
+    "formHeading": "メールアドレスを入力して即座にアクセス"
+  },
+  "thankYou": {
+    "socialProof": "このガイドをダウンロードした500人以上のビジネスオーナーに参加しましょう",
+    "step1Title": "スタータガイドを読む（15分）",
+    "step1Desc": "6つのフレームワークをすべてカバーし、AIでビジネスを自動化する方法を明確に解説しています。",
+    "step2Title": "ブログで深く学ぶ",
+    "step2Desc": "実践的なAI戦略、フレームワーク、ケーススタディで成果をさらに加速させましょう。",
+    "step3Title": "完全なプレイブックシリーズを探索",
+    "step3Desc": "完全なシステムをお望みですか？ビジネス向けの6つのAIフレームワークガイドをすべて手に入れましょう。",
+    "downloadBtn": "無料ガイドをダウンロード（PDF）",
+    "whatsNext": "次の3ステップ",
+    "deeperLearning": "さらに深く学ぶ",
+    "deeperLearningDesc": "ガイドを最大限に活用するために、これらの人気記事から始めましょう：",
+    "blog1Title": "2026年 完全AIビジネスブループリント",
+    "blog1Slug": "ai-business-blueprint-2026",
+    "blog2Title": "AIマーケティング自動化 — 週10時間節約",
+    "blog2Slug": "ai-marketing-automation-guide",
+    "blog3Title": "起業家に必要なAIプロンプト50選",
+    "blog3Slug": "chatgpt-prompts-for-entrepreneurs",
+    "exploreProducts": "AI Native Playbook 完全シリーズを探索 →"
+  },
   "faqPage": {
     "title": "よくある質問",
     "subtitle": "AI Native Playbookシリーズについて知っておくべきこと — 商品、決済、ダウンロード、返金、技術サポート。",
