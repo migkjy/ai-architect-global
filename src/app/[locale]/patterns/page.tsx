@@ -44,7 +44,7 @@ export default async function PatternsPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const jsonLd = {
+  const collectionPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: "AI Architecture Patterns",
@@ -55,21 +55,31 @@ export default async function PatternsPage({
       itemListElement: patterns.map((p, i) => ({
         "@type": "ListItem",
         position: i + 1,
-        item: {
-          "@type": "Article",
-          name: p.title,
-          description: p.description,
-          url: `${BASE_URL}/patterns/${p.slug}`,
-        },
+        name: p.title,
+        url: `${BASE_URL}/patterns/${p.slug}`,
+        description: p.description,
       })),
     },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "AI Native Playbook", item: BASE_URL },
+      { "@type": "ListItem", position: 2, name: "Patterns", item: `${BASE_URL}/patterns` },
+    ],
   };
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: escapeJsonLd(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(collectionPageJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(breadcrumbJsonLd) }}
       />
       <main className="mx-auto max-w-4xl px-4 py-12">
         <h1 className="mb-4 text-3xl font-bold">AI Architecture Patterns</h1>
