@@ -25,6 +25,11 @@ export async function generateMetadata({
       "Free AI Starter Guide: automate marketing funnels, sales copy, and product launches with AI. No purchase required — instant PDF download, start today.",
     alternates: {
       canonical: canonicalUrl,
+      languages: {
+        en: `${SITE_URL}/free-guide`,
+        ja: `${SITE_URL}/ja/free-guide`,
+        "x-default": `${SITE_URL}/free-guide`,
+      },
     },
     openGraph: {
       title: "Free AI Business Automation Starter Guide",
