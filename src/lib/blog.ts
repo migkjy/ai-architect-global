@@ -79,3 +79,46 @@ export function getAllTags(): string[] {
     .slice(0, 10)
     .map(([tag]) => tag);
 }
+
+export function getPostsByTag(tag: string): Omit<BlogPost, "content">[] {
+  return getAllPosts().filter((post) => post.tags.includes(tag));
+}
+
+/**
+ * Returns related posts using category+tag composite scoring.
+ * Priority: same category AND shares tags > same category only > shares tags only.
+ * Falls back to any other posts if no match found.
+ */
+export function getRelatedPosts(
+  slug: string,
+  category: string,
+  tags: string[],
+  limit: number = 3
+): Omit<BlogPost, "content">[] {
+  const all = getAllPosts().filter((p) => p.slug !== slug);
+
+  const scored = all.map((post) => {
+    const sameCategory = post.category === category;
+    const sharedTagCount = post.tags.filter((t) => tags.includes(t)).length;
+    // Scoring: same category = 10pts, each shared tag = 2pts
+    const score = (sameCategory ? 10 : 0) + sharedTagCount * 2;
+    return { post, score };
+  });
+
+  // Sort by score descending, then date descending
+  scored.sort((a, b) => {
+    if (b.score !== a.score) return b.score - a.score;
+    return new Date(b.post.date).getTime() - new Date(a.post.date).getTime();
+  });
+
+  const matched = scored.filter((s) => s.score > 0).map((s) => s.post);
+
+  if (matched.length >= limit) {
+    return matched.slice(0, limit);
+  }
+
+  // Fallback: include recent posts if not enough matches
+  const matchedSlugs = new Set(matched.map((p) => p.slug));
+  const fallback = all.filter((p) => !matchedSlugs.has(p.slug)).slice(0, limit - matched.length);
+  return [...matched, ...fallback].slice(0, limit);
+}
