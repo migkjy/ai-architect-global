@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
 import createNextIntlPlugin from "next-intl/plugin";
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
@@ -13,6 +16,7 @@ const nextConfig: NextConfig = {
       "next-intl",
       "react-markdown",
       "remark-gfm",
+      "remark-parse",
       "gray-matter",
       "reading-time",
       "@vercel/analytics",
@@ -20,6 +24,7 @@ const nextConfig: NextConfig = {
       "@sentry/nextjs",
       "@tailwindcss/typography",
       "posthog-js",
+      "next/image",
     ],
   },
   turbopack: {
@@ -43,7 +48,7 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withSentryConfig(withNextIntl(nextConfig), {
+export default withSentryConfig(withBundleAnalyzer(withNextIntl(nextConfig)), {
   org: "newbizsoft",
   project: "ai-architect-global",
   silent: !process.env.CI,
