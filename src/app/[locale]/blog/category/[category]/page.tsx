@@ -6,7 +6,7 @@ import { setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
 function slugToCategory(slug: string): string {
   return decodeURIComponent(slug).replace(/-/g, " ");

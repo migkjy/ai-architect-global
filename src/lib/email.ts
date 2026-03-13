@@ -33,7 +33,7 @@ export async function sendPurchaseConfirmationEmail(
   }
 
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
   const htmlContent = buildConfirmationEmailHtml(order, transactionId, siteUrl);
 
@@ -153,7 +153,7 @@ export async function sendPaymentFailureEmail(
   }
 
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
   const res = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",

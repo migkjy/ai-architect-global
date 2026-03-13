@@ -23,7 +23,7 @@ const inter = Inter({
   preload: true,
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
 const OG_LOCALE_MAP: Record<string, string> = {
   en: "en_US",

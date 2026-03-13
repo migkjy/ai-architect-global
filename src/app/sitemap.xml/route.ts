@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
 const BUILD_DATE = new Date().toISOString();
 

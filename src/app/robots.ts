@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -19,7 +19,7 @@ export default function robots(): MetadataRoute.Robots {
           "/ko",
           "/ko/",
         ],
-        crawlDelay: 10,
+        crawlDelay: 1,
       },
       {
         userAgent: "GPTBot",

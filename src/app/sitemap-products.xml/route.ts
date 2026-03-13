@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { books } from "@/lib/products";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
 const PRODUCT_LASTMOD = "2026-03-08";
 

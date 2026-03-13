@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getPostBySlug(slug);
   if (!post) return {};
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
   const canonicalUrl = `${siteUrl}/blog/${slug}`;
 
   return {
@@ -124,7 +124,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   });
   const relatedProducts = books.filter((b) => matchedSlugs.has(b.slug)).slice(0, 2);
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
   const articleJsonLd = {
     "@context": "https://schema.org",
