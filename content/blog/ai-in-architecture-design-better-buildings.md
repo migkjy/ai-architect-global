@@ -1,5 +1,5 @@
 ---
-title: "AI in Architecture: How Architects Are Using AI to Design Better Buildings"
+title: "AI in Architecture: Design Better Buildings with AI"
 description: "How architects use AI to streamline design workflows, optimize building performance, and create innovative structures — a practical guide."
 date: "2026-03-07"
 category: "Architecture & Design"
