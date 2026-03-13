@@ -1,5 +1,5 @@
 ---
-title: "Building an AI Content Pipeline: From Idea to Published in 45 Minutes"
+title: "AI Content Pipeline: From Idea to Published in 45 Min"
 description: "Build a repeatable AI content pipeline that takes you from idea to published article in 45 minutes — without sacrificing quality or your authentic voice."
 date: "2026-02-28"
 category: "AI Automation"

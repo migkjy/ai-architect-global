@@ -150,10 +150,18 @@ describe("sitemap-blog.xml — enhanced", () => {
     expect(xml).toContain("/en/blog/tag/");
   });
 
-  it("does not include /ja/ URLs (English only)", async () => {
+  it("includes Japanese locale URLs for Japanese posts", async () => {
     const { GET } = await import("@/app/sitemap-blog.xml/route");
     const response = GET();
     const xml = await response.text();
-    expect(xml).not.toContain("/ja/blog/");
+    const posts = getAllPosts();
+    const japaneseSlugs = posts
+      .filter(p => p.slug.includes('japanese-guide'))
+      .map(p => p.slug);
+
+    // Sitemap should include /ja/blog/{slug} for Japanese posts
+    for (const slug of japaneseSlugs) {
+      expect(xml).toContain(`/ja/blog/${slug}`);
+    }
   });
 });

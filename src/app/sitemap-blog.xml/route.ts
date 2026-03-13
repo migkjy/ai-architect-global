@@ -69,7 +69,23 @@ export function GET() {
     })
     .join("\n");
 
-  const allEntries = [indexEntry, postEntries, categoryEntries, tagEntries]
+  // Japanese locale entries for Japanese posts (/ja/blog/{slug})
+  const japanesePosts = posts.filter(p => p.slug.includes('japanese-guide'));
+  const japaneseEntries = japanesePosts
+    .map((post) => {
+      const lastmod = post.date
+        ? new Date(post.date).toISOString().split("T")[0]
+        : today;
+      return urlEntry(
+        `${BASE_URL}/ja/blog/${post.slug}`,
+        lastmod,
+        "weekly",
+        "0.7"
+      );
+    })
+    .join("\n");
+
+  const allEntries = [indexEntry, postEntries, japaneseEntries, categoryEntries, tagEntries]
     .filter(Boolean)
     .join("\n");
 
