@@ -1,5 +1,5 @@
 ---
-title: "AI Email Automation for Solopreneurs: The System That Converts While You Sleep"
+title: "AI Email Automation: Convert While You Sleep"
 description: "Build an AI-powered email system that nurtures leads, handles objections, and drives sales for solopreneurs — without writing every email yourself."
 date: "2026-02-28"
 category: "AI Automation"
