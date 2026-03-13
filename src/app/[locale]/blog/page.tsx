@@ -6,7 +6,7 @@ import { getTranslations } from "next-intl/server";
 import { Suspense } from "react";
 import BlogFilterClient from "@/components/blog/BlogFilterClient";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
 const blogMeta: Record<string, { title: string; description: string; ogDescription: string }> = {
   en: {

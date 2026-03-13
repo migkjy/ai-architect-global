@@ -55,7 +55,7 @@ export async function createPaddleTransaction(
   }
 
   const siteUrl =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
   const body: Record<string, unknown> = {
     items: options.items.map((item) => ({

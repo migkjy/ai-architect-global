@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const book = getBookBySlug(slug);
   if (!book) return {};
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
   const canonicalUrl = `${siteUrl}/products/${slug}`;
   return {
     title: `${book.title} — ${book.subtitle}`,
@@ -94,7 +94,7 @@ export default async function ProductPage({ params }: Props) {
     (process.env[book.paddlePriceEnvKey] as string | undefined) ?? undefined;
   const bundlePaddlePriceId = getBundlePaddlePriceId();
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
   const dateLocale = locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US";
 
   const jsonLd = {

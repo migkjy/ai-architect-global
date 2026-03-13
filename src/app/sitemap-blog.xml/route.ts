@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { getAllPosts, getAllCategories, getAllTags } from "@/lib/blog";
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
 function urlEntry(
   loc: string,
