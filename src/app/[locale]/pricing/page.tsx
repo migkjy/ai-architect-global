@@ -6,7 +6,7 @@ const BuyButton = dynamic(() => import("@/components/BuyButton"));
 import { setRequestLocale } from "next-intl/server";
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
 export async function generateMetadata({
   params,

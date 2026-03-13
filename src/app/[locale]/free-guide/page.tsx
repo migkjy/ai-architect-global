@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 const FreeGuideForm = dynamic(() => import("@/components/FreeGuideForm"));
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
 export async function generateMetadata({
   params,

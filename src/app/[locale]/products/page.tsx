@@ -26,7 +26,7 @@ const productsMeta: Record<string, { title: string; description: string; ogDescr
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
   const meta = productsMeta[locale] ?? productsMeta.en;
   const canonicalUrl = locale === "en" ? `${siteUrl}/products` : `${siteUrl}/${locale}/products`;
   const ogDescription = (meta as typeof productsMeta.en).ogDescription ?? meta.description;
@@ -90,7 +90,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
 
   const bundleUrl = getBundleUrl();
   const bundlePaddlePriceId = getBundlePaddlePriceId();
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com";
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
 
   function escapeJsonLd(json: string): string {
     return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
