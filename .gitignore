@@ -38,3 +38,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Knowledge - sensitive files
+.claude/knowledge/api-keys.md
