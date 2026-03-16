@@ -80,13 +80,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const bundleUrl = getBundleUrl();
-const bundlePaddlePriceId = getBundlePaddlePriceId();
 const savedAmount = bundle.originalPrice - bundle.price;
 
 export default async function BundlePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  // Price ID와 URL은 서버 컴포넌트 함수 내부에서 런타임에 조회
+  const bundleUrl = getBundleUrl();
+  const bundlePaddlePriceId = getBundlePaddlePriceId();
 
   const t = await getTranslations("bundle");
 

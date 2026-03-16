@@ -16,7 +16,7 @@ export const CTA_VARIANTS = {
         "3 ready-to-use system prompts weekly",
         "Exclusive subscriber discounts",
       ],
-      buttonText: "Notify Me at Launch",
+      buttonText: "Buy Now",
       footer: "Free \u00B7 No spam \u00B7 Unsubscribe anytime",
     },
     B: {
