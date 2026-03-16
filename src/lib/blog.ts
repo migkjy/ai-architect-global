@@ -14,6 +14,8 @@ export interface BlogPost {
   category: string;
   readingTime: string;
   content: string;
+  /** frontmatter locale 필드. 미설정 시 "en" 으로 간주 */
+  locale?: string;
 }
 
 export function getAllPosts(): Omit<BlogPost, "content">[] {
@@ -33,6 +35,7 @@ export function getAllPosts(): Omit<BlogPost, "content">[] {
         tags: data.tags ?? [],
         category: data.category ?? "General",
         readingTime: stats.text,
+        locale: (data.locale as string | undefined) ?? "en",
       };
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -53,6 +56,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     category: data.category ?? "General",
     readingTime: stats.text,
     content,
+    locale: (data.locale as string | undefined) ?? "en",
   };
 }
 
@@ -82,6 +86,14 @@ export function getAllTags(): string[] {
 
 export function getPostsByTag(tag: string): Omit<BlogPost, "content">[] {
   return getAllPosts().filter((post) => post.tags.includes(tag));
+}
+
+/**
+ * 특정 locale에 해당하는 포스트만 반환.
+ * locale 미설정 포스트는 "en" 으로 간주.
+ */
+export function getPostsByLocale(locale: string): Omit<BlogPost, "content">[] {
+  return getAllPosts().filter((post) => (post.locale ?? "en") === locale);
 }
 
 /**
