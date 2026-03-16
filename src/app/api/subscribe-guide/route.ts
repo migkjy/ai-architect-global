@@ -5,9 +5,7 @@ import {
   checkRateLimit,
   validateSubscribeInput,
 } from "@/lib/spam-protection";
-// ⚠️  Nurture sequence is gated by NURTURE_ENABLED=false inside the module.
-//     CEO 승인 후 nurture-sequence.ts의 NURTURE_ENABLED를 true로 변경하면 활성화됨.
-import { scheduleNurtureSequence } from "@/lib/nurture-sequence";
+import { scheduleOnboardingSequence } from "@/lib/onboarding-sequence";
 
 export async function POST(request: Request) {
   try {
@@ -52,7 +50,7 @@ export async function POST(request: Request) {
       );
     }
 
-    // Add contact to Brevo list 12 with SOURCE attribute — no email sending
+    // Add contact to Brevo list 7 (unified list)
     const attributes: Record<string, string> = {
       SOURCE: "ai-architect-free-guide",
     };
@@ -67,23 +65,21 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         email: sanitizedEmail,
         attributes,
-        listIds: [12],
+        listIds: [7],
         updateEnabled: true,
       }),
     });
 
     if (!res.ok && res.status !== 204) {
       const errorText = await res.text();
-      // Contact already exists is not an error for us
       if (res.status === 400 && errorText.includes("already exist")) {
         return NextResponse.json({ success: true });
       }
       console.error("Brevo API error:", res.status, errorText);
     }
 
-    // Trigger nurture email sequence (no-op while NURTURE_ENABLED=false)
-    // ⚠️  CEO 승인 후 nurture-sequence.ts의 NURTURE_ENABLED를 true로 변경하면 실제 발송됨.
-    void scheduleNurtureSequence(sanitizedEmail, name ?? undefined);
+    // Unified onboarding sequence (D+0/D+1/D+3/D+7 with dedup)
+    void scheduleOnboardingSequence(sanitizedEmail, name ?? undefined);
 
     return NextResponse.json({ success: true });
   } catch {

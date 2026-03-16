@@ -6,6 +6,7 @@ import {
   validateSubscribeInput,
   verifyTurnstile,
 } from "@/lib/spam-protection";
+import { scheduleOnboardingSequence } from "@/lib/onboarding-sequence";
 
 export async function POST(request: Request) {
   try {
@@ -14,7 +15,6 @@ export async function POST(request: Request) {
 
     // Layer 1: Honeypot
     if (isHoneypotFilled(website)) {
-      // Silent success to not reveal detection
       return NextResponse.json({ success: true });
     }
 
@@ -56,7 +56,7 @@ export async function POST(request: Request) {
     const brevoApiKey = process.env.BREVO_API_KEY;
 
     if (brevoApiKey) {
-      // Brevo 구독자 추가
+      // Add contact to Brevo list 7
       const attributes: Record<string, string> = { SOURCE: "ai-architect" };
       if (name) attributes.FIRSTNAME = name;
 
@@ -83,10 +83,10 @@ export async function POST(request: Request) {
           await res.text();
         }
       } catch {
-        // Brevo API error - subscriber still saved
+        // Brevo contact API error — continue
       }
 
-      // 리드마그넷 transactional email (AI 건축 설계 샘플 패키지)
+      // Lead magnet transactional email (immediate, separate from onboarding)
       try {
         await fetch("https://api.brevo.com/v3/contacts", {
           method: "PUT",
@@ -108,56 +108,11 @@ export async function POST(request: Request) {
           }),
         });
       } catch {
-        // Lead magnet email failed - subscriber still saved
+        // Lead magnet email failed — non-critical
       }
 
-      // Welcome sequence (D+0, D+3, D+7) — English only
-      const greeting = name ? `Hi ${name},` : "Hi there,";
-      const sender = { name: "AI Native Playbook Series", email: "contact@apppro.kr" };
-      const to = [{ email: sanitizedEmail, name: name || sanitizedEmail }];
-      const brand = { color: "#0B1426", gold: "#D4A843", url: "https://ai-driven-architect.com" };
-      const footer = `<hr style="border:none;border-top:1px solid #e8e4dc;margin:40px 0 24px;" /><p style="color:#999;font-size:12px;text-align:center;margin:0;line-height:1.8;">AI Native Playbook Series &bull; ai-driven-architect.com<br />You're receiving this because you subscribed to our newsletter.<br /><a href="{{ unsubscribe }}" style="color:#999;text-decoration:underline;">Unsubscribe</a></p>`;
-
-      const sequence = [
-        {
-          delayDays: 0,
-          subject: "Welcome to AI Native Playbook",
-          htmlContent: `<div style="font-family:system-ui,-apple-system,sans-serif;max-width:600px;margin:0 auto;padding:32px 16px;"><div style="background:${brand.color};border-radius:12px 12px 0 0;padding:24px 32px;text-align:center;"><p style="margin:0;color:${brand.gold};font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;">AI Native Playbook Series</p></div><div style="background:#fff;border-radius:0 0 12px 12px;padding:40px 32px;box-shadow:0 4px 16px rgba(0,0,0,0.08);"><p style="color:#333;font-size:16px;line-height:1.7;">${greeting}</p><p style="color:#333;font-size:16px;line-height:1.7;">Thanks for subscribing to the AI Native Playbook newsletter! We share practical insights on how AI is transforming business operations — every week.</p><p style="color:${brand.color};font-size:17px;font-weight:700;margin:28px 0 12px 0;">What you'll get as a subscriber</p><ul style="color:#555;font-size:15px;line-height:2;"><li>Latest AI business automation trends</li><li>Ready-to-use prompt templates</li><li>Expert frameworks and case studies</li></ul><div style="border-left:4px solid ${brand.gold};padding:16px 20px;margin:24px 0;background:#faf8f5;border-radius:0 8px 8px 0;"><strong style="color:${brand.color};">Coming in 3 days</strong><br/><span style="color:#555;">3 principles every AI-native business gets right — and how to apply them.</span></div><p style="color:#555;font-size:15px;margin:16px 0 0 0;">Welcome aboard,<br /><strong style="color:${brand.color};">The AI Native Playbook Team</strong></p>${footer}</div></div>`,
-        },
-        {
-          delayDays: 3,
-          subject: "3 Principles Every AI-Native Business Gets Right",
-          htmlContent: `<div style="font-family:system-ui,-apple-system,sans-serif;max-width:600px;margin:0 auto;padding:32px 16px;"><div style="background:${brand.color};border-radius:12px 12px 0 0;padding:24px 32px;text-align:center;"><p style="margin:0;color:${brand.gold};font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;">AI Native Playbook Series</p></div><div style="background:#fff;border-radius:0 0 12px 12px;padding:40px 32px;box-shadow:0 4px 16px rgba(0,0,0,0.08);"><p style="color:${brand.color};font-size:22px;font-weight:700;margin:0 0 8px 0;">3 Principles Every AI-Native Business Gets Right</p><p style="color:#666;font-size:14px;margin:0 0 32px 0;">Day 3 &bull; AI Native Playbook Series</p><p style="color:#333;font-size:16px;line-height:1.7;">${greeting}</p><p style="color:#333;font-size:16px;line-height:1.7;">Here are three principles that separate businesses thriving with AI from those still experimenting.</p><div style="border-left:4px solid ${brand.gold};padding:16px 20px;margin:0 0 20px 0;background:#faf8f5;border-radius:0 8px 8px 0;"><p style="color:${brand.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">1. Context determines quality</p><p style="color:#555;font-size:15px;line-height:1.6;margin:0;">Structure your requirements, constraints, and goals before feeding them to AI. Better input = dramatically better output.</p></div><div style="border-left:4px solid ${brand.gold};padding:16px 20px;margin:0 0 20px 0;background:#faf8f5;border-radius:0 8px 8px 0;"><p style="color:${brand.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">2. Automate the repetitive, not the creative</p><p style="color:#555;font-size:15px;line-height:1.6;margin:0;">Use AI to handle repeatable workflows — drafting, analysis, scheduling — so you can focus on strategy and decisions.</p></div><div style="border-left:4px solid ${brand.gold};padding:16px 20px;margin:0 0 32px 0;background:#faf8f5;border-radius:0 8px 8px 0;"><p style="color:${brand.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">3. AI proposes, you decide</p><p style="color:#555;font-size:15px;line-height:1.6;margin:0;">The most effective AI users treat it as a thought partner, not a replacement. Evaluate AI suggestions with your domain expertise.</p></div><p style="color:#555;font-size:15px;margin:16px 0 0 0;">More coming in a few days,<br /><strong style="color:${brand.color};">The AI Native Playbook Team</strong></p>${footer}</div></div>`,
-        },
-        {
-          delayDays: 7,
-          subject: "Ready to Go AI-Native? Here's Your Next Step",
-          htmlContent: `<div style="font-family:system-ui,-apple-system,sans-serif;max-width:600px;margin:0 auto;padding:32px 16px;"><div style="background:${brand.color};border-radius:12px 12px 0 0;padding:24px 32px;text-align:center;"><p style="margin:0;color:${brand.gold};font-size:13px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;">AI Native Playbook Series</p></div><div style="background:#fff;border-radius:0 0 12px 12px;padding:40px 32px;box-shadow:0 4px 16px rgba(0,0,0,0.08);"><p style="color:${brand.color};font-size:22px;font-weight:700;margin:0 0 8px 0;">Ready to Go AI-Native?</p><p style="color:#666;font-size:14px;margin:0 0 32px 0;">Day 7 &bull; AI Native Playbook Series</p><p style="color:#333;font-size:16px;line-height:1.7;">${greeting}</p><p style="color:#333;font-size:16px;line-height:1.7;">Over the past week, we've explored how AI can transform your business operations. Now it's time to take the next step.</p><div style="background:#faf8f5;border:1px solid #e8dfc8;border-radius:10px;padding:28px;margin:0 0 32px 0;"><p style="color:${brand.color};font-size:17px;font-weight:700;margin:0 0 12px 0;">The AI Native Playbook Bundle</p><ul style="color:#555;font-size:15px;line-height:1.8;margin:0 0 20px 0;padding-left:20px;"><li>6 expert framework playbooks (PDF)</li><li>300+ ready-to-use prompt templates</li><li>AI workflow systems for every business function</li><li>Step-by-step transformation roadmap</li></ul><p style="color:#888;font-size:13px;margin:0;">Designed for solo founders and small teams who want results — not theory.</p></div><div style="text-align:center;margin:0 0 32px 0;"><a href="${brand.url}/bundle" style="display:inline-block;background:${brand.color};color:${brand.gold};padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;">Explore the Full Bundle</a></div><p style="color:#555;font-size:15px;line-height:1.7;">Whether you go further with the bundle or not — we hope these emails have been useful. You now have the foundation.</p><p style="color:#555;font-size:15px;margin:16px 0 0 0;">Go build something great,<br /><strong style="color:${brand.color};">The AI Native Playbook Team</strong></p>${footer}</div></div>`,
-        },
-      ];
-
-      for (const mail of sequence) {
-        const body: Record<string, unknown> = {
-          to,
-          sender,
-          subject: mail.subject,
-          htmlContent: mail.htmlContent,
-        };
-        if (mail.delayDays > 0) {
-          body.scheduledAt = new Date(
-            Date.now() + mail.delayDays * 24 * 60 * 60 * 1000,
-          ).toISOString();
-        }
-        fetch("https://api.brevo.com/v3/smtp/email", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "api-key": brevoApiKey,
-          },
-          body: JSON.stringify(body),
-        }).catch(() => {});
-      }
-    } else {
+      // Unified onboarding sequence (D+0/D+1/D+3/D+7 with dedup)
+      void scheduleOnboardingSequence(sanitizedEmail, name ?? undefined);
     }
 
     return NextResponse.json({ success: true });
