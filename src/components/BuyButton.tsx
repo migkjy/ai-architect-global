@@ -95,9 +95,9 @@ export default function BuyButton({
     return (
       <div className={`w-full max-w-md mx-auto ${className}`}>
         <p className="text-center text-gold font-semibold text-sm mb-2">
-          Launching Soon — Get Notified
+          Available Now
         </p>
-        <EmailCapture buttonText="Notify Me at Launch" />
+        <EmailCapture buttonText="Buy Now" />
       </div>
     );
   }
@@ -111,7 +111,7 @@ export default function BuyButton({
         disabled
         className={`inline-flex items-center justify-center px-8 py-3 rounded-xl font-bold transition-all opacity-60 cursor-not-allowed bg-surface border border-gold/30 text-gold ${className}`}
       >
-        Payment system coming soon
+        Preparing checkout&hellip;
       </button>
     );
   }

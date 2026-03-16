@@ -1,4 +1,4 @@
-import { getAllPosts, getAllCategories, getAllTags } from "@/lib/blog";
+import { getAllPosts, getAllCategories, getAllTags, getPostsByLocale } from "@/lib/blog";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
@@ -115,8 +115,9 @@ export default async function BlogPage({
   setRequestLocale(locale);
 
   const t = await getTranslations("blog");
-  const posts = getAllPosts();
-  const categories = getAllCategories();
+  // locale에 맞는 포스트만 표시 (일본어 포스트는 /ja/blog에서만, 영어 포스트는 /en/blog에서만)
+  const posts = getPostsByLocale(locale);
+  const categories = Array.from(new Set(posts.map((p) => p.category))).sort();
   const topTags = getAllTags();
 
   const canonicalUrl = locale === "en" ? `${SITE_URL}/blog` : `${SITE_URL}/${locale}/blog`;
