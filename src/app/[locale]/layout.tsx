@@ -107,6 +107,7 @@ export async function generateMetadata({
       canonical: pageUrl,
       languages: {
         en: SITE_URL,
+        ko: `${SITE_URL}/ko`,
         ja: `${SITE_URL}/ja`,
         "x-default": SITE_URL,
       },

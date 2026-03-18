@@ -9,7 +9,7 @@ import { getTranslations } from "next-intl/server";
 const aboutMeta: Record<string, { title: string; description: string }> = {
   en: {
     title: "About AI Native Playbook Series — Why We Built AI-Powered Business Framework Guides",
-    description: "Bridge the gap between reading and executing proven business frameworks. AI Native Playbook turns DotCom Secrets, PLF, and Copywriting Secrets into AI systems.",
+    description: "AI Native Playbook Series bridges the gap between reading and executing proven business frameworks. 6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards systems into automated workflows.",
   },
   ko: {
     title: "AI Native Playbook Series 소개 — AI 기반 비즈니스 프레임워크 가이드를 만든 이유",
