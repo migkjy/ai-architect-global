@@ -33,7 +33,7 @@ export async function sendPurchaseConfirmationEmail(
   }
 
   const siteUrl =
-    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
+    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
   const htmlContent = buildConfirmationEmailHtml(order, transactionId, siteUrl);
 
@@ -46,7 +46,7 @@ export async function sendPurchaseConfirmationEmail(
     body: JSON.stringify({
       sender: {
         name: "AI Native Playbook Series",
-        email: "hello@ai-driven-architect.com",
+        email: "hello@ai-native-playbook.com",
       },
       to: [{ email: order.customerEmail, name: order.customerName || undefined }],
       subject: `Your ${order.productName} is ready to download`,
@@ -126,7 +126,7 @@ export function buildConfirmationEmailHtml(
 
     <hr style="border:none;border-top:1px solid #eee;margin:32px 0;" />
     <p style="color:#999;font-size:12px;text-align:center;margin:0;">
-      AI Native Playbook Series | ai-driven-architect.com
+      AI Native Playbook Series | ai-native-playbook.com
     </p>
   </div>
 </div>
@@ -153,7 +153,7 @@ export async function sendPaymentFailureEmail(
   }
 
   const siteUrl =
-    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
+    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
   const res = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
@@ -164,7 +164,7 @@ export async function sendPaymentFailureEmail(
     body: JSON.stringify({
       sender: {
         name: "AI Native Playbook Series",
-        email: "hello@ai-driven-architect.com",
+        email: "hello@ai-native-playbook.com",
       },
       to: [{ email: customerEmail, name: customerName || undefined }],
       subject: `Action needed: Payment issue for ${productName}`,
@@ -190,7 +190,7 @@ export async function sendPaymentFailureEmail(
     </p>
     <hr style="border:none;border-top:1px solid #eee;margin:32px 0;" />
     <p style="color:#999;font-size:12px;text-align:center;margin:0;">
-      AI Native Playbook Series | ai-driven-architect.com
+      AI Native Playbook Series | ai-native-playbook.com
     </p>
   </div>
 </div>
