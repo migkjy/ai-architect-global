@@ -38,38 +38,36 @@ function escapeJsonLd(json: string): string {
   return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
 }
 
-// {GARY_TODO}: Replace these step descriptions with Gary's final copy.
-// Gary: keep the structure (5 steps), rewrite the desc fields with punchy, benefit-driven language.
 const steps = [
   {
     num: "1",
     title: "Read the PDF Guide (30 min)",
-    desc: "{GARY_TODO} Explain: skim the full guide first for the big picture. Focus on the framework overview and case studies. The 5-day quickstart checklist is at the end of the PDF.",
-    detail: "{GARY_TODO} Add 2–3 bullet tips for reading the PDF effectively.",
+    desc: "Skim the full guide first for the big picture. You do not need to memorize anything — just understand the framework structure and what the AI Agent Skill will do with it. The 5-day quickstart checklist is at the end of the PDF.",
+    detail: "Read the framework overview first. Scan the case studies — they show you what output to expect. When you reach the 5-day checklist, stop and move to Step 2. You can go deeper on the theory after you have seen it work.",
   },
   {
     num: "2",
     title: "Load the AI Agent Skill",
-    desc: "{GARY_TODO} Explain: the .md file in your download gives your AI specialist-level expertise in the framework. You must load it before running prompts.",
-    detail: "{GARY_TODO} Include platform-specific instructions (Claude / ChatGPT / Gemini). Link to /skill-guide for the deep-dive.",
+    desc: "The .md file in your download is not a document to read — it is a system prompt that gives your AI specialist-level expertise in the framework. Without it, you get generic AI output. With it, you get framework-driven analysis applied to your specific business.",
+    detail: "Claude (recommended): Add the .md file to a Claude Project via 'Add to project knowledge.' ChatGPT: Paste the contents into Custom Instructions. Gemini: Paste as your first message. For a full platform-by-platform walkthrough, see the AI Agent Skill Guide.",
   },
   {
     num: "3",
     title: "Run Your First Prompt",
-    desc: "{GARY_TODO} Explain: each book has a 'Start Here' prompt inside. Paste it into your AI with the Skill loaded. Describe your business and watch the framework apply itself.",
-    detail: "{GARY_TODO} Give one example prompt (e.g., Vol 1: 'Analyze my business and build a Value Ladder'). Show expected output format.",
+    desc: "Each book has a 'Start Here' prompt built into the framework. With the Skill loaded, paste it into your AI and describe your business in plain language. The AI applies the full expert framework to your specific situation — not a generic template.",
+    detail: "Example (Vol 1 — Marketing Architect): 'I sell [product] to [audience]. Use marketing-architect to define my Dream Customer and map my Value Ladder.' Expected output: a structured Dream Customer profile with psychographics, congregation map, bait ideas, and a Before/After transformation statement.",
   },
   {
     num: "4",
     title: "Follow the 5-Day Quickstart",
-    desc: "{GARY_TODO} Explain: each book has a day-by-day action plan. One focused task per day. By day 5 you have a working system.",
-    detail: "{GARY_TODO} Link to the specific /products/[slug]/quick-start page for each book the buyer owns.",
+    desc: "Each book has a day-by-day action plan. One focused task per day. By Day 5 you have a working system — not just a plan, but actual output you can deploy: a funnel structure, a launch sequence, a brand narrative, a traffic strategy.",
+    detail: "Find your book's Quick Start guide in the section below. Each guide shows the exact sequence, the prompts to use each day, and what to do with the output. One hour per day is enough.",
   },
   {
     num: "5",
     title: "Iterate and Improve",
-    desc: "{GARY_TODO} Explain: feed your AI output back in for refinement. Combine multiple books for a full business system. The more context you give, the better the results.",
-    detail: "{GARY_TODO} Mention how bundle buyers can chain the 6 frameworks in sequence for a complete business automation stack.",
+    desc: "The first output is your starting point. Feed it back to the AI with your feedback — 'the audience description is too broad, focus on X' — and the framework tightens. The more context you give across sessions, the more precise the output becomes.",
+    detail: "Bundle buyers: each framework's output feeds the next. Marketing Architect defines your Dream Customer. Traffic Architect uses that profile to build your Dream 100 list. Story Architect writes the copy for the funnel Marketing Architect designed. Chain them in sequence for a complete business execution system.",
   },
 ];
 
@@ -135,9 +133,8 @@ export default async function GettingStartedPage({ params }: Props) {
             {/* {GARY_TODO}: Replace headline with final copy */}
             <span className="gradient-gold">Welcome — Here Is Exactly What to Do Next</span>
           </h1>
-          {/* {GARY_TODO}: Replace subheadline with Gary's copy */}
           <p className="text-text-secondary text-lg leading-relaxed">
-            {"{GARY_TODO: Subheadline — e.g. 'You've got a PDF, an AI Agent Skill file, and a 5-day plan. This guide shows you how to use all three to go from purchase to your first AI-generated business output in under an hour.'}"}
+            You have a PDF guide, an AI Agent Skill file, and a 5-day quickstart plan. This page shows you how to use all three — from download to your first AI-generated business output in under an hour.
           </p>
         </section>
 
@@ -147,23 +144,22 @@ export default async function GettingStartedPage({ params }: Props) {
             <div className="w-1 h-6 bg-gold rounded-full" />
             <h2 className="text-xl font-bold">What You Received</h2>
           </div>
-          {/* {GARY_TODO}: Rewrite each item description with concise benefit language */}
           <div className="bg-surface/60 border border-white/5 rounded-2xl p-6 space-y-4">
             {[
               {
                 icon: "📄",
                 title: "PDF Guide (20 pages)",
-                desc: "{GARY_TODO}: Describe the PDF — framework overview, case studies, 5-day quickstart at the end.",
+                desc: "A framework overview, worked examples, and the 5-day quickstart checklist at the end. Read it for context — the AI Agent Skill handles the application.",
               },
               {
                 icon: "🤖",
                 title: "AI Agent Skill (.md file)",
-                desc: "{GARY_TODO}: Describe what the .md file does — loads the framework into any AI as domain expertise.",
+                desc: "A structured knowledge file you load into Claude, ChatGPT, or any AI. Once loaded, the AI operates as a specialist in the framework — applying it step by step to your specific business, not giving generic answers.",
               },
               {
                 icon: "📋",
                 title: "Prompt Templates",
-                desc: "{GARY_TODO}: Describe the copy-paste prompt templates included for each framework step.",
+                desc: "Copy-paste prompts for each major framework step. These are not generic — they are designed to extract the maximum output from the Skill. Use them exactly as written, then customize from there.",
               },
             ].map((item) => (
               <div key={item.title} className="flex gap-4">
@@ -216,9 +212,8 @@ export default async function GettingStartedPage({ params }: Props) {
                 <p className="text-sm font-semibold text-text-primary mb-1">
                   New to AI Agent Skills?
                 </p>
-                {/* {GARY_TODO}: Replace this with a one-line benefit statement */}
                 <p className="text-xs text-text-secondary">
-                  {"{GARY_TODO}: One-line hook — e.g. 'The complete guide to loading and using your .md skill file across Claude, ChatGPT, and Gemini.'"}
+                  The complete guide to loading your .md skill file across Claude, ChatGPT, and Gemini — with platform-specific steps, best practices, and troubleshooting.
                 </p>
               </div>
               <span className="shrink-0 text-xs bg-gold/15 text-gold px-4 py-2 rounded-lg font-semibold group-hover:bg-gold/25 transition-colors whitespace-nowrap">
@@ -259,8 +254,7 @@ export default async function GettingStartedPage({ params }: Props) {
         <section className="max-w-3xl mx-auto px-4">
           <div className="bg-surface/60 border border-white/5 rounded-2xl p-6 text-center">
             <p className="text-text-secondary text-sm mb-3">
-              {/* {GARY_TODO}: Write a short CTA for users who haven't bought yet */}
-              {"{GARY_TODO}: CTA copy for non-buyers — link to /products or /bundle."}
+              Haven&apos;t purchased yet? Each book is a complete expert framework — AI Agent Skill included — for $17. All 6 books are available as a bundle for $47.
             </p>
             <Link
               href="/products"

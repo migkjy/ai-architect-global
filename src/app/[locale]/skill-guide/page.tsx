@@ -49,87 +49,86 @@ const platforms = [
     name: "Claude (Recommended)",
     badge: "Best Experience",
     steps: [
-      // {GARY_TODO}: Rewrite steps in clear, numbered imperative voice
-      "{GARY_TODO} Step 1: Open Claude and click 'Projects' in the left sidebar.",
-      "{GARY_TODO} Step 2: Create a new Project or open an existing one.",
-      "{GARY_TODO} Step 3: Click 'Add to project knowledge' and upload your .md file.",
-      "{GARY_TODO} Step 4: Start a new conversation inside the project — the skill is now active.",
+      "Open Claude at claude.ai and click 'Projects' in the left sidebar.",
+      "Create a new Project named after the framework (e.g., 'Marketing Architect') or open an existing one.",
+      "Click 'Add to project knowledge' and upload your .md skill file.",
+      "Start a new conversation inside the project. The skill is now active and will persist across every conversation in this project — you do not need to reload it.",
     ],
-    note: "{GARY_TODO}: Add a tip about Claude Projects — e.g. 'The skill persists across all conversations in the project, so you don't have to reload it each time.'",
+    note: "Claude Projects is the recommended method because the skill persists. Every conversation in the project has full access to the framework without re-uploading. For bundle buyers: create one project per skill for clean, focused sessions.",
   },
   {
     name: "ChatGPT",
     badge: null,
     steps: [
-      "{GARY_TODO} Step 1: Go to Settings → Custom Instructions.",
-      "{GARY_TODO} Step 2: Open your .md file and copy all the contents.",
-      "{GARY_TODO} Step 3: Paste the skill contents into the 'What would you like ChatGPT to know about you?' field.",
-      "{GARY_TODO} Step 4: Save and start a new conversation.",
+      "Go to Settings in the top-right corner, then select Custom Instructions.",
+      "Open your .md skill file in any text editor and select all the contents.",
+      "Paste the skill contents into the 'What would you like ChatGPT to know about you?' field and save.",
+      "Start a new conversation. The skill context will be active for all new conversations until you change the Custom Instructions.",
     ],
-    note: "{GARY_TODO}: Add a note about alternative: paste the .md content at the start of any conversation as a system prompt.",
+    note: "Alternative method: at the start of any conversation, paste the full .md contents as your first message before describing your business. This works for any ChatGPT plan without custom instructions access.",
   },
   {
     name: "Gemini",
     badge: null,
     steps: [
-      "{GARY_TODO} Step 1: Open your .md file and copy all the contents.",
-      "{GARY_TODO} Step 2: Start a new Gemini conversation.",
-      "{GARY_TODO} Step 3: Paste the skill contents as your first message, then describe your business.",
-      "{GARY_TODO} Step 4: Continue the conversation with your specific prompts.",
+      "Open your .md skill file in any text editor and select all the contents.",
+      "Start a new Gemini conversation at gemini.google.com.",
+      "Paste the skill contents as your first message, followed by a line break and your business description.",
+      "Continue with your specific framework prompts. Gemini will apply the skill context throughout the conversation.",
     ],
-    note: "{GARY_TODO}: Add a note about Gemini Gems if applicable.",
+    note: "Gemini Gems (if available on your plan) allow you to save the skill as a persistent Gem — similar to Claude Projects. Create one Gem per skill for clean, reusable sessions.",
   },
   {
     name: "Any Other LLM",
     badge: null,
     steps: [
-      "{GARY_TODO} Step 1: Open your .md file and copy all the contents.",
-      "{GARY_TODO} Step 2: Paste the skill contents into the system prompt field (if available) or as the first user message.",
-      "{GARY_TODO} Step 3: Begin with your business context before running framework prompts.",
+      "Open your .md skill file in any text editor and select all the contents.",
+      "If the LLM has a system prompt field, paste the skill contents there before starting the conversation.",
+      "If there is no system prompt field, paste the skill contents as your first user message, then add a line break and begin describing your business.",
     ],
-    note: "{GARY_TODO}: Note that any LLM supporting system prompts or long context can use the skills.",
+    note: "Any LLM that supports system prompts or long-context input can use the AI Agent Skills. The skill is plain text — it works wherever you can paste a long document into the conversation context.",
   },
 ];
 
 const bestPractices = [
   {
     title: "One Skill Per Conversation",
-    desc: "{GARY_TODO}: Explain why mixing frameworks in one session degrades quality — each skill sets a specific context.",
+    desc: "Each skill sets a specific expert context — a methodology, a decision tree, a set of evaluation criteria. Mixing multiple frameworks in one session forces the AI to context-switch, which degrades the depth and precision of every output. Use one skill per conversation. Feed outputs from one session into the next.",
   },
   {
     title: "Provide Specific Business Context",
-    desc: "{GARY_TODO}: Explain that the more detail you provide about your actual business, the more tailored the output.",
+    desc: "The framework knows what to ask. You need to know what to answer. The more specific your business details — your niche, your audience, your current revenue, your specific problem — the more precisely the AI applies the framework. 'I sell coaching' produces generic output. 'I sell 90-day coaching to freelance designers earning $40K who want to reach $100K' produces a Dream Customer profile you can actually use.",
   },
   {
     title: "Use the Built-in Prompt Templates",
-    desc: "{GARY_TODO}: Explain that each book includes copy-paste prompts — these are designed to extract maximum value from the skill.",
+    desc: "Each book includes copy-paste prompts designed to extract maximum value from the specific skill. These are not generic questions — they are structured inputs that trigger the framework's full methodology. Use them exactly as written for your first session, then customize once you understand the output structure.",
   },
   {
     title: "Save and Iterate",
-    desc: "{GARY_TODO}: Explain how to feed AI outputs back in for refinement across multiple sessions.",
+    desc: "Save every AI output. In the next session, paste the previous output at the start of the conversation with the skill loaded, then ask for refinement. The iteration cycle is where the real value compounds — each round makes the output more precise, more tailored, and more ready to deploy.",
   },
 ];
 
 const faqs = [
   {
     question: "The AI isn't following the framework. What should I do?",
-    answer: "{GARY_TODO}: Answer — e.g. reload the skill by starting a new conversation, add the skill content again, and provide more specific business context.",
+    answer: "Start a new conversation and reload the skill — either by re-uploading to your Claude Project, or pasting the .md contents as the first message again. Then provide more specific business context before running prompts. Long conversations can dilute framework adherence as context fills up. Shorter, focused sessions with one clear objective produce more consistent framework application.",
   },
   {
     question: "The output is too generic. How do I get more specific results?",
-    answer: "{GARY_TODO}: Answer — e.g. provide your niche, current revenue, target customer details, and the specific problem you're solving.",
+    answer: "Generic input produces generic output. Provide your exact niche (not 'health coaching' but 'weight loss coaching for women over 45 who have tried multiple diets'), your current situation (list size, revenue, platforms), your specific customer (use the Dream Customer profile if you have run it), and the exact problem you need solved. The framework needs real inputs to produce real outputs.",
   },
   {
     question: "How do I know the skill is working?",
-    answer: "{GARY_TODO}: Answer — e.g. compare outputs with and without the skill. The skill-loaded AI should reference specific framework terminology and structure.",
+    answer: "Run the same prompt with and without the skill loaded and compare. A skill-loaded AI will reference specific framework terminology — Secret Formula, Value Ladder, Dream 100, FRED, PLC sequence — and structure its output according to the framework's methodology. Without the skill, the AI gives general advice. With it, you get structured framework execution.",
   },
   {
     question: "Can I use multiple skills together?",
-    answer: "{GARY_TODO}: Answer — explain the recommended sequential approach (separate conversations per skill, feed outputs from one into the next).",
+    answer: "Use separate conversations per skill and feed outputs from one into the next. Marketing Architect output (Dream Customer profile, Value Ladder) becomes the input for Traffic Architect (Dream 100 list, platform strategy). Traffic Architect output feeds Story Architect (copy targeting). This chaining is more effective than mixing skills in one session, which dilutes each framework's depth.",
   },
   {
     question: "Which skill should I start with?",
-    answer: "{GARY_TODO}: Answer — recommend starting with the skill that addresses the most urgent problem in their business right now. Link to /getting-started for the full guide.",
+    answer: "Start with the skill that addresses your most urgent business problem right now. If you do not know who your customer is — Marketing Architect first. If you do not know how to reach them — Traffic Architect. If you have an offer but no copy that converts — Story Architect. If you are ready to launch — Startup Architect. For a complete onboarding sequence, read the Getting Started guide.",
   },
 ];
 
@@ -193,9 +192,8 @@ export default async function SkillGuidePage({ params }: Props) {
             {/* {GARY_TODO}: Replace with Gary's final headline */}
             <span className="gradient-gold">How to Use Your AI Agent Skill</span>
           </h1>
-          {/* {GARY_TODO}: Replace subheadline */}
           <p className="text-text-secondary text-lg leading-relaxed">
-            {"{GARY_TODO: Subheadline — e.g. 'Your .md file gives any AI domain-level expertise in a proven business framework. Here is how to load it and get results from day one.'}"}
+            Your .md file gives any AI domain-level expertise in a proven business framework. Here is how to load it into Claude, ChatGPT, or Gemini — and get results from day one.
           </p>
         </section>
 
@@ -210,15 +208,15 @@ export default async function SkillGuidePage({ params }: Props) {
             {[
               {
                 label: "The .md File",
-                desc: "{GARY_TODO}: Explain what the .md file contains — a structured system prompt encoding a proven business framework as AI-executable instructions.",
+                desc: "A structured plain-text file that encodes a complete expert framework — its methodology, decision trees, output templates, and evaluation criteria — as AI-executable instructions. When an AI reads this file, it does not just know about the framework. It follows the framework's methodology when responding to your prompts.",
               },
               {
                 label: "vs. Regular Prompts",
-                desc: "{GARY_TODO}: Contrast single-question prompts (one-shot) with Skill-loaded conversations (persistent expert context throughout).",
+                desc: "A regular prompt is a one-shot question. The AI answers from general training data — broad, often shallow. A Skill-loaded conversation is different: the AI operates with the complete expert framework in context for the entire session. Every answer is filtered through that methodology. The depth, structure, and specificity of output is categorically different.",
               },
               {
                 label: "The Analogy",
-                desc: "{GARY_TODO}: Use the 'specialist consultant' analogy — loading the skill is like hiring a DotCom Secrets expert to sit next to you while you work.",
+                desc: "Loading the Marketing Architect skill is like hiring Russell Brunson to sit next to you while you work. He does not just answer questions — he runs you through his Secret Formula, builds your Value Ladder, writes your Hook-Story-Offer. Loading the Skill gives any AI that same specialist capability, applied to your specific business.",
               },
             ].map((item) => (
               <div key={item.label}>
@@ -298,9 +296,8 @@ export default async function SkillGuidePage({ params }: Props) {
             <h2 className="text-xl font-bold">Combining Multiple Skills (Bundle)</h2>
           </div>
           <div className="bg-surface/60 border border-white/5 rounded-2xl p-6">
-            {/* {GARY_TODO}: Write the combining skills section — recommended sequence, how outputs chain */}
             <p className="text-text-secondary text-sm leading-relaxed mb-4">
-              {"{GARY_TODO}: Explain the recommended skill sequence: Vol 1 (foundation/funnel) → Vol 2 (brand/movement) → Vol 3 (traffic/audience) → Vol 4 (copy/story) → Vol 5 (launch/PLF) → Vol 6 (content/writing). Each skill's output feeds into the next."}
+              Each skill&apos;s output becomes the input for the next. Start with Marketing Architect to define your Dream Customer and Value Ladder. Feed that profile into Traffic Architect to build your Dream 100 list. Use Brand Architect to craft your positioning and origin story. Hand that story to Story Architect to write your sales copy. Use Startup Architect to design your launch sequence around that copy. Then Content Architect to produce the ongoing content that fills your funnel. Each step builds on the last.
             </p>
             <div className="flex flex-wrap gap-2">
               {[
@@ -357,12 +354,11 @@ export default async function SkillGuidePage({ params }: Props) {
         {/* CTA */}
         <section className="max-w-3xl mx-auto px-4">
           <div className="bg-surface/60 border border-gold/20 rounded-2xl p-6 text-center card-glow">
-            {/* {GARY_TODO}: Rewrite CTA section */}
             <p className="font-bold text-text-primary mb-2">
-              {"{GARY_TODO}: CTA heading — e.g. 'Don't have a Skill yet? Get your first one for $17.'"}
+              Do not have a Skill yet? Get your first one for $17.
             </p>
             <p className="text-text-secondary text-sm mb-4">
-              {"{GARY_TODO}: CTA subtext — e.g. 'Includes the PDF guide + AI Agent Skill + prompt templates. Start using it today.'"}
+              Each book includes the PDF guide, the AI Agent Skill file, and copy-paste prompt templates. Start using it today.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
