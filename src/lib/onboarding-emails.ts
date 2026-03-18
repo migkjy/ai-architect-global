@@ -78,21 +78,28 @@ function greeting(firstName?: string): string {
 export function getOnboardingWelcomeHtml(params: OnboardingEmailParams): string {
   const g = greeting(params.firstName);
   return wrapHtml({
-    preheader: "Welcome to AI Native Playbook — here's what to expect.",
+    preheader: "Welcome — your free AI Business Framework Preview is ready. See how proven frameworks become automated systems.",
     body: `
 <p style="color:${BRAND.color};font-size:22px;font-weight:700;margin:0 0 8px 0;">Welcome to AI Native Playbook</p>
 <p style="color:#666;font-size:14px;margin:0 0 32px 0;">Day 0 &bull; AI Native Playbook Series</p>
 <p style="color:#333;font-size:16px;line-height:1.7;">${g}</p>
-<p style="color:#333;font-size:16px;line-height:1.7;">Thanks for joining the AI Native Playbook community! We share practical insights on how AI is transforming business operations — every week.</p>
+<p style="color:#333;font-size:16px;line-height:1.7;">Thank you for joining the AI Native Playbook. We help entrepreneurs and business leaders turn world-class business frameworks into AI-powered automation systems — so you get expert-level strategy execution without the expert-level price tag.</p>
+<div style="text-align:center;margin:28px 0;">
+  <a href="${siteUrl}/resources/ai-framework-preview" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};font-size:16px;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;">Download Your Free AI Business Framework Preview</a>
+</div>
 <p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:28px 0 12px 0;">What you'll get as a subscriber</p>
 <ul style="color:#555;font-size:15px;line-height:2;">
-  <li>Latest AI business automation trends</li>
-  <li>Ready-to-use prompt templates</li>
-  <li>Expert frameworks and case studies</li>
+  <li>Insights from 6 AI business automation systems — each built on a proven expert framework</li>
+  <li>Strategies for combining validated frameworks with AI execution</li>
+  <li>Real-world case studies and ROI analysis from framework-driven automation</li>
 </ul>
 <div style="border-left:4px solid ${BRAND.gold};padding:16px 20px;margin:24px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
+  <strong style="color:${BRAND.color};">Why this is different</strong><br/>
+  <span style="color:#555;">These aren't generic AI tips or simple instructions. Each of our 6 systems is built on a proven business framework from experts like Russell Brunson, Jim Edwards, Jeff Walker, and Nicolas Cole. The AI doesn't just assist — it executes the entire framework for you. Think of it as having a $5,000 consultant on call, 24/7, for a fraction of the cost.</span>
+</div>
+<div style="border-left:4px solid ${BRAND.gold};padding:16px 20px;margin:24px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
   <strong style="color:${BRAND.color};">Coming tomorrow</strong><br/>
-  <span style="color:#555;">3 quick ways to put your AI framework knowledge to work — starting today.</span>
+  <span style="color:#555;">3 ways to run your first AI-powered strategy session — and see results within 90 minutes.</span>
 </div>
 <p style="color:#555;font-size:15px;margin:16px 0 0 0;">Welcome aboard,<br /><strong style="color:${BRAND.color};">The AI Native Playbook Team</strong></p>
 `,
@@ -103,34 +110,34 @@ export function getOnboardingWelcomeHtml(params: OnboardingEmailParams): string 
 export function getOnboardingTipsHtml(params: OnboardingEmailParams): string {
   const g = greeting(params.firstName);
   return wrapHtml({
-    preheader: "Quick tips to put your AI framework guide to work — starting today.",
+    preheader: "3 ways to run your first AI-powered strategy session — pick one system, get results in 90 minutes.",
     body: `
 <p style="color:${BRAND.color};font-size:22px;font-weight:700;margin:0 0 8px 0;line-height:1.3;">
-  3 Ways to Get More From Your AI Framework Guide
+  3 Ways to Get Immediate Value From Your AI Business Systems
 </p>
 <p style="color:#666;font-size:14px;margin:0 0 32px 0;">Day 1 &bull; AI Native Playbook Series</p>
 <p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 20px 0;">${g}</p>
 <p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 20px 0;">
-  Most people skim a guide once and move on. Here are three ways to make it actually work for your business.
+  Most people read about AI and think "interesting" — then change nothing. Here are three ways to get real results from framework-driven AI systems, starting today.
 </p>
 <div style="border-left:4px solid ${BRAND.gold};padding:16px 20px;margin:0 0 20px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
-  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">1. Map the framework to ONE workflow first</p>
-  <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">Pick your most repetitive task — content drafts, customer responses, data summaries — and apply the framework there first. One win builds momentum.</p>
+  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">1. Pick ONE system that matches your biggest bottleneck</p>
+  <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">We offer 6 AI business systems — Marketing, Brand, Traffic, Story, Startup, and Content. Which area is costing you the most time or money right now? Start there. One focused system beats six half-started ones.</p>
 </div>
 <div style="border-left:4px solid ${BRAND.gold};padding:16px 20px;margin:0 0 20px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
-  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">2. Time-box your first experiment to 90 minutes</p>
-  <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">Set a timer. Pick a prompt, run it through the framework's structure, measure the output quality vs. your old approach. 90 minutes is enough to see whether it clicks.</p>
+  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">2. Run your first strategy session in 90 minutes</p>
+  <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">Set a timer. Load the framework into your AI tool. Answer the guided questions. Within 90 minutes you'll have a complete strategy document — the kind that used to take a consultant days to produce. Compare the output to your current approach.</p>
 </div>
 <div style="border-left:4px solid ${BRAND.gold};padding:16px 20px;margin:0 0 32px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
-  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">3. Document what worked</p>
-  <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">Keep a simple running doc of prompts that delivered results. Within two weeks you'll have a personal AI playbook — tailored to your specific business context.</p>
+  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">3. Document the before vs. after</p>
+  <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">Keep a simple log: what the AI system produced vs. how you used to do it. Time saved, quality difference, new insights uncovered. Within a week you'll see exactly why framework-driven AI execution is a fundamentally different approach.</p>
 </div>
 <div style="text-align:center;margin:0 0 32px 0;">
   <a href="${siteUrl}/blog" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">
-    Read Our Latest Blog Posts
+    Explore the 6 AI Business Systems
   </a>
 </div>
-<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">More coming in 2 days — a real story of how one founder automated 80% of their marketing.</p>
+<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">More coming in 2 days — a real story of how one founder used these framework-driven systems to automate 80% of their marketing.</p>
 <p style="color:#555;font-size:15px;line-height:1.7;margin:16px 0 0 0;">Stay sharp,<br /><strong style="color:${BRAND.color};">The AI Native Playbook Team</strong></p>
 `,
   });
@@ -140,16 +147,16 @@ export function getOnboardingTipsHtml(params: OnboardingEmailParams): string {
 export function getOnboardingCaseStudyHtml(params: OnboardingEmailParams): string {
   const g = greeting(params.firstName);
   return wrapHtml({
-    preheader: "One bootstrapped founder, one AI framework, a 4x output increase — here's the full story.",
+    preheader: "One founder, one AI business framework system, 4x output — here's exactly how he did it.",
     body: `
 <p style="color:${BRAND.color};font-size:22px;font-weight:700;margin:0 0 8px 0;line-height:1.3;">
-  How One Founder Automated 80% of Their Marketing — in 6 Weeks
+  How One Founder Automated 80% of Their Marketing — Using Framework-Driven AI Systems
 </p>
 <p style="color:#666;font-size:14px;margin:0 0 32px 0;">Day 3 &bull; AI Native Playbook Series</p>
 <p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 20px 0;">${g}</p>
 <p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 20px 0;">
   Marcus runs a 4-person B2B SaaS company. Six months ago his team spent 22 hours a week on
-  marketing. Today, that same output takes under 5 hours. Here's exactly what changed.
+  marketing. Today, that same output takes under 5 hours. The difference? He stopped using AI as a tool and started using it as a system — powered by proven business frameworks.
 </p>
 <div style="background:${BRAND.color};border-radius:10px;padding:24px 28px;margin:0 0 32px 0;">
   <p style="color:${BRAND.gold};font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 16px 0;">Results After 6 Weeks</p>
@@ -160,16 +167,16 @@ export function getOnboardingCaseStudyHtml(params: OnboardingEmailParams): strin
     <tr><td style="color:#ccc;font-size:14px;padding:6px 0;border-top:1px solid #1e2d45;">Inbound leads / month</td><td style="color:${BRAND.gold};font-size:15px;font-weight:700;text-align:right;padding:6px 0;border-top:1px solid #1e2d45;">11 &rarr; 47</td></tr>
   </table>
 </div>
-<p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 12px 0;">The 3-part system he built</p>
-<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 12px 0;"><strong>1. Prompt library tied to brand voice.</strong> Marcus spent one afternoon building 20 reusable prompts — each pre-loaded with his brand tone and audience pain points.</p>
-<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 12px 0;"><strong>2. AI-assisted first drafts, human final edit.</strong> They use AI for structure + first draft (10 min), then a human does a focused 15-minute edit pass.</p>
-<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 28px 0;"><strong>3. Weekly "AI sprint" instead of scattered sessions.</strong> Every Monday morning, one person runs a 2-hour AI sprint: batch-generate the week's content, schedule it, done.</p>
+<p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 12px 0;">The 3 framework-driven systems he deployed</p>
+<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 12px 0;"><strong>1. AI Marketing Architect for funnel strategy.</strong> Instead of guessing, Marcus loaded Russell Brunson's proven funnel framework into AI. Within one session, he had a complete marketing funnel mapped — audience segments, offer stack, and conversion sequence.</p>
+<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 12px 0;"><strong>2. AI Content Architect for weekly output.</strong> Using Nicolas Cole's content framework, his team now generates a full week of strategic content in a single 2-hour Monday session. The AI executes the framework; his team reviews and publishes.</p>
+<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 28px 0;"><strong>3. AI Story Architect for sales copy.</strong> Jim Edwards' copywriting framework, automated by AI, cut proposal writing from 4 hours to 35 minutes — with higher conversion rates.</p>
 <div style="text-align:center;margin:0 0 32px 0;">
   <a href="${siteUrl}/blog" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">
-    See More Success Stories
+    See How the Systems Work
   </a>
 </div>
-<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">In 4 days I'll send the final email — about the exact next step for turning these tactics into a complete AI business system.</p>
+<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">In 4 days I'll send the final email — showing you the exact next step for getting all 6 AI business systems working together.</p>
 <p style="color:#555;font-size:15px;line-height:1.7;margin:16px 0 0 0;">Talk soon,<br /><strong style="color:${BRAND.color};">The AI Native Playbook Team</strong></p>
 `,
   });
@@ -179,7 +186,7 @@ export function getOnboardingCaseStudyHtml(params: OnboardingEmailParams): strin
 export function getOnboardingCtaHtml(params: OnboardingEmailParams): string {
   const g = greeting(params.firstName);
   return wrapHtml({
-    preheader: "The opportunity cost of not going AI-native is doubling every quarter.",
+    preheader: "6 proven business frameworks, automated by AI. $5,000+ consulting value — yours for $49.",
     body: `
 <p style="color:${BRAND.color};font-size:22px;font-weight:700;margin:0 0 8px 0;line-height:1.3;">
   Your AI Business Transformation Starts Here
@@ -193,26 +200,30 @@ export function getOnboardingCtaHtml(params: OnboardingEmailParams): string {
 </p>
 <p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 12px 0;">From overwhelmed to AI-native in 90 days</p>
 <p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 16px 0;">
-  Sarah launched her consulting practice two years ago. Buried in admin. She used the full playbook bundle.
-  90 days later: proposals take 35 minutes instead of 4 hours. She doubled her client roster without hiring.
+  Sarah launched her consulting practice two years ago. Buried in admin. She deployed the AI Story Architect (Jim Edwards' copywriting framework) and AI Marketing Architect (Russell Brunson's funnel framework).
+  90 days later: proposals take 35 minutes instead of 4 hours. She doubled her client roster without hiring. That's the power of proven frameworks executed by AI.
 </p>
 <div style="background:#faf8f5;border:1px solid #e8dfc8;border-radius:10px;padding:28px;margin:0 0 32px 0;">
-  <p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 12px 0;">The Complete AI Playbook Bundle</p>
+  <p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 12px 0;">The Complete AI Business Systems Bundle</p>
   <ul style="color:#555;font-size:15px;line-height:1.8;margin:0 0 20px 0;padding-left:20px;">
-    <li>5 in-depth playbooks covering every core business function</li>
-    <li>50+ battle-tested prompt templates</li>
-    <li>AI workflow diagrams for sales, marketing, ops, and product</li>
+    <li>6 AI business automation systems — each built on a world-class expert framework</li>
+    <li>Ready-to-run strategy sessions you can execute within 24 hours of purchase</li>
     <li>The 90-day AI transformation roadmap</li>
+    <li>Frameworks from Russell Brunson, Jim Edwards, Jeff Walker &amp; Nicolas Cole</li>
   </ul>
+  <div style="border-left:4px solid ${BRAND.gold};padding:12px 16px;margin:0 0 16px 0;background:#fff;border-radius:0 8px 8px 0;">
+    <span style="color:${BRAND.color};font-size:14px;font-weight:700;">$5,000+ in consulting value</span>
+    <span style="color:#888;font-size:14px;"> — these are the same frameworks top consultants charge thousands to implement. The AI does the execution for you.</span>
+  </div>
   <p style="color:#888;font-size:13px;margin:0;">Designed for solo founders and small teams who want results — not theory.</p>
 </div>
 <div style="text-align:center;margin:0 0 32px 0;">
   <a href="${siteUrl}/bundle" style="display:inline-block;background:${BRAND.color};color:${BRAND.gold};padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;">
-    Get the Complete AI Playbook Bundle
+    Get All 6 AI Business Systems
   </a>
   <p style="color:#999;font-size:13px;margin:12px 0 0 0;">No fluff. No theory. Just the system that works.</p>
 </div>
-<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">Whether you go further with the bundle or not — I hope these emails have been genuinely useful.</p>
+<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">Whether you go further with the bundle or not — I hope these emails have shown you what's possible when proven business frameworks meet AI execution.</p>
 <p style="color:#555;font-size:15px;line-height:1.7;margin:16px 0 0 0;">Go build something great,<br /><strong style="color:${BRAND.color};">The AI Native Playbook Team</strong></p>
 `,
   });
