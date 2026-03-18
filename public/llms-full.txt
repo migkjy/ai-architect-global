@@ -1,0 +1,88 @@
+# AI Native Playbook Series — Full Reference
+
+> 6 AI-powered PDF guides that turn proven business frameworks into executable AI architecture patterns. For entrepreneurs, marketers, and AI-native builders.
+
+## About
+AI Native Playbook Series bridges the gap between reading business books and executing the frameworks. Each guide transforms a world-class business methodology into an AI-automated system with step-by-step instructions and ready-to-use prompt templates. Works with ChatGPT, Claude, Gemini, and any LLM.
+
+## Products (Detailed)
+
+### Vol.1: DotCom Secrets AI
+- Based on: Russell Brunson's DotCom Secrets
+- What it does: Automates sales funnel creation, value ladder design, and traffic strategy using AI
+- Includes: 20+ prompt templates for funnel building, lead magnet creation, and upsell sequences
+- Price: $17
+
+### Vol.2: Product Launch Formula AI
+- Based on: Jeff Walker's Product Launch Formula (PLF)
+- What it does: Automates product launch sequences, pre-launch content, and email campaigns using AI
+- Includes: Complete AI-powered launch sequence templates, sideways sales letter prompts
+- Price: $17
+
+### Vol.3: Copywriting Secrets AI
+- Based on: Jim Edwards' Copywriting Secrets
+- What it does: Automates headline writing, sales copy, and email sequences using AI
+- Includes: 30+ copywriting prompt templates for headlines, bullets, stories, and CTAs
+- Price: $17
+
+### Vol.4: The Art and Business of Online Writing AI
+- Based on: Nicolas Cole's online writing system
+- What it does: Automates content creation, headline optimization, and audience building using AI
+- Includes: AI writing system for consistent content production and audience growth
+- Price: $17
+
+### Vol.5: AI Marketing Playbook
+- Comprehensive AI marketing automation system
+- What it does: Integrates marketing channels (SEO, email, social, ads) into AI-automated workflows
+- Includes: Marketing automation templates, analytics prompts, campaign optimization
+- Price: $17
+
+### Vol.6: AI Agent Skills
+- Build and deploy AI agents for business tasks
+- What it does: Teaches how to create specialized AI agents that handle business operations
+- Includes: Agent architecture patterns, tool use patterns, multi-agent coordination
+- Price: $17
+
+### Complete Bundle
+- All 6 guides included
+- Price: $47 (save $55 vs individual purchase)
+- Lifetime updates included
+
+## Frequently Asked Questions
+
+### What format are the guides?
+All guides are PDF digital downloads. You receive instant access after purchase.
+
+### Do I need technical skills?
+No. The guides are written for non-technical entrepreneurs. All AI interactions use natural language prompts.
+
+### Which AI tools do the guides work with?
+All guides work with ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), and any modern LLM.
+
+### What is the refund policy?
+30-day money-back guarantee. If the guides don't meet your expectations, email contact@newbizsoft.com for a full refund.
+
+### Are updates included?
+Yes. All guides include lifetime updates as AI capabilities evolve.
+
+## Key Facts
+- Website: https://ai-native-playbook.com
+- Publisher: NewBizSoft
+- Contact: contact@newbizsoft.com
+- Format: PDF digital download
+- Individual price: $17 per guide
+- Bundle price: $47 for all 6 guides
+- Languages: English, Korean, Japanese
+- Guarantee: 30-day money-back
+
+## Links
+- Homepage: https://ai-native-playbook.com
+- Products: https://ai-native-playbook.com/products
+- Bundle: https://ai-native-playbook.com/bundle
+- FAQ: https://ai-native-playbook.com/faq
+- About: https://ai-native-playbook.com/about
+- Blog: https://ai-native-playbook.com/blog
+- Free Guide: https://ai-native-playbook.com/free-guide
+- Privacy: https://ai-native-playbook.com/privacy
+- Terms: https://ai-native-playbook.com/terms
+- Refund Policy: https://ai-native-playbook.com/refund

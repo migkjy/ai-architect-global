@@ -161,9 +161,14 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
         name: "AI Native Playbook Series",
-        legalName: "ai-architect",
+        legalName: "NewBizSoft",
         url: siteUrl,
         description: descriptions[locale] ?? descriptions.en,
+        foundingDate: "2024",
+        areaServed: "Worldwide",
+        sameAs: [
+          "https://ai-driven-architect.com",
+        ],
         logo: {
           "@type": "ImageObject",
           "@id": `${siteUrl}/#logo`,

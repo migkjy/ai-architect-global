@@ -191,6 +191,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       { "@type": "Thing", name: "AI Architect" },
     ],
     keywords: "AI native playbook, AI architecture patterns, AI architect, business automation with AI, AI marketing playbook",
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", ".hero-description", ".faq-section"],
+    },
   } : null;
 
   const bookListJsonLd = {
