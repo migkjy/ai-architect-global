@@ -21,34 +21,52 @@ export default function robots(): MetadataRoute.Robots {
         ],
         crawlDelay: 1,
       },
+      // AI crawlers — explicitly allowed (AEO optimization)
       {
         userAgent: "GPTBot",
-        disallow: "/",
+        allow: "/",
+      },
+      {
+        userAgent: "OAI-SearchBot",
+        allow: "/",
       },
       {
         userAgent: "ChatGPT-User",
-        disallow: "/",
-      },
-      {
-        userAgent: "Google-Extended",
-        disallow: "/",
-      },
-      {
-        userAgent: "CCBot",
-        disallow: "/",
-      },
-      {
-        userAgent: "anthropic-ai",
-        disallow: "/",
+        allow: "/",
       },
       {
         userAgent: "ClaudeBot",
-        disallow: "/",
+        allow: "/",
+      },
+      {
+        userAgent: "Claude-SearchBot",
+        allow: "/",
+      },
+      {
+        userAgent: "anthropic-ai",
+        allow: "/",
+      },
+      {
+        userAgent: "PerplexityBot",
+        allow: "/",
+      },
+      {
+        userAgent: "Google-Extended",
+        allow: "/",
+      },
+      {
+        userAgent: "Applebot-Extended",
+        allow: "/",
+      },
+      {
+        userAgent: "CCBot",
+        allow: "/",
       },
       {
         userAgent: "cohere-ai",
-        disallow: "/",
+        allow: "/",
       },
+      // Blocked — TikTok scraper
       {
         userAgent: "Bytespider",
         disallow: "/",

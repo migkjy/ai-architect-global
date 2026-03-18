@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       canonical: canonicalUrl,
       languages: {
         en: `${SITE_URL}/faq`,
+        ko: `${SITE_URL}/ko/faq`,
         ja: `${SITE_URL}/ja/faq`,
         "x-default": `${SITE_URL}/faq`,
       },
@@ -147,6 +148,10 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
         text: item.answer,
       },
     })),
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", ".faq-answer"],
+    },
   };
 
   return (
