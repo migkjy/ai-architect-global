@@ -165,6 +165,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     },
     keywords: post.tags.join(", "),
     wordCount: Math.round(post.content.split(/\s+/).length),
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "article p:first-of-type"],
+    },
   };
 
   const breadcrumbJsonLd = {

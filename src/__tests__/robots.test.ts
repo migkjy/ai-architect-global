@@ -3,6 +3,11 @@ import robots from "@/app/robots";
 
 describe("Robots", () => {
   const config = robots();
+  const rules = config.rules as Array<{
+    userAgent: string;
+    allow?: string | string[];
+    disallow?: string | string[];
+  }>;
 
   it("has rules array", () => {
     expect(Array.isArray(config.rules)).toBe(true);
@@ -10,38 +15,50 @@ describe("Robots", () => {
   });
 
   it("default rule allows / and disallows /api/", () => {
-    const rules = config.rules as Array<{
-      userAgent: string;
-      allow?: string | string[];
-      disallow?: string | string[];
-    }>;
     const defaultRule = rules.find((r) => r.userAgent === "*");
     expect(defaultRule).toBeDefined();
     expect(defaultRule!.allow).toBe("/");
     expect(defaultRule!.disallow).toContain("/api/");
   });
 
-  it("blocks AI crawlers", () => {
-    const rules = config.rules as Array<{ userAgent: string; disallow?: string | string[] }>;
-    const aiCrawlers = ["GPTBot", "ChatGPT-User", "anthropic-ai", "ClaudeBot", "CCBot"];
-    for (const crawler of aiCrawlers) {
-      const rule = rules.find((r) => r.userAgent === crawler);
-      expect(rule, `Rule for ${crawler} should exist`).toBeDefined();
-      expect(rule!.disallow).toBe("/");
+  it("allows AI crawlers explicitly (AEO)", () => {
+    const aiAllowBots = [
+      "GPTBot",
+      "OAI-SearchBot",
+      "ChatGPT-User",
+      "ClaudeBot",
+      "Claude-SearchBot",
+      "anthropic-ai",
+      "PerplexityBot",
+      "Google-Extended",
+      "Applebot-Extended",
+      "CCBot",
+      "cohere-ai",
+    ];
+    for (const bot of aiAllowBots) {
+      const rule = rules.find((r) => r.userAgent === bot);
+      expect(rule, `Rule for ${bot} should exist`).toBeDefined();
+      expect(rule!.allow, `${bot} should have allow: "/"`).toBe("/");
+      expect(rule!.disallow, `${bot} should NOT have disallow`).toBeUndefined();
     }
   });
 
+  it("blocks Bytespider", () => {
+    const rule = rules.find((r) => r.userAgent === "Bytespider");
+    expect(rule).toBeDefined();
+    expect(rule!.disallow).toBe("/");
+  });
+
   it("disallows /ko and /ko/ paths", () => {
-    const rules = config.rules as Array<{ userAgent: string; disallow?: string | string[] }>;
     const defaultRule = rules.find((r) => r.userAgent === "*");
     expect(defaultRule!.disallow).toContain("/ko");
     expect(defaultRule!.disallow).toContain("/ko/");
   });
 
-  it("includes sitemap URLs", () => {
+  it("includes 4 sitemap URLs", () => {
     expect(config.sitemap).toBeDefined();
     const sitemaps = config.sitemap as string[];
-    expect(sitemaps.length).toBeGreaterThanOrEqual(1);
+    expect(sitemaps).toHaveLength(4);
     expect(sitemaps.some((s) => s.includes("sitemap.xml"))).toBe(true);
   });
 });
