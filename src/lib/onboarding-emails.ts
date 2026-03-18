@@ -78,12 +78,15 @@ function greeting(firstName?: string): string {
 export function getOnboardingWelcomeHtml(params: OnboardingEmailParams): string {
   const g = greeting(params.firstName);
   return wrapHtml({
-    preheader: "Welcome to AI Native Playbook — here's what to expect.",
+    preheader: "Thank you for subscribing — your free AI Framework Preview is ready to download.",
     body: `
 <p style="color:${BRAND.color};font-size:22px;font-weight:700;margin:0 0 8px 0;">Welcome to AI Native Playbook</p>
 <p style="color:#666;font-size:14px;margin:0 0 32px 0;">Day 0 &bull; AI Native Playbook Series</p>
 <p style="color:#333;font-size:16px;line-height:1.7;">${g}</p>
-<p style="color:#333;font-size:16px;line-height:1.7;">Thanks for joining the AI Native Playbook community! We share practical insights on how AI is transforming business operations — every week.</p>
+<p style="color:#333;font-size:16px;line-height:1.7;">Thank you for subscribing to the AI Native Playbook newsletter! We share practical insights on how AI is transforming business operations — every week.</p>
+<div style="text-align:center;margin:28px 0;">
+  <a href="${siteUrl}/resources/ai-framework-preview" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};font-size:16px;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;">Download Your Free AI Framework Preview &amp; 3 System Prompts</a>
+</div>
 <p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:28px 0 12px 0;">What you'll get as a subscriber</p>
 <ul style="color:#555;font-size:15px;line-height:2;">
   <li>Latest AI business automation trends</li>
