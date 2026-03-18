@@ -41,9 +41,9 @@ export const books: Book[] = [
     vol: 1,
     title: "AI Marketing Architect",
     subtitle: "DotCom Secrets Automated with AI",
-    tagline: "Stop designing funnels from scratch. Let AI build Russell Brunson's system for your business.",
+    tagline: "Stop building funnels from scratch. Let AI run Russell Brunson's system on your business.",
     shortDescription:
-      "Apply the core frameworks from DotCom Secrets — Value Ladder, Hook-Story-Offer, Soap Opera Sequence — using AI that understands your specific business and customer.",
+      "Apply the core DotCom Secrets frameworks — Value Ladder, Hook-Story-Offer, Soap Opera Sequence — using AI that's tuned to your specific business, product, and customer.",
     framework: "DotCom Secrets",
     sourceBook: "Russell Brunson",
     icon: "🎯",
@@ -84,9 +84,9 @@ export const books: Book[] = [
     vol: 2,
     title: "AI Brand Architect",
     subtitle: "Expert Secrets Automated with AI",
-    tagline: "Build a brand that leads a movement, not just sells a product.",
+    tagline: "Build a brand that leads a movement — not just sells a product.",
     shortDescription:
-      "Apply Russell Brunson's Expert Secrets framework with AI — from Mass Movement design and Attractive Character building to your complete Perfect Webinar script.",
+      "Apply Russell Brunson's Expert Secrets framework with AI — from designing your Mass Movement and building your Attractive Character to generating a complete Perfect Webinar script.",
     framework: "Expert Secrets",
     sourceBook: "Russell Brunson",
     icon: "🔳",
@@ -128,7 +128,7 @@ export const books: Book[] = [
     subtitle: "Traffic Secrets Automated with AI",
     tagline: "Stop chasing traffic. Build a system that finds your customers where they already are.",
     shortDescription:
-      "Apply Russell Brunson's Traffic Secrets with AI — from Dream Customer avatar creation and Dream 100 list building to platform-specific content strategies.",
+      "Apply Russell Brunson's Traffic Secrets with AI — from building your Dream Customer avatar and Dream 100 list to executing platform-specific content strategies at scale.",
     framework: "Traffic Secrets",
     sourceBook: "Russell Brunson",
     icon: "📝",
@@ -169,9 +169,9 @@ export const books: Book[] = [
     vol: 4,
     title: "AI Story Architect",
     subtitle: "Copywriting Secrets Automated with AI",
-    tagline: "Every word you write is either winning or losing sales. AI fixes the ones that are losing.",
+    tagline: "Every word you write is either winning or losing a sale. AI fixes the ones that are losing.",
     shortDescription:
-      "Apply Jim Edwards' 31 Copywriting Secrets with AI — from personal story mining and Hero's Journey structuring to headline generation and platform-specific copy.",
+      "Apply Jim Edwards' 31 Copywriting Secrets with AI — from mining your personal story and structuring the Hero's Journey to generating headlines and platform-specific copy.",
     framework: "Copywriting Secrets",
     sourceBook: "Jim Edwards",
     icon: "🧠",
@@ -215,7 +215,7 @@ export const books: Book[] = [
     subtitle: "Product Launch Formula Automated with AI",
     tagline: "Launch any product with a proven sequence — not guesswork, not luck.",
     shortDescription:
-      "Apply Jeff Walker's Product Launch Formula with AI — from the 3-part Prelaunch Content sequence and 7-day launch email series to post-launch analysis and evergreen funnel design.",
+      "Apply Jeff Walker's Product Launch Formula with AI — from the 3-part Prelaunch Content sequence and 7-day launch email series to post-launch analysis and evergreen funnel setup.",
     framework: "Product Launch Formula",
     sourceBook: "Jeff Walker",
     icon: "⚙️",
@@ -258,7 +258,7 @@ export const books: Book[] = [
     subtitle: "Online Writing Strategies Automated with AI",
     tagline: "More content. Less time. An audience that grows while you sleep.",
     shortDescription:
-      "Apply Nicolas Cole's online writing framework with AI — from category design and infinite idea generation to content atomization across 5 platforms and a monetization pipeline.",
+      "Apply Nicolas Cole's online writing system with AI — from category design and infinite idea generation to atomizing one piece of content across 5 platforms and building a monetization pipeline.",
     framework: "The Art and Business of Online Writing",
     sourceBook: "Nicolas Cole",
     icon: "✏️",

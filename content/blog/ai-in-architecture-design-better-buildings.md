@@ -4,6 +4,7 @@ description: "How architects use AI to streamline design workflows, optimize bui
 date: "2026-03-07"
 category: "Architecture & Design"
 tags: ["AI architecture", "AI building design", "AI for architects", "generative design", "architectural technology"]
+locale: "en"
 ---
 
 # AI in Architecture: How Architects Are Using AI to Design Better Buildings
@@ -98,5 +99,7 @@ If you're an architect looking to integrate AI into your practice, start here:
 The transition to AI-assisted architecture isn't about replacing what architects do. It's about enabling architects to do more of what they do best: design buildings that work for the people who use them.
 
 ---
+
+Ready to take the first step? Download our [free AI automation starter guide](/en/free-guide) — it includes a framework comparison chart and a 5-day quickstart checklist to get AI working in your practice this week.
 
 *The AI Native Playbook Series provides frameworks and prompt systems designed specifically for architecture and design professionals. [Explore the full collection](/products) to accelerate your AI integration.*

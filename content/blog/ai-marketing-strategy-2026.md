@@ -4,6 +4,7 @@ description: "Build a complete AI marketing strategy using Russell Brunson and J
 date: "2026-03-07"
 category: "AI Marketing"
 tags: ["AI marketing strategy", "AI marketing 2026", "marketing automation", "AI business framework", "Russell Brunson AI", "digital marketing AI"]
+locale: "en"
 ---
 
 Most entrepreneurs approach AI marketing the same way they approached social media in 2015 — experimenting randomly, hoping something sticks. But the businesses seeing 5x revenue improvements in 2026 are not experimenting. They are executing proven frameworks through AI.
@@ -83,6 +84,8 @@ Each guide includes:
 - A ready-to-use AI system prompt
 - Step-by-step implementation guide
 - Real case studies with documented results
+
+Not sure which framework fits your business? Grab our [free AI starter guide](/en/free-guide) first — it compares all six frameworks side by side and gives you 3 prompts to test immediately.
 
 The [Complete Bundle](/bundle) includes all six frameworks for $47 — less than the cost of a single business book.
 
