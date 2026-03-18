@@ -6,12 +6,12 @@
 AI Native Playbook is a series of 6 digital guides (PDF) designed for entrepreneurs, marketers, and AI-native builders. Each guide transforms a world-class business framework into an AI-automated system with ready-to-use prompt templates.
 
 ## Products
-- Vol.1: DotCom Secrets AI — Russell Brunson's funnel framework automated with AI
-- Vol.2: Product Launch Formula AI — Jeff Walker's launch system automated with AI
-- Vol.3: Copywriting Secrets AI — Jim Edwards' copywriting framework automated with AI
-- Vol.4: The Art and Business of Online Writing AI — Nicolas Cole's writing system automated with AI
-- Vol.5: AI Marketing Playbook — Comprehensive AI marketing automation system
-- Vol.6: AI Agent Skills — Build and deploy AI agents for business tasks
+- Vol.1: AI Marketing Architect — Russell Brunson's DotCom Secrets funnel framework automated with AI
+- Vol.2: AI Brand Architect — Russell Brunson's Expert Secrets brand-building automated with AI
+- Vol.3: AI Traffic Architect — Russell Brunson's Traffic Secrets traffic strategy automated with AI
+- Vol.4: AI Story Architect — Jim Edwards' Copywriting Secrets framework automated with AI
+- Vol.5: AI Startup Architect — Jeff Walker's Product Launch Formula automated with AI
+- Vol.6: AI Content Architect — Nicolas Cole's online writing system automated with AI
 - Complete Bundle (6 books): $47
 
 ## Key Facts
