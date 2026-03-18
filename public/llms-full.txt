@@ -7,40 +7,40 @@ AI Native Playbook Series bridges the gap between reading business books and exe
 
 ## Products (Detailed)
 
-### Vol.1: DotCom Secrets AI
+### Vol.1: AI Marketing Architect
 - Based on: Russell Brunson's DotCom Secrets
-- What it does: Automates sales funnel creation, value ladder design, and traffic strategy using AI
-- Includes: 20+ prompt templates for funnel building, lead magnet creation, and upsell sequences
+- What it does: Automates Value Ladder design, Hook-Story-Offer content, 7-Phase Funnel system, and Soap Opera email sequences using AI
+- Includes: AI Marketing Architect system prompt, prompt templates for each framework step, 4 case studies
 - Price: $17
 
-### Vol.2: Product Launch Formula AI
-- Based on: Jeff Walker's Product Launch Formula (PLF)
-- What it does: Automates product launch sequences, pre-launch content, and email campaigns using AI
-- Includes: Complete AI-powered launch sequence templates, sideways sales letter prompts
+### Vol.2: AI Brand Architect
+- Based on: Russell Brunson's Expert Secrets
+- What it does: Automates Mass Movement design, Epiphany Bridge storytelling, Belief System architecture, and Perfect Webinar scripts using AI
+- Includes: AI Brand Architect system prompt, Belief System Builder, Perfect Webinar Script Generator
 - Price: $17
 
-### Vol.3: Copywriting Secrets AI
+### Vol.3: AI Traffic Architect
+- Based on: Russell Brunson's Traffic Secrets
+- What it does: Automates Dream Customer avatar creation, Dream 100 list building, platform-specific content strategies, and Follow-Up Funnels using AI
+- Includes: AI Traffic Architect system prompt, Dream 100 Builder, Platform Strategy Generator
+- Price: $17
+
+### Vol.4: AI Story Architect
 - Based on: Jim Edwards' Copywriting Secrets
-- What it does: Automates headline writing, sales copy, and email sequences using AI
-- Includes: 30+ copywriting prompt templates for headlines, bullets, stories, and CTAs
+- What it does: Automates personal story mining, Hero's Journey structuring, headline generation, and platform-specific copywriting using AI
+- Includes: AI Story Architect system prompt, Personal Story Extractor, Headline Generator (3 formula categories)
 - Price: $17
 
-### Vol.4: The Art and Business of Online Writing AI
-- Based on: Nicolas Cole's online writing system
-- What it does: Automates content creation, headline optimization, and audience building using AI
-- Includes: AI writing system for consistent content production and audience growth
+### Vol.5: AI Startup Architect
+- Based on: Jeff Walker's Product Launch Formula (PLF)
+- What it does: Automates PLF 4-Phase launch structure, 9 Mental Triggers, Prelaunch Content sequences, and 7-Day Launch Email series using AI
+- Includes: AI Startup Architect system prompt, Prelaunch Content Generator, Launch Email Sequence Generator
 - Price: $17
 
-### Vol.5: AI Marketing Playbook
-- Comprehensive AI marketing automation system
-- What it does: Integrates marketing channels (SEO, email, social, ads) into AI-automated workflows
-- Includes: Marketing automation templates, analytics prompts, campaign optimization
-- Price: $17
-
-### Vol.6: AI Agent Skills
-- Build and deploy AI agents for business tasks
-- What it does: Teaches how to create specialized AI agents that handle business operations
-- Includes: Agent architecture patterns, tool use patterns, multi-agent coordination
+### Vol.6: AI Content Architect
+- Based on: Nicolas Cole's The Art and Business of Online Writing
+- What it does: Automates category design, Infinite Ideas Matrix (20 ideas from 1 topic), content atomization (1 article to 5 platforms), and monetization pipeline using AI
+- Includes: AI Content Architect system prompt, Infinite Ideas Matrix Generator, Content Atomizer (1 article to 5 platforms)
 - Price: $17
 
 ### Complete Bundle
