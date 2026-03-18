@@ -75,6 +75,18 @@ export const CTA_VARIANTS = {
       successDesc: "Your first insights are on the way.",
     },
   },
+  freeGuide: {
+    A: {
+      heading: "Get Your Free Guide",
+      subheading: "Instant access. No credit card required.",
+      ctaButton: "Get Your Free Guide",
+    },
+    B: {
+      heading: "Download Your Free AI Starter Kit",
+      subheading: "Includes 3 ready-to-use system prompts + 5-day action plan.",
+      ctaButton: "Get Your Free AI Framework + 3 System Prompts",
+    },
+  },
   pricingPage: {
     A: {
       bundleCta: "Get the Bundle — Save 54%",

@@ -4,6 +4,7 @@ description: "Use AI to execute Jeff Walker's Product Launch Formula. Automate y
 date: "2026-02-22"
 category: "AI Marketing"
 tags: ["Jeff Walker", "Product Launch Formula", "AI launch", "email sequence", "launch strategy"]
+locale: "en"
 ---
 
 Jeff Walker's Product Launch Formula has generated over a billion dollars in sales since its introduction. The framework works by building anticipation over a structured pre-launch period, creating urgency at open cart, and maximizing conversions through a precisely timed close.
@@ -71,5 +72,7 @@ After your first launch, you have a baseline. AI makes the second launch faster 
 A PLF launch is not a one-time event. It's a system. Once you've run the sequence, you have email copy, content scripts, and a documented process. The second launch takes half the time. The third launch takes a quarter.
 
 AI gets you to "first launch" faster. The frameworks handle the strategy. You handle the relationships.
+
+Before you dive into PLF, make sure you have the fundamentals. Our [free AI starter guide](/en/free-guide) covers the core automation framework and includes prompts you can use in your pre-launch content.
 
 The [AI Native Playbook Series](/en/products) includes an AI-powered PLF tool that walks you through each phase with prompts, templates, and guidance built directly into the workflow — so you're executing the framework, not just reading about it. See how it fits alongside other proven frameworks in our [patterns library](/en/patterns).

@@ -5,6 +5,7 @@ date: "2026-02-28"
 category: "Business Strategy"
 tags: ["AI architect", "AI business strategy", "business automation", "AI native", "solopreneur AI"]
 excerpt: "Using AI tools and architecting AI systems are fundamentally different skills. Here's why the gap between them is accelerating."
+locale: "en"
 ---
 
 # AI Architect vs. AI User: Why the Gap Is Growing in 2026

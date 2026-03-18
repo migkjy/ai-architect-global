@@ -4,6 +4,7 @@ description: "Ready-to-use ChatGPT prompts for marketing copy, customer service,
 date: "2026-02-20"
 category: "AI Automation"
 tags: ["ChatGPT prompts", "entrepreneur", "business prompts", "AI copywriting", "productivity"]
+locale: "en"
 ---
 
 A great prompt is a reusable asset. The prompts below are tested, specific, and ready to customize for your business. Replace the bracketed placeholders with your details and run them directly in ChatGPT, Claude, or any other AI tool.
@@ -117,5 +118,7 @@ A great prompt is a reusable asset. The prompts below are tested, specific, and 
 Every prompt improves with three additions: context about your business, a description of your audience, and the tone you want. A prompt that takes 30 seconds to customize produces output that takes 30 minutes less to edit.
 
 Build a personal prompt library. When you write a prompt that produces great output, save it. Add notes about what worked. Over time, your prompt library becomes a competitive asset that compounds.
+
+Want a head start? Download our [free AI business automation guide](/en/free-guide) — it includes 3 production-ready prompts and a 5-day action plan you can run this week.
 
 Want pre-built prompt systems organized by business framework? The [AI Native Playbook Series](/en/products) packages tested prompts for sales funnels, email sequences, and launch campaigns — ready to load and customize. Or explore our [patterns library](/en/patterns) for structured AI workflow examples.

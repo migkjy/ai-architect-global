@@ -5,6 +5,7 @@ date: "2026-02-28"
 category: "AI Automation"
 tags: ["AI content pipeline", "content automation", "AI writing", "content marketing", "AI productivity"]
 excerpt: "A step-by-step guide to building a content production system that runs on AI — without sacrificing quality or authenticity."
+locale: "en"
 ---
 
 # Building an AI Content Pipeline: From Idea to Published in 45 Minutes

@@ -4,6 +4,7 @@ description: "Step-by-step guide to creating professional architectural renders 
 date: "2026-03-07"
 category: "Architecture & Design"
 tags: ["AI architectural rendering", "AI render tutorial", "architectural visualization", "AI rendering workflow", "design technology"]
+locale: "en"
 ---
 
 # How to Create Stunning Architectural Renders with AI — Step by Step
@@ -146,5 +147,7 @@ AI rendering isn't replacing architectural visualization specialists. It's chang
 The architects who master AI rendering gain the ability to communicate design intent earlier, iterate faster, and present more options. The rendering itself becomes a design tool, not just a presentation tool.
 
 ---
+
+**New to AI-powered design workflows?** Our [free AI starter guide](/en/free-guide) walks you through the foundational frameworks and includes 3 ready-to-use prompts you can apply to your next rendering project.
 
 *The [AI Native Playbook Series](/products) includes prompt frameworks specifically designed for architectural visualization workflows. From concept renders to client presentations, get structured systems that produce consistent, professional results.*
