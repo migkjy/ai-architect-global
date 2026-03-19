@@ -173,3 +173,15 @@ export function getRelatedPosts(
   const fallback = all.filter((p) => !matchedSlugs.has(p.slug)).slice(0, limit - matched.length);
   return [...matched, ...fallback].slice(0, limit);
 }
+
+/**
+ * 발행 상태와 무관하게 모든 포스트 slug 목록 반환.
+ * generateStaticParams() 전용 — 렌더링에 사용 금지.
+ */
+export function getAllPostSlugs(): string[] {
+  if (!fs.existsSync(BLOG_DIR)) return [];
+  return fs
+    .readdirSync(BLOG_DIR)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => f.replace(/\.md$/, ""));
+}
