@@ -1,4 +1,4 @@
-import { getPostBySlug, getAllPosts, getRelatedPosts } from "@/lib/blog";
+import { getPostBySlug, getAllPosts, getRelatedPosts, getAllPostSlugs } from "@/lib/blog";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
@@ -13,10 +13,12 @@ import { books } from "@/lib/products";
 import BlogInlineCTA from "@/components/BlogInlineCTA";
 import { splitContentAtMidpoint } from "@/lib/blog-content-utils";
 
+export const revalidate = 60; // 60초마다 재검증 — 예약 시각 도래 시 자동 공개
+
 export function generateStaticParams() {
-  const posts = getAllPosts();
+  const slugs = getAllPostSlugs();
   return routing.locales.flatMap((locale) =>
-    posts.map((p) => ({ locale, slug: p.slug }))
+    slugs.map((slug) => ({ locale, slug }))
   );
 }
 

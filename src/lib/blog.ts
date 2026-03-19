@@ -16,6 +16,34 @@ export interface BlogPost {
   content: string;
   /** frontmatter locale 필드. 미설정 시 "en" 으로 간주 */
   locale?: string;
+  /** 명시적 비공개(false)일 때만 초안 처리. 미설정 = true 간주 */
+  published?: boolean;
+  /** ISO 8601 예약 발행 시각. 미래이면 비공개. 비어있거나 미설정이면 즉시 공개 */
+  scheduledAt?: string;
+}
+
+/**
+ * 포스트가 현재 시점에서 공개 가능한지 판별.
+ * - published가 명시적으로 false면 비공개
+ * - scheduledAt이 미래 시각이면 비공개
+ * - 그 외 공개
+ */
+export function isPostVisible(
+  post: { published?: boolean; scheduledAt?: string },
+  now: Date = new Date()
+): boolean {
+  // published가 명시적으로 false면 비공개
+  if (post.published === false) return false;
+
+  // scheduledAt이 있고 미래 시각이면 비공개
+  if (post.scheduledAt) {
+    const scheduledDate = new Date(post.scheduledAt);
+    if (!isNaN(scheduledDate.getTime()) && scheduledDate.getTime() > now.getTime()) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 export function getAllPosts(): Omit<BlogPost, "content">[] {
@@ -36,8 +64,11 @@ export function getAllPosts(): Omit<BlogPost, "content">[] {
         category: data.category ?? "General",
         readingTime: stats.text,
         locale: (data.locale as string | undefined) ?? "en",
+        published: data.published as boolean | undefined,
+        scheduledAt: data.scheduledAt as string | undefined,
       };
     })
+    .filter((post) => isPostVisible(post))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
@@ -47,7 +78,8 @@ export function getPostBySlug(slug: string): BlogPost | null {
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
   const stats = readingTime(raw);
-  return {
+
+  const post = {
     slug,
     title: data.title ?? slug,
     description: data.description ?? "",
@@ -57,7 +89,14 @@ export function getPostBySlug(slug: string): BlogPost | null {
     readingTime: stats.text,
     content,
     locale: (data.locale as string | undefined) ?? "en",
+    published: data.published as boolean | undefined,
+    scheduledAt: data.scheduledAt as string | undefined,
   };
+
+  // 비공개 포스트 직접 접근 차단
+  if (!isPostVisible(post)) return null;
+
+  return post;
 }
 
 export function getPostsByCategory(category: string): Omit<BlogPost, "content">[] {
@@ -133,4 +172,16 @@ export function getRelatedPosts(
   const matchedSlugs = new Set(matched.map((p) => p.slug));
   const fallback = all.filter((p) => !matchedSlugs.has(p.slug)).slice(0, limit - matched.length);
   return [...matched, ...fallback].slice(0, limit);
+}
+
+/**
+ * 발행 상태와 무관하게 모든 포스트 slug 목록 반환.
+ * generateStaticParams() 전용 — 렌더링에 사용 금지.
+ */
+export function getAllPostSlugs(): string[] {
+  if (!fs.existsSync(BLOG_DIR)) return [];
+  return fs
+    .readdirSync(BLOG_DIR)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => f.replace(/\.md$/, ""));
 }
