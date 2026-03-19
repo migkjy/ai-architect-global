@@ -13,6 +13,8 @@ import { books } from "@/lib/products";
 import BlogInlineCTA from "@/components/BlogInlineCTA";
 import { splitContentAtMidpoint } from "@/lib/blog-content-utils";
 
+export const revalidate = 60; // 60초마다 재검증 — 예약 시각 도래 시 자동 공개
+
 export function generateStaticParams() {
   const slugs = getAllPostSlugs();
   return routing.locales.flatMap((locale) =>
