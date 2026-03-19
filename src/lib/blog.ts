@@ -64,8 +64,11 @@ export function getAllPosts(): Omit<BlogPost, "content">[] {
         category: data.category ?? "General",
         readingTime: stats.text,
         locale: (data.locale as string | undefined) ?? "en",
+        published: data.published as boolean | undefined,
+        scheduledAt: data.scheduledAt as string | undefined,
       };
     })
+    .filter((post) => isPostVisible(post))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
@@ -75,7 +78,8 @@ export function getPostBySlug(slug: string): BlogPost | null {
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
   const stats = readingTime(raw);
-  return {
+
+  const post = {
     slug,
     title: data.title ?? slug,
     description: data.description ?? "",
@@ -85,7 +89,14 @@ export function getPostBySlug(slug: string): BlogPost | null {
     readingTime: stats.text,
     content,
     locale: (data.locale as string | undefined) ?? "en",
+    published: data.published as boolean | undefined,
+    scheduledAt: data.scheduledAt as string | undefined,
   };
+
+  // 비공개 포스트 직접 접근 차단
+  if (!isPostVisible(post)) return null;
+
+  return post;
 }
 
 export function getPostsByCategory(category: string): Omit<BlogPost, "content">[] {
