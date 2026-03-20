@@ -26,10 +26,11 @@ export interface BlogPost {
  * 포스트가 현재 시점에서 공개 가능한지 판별.
  * - published가 명시적으로 false면 비공개
  * - scheduledAt이 미래 시각이면 비공개
+ * - date가 미래이면 비공개 (예약발행)
  * - 그 외 공개
  */
 export function isPostVisible(
-  post: { published?: boolean; scheduledAt?: string },
+  post: { published?: boolean; scheduledAt?: string; date?: string },
   now: Date = new Date()
 ): boolean {
   // published가 명시적으로 false면 비공개
@@ -39,6 +40,14 @@ export function isPostVisible(
   if (post.scheduledAt) {
     const scheduledDate = new Date(post.scheduledAt);
     if (!isNaN(scheduledDate.getTime()) && scheduledDate.getTime() > now.getTime()) {
+      return false;
+    }
+  }
+
+  // date가 미래이면 비공개 (예약발행 — date 도래 시 ISR revalidate로 자동 노출)
+  if (post.date) {
+    const postDate = new Date(post.date);
+    if (!isNaN(postDate.getTime()) && postDate.getTime() > now.getTime()) {
       return false;
     }
   }
