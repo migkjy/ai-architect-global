@@ -7,6 +7,7 @@ category: "Case Study"
 tags: ["AI-native", "builder story", "solopreneur", "SaaS", "case study"]
 keywords: ["AI-native builder story", "non-technical founder", "solopreneur SaaS", "AI product revenue", "PM to founder"]
 featured: false
+scheduledAt: "2026-03-22T09:00:00+09:00"
 ---
 
 # From Burned-Out PM to $12K/mo: One Builder's AI-Native Journey
