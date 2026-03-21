@@ -4,7 +4,7 @@ import { getAllPosts, getAllCategories, getAllTags } from "@/lib/blog";
 export const revalidate = 3600; // 1시간 캐시 (sitemap은 빈번한 갱신 불필요)
 
 const BASE_URL =
-  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
 function urlEntry(
   loc: string,

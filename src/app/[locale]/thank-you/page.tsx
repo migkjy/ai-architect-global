@@ -98,10 +98,10 @@ export default async function ThankYouPage({
             us:
           </p>
           <a
-            href="mailto:hello@ai-driven-architect.com"
+            href="mailto:hello@ai-native-playbook.com"
             className="text-gold hover:text-gold-light transition-colors font-semibold"
           >
-            hello@ai-driven-architect.com
+            hello@ai-native-playbook.com
           </a>
         </div>
 

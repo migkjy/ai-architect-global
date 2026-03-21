@@ -21,11 +21,11 @@ const BRAND = {
 } as const;
 
 const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com"
 ).trim();
 
 const SENDER_NAME = "AI Native Playbook Series";
-const FOOTER_DOMAIN = "ai-driven-architect.com";
+const FOOTER_DOMAIN = "ai-native-playbook.com";
 
 /** Shared HTML wrapper used by every template. */
 function wrapHtml({
