@@ -5,19 +5,23 @@ import { useState, useEffect } from "react";
 export default function StickyMobileCTA({
   bundlePrice,
   bundleUrl,
+  paddlePriceId,
+  paddleSuccessUrl,
   labels,
 }: {
   bundlePrice: number;
   bundleUrl: string;
+  paddlePriceId?: string;
+  paddleSuccessUrl?: string;
   labels: {
     completeBundle: string;
     instantDownload: string;
     moneyBack: string;
-    comingSoon: string;
     getBundle: string;
   };
 }) {
   const [visible, setVisible] = useState(false);
+  const [paddleReady, setPaddleReady] = useState(false);
 
   useEffect(() => {
     function handleScroll() {
@@ -27,9 +31,45 @@ export default function StickyMobileCTA({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!paddlePriceId) return;
+    function checkPaddle() {
+      if (window.Paddle?.Checkout) {
+        setPaddleReady(true);
+        return true;
+      }
+      return false;
+    }
+    if (checkPaddle()) return;
+    const interval = setInterval(() => {
+      if (checkPaddle()) clearInterval(interval);
+    }, 300);
+    const timeout = setTimeout(() => clearInterval(interval), 4000);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, [paddlePriceId]);
+
   if (!visible) return null;
 
-  const isDisabled = bundleUrl === "#" || !bundleUrl;
+  function handleBuyClick(e: React.MouseEvent) {
+    window.gtag?.("event", "cta_click", { event_category: "engagement", event_label: "sticky_mobile_cta", cta_location: "sticky_bottom" });
+    window.fbq?.("track", "InitiateCheckout", { content_name: "Complete Bundle (Sticky CTA)" });
+
+    if (paddlePriceId && paddleReady && window.Paddle?.Checkout) {
+      e.preventDefault();
+      window.Paddle.Checkout.open({
+        items: [{ priceId: paddlePriceId, quantity: 1 }],
+        settings: {
+          successUrl: paddleSuccessUrl,
+        },
+      });
+    }
+  }
+
+  // Use Paddle overlay if ready, otherwise fall back to href link
+  const usePaddleOverlay = !!paddlePriceId && paddleReady;
 
   return (
     <div
@@ -45,15 +85,20 @@ export default function StickyMobileCTA({
         </div>
         <div className="text-xs text-text-muted">{labels.instantDownload} · {labels.moneyBack}</div>
       </div>
-      {isDisabled ? (
-        <span className="bg-gold/20 text-gold px-4 py-2.5 rounded-lg text-xs font-bold">
-          {labels.comingSoon}
-        </span>
+      {usePaddleOverlay ? (
+        <button
+          type="button"
+          onClick={handleBuyClick}
+          className="bg-gold text-navy-dark px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-gold-light transition-colors whitespace-nowrap cursor-pointer"
+        >
+          {labels.getBundle} &mdash; ${bundlePrice}
+        </button>
       ) : (
         <a
           href={bundleUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={handleBuyClick}
           aria-label={`${labels.getBundle} — $${bundlePrice} (opens in new tab)`}
           className="bg-gold text-navy-dark px-5 py-2.5 rounded-lg text-sm font-bold hover:bg-gold-light transition-colors whitespace-nowrap"
         >
