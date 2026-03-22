@@ -1,4 +1,5 @@
 ---
+noindex: true
 title: "Top 5 AI Tools for Interior Design in 2026"
 description: "Best AI tools for interior designers in 2026, compared. From AI rendering to space planning — find out which tools deliver real results for design pros."
 date: "2026-03-07"
@@ -97,5 +98,6 @@ AI doesn't make a designer more creative. It makes a creative designer faster, m
 The designers who thrive with AI tools are those who treat them as skilled assistants, not creative directors.
 
 ---
+noindex: true
 
 *Looking for AI frameworks designed for design professionals? The [AI Native Playbook Series](/products) provides prompt systems and workflows specifically built for architecture and interior design practices.*
