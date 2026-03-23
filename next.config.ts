@@ -37,7 +37,20 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   async redirects() {
-    return [];
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "ai-driven-architect.com" }],
+        destination: "https://ai-native-playbook.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.ai-driven-architect.com" }],
+        destination: "https://ai-native-playbook.com/:path*",
+        permanent: true,
+      },
+    ];
   },
   async rewrites() {
     return [
