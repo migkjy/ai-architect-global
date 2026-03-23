@@ -81,10 +81,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       },
     },
     robots: {
-      index: true,
+      index: !post.noindex,
       follow: true,
       googleBot: {
-        index: true,
+        index: !post.noindex,
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large" as const,
