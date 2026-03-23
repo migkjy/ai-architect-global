@@ -46,3 +46,6 @@ playwright-report/
 
 # Knowledge - sensitive files
 .claude/knowledge/api-keys.md
+
+# Product distribution files
+public/products/
