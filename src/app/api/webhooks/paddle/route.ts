@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import { verifyPaddleWebhook } from "@/lib/paddle";
 import type { Order } from "@/lib/orders";
 import { sendPurchaseConfirmationEmail } from "@/lib/email";
+import {
+  generateDownloadToken,
+  getAllDownloadLinks,
+  detectProductType,
+} from "@/lib/download";
 import crypto from "crypto";
 
 // Simple in-memory dedup for serverless (best-effort)
@@ -118,9 +123,16 @@ async function handleTransactionCompleted(
 
   const order = extractOrder(tx, txId);
 
-  // Send confirmation email (non-blocking — failure doesn't affect webhook response)
+  // Generate download token and links
+  const downloadToken = generateDownloadToken(txId);
+  const siteUrl =
+    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
+  const productType = detectProductType(order.productName);
+  const downloadLinks = getAllDownloadLinks(txId, downloadToken, productType, siteUrl);
+
+  // Send confirmation email with download links
   try {
-    await sendPurchaseConfirmationEmail(order, txId);
+    await sendPurchaseConfirmationEmail(order, txId, downloadLinks);
   } catch (emailErr) {
     console.error("[paddle-order] Email send failed:", emailErr);
   }
