@@ -25,7 +25,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!book) return {};
 
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
-  const canonicalUrl = `${siteUrl}/products/${slug}`;
+  const canonicalUrl = locale === "en"
+    ? `${siteUrl}/en/products/${slug}`
+    : `${siteUrl}/${locale}/products/${slug}`;
   return {
     title: `${book.title} — ${book.subtitle}`,
     description: book.shortDescription,
@@ -47,10 +49,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        en: `${siteUrl}/products/${slug}`,
+        en: `${siteUrl}/en/products/${slug}`,
         ko: `${siteUrl}/ko/products/${slug}`,
         ja: `${siteUrl}/ja/products/${slug}`,
-        "x-default": canonicalUrl,
+        "x-default": `${siteUrl}/en/products/${slug}`,
       },
     },
     openGraph: {

@@ -2,6 +2,7 @@
 title: "Build an AI Sales Funnel in 2026 — Complete Guide"
 description: "Step-by-step guide to building an automated AI sales funnel that captures leads, nurtures prospects, and closes sales — without a full marketing team."
 date: "2026-03-13"
+updated: "2026-03-24"
 author: "AI Native Playbook"
 tags: ["AI sales funnel", "automated sales funnel", "AI funnel builder", "sales automation", "AI marketing"]
 category: "AI Marketing"
@@ -117,7 +118,7 @@ You do not need sophisticated automation for this. Most email platforms support 
 
 ### The Sales Page Structure That Works in 2026
 
-Long-form sales pages still outperform short pages for offers above $47. The structure, adapted from Russell Brunson's DotCom Secrets framework:
+Long-form sales pages still outperform short pages for offers above $47. The structure, adapted from [Russell Brunson's DotCom Secrets framework](/en/blog/russell-brunson-ai-framework):
 
 1. **Attention headline** — The transformation, not the product
 2. **Agitation section** — Name the specific frustrations the reader feels right now

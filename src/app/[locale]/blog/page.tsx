@@ -31,7 +31,7 @@ const blogMeta: Record<string, { title: string; description: string; ogDescripti
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const meta = blogMeta[locale] ?? blogMeta.en;
-  const canonicalUrl = locale === "en" ? `${SITE_URL}/blog` : `${SITE_URL}/${locale}/blog`;
+  const canonicalUrl = locale === "en" ? `${SITE_URL}/en/blog` : `${SITE_URL}/${locale}/blog`;
   return {
     title: meta.title,
     description: meta.description,
@@ -54,9 +54,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        en: `${SITE_URL}/blog`,
+        en: `${SITE_URL}/en/blog`,
         ja: `${SITE_URL}/ja/blog`,
-        "x-default": `${SITE_URL}/blog`,
+        "x-default": `${SITE_URL}/en/blog`,
       },
     },
     openGraph: {
@@ -122,7 +122,7 @@ export default async function BlogPage({
   const categories = Array.from(new Set(posts.map((p) => p.category))).sort();
   const topTags = getAllTags();
 
-  const canonicalUrl = locale === "en" ? `${SITE_URL}/blog` : `${SITE_URL}/${locale}/blog`;
+  const canonicalUrl = locale === "en" ? `${SITE_URL}/en/blog` : `${SITE_URL}/${locale}/blog`;
   const dateLocale = locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US";
 
   const collectionPageJsonLd = {
@@ -150,7 +150,7 @@ export default async function BlogPage({
       description: post.description,
       datePublished: post.date,
       dateModified: post.date,
-      url: `${SITE_URL}/blog/${post.slug}`,
+      url: `${SITE_URL}/${locale}/blog/${post.slug}`,
       keywords: post.tags.join(", "),
       author: {
         "@type": "Organization",
@@ -170,7 +170,7 @@ export default async function BlogPage({
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "AI Native Playbook Series", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/blog` },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${SITE_URL}/${locale}/blog` },
     ],
   };
 
