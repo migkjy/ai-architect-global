@@ -44,7 +44,7 @@ export default function StickyMobileCTA({
     const interval = setInterval(() => {
       if (checkPaddle()) clearInterval(interval);
     }, 300);
-    const timeout = setTimeout(() => clearInterval(interval), 4000);
+    const timeout = setTimeout(() => clearInterval(interval), 10000);
     return () => {
       clearInterval(interval);
       clearTimeout(timeout);
