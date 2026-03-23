@@ -2,6 +2,7 @@
 title: "The Solopreneur AI Stack: 10 Tools That Replace a Full Team"
 description: "The exact AI tool stack that lets one-person businesses compete with full teams — covering marketing, sales, customer service, content, and operations."
 date: "2026-03-13"
+updated: "2026-03-24"
 author: "AI Native Playbook"
 tags: ["solopreneur AI tools", "AI tool stack", "one-person business AI", "productivity", "small business AI"]
 category: "AI Tools"
