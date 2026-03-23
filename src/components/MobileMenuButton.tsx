@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-type NavItem = { href: string; label: string };
+type NavItem = { href: string; label: string; highlight?: boolean };
 
 export default function MobileMenuButton({ navItems, bundleLabel }: { navItems: NavItem[]; bundleLabel: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -39,7 +39,11 @@ export default function MobileMenuButton({ navItems, bundleLabel }: { navItems: 
             <Link
               key={item.href}
               href={item.href}
-              className="hover:text-text-primary transition-colors"
+              className={
+                item.highlight
+                  ? "text-gold font-semibold hover:text-gold-light transition-colors"
+                  : "hover:text-text-primary transition-colors"
+              }
               onClick={() => setMobileOpen(false)}
             >
               {item.label}

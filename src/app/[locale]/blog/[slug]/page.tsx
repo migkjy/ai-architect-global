@@ -11,6 +11,7 @@ import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { books } from "@/lib/products";
 import BlogInlineCTA from "@/components/BlogInlineCTA";
+import EmailCapture from "@/components/EmailCapture";
 import { splitContentAtMidpoint } from "@/lib/blog-content-utils";
 
 export const revalidate = 60; // 60초마다 재검증 — 예약 시각 도래 시 자동 공개
@@ -325,9 +326,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </div>
 
-      <div className="mt-8 pt-8 border-t border-white/10 text-center">
-        <p className="text-text-secondary mb-2">Get weekly AI business frameworks — every Friday.</p>
-        <p className="text-xs text-text-muted">500+ entrepreneurs subscribed · No spam · Unsubscribe anytime</p>
+      <div className="mt-8 pt-8 border-t border-white/10">
+        <div className="max-w-md mx-auto">
+          <p className="text-center text-text-primary font-semibold mb-1">Get weekly AI business frameworks</p>
+          <p className="text-center text-xs text-text-muted mb-4">Join 500+ entrepreneurs. Free, every Friday.</p>
+          <EmailCapture className="" buttonText="Subscribe Free" />
+        </div>
       </div>
 
       {/* Related Posts */}
