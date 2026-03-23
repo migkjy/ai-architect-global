@@ -256,9 +256,9 @@ export default async function LocaleLayout({
           <>
             <Script
               src="https://cdn.paddle.com/paddle/v2/paddle.js"
-              strategy="lazyOnload"
+              strategy="afterInteractive"
             />
-            <Script id="paddle-init" strategy="lazyOnload">
+            <Script id="paddle-init" strategy="afterInteractive">
               {`
                 (function() {
                   var checkPaddle = setInterval(function() {
