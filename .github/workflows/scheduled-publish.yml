@@ -1,0 +1,14 @@
+name: Scheduled Blog Publish
+on:
+  schedule:
+    - cron: '0 0 * * *' # UTC 00:00 = KST 09:00
+  workflow_dispatch: {} # 수동 트리거 허용
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Deploy Hook
+        run: |
+          curl -s -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
+          echo "Deploy hook triggered at $(date -u)"

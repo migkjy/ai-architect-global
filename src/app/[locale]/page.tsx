@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { books, bundle, getBundleUrl } from "@/lib/products";
+import { books, bundle, getBundleUrl, getBundlePaddlePriceId } from "@/lib/products";
 import { getAllPosts } from "@/lib/blog";
 import dynamic from "next/dynamic";
 const BuyButton = dynamic(() => import("@/components/BuyButton"), {
@@ -99,6 +99,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   setRequestLocale(locale);
 
   const bundleUrl = getBundleUrl();
+  const bundlePaddlePriceId = getBundlePaddlePriceId();
   const latestPosts = getAllPosts().slice(0, 3);
 
   const t = await getTranslations("home");
@@ -282,7 +283,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-            <BuyButton href={bundleUrl} className="text-lg px-10 py-4">
+            <BuyButton href={bundleUrl} paddlePriceId={bundlePaddlePriceId} paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`} className="text-lg px-10 py-4">
               {th("cta")} &mdash; ${bundle.price}
             </BuyButton>
             <Link
@@ -727,7 +728,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                   {tc("moneyBack")}
                 </li>
               </ul>
-              <BuyButton href={bundleUrl} className="w-full text-lg py-4">
+              <BuyButton href={bundleUrl} paddlePriceId={bundlePaddlePriceId} paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`} className="w-full text-lg py-4">
                 {th("cta")} &mdash; ${bundle.price}
               </BuyButton>
               <p className="text-xs text-text-muted mt-3">
@@ -790,11 +791,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <StickyMobileCTA
         bundlePrice={bundle.price}
         bundleUrl={bundleUrl}
+        paddlePriceId={bundlePaddlePriceId}
+        paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
         labels={{
           completeBundle: t("completeBundle"),
           instantDownload: tc("instantDownload"),
           moneyBack: tc("moneyBack"),
-          comingSoon: tc("comingSoon"),
           getBundle: tc("getBundle"),
         }}
       />

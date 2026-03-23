@@ -5,6 +5,66 @@ import { revalidatePath } from "next/cache";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
+/**
+ * GitHub Contents API로 블로그 markdown 파일을 커밋한다.
+ * GITHUB_TOKEN이 없으면 호출하지 않는다 (로컬 fallback).
+ * 중복 slug는 CONFLICT 에러를 던진다.
+ */
+async function commitToGitHub(slug: string, content: string): Promise<void> {
+  const token = process.env.GITHUB_TOKEN!;
+  const repo = process.env.GITHUB_REPO || "migkjy/ai-architect-global";
+  const branch = process.env.GITHUB_BLOG_BRANCH || "main";
+  const filePath = `content/blog/${slug}.md`;
+  const url = `https://api.github.com/repos/${repo}/contents/${filePath}`;
+
+  // 중복 체크: GET으로 파일 존재 여부 확인
+  const checkRes = await fetch(`${url}?ref=${branch}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github+json",
+    },
+  });
+
+  if (checkRes.ok) {
+    throw new Error("CONFLICT");
+  }
+
+  // PUT으로 파일 커밋
+  const putRes = await fetch(url, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github+json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      message: `blog: add ${slug}`,
+      content: Buffer.from(content).toString("base64"),
+      branch,
+    }),
+  });
+
+  if (!putRes.ok) {
+    const err = await putRes.text();
+    throw new Error(`GitHub API error ${putRes.status}: ${err}`);
+  }
+}
+
+/** 로컬 fs에 블로그 파일을 저장한다 (개발 환경 fallback). */
+function saveToLocalFs(slug: string, fileContent: string): void {
+  const filePath = path.join(BLOG_DIR, `${slug}.md`);
+
+  if (fs.existsSync(filePath)) {
+    throw new Error("CONFLICT");
+  }
+
+  if (!fs.existsSync(BLOG_DIR)) {
+    fs.mkdirSync(BLOG_DIR, { recursive: true });
+  }
+
+  fs.writeFileSync(filePath, fileContent, "utf-8");
+}
+
 function checkAuth(req: NextRequest): boolean {
   const apiKey = req.headers.get("x-api-key");
   return apiKey === process.env.BLOG_API_KEY;
@@ -45,16 +105,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const filePath = path.join(BLOG_DIR, `${slug}.md`);
-
-    // 중복 slug 방지
-    if (fs.existsSync(filePath)) {
-      return NextResponse.json(
-        { error: `Post with slug '${slug}' already exists` },
-        { status: 409 }
-      );
-    }
-
     // scheduledAt 유효성 검증
     if (scheduledAt) {
       const scheduledDate = new Date(scheduledAt);
@@ -89,12 +139,24 @@ export async function POST(req: NextRequest) {
 
     const fileContent = `---\n${yamlLines.join("\n")}\n---\n\n${content}\n`;
 
-    // 디렉토리 보장
-    if (!fs.existsSync(BLOG_DIR)) {
-      fs.mkdirSync(BLOG_DIR, { recursive: true });
-    }
+    // 영속성: GITHUB_TOKEN 있으면 GitHub API, 없으면 로컬 fs
+    const useGitHub = !!process.env.GITHUB_TOKEN;
 
-    fs.writeFileSync(filePath, fileContent, "utf-8");
+    try {
+      if (useGitHub) {
+        await commitToGitHub(slug, fileContent);
+      } else {
+        saveToLocalFs(slug, fileContent);
+      }
+    } catch (err) {
+      if (err instanceof Error && err.message === "CONFLICT") {
+        return NextResponse.json(
+          { error: `Post with slug '${slug}' already exists` },
+          { status: 409 }
+        );
+      }
+      throw err;
+    }
 
     // ISR 재검증 트리거
     revalidatePath("/en/blog");

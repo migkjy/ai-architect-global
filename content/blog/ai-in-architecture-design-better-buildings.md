@@ -1,4 +1,5 @@
 ---
+noindex: true
 title: "AI in Architecture: Design Better Buildings with AI"
 description: "How architects use AI to streamline design workflows, optimize building performance, and create innovative structures — a practical guide."
 date: "2026-03-07"
@@ -99,6 +100,7 @@ If you're an architect looking to integrate AI into your practice, start here:
 The transition to AI-assisted architecture isn't about replacing what architects do. It's about enabling architects to do more of what they do best: design buildings that work for the people who use them.
 
 ---
+noindex: true
 
 Ready to take the first step? Download our [free AI automation starter guide](/en/free-guide) — it includes a framework comparison chart and a 5-day quickstart checklist to get AI working in your practice this week.
 
