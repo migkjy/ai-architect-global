@@ -101,7 +101,7 @@ const recommendedPages = [
 ] as const;
 
 export default function NotFound() {
-  const SITE_DOMAIN = "ai-driven-architect.com";
+  const SITE_DOMAIN = "ai-native-playbook.com";
 
   return (
     <div className="min-h-screen flex flex-col items-center px-4 py-16 bg-navy">

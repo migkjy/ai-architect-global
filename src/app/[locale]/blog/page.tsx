@@ -8,7 +8,7 @@ import BlogFilterClient from "@/components/blog/BlogFilterClient";
 
 export const revalidate = 60; // 60초마다 재검증 — 예약 시각 도래 시 목록 자동 갱신
 
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
 const blogMeta: Record<string, { title: string; description: string; ogDescription: string }> = {
   en: {
