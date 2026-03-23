@@ -5,7 +5,7 @@ import { routing } from "@/i18n/routing";
 import { patterns } from "@/lib/patterns";
 
 const BASE_URL =
-  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
