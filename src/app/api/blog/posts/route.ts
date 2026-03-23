@@ -5,6 +5,29 @@ import { revalidatePath } from "next/cache";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
+/** Fire-and-forget: commit the markdown file to GitHub so it survives Vercel redeploys. */
+function commitToGitHub(slug: string, content: string): void {
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) return;
+  const branch = process.env.GITHUB_BLOG_BRANCH || "main";
+  const filePath = `content/blog/${slug}.md`;
+  const url = `https://api.github.com/repos/migkjy/ai-architect-global/contents/${filePath}`;
+
+  fetch(url, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github+json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      message: `blog: add ${slug}`,
+      content: Buffer.from(content).toString("base64"),
+      branch,
+    }),
+  }).catch((err) => console.error("[blog/commitToGitHub]", err));
+}
+
 function checkAuth(req: NextRequest): boolean {
   const apiKey = req.headers.get("x-api-key");
   return apiKey === process.env.BLOG_API_KEY;
@@ -95,6 +118,9 @@ export async function POST(req: NextRequest) {
     }
 
     fs.writeFileSync(filePath, fileContent, "utf-8");
+
+    // Persist to GitHub so the file survives Vercel redeploys
+    commitToGitHub(slug, fileContent);
 
     // ISR 재검증 트리거
     revalidatePath("/en/blog");
