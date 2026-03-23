@@ -68,8 +68,8 @@ export default function BuyButton({
       if (checkPaddle()) clearInterval(interval);
     }, 300);
 
-    // 4초 후 포기 (Paddle.js 미로드 = Client Token 미설정)
-    const timeout = setTimeout(() => clearInterval(interval), 4000);
+    // 10초 후 포기 (Paddle.js 미로드 = Client Token 미설정)
+    const timeout = setTimeout(() => clearInterval(interval), 10000);
 
     return () => {
       clearInterval(interval);
@@ -126,7 +126,7 @@ export default function BuyButton({
       e.preventDefault();
 
       const siteUrl =
-        (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
+        (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
       window.Paddle.Checkout.open({
         items: [{ priceId: paddlePriceId!, quantity: 1 }],

@@ -14,7 +14,7 @@ function escapeJsonLd(obj: object): string {
 }
 
 const BASE_URL =
-  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
 export function generateStaticParams() {
   return routing.locales.flatMap((locale) =>

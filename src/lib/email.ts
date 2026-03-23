@@ -21,7 +21,8 @@ export interface EmailSendResult {
  */
 export async function sendPurchaseConfirmationEmail(
   order: Order,
-  transactionId: string
+  transactionId: string,
+  downloadLinks?: Record<string, string>
 ): Promise<EmailSendResult> {
   const brevoKey = process.env.BREVO_API_KEY;
   if (!brevoKey) {
@@ -35,7 +36,7 @@ export async function sendPurchaseConfirmationEmail(
   const siteUrl =
     (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
-  const htmlContent = buildConfirmationEmailHtml(order, transactionId, siteUrl);
+  const htmlContent = buildConfirmationEmailHtml(order, transactionId, siteUrl, downloadLinks);
 
   const res = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
@@ -72,7 +73,8 @@ export async function sendPurchaseConfirmationEmail(
 export function buildConfirmationEmailHtml(
   order: Order,
   transactionId: string,
-  siteUrl: string
+  siteUrl: string,
+  downloadLinks?: Record<string, string>
 ): string {
   const displayAmount =
     order.amount >= 100
@@ -110,14 +112,10 @@ export function buildConfirmationEmailHtml(
       </table>
     </div>
 
-    <div style="text-align:center;margin:32px 0;">
-      <a href="https://customer.paddle.com" style="display:inline-block;background:#d4a574;color:#1a1a2e;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:16px;">
-        Access My Purchase
-      </a>
-    </div>
+    ${buildDownloadSection(downloadLinks, siteUrl)}
 
     <p style="color:#555;font-size:14px;line-height:1.6;">
-      You can also visit our <a href="${siteUrl}/thank-you" style="color:#d4a574;">thank-you page</a> for additional resources.
+      You can also visit our <a href="${siteUrl}/thank-you${downloadLinks ? `?token=${extractTokenFromLinks(downloadLinks)}` : ""}" style="color:#d4a574;">thank-you page</a> for additional resources and individual file downloads.
     </p>
 
     <p style="color:#666;font-size:14px;line-height:1.6;margin-top:24px;">
@@ -132,6 +130,56 @@ export function buildConfirmationEmailHtml(
 </div>
 </body>
 </html>`;
+}
+
+/**
+ * Build download section HTML for confirmation email.
+ * Shows a primary download button (bundle or individual product).
+ */
+function buildDownloadSection(
+  downloadLinks?: Record<string, string>,
+  siteUrl?: string
+): string {
+  if (!downloadLinks || Object.keys(downloadLinks).length === 0) {
+    // Fallback: link to Paddle customer portal
+    return `<div style="text-align:center;margin:32px 0;">
+      <a href="https://customer.paddle.com" style="display:inline-block;background:#d4a574;color:#1a1a2e;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:16px;">
+        Access My Purchase
+      </a>
+    </div>`;
+  }
+
+  const bundleLink = downloadLinks.bundle;
+  if (bundleLink) {
+    return `<div style="text-align:center;margin:32px 0;">
+      <a href="${bundleLink}" style="display:inline-block;background:#d4a574;color:#1a1a2e;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:16px;">
+        Download Complete Bundle
+      </a>
+      <p style="color:#888;font-size:13px;margin-top:12px;">
+        Includes all 6 PDF playbooks, AI Agent Skills, Agent Settings, and Notion templates.
+      </p>
+    </div>`;
+  }
+
+  // Individual product download
+  const firstLink = Object.values(downloadLinks)[0];
+  return `<div style="text-align:center;margin:32px 0;">
+    <a href="${firstLink}" style="display:inline-block;background:#d4a574;color:#1a1a2e;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:bold;font-size:16px;">
+      Download Your Purchase
+    </a>
+  </div>`;
+}
+
+/**
+ * Extract the token query parameter from download links.
+ * Used for the thank-you page link in the email.
+ */
+function extractTokenFromLinks(
+  downloadLinks: Record<string, string>
+): string {
+  const firstLink = Object.values(downloadLinks)[0] || "";
+  const match = firstLink.match(/token=([^&]+)/);
+  return match ? match[1] : "";
 }
 
 /**

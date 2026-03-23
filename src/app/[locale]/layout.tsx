@@ -23,7 +23,7 @@ const inter = Inter({
   preload: true,
 });
 
-const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
 const OG_LOCALE_MAP: Record<string, string> = {
   en: "en_US",
@@ -168,7 +168,7 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
         foundingDate: "2024",
         areaServed: "Worldwide",
         sameAs: [
-          "https://ai-driven-architect.com",
+          "https://ai-native-playbook.com",
         ],
         logo: {
           "@type": "ImageObject",
@@ -256,9 +256,9 @@ export default async function LocaleLayout({
           <>
             <Script
               src="https://cdn.paddle.com/paddle/v2/paddle.js"
-              strategy="lazyOnload"
+              strategy="afterInteractive"
             />
-            <Script id="paddle-init" strategy="lazyOnload">
+            <Script id="paddle-init" strategy="afterInteractive">
               {`
                 (function() {
                   var checkPaddle = setInterval(function() {
