@@ -6,6 +6,7 @@ import {
   validateSubscribeInput,
 } from "@/lib/spam-protection";
 import { scheduleOnboardingSequence } from "@/lib/onboarding-sequence";
+import { createCrmEntry } from "@/lib/notion-crm";
 
 export async function POST(request: Request) {
   try {
@@ -80,6 +81,14 @@ export async function POST(request: Request) {
 
     // Unified onboarding sequence (D+0/D+1/D+3/D+7 with dedup)
     void scheduleOnboardingSequence(sanitizedEmail, name ?? undefined);
+
+    // Register lead in shared Notion CRM (non-blocking)
+    void createCrmEntry({
+      customerName: name || email,
+      email: sanitizedEmail,
+      source: "ainp-free-guide",
+      project: "ai-native-playbook",
+    });
 
     return NextResponse.json({ success: true });
   } catch {
