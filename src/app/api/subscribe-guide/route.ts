@@ -75,14 +75,17 @@ export async function POST(request: Request) {
       if (res.status === 400 && errorText.includes("already exist")) {
         return NextResponse.json({ success: true });
       }
-      console.error("Brevo API error:", res.status, errorText);
+      console.error("[subscribe-guide] Brevo API error:", res.status, errorText);
+      // Intentional: still return success below to avoid breaking user flow.
+      // The contact may not have been added — check Brevo logs.
     }
 
     // Unified onboarding sequence (D+0/D+1/D+3/D+7 with dedup)
     void scheduleOnboardingSequence(sanitizedEmail, name ?? undefined);
 
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (err) {
+    console.error("[subscribe-guide] Unexpected error:", err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

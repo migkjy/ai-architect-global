@@ -80,10 +80,11 @@ export async function POST(request: Request) {
         });
 
         if (!res.ok && res.status !== 204) {
-          await res.text();
+          const errorText = await res.text();
+          console.error("[subscribe] Brevo API error:", res.status, errorText);
         }
-      } catch {
-        // Brevo contact API error — continue
+      } catch (err) {
+        console.error("[subscribe] Brevo contact API error:", err);
       }
 
       // Lead magnet transactional email (immediate, separate from onboarding)
@@ -107,8 +108,8 @@ export async function POST(request: Request) {
             htmlContent: `<div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#1a1a1a;padding:24px"><h1 style="color:#1e3a5f;">Your AI Framework Preview is Ready</h1><p>Thanks for joining the AI Native Playbook community${name ? `, ${name}` : ""}!</p><p>Here's what you get:</p><ul style="line-height:2;"><li><strong>AI Framework Preview</strong> -- Core concepts from 6 world-class frameworks</li><li><strong>3 System Prompts</strong> -- Ready to paste into Claude or ChatGPT</li><li><strong>Early-bird discount</strong> -- When we launch</li></ul><div style="text-align:center;margin:28px 0;"><a href="https://ai-native-playbook.com/products" style="display:inline-block;background:#f59e0b;color:#1a1a1a;padding:14px 32px;border-radius:8px;font-weight:bold;text-decoration:none;">Explore AI Native Playbook Series</a></div><p style="color:#888;font-size:12px;margin-top:32px;border-top:1px solid #eee;padding-top:16px;text-align:center;"><a href="https://ai-native-playbook.com" style="color:#1e3a5f;text-decoration:none;">AI Native Playbook Series</a></p></div>`,
           }),
         });
-      } catch {
-        // Lead magnet email failed — non-critical
+      } catch (err) {
+        console.error("[subscribe] Lead magnet email failed:", err);
       }
 
       // Unified onboarding sequence (D+0/D+1/D+3/D+7 with dedup)
@@ -116,7 +117,8 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (err) {
+    console.error("[subscribe] Unexpected error:", err);
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
