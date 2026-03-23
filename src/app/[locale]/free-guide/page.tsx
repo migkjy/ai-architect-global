@@ -3,7 +3,7 @@ import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import dynamic from "next/dynamic";
 
-const FreeGuideForm = dynamic(() => import("@/components/FreeGuideForm"));
+const FreeGuideFormWithAB = dynamic(() => import("@/components/FreeGuideFormWithAB"));
 
 const SITE_URL =
   (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
@@ -198,14 +198,11 @@ export default async function FreeGuidePage({
             </span>
           </div>
 
-          <h2 className="text-xl font-bold text-center mb-2 mt-2">
-            {t("formHeading")}
-          </h2>
-          <p className="text-text-secondary text-sm text-center mb-6">
-            Instant access. No credit card required.
-          </p>
-
-          <FreeGuideForm ctaLabel={t("ctaButton")} />
+          <FreeGuideFormWithAB
+            heading={t("formHeading")}
+            subheading="Instant access. No credit card required."
+            ctaLabel={t("ctaButton")}
+          />
 
           {/* Microcopy trust signals */}
           <p className="text-center text-xs text-text-muted mt-4 flex items-center justify-center gap-3 flex-wrap">

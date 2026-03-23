@@ -4,6 +4,7 @@ description: "Apply Russell Brunson's Value Ladder, Hook-Story-Offer, and Soap O
 date: "2026-02-21"
 category: "AI Marketing"
 tags: ["Russell Brunson", "DotCom Secrets", "AI funnel", "Value Ladder", "marketing"]
+locale: "en"
 ---
 
 Russell Brunson's DotCom Secrets introduced the Value Ladder, the Hook-Story-Offer framework, and the Soap Opera Sequence to a generation of online marketers. These frameworks work because they're built on how humans actually make decisions — not on what feels logical.
@@ -79,5 +80,7 @@ The DotCom Secrets frameworks work because they're built on timeless psychology.
 The businesses that win with these frameworks are the ones that ship consistently. They test more hooks. They run more sequences. They iterate faster than competitors who are still working on their first version.
 
 AI makes iteration fast enough that consistency becomes achievable for a one-person business. That's the real advantage.
+
+Want to see how these frameworks compare before committing? Our [free AI business guide](/en/free-guide) breaks down all six frameworks in a side-by-side chart and gives you 3 prompts to try today.
 
 If you want these frameworks pre-built as AI-powered tools — so you can run DotCom Secrets, Hook-Story-Offer, and the Soap Opera Sequence with AI guiding each step — the [AI Native Playbook Series](/en/products) gives you exactly that. Browse the [patterns library](/en/patterns) to see how these frameworks integrate into a complete AI business system.

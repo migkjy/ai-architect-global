@@ -78,21 +78,33 @@ function greeting(firstName?: string): string {
 export function getOnboardingWelcomeHtml(params: OnboardingEmailParams): string {
   const g = greeting(params.firstName);
   return wrapHtml({
-    preheader: "Welcome to AI Native Playbook — here's what to expect.",
+    preheader: "It's not about effort. It's about execution.",
     body: `
-<p style="color:${BRAND.color};font-size:22px;font-weight:700;margin:0 0 8px 0;">Welcome to AI Native Playbook</p>
+<p style="color:${BRAND.color};font-size:22px;font-weight:700;margin:0 0 8px 0;line-height:1.3;">You Read Marketing Secrets. Your Business Didn't Change. Here's Why.</p>
 <p style="color:#666;font-size:14px;margin:0 0 32px 0;">Day 0 &bull; AI Native Playbook Series</p>
 <p style="color:#333;font-size:16px;line-height:1.7;">${g}</p>
-<p style="color:#333;font-size:16px;line-height:1.7;">Thanks for joining the AI Native Playbook community! We share practical insights on how AI is transforming business operations — every week.</p>
-<p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:28px 0 12px 0;">What you'll get as a subscriber</p>
+<p style="color:#333;font-size:16px;line-height:1.7;">You read the book. Highlighted the best parts. Made notes. Told yourself, "This time I'm going to implement everything."</p>
+<p style="color:#333;font-size:16px;line-height:1.7;">But a month later, nothing changed. The book sits on a shelf. Your business runs the same way it did before.</p>
+<p style="color:#333;font-size:16px;line-height:1.7;"><strong style="color:${BRAND.color};">Sound familiar?</strong> You're not alone — and it's not your fault.</p>
+<p style="color:#333;font-size:16px;line-height:1.7;">Russell Brunson, Jim Edwards, Jeff Walker, Nicolas Cole — these experts do marketing <em>full-time</em>. You're running a business, handling customers, managing operations, AND trying to implement their complex strategies. It's physically impossible to do it all.</p>
+<p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:28px 0 12px 0;">AI changes everything.</p>
+<p style="color:#333;font-size:16px;line-height:1.7;">AI Native Playbook takes these experts' proven frameworks and <strong>AI applies them instantly to YOUR specific business.</strong> You just input your business info — AI executes the framework.</p>
+<p style="color:#333;font-size:16px;line-height:1.7;">What used to take a consultant weeks (and cost $5,000+) now takes 90 minutes. The same quality. The same proven frameworks. Just executed by AI instead of waiting weeks.</p>
+<div style="text-align:center;margin:28px 0;">
+  <a href="${siteUrl}/resources/ai-framework-preview" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};font-size:16px;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;">Download Your Free Preview</a>
+</div>
+<p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:28px 0 12px 0;">6 expert frameworks, AI-powered</p>
 <ul style="color:#555;font-size:15px;line-height:2;">
-  <li>Latest AI business automation trends</li>
-  <li>Ready-to-use prompt templates</li>
-  <li>Expert frameworks and case studies</li>
+  <li><strong>AI Marketing Architect</strong> — Russell Brunson's funnel framework, applied to your business</li>
+  <li><strong>AI Story Architect</strong> — Jim Edwards' copywriting secrets, writing your sales copy</li>
+  <li><strong>AI Startup Architect</strong> — Jeff Walker's launch formula, customized to your product</li>
+  <li><strong>AI Content Architect</strong> — Nicolas Cole's content framework, generating your content</li>
+  <li><strong>AI Brand Architect</strong> — Expert brand strategy, built around your identity</li>
+  <li><strong>AI Traffic Architect</strong> — Proven traffic systems, configured for your audience</li>
 </ul>
 <div style="border-left:4px solid ${BRAND.gold};padding:16px 20px;margin:24px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
   <strong style="color:${BRAND.color};">Coming tomorrow</strong><br/>
-  <span style="color:#555;">3 quick ways to put your AI framework knowledge to work — starting today.</span>
+  <span style="color:#555;">Why studying alone NEVER works — 3 structural reasons, and how AI solves each one instantly.</span>
 </div>
 <p style="color:#555;font-size:15px;margin:16px 0 0 0;">Welcome aboard,<br /><strong style="color:${BRAND.color};">The AI Native Playbook Team</strong></p>
 `,
@@ -103,34 +115,43 @@ export function getOnboardingWelcomeHtml(params: OnboardingEmailParams): string 
 export function getOnboardingTipsHtml(params: OnboardingEmailParams): string {
   const g = greeting(params.firstName);
   return wrapHtml({
-    preheader: "Quick tips to put your AI framework guide to work — starting today.",
+    preheader: "3 reasons reading business books never changes your business.",
     body: `
 <p style="color:${BRAND.color};font-size:22px;font-weight:700;margin:0 0 8px 0;line-height:1.3;">
-  3 Ways to Get More From Your AI Framework Guide
+  Why Reading Business Books Never Changes Your Business
 </p>
 <p style="color:#666;font-size:14px;margin:0 0 32px 0;">Day 1 &bull; AI Native Playbook Series</p>
 <p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 20px 0;">${g}</p>
 <p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 20px 0;">
-  Most people skim a guide once and move on. Here are three ways to make it actually work for your business.
+  Yesterday I told you it's not your fault that studying business books hasn't transformed your business. Today, let me show you exactly why — and what actually works instead.
+</p>
+<p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 24px 0;">
+  There are 3 structural reasons why studying alone will <strong>never</strong> be enough:
 </p>
 <div style="border-left:4px solid ${BRAND.gold};padding:16px 20px;margin:0 0 20px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
-  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">1. Map the framework to ONE workflow first</p>
-  <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">Pick your most repetitive task — content drafts, customer responses, data summaries — and apply the framework there first. One win builds momentum.</p>
+  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">1. Time — Experts do this full-time. You don't.</p>
+  <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">Russell Brunson spends 60+ hours a week on marketing funnels. That's his entire job. You? You're answering customer emails, managing inventory, handling payroll, fixing your website — and THEN trying to build a funnel in your "spare time." There is no spare time. The math doesn't work.</p>
 </div>
 <div style="border-left:4px solid ${BRAND.gold};padding:16px 20px;margin:0 0 20px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
-  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">2. Time-box your first experiment to 90 minutes</p>
-  <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">Set a timer. Pick a prompt, run it through the framework's structure, measure the output quality vs. your old approach. 90 minutes is enough to see whether it clicks.</p>
+  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">2. Context — Principles don't auto-translate to YOUR business.</p>
+  <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">You read "build a value ladder." Great concept. But what does YOUR value ladder look like? For YOUR customers, at YOUR price points, in YOUR market? The book gives you the framework. It doesn't give you the application. That gap between "I understand the principle" and "I know exactly what to do for MY business" is where everyone gets stuck.</p>
 </div>
-<div style="border-left:4px solid ${BRAND.gold};padding:16px 20px;margin:0 0 32px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
-  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">3. Document what worked</p>
-  <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">Keep a simple running doc of prompts that delivered results. Within two weeks you'll have a personal AI playbook — tailored to your specific business context.</p>
+<div style="border-left:4px solid ${BRAND.gold};padding:16px 20px;margin:0 0 28px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
+  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">3. Consistency — You can't sustain execution alone.</p>
+  <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">Even when you start implementing, life intervenes. A big client calls. A crisis hits. Your marketing plan dies on page 47 of your notebook. Consistency requires a system that executes whether you're busy or not. Willpower alone isn't a strategy.</p>
+</div>
+<div style="background:${BRAND.color};border-radius:10px;padding:24px 28px;margin:0 0 28px 0;">
+  <p style="color:${BRAND.gold};font-size:15px;font-weight:700;margin:0 0 12px 0;">AI solves all 3 — instantly.</p>
+  <p style="color:#ccc;font-size:15px;line-height:1.7;margin:0 0 8px 0;"><strong style="color:#fff;">Time?</strong> AI executes an entire framework in 90 minutes. Not weeks. Not months.</p>
+  <p style="color:#ccc;font-size:15px;line-height:1.7;margin:0 0 8px 0;"><strong style="color:#fff;">Context?</strong> You input YOUR business info — your customers, your prices, your market. The AI applies the expert framework specifically to you.</p>
+  <p style="color:#ccc;font-size:15px;line-height:1.7;margin:0;"><strong style="color:#fff;">Consistency?</strong> The system runs the same way every time. No willpower required. No notebook required.</p>
 </div>
 <div style="text-align:center;margin:0 0 32px 0;">
   <a href="${siteUrl}/blog" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">
-    Read Our Latest Blog Posts
+    Try One Framework Today
   </a>
 </div>
-<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">More coming in 2 days — a real story of how one founder automated 80% of their marketing.</p>
+<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">In 2 days, I'll share a real story — a solo founder who read the same books you did, got stuck in the same place, and finally broke through when AI did the execution for him.</p>
 <p style="color:#555;font-size:15px;line-height:1.7;margin:16px 0 0 0;">Stay sharp,<br /><strong style="color:${BRAND.color};">The AI Native Playbook Team</strong></p>
 `,
   });
@@ -140,36 +161,45 @@ export function getOnboardingTipsHtml(params: OnboardingEmailParams): string {
 export function getOnboardingCaseStudyHtml(params: OnboardingEmailParams): string {
   const g = greeting(params.firstName);
   return wrapHtml({
-    preheader: "One bootstrapped founder, one AI framework, a 4x output increase — here's the full story.",
+    preheader: "He read the books twice. Nothing changed. Then he tried this.",
     body: `
 <p style="color:${BRAND.color};font-size:22px;font-weight:700;margin:0 0 8px 0;line-height:1.3;">
-  How One Founder Automated 80% of Their Marketing — in 6 Weeks
+  "First Time I Got a Strategy That Actually Fit MY Business"
 </p>
 <p style="color:#666;font-size:14px;margin:0 0 32px 0;">Day 3 &bull; AI Native Playbook Series</p>
 <p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 20px 0;">${g}</p>
 <p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 20px 0;">
-  Marcus runs a 4-person B2B SaaS company. Six months ago his team spent 22 hours a week on
-  marketing. Today, that same output takes under 5 hours. Here's exactly what changed.
+  Daniel is a solo founder running an online education business. He'd read DotCom Secrets twice. Expert Secrets cover to cover. He understood the frameworks. He could explain them to anyone.
 </p>
-<div style="background:${BRAND.color};border-radius:10px;padding:24px 28px;margin:0 0 32px 0;">
-  <p style="color:${BRAND.gold};font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 16px 0;">Results After 6 Weeks</p>
+<p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 20px 0;">
+  But every time he sat down to actually implement? He'd stare at a blank screen. "What does MY value ladder look like? What's MY hook? How do I write copy for MY audience?" The gap between understanding the principle and applying it to his specific business felt impossible to cross.
+</p>
+<p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 12px 0;">The turning point</p>
+<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 20px 0;">
+  Daniel tried <strong>AI Marketing Architect</strong> — Russell Brunson's funnel framework, powered by AI. He input his business details: his audience (career-switching professionals), his price points ($47-$497), his core offer (video courses + coaching). In one 90-minute session, AI designed a complete funnel — not a generic template, but one built specifically for HIS business, HIS customers, HIS price points.
+</p>
+<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 12px 0;">Then he added two more systems:</p>
+<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 8px 0;"><strong>AI Story Architect</strong> (Jim Edwards' copywriting framework) wrote his sales page, email sequences, and ad copy — all tailored to his audience's specific pain points.</p>
+<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 20px 0;"><strong>AI Content Architect</strong> (Nicolas Cole's content framework) generated a full content calendar — topics his audience actually searched for, in his voice, positioned around his offers.</p>
+<div style="background:${BRAND.color};border-radius:10px;padding:24px 28px;margin:0 0 28px 0;">
+  <p style="color:${BRAND.gold};font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 16px 0;">Daniel's Results — 3 Months Later</p>
   <table style="width:100%;border-collapse:collapse;">
-    <tr><td style="color:#ccc;font-size:14px;padding:6px 0;">Weekly hours on marketing</td><td style="color:#fff;font-size:14px;font-weight:700;text-align:right;padding:6px 0;">22h &rarr; 4.5h</td></tr>
-    <tr><td style="color:#ccc;font-size:14px;padding:6px 0;border-top:1px solid #1e2d45;">Blog posts / month</td><td style="color:#fff;font-size:14px;font-weight:700;text-align:right;padding:6px 0;border-top:1px solid #1e2d45;">2 &rarr; 12</td></tr>
-    <tr><td style="color:#ccc;font-size:14px;padding:6px 0;border-top:1px solid #1e2d45;">Email open rate</td><td style="color:#fff;font-size:14px;font-weight:700;text-align:right;padding:6px 0;border-top:1px solid #1e2d45;">18% &rarr; 31%</td></tr>
-    <tr><td style="color:#ccc;font-size:14px;padding:6px 0;border-top:1px solid #1e2d45;">Inbound leads / month</td><td style="color:${BRAND.gold};font-size:15px;font-weight:700;text-align:right;padding:6px 0;border-top:1px solid #1e2d45;">11 &rarr; 47</td></tr>
+    <tr><td style="color:#ccc;font-size:14px;padding:6px 0;">Revenue</td><td style="color:${BRAND.gold};font-size:15px;font-weight:700;text-align:right;padding:6px 0;">3.2x increase</td></tr>
+    <tr><td style="color:#ccc;font-size:14px;padding:6px 0;border-top:1px solid #1e2d45;">Content output</td><td style="color:#fff;font-size:14px;font-weight:700;text-align:right;padding:6px 0;border-top:1px solid #1e2d45;">4x more pieces/month</td></tr>
+    <tr><td style="color:#ccc;font-size:14px;padding:6px 0;border-top:1px solid #1e2d45;">Qualified leads</td><td style="color:#fff;font-size:14px;font-weight:700;text-align:right;padding:6px 0;border-top:1px solid #1e2d45;">3x increase</td></tr>
+    <tr><td style="color:#ccc;font-size:14px;padding:6px 0;border-top:1px solid #1e2d45;">Time spent on marketing</td><td style="color:#fff;font-size:14px;font-weight:700;text-align:right;padding:6px 0;border-top:1px solid #1e2d45;">5 hrs/week (down from 20+)</td></tr>
   </table>
 </div>
-<p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 12px 0;">The 3-part system he built</p>
-<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 12px 0;"><strong>1. Prompt library tied to brand voice.</strong> Marcus spent one afternoon building 20 reusable prompts — each pre-loaded with his brand tone and audience pain points.</p>
-<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 12px 0;"><strong>2. AI-assisted first drafts, human final edit.</strong> They use AI for structure + first draft (10 min), then a human does a focused 15-minute edit pass.</p>
-<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 28px 0;"><strong>3. Weekly "AI sprint" instead of scattered sessions.</strong> Every Monday morning, one person runs a 2-hour AI sprint: batch-generate the week's content, schedule it, done.</p>
+<div style="border-left:4px solid ${BRAND.gold};padding:16px 20px;margin:0 0 28px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
+  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">The key insight</p>
+  <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">"The AI didn't just help me brainstorm — it executed the entire framework. I went from understanding Brunson's concepts to having a complete, personalized funnel in a single session. That's the difference between reading about strategy and actually having one."</p>
+</div>
 <div style="text-align:center;margin:0 0 32px 0;">
   <a href="${siteUrl}/blog" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">
-    See More Success Stories
+    See How It Works
   </a>
 </div>
-<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">In 4 days I'll send the final email — about the exact next step for turning these tactics into a complete AI business system.</p>
+<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">In 4 days, I'll send you one final email — with the exact next step to stop studying and start executing.</p>
 <p style="color:#555;font-size:15px;line-height:1.7;margin:16px 0 0 0;">Talk soon,<br /><strong style="color:${BRAND.color};">The AI Native Playbook Team</strong></p>
 `,
   });
@@ -179,40 +209,69 @@ export function getOnboardingCaseStudyHtml(params: OnboardingEmailParams): strin
 export function getOnboardingCtaHtml(params: OnboardingEmailParams): string {
   const g = greeting(params.firstName);
   return wrapHtml({
-    preheader: "The opportunity cost of not going AI-native is doubling every quarter.",
+    preheader: "You've studied enough. It's time to execute.",
     body: `
 <p style="color:${BRAND.color};font-size:22px;font-weight:700;margin:0 0 8px 0;line-height:1.3;">
-  Your AI Business Transformation Starts Here
+  You've Studied Enough. It's Time to Execute.
 </p>
 <p style="color:#666;font-size:14px;margin:0 0 32px 0;">Day 7 &bull; AI Native Playbook Series</p>
 <p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 20px 0;">${g}</p>
-<p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 12px 0;">The cost of waiting is compounding</p>
-<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 16px 0;">
-  Right now, your AI-native competitors are shipping faster, scaling cheaper, and closing deals
-  you should be winning. The gap compounds. Every quarter you wait, the gap doubles.
+<p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 16px 0;">
+  How many business books have you read this year? 3? 5? 10?
 </p>
-<p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 12px 0;">From overwhelmed to AI-native in 90 days</p>
+<p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 16px 0;">
+  Each time, you thought: "This is the one. This time I'll implement everything." You highlighted. You took notes. You made plans. And one month later? New book. Same cycle.
+</p>
+<p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 24px 0;">
+  <strong style="color:${BRAND.color};">The problem was never knowledge. It was always execution.</strong>
+</p>
+<p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 16px 0;">6 proven frameworks. AI executes them for you.</p>
+<div style="border-left:4px solid ${BRAND.gold};padding:12px 20px;margin:0 0 8px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
+  <span style="color:${BRAND.color};font-weight:700;">AI Marketing Architect</span> <span style="color:#555;">— Brunson's funnel framework → your complete funnel in 90 min</span>
+</div>
+<div style="border-left:4px solid ${BRAND.gold};padding:12px 20px;margin:0 0 8px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
+  <span style="color:${BRAND.color};font-weight:700;">AI Story Architect</span> <span style="color:#555;">— Edwards' copywriting secrets → your sales copy, done</span>
+</div>
+<div style="border-left:4px solid ${BRAND.gold};padding:12px 20px;margin:0 0 8px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
+  <span style="color:${BRAND.color};font-weight:700;">AI Startup Architect</span> <span style="color:#555;">— Walker's launch formula → your launch plan, ready to go</span>
+</div>
+<div style="border-left:4px solid ${BRAND.gold};padding:12px 20px;margin:0 0 8px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
+  <span style="color:${BRAND.color};font-weight:700;">AI Content Architect</span> <span style="color:#555;">— Cole's content framework → your content calendar, filled</span>
+</div>
+<div style="border-left:4px solid ${BRAND.gold};padding:12px 20px;margin:0 0 8px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
+  <span style="color:${BRAND.color};font-weight:700;">AI Brand Architect</span> <span style="color:#555;">— Expert brand strategy → your brand identity, defined</span>
+</div>
+<div style="border-left:4px solid ${BRAND.gold};padding:12px 20px;margin:0 0 28px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
+  <span style="color:${BRAND.color};font-weight:700;">AI Traffic Architect</span> <span style="color:#555;">— Proven traffic systems → your traffic plan, activated</span>
+</div>
+<p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 12px 0;">From 3-day proposals to half-day results</p>
 <p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 16px 0;">
-  Sarah launched her consulting practice two years ago. Buried in admin. She used the full playbook bundle.
-  90 days later: proposals take 35 minutes instead of 4 hours. She doubled her client roster without hiring.
+  Sarah is a brand consultant. Her client proposals used to take 3 full days — research, strategy, positioning, copy. She'd read every branding book, knew the frameworks cold.
+</p>
+<p style="color:#333;font-size:15px;line-height:1.7;margin:0 0 24px 0;">
+  With <strong>AI Brand Architect</strong>, she inputs the client's business details and gets a complete brand strategy in half a day. Same depth. Same quality. The framework does the heavy lifting — she adds her expertise on top. Her client capacity doubled without hiring anyone.
 </p>
 <div style="background:#faf8f5;border:1px solid #e8dfc8;border-radius:10px;padding:28px;margin:0 0 32px 0;">
-  <p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 12px 0;">The Complete AI Playbook Bundle</p>
+  <p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 12px 0;">The Complete AI Native Playbook Bundle</p>
   <ul style="color:#555;font-size:15px;line-height:1.8;margin:0 0 20px 0;padding-left:20px;">
-    <li>5 in-depth playbooks covering every core business function</li>
-    <li>50+ battle-tested prompt templates</li>
-    <li>AI workflow diagrams for sales, marketing, ops, and product</li>
-    <li>The 90-day AI transformation roadmap</li>
+    <li>All 6 AI business systems — each built on a world-class expert framework</li>
+    <li>Input your business info once, get strategies tailored to YOU</li>
+    <li>90-minute execution per system (vs. weeks with a consultant)</li>
+    <li>Frameworks from Brunson, Edwards, Walker &amp; Cole</li>
   </ul>
-  <p style="color:#888;font-size:13px;margin:0;">Designed for solo founders and small teams who want results — not theory.</p>
+  <div style="border-left:4px solid ${BRAND.gold};padding:12px 16px;margin:0 0 16px 0;background:#fff;border-radius:0 8px 8px 0;">
+    <span style="color:${BRAND.color};font-size:14px;font-weight:700;">$5,000+ in consulting value</span>
+    <span style="color:#888;font-size:14px;"> — the same frameworks top consultants charge thousands to implement. The AI does the execution.</span>
+  </div>
+  <p style="color:#888;font-size:13px;margin:0;">For business owners who are done studying and ready to execute.</p>
 </div>
 <div style="text-align:center;margin:0 0 32px 0;">
   <a href="${siteUrl}/bundle" style="display:inline-block;background:${BRAND.color};color:${BRAND.gold};padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;">
-    Get the Complete AI Playbook Bundle
+    Get All 6 AI Business Systems
   </a>
-  <p style="color:#999;font-size:13px;margin:12px 0 0 0;">No fluff. No theory. Just the system that works.</p>
+  <p style="color:#999;font-size:13px;margin:12px 0 0 0;">You've studied enough. Let AI execute for you.</p>
 </div>
-<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">Whether you go further with the bundle or not — I hope these emails have been genuinely useful.</p>
+<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">Whether you go further with the bundle or not — I hope these emails have shown you what's possible when you stop trying to implement alone and let AI execute proven frameworks for your specific business.</p>
 <p style="color:#555;font-size:15px;line-height:1.7;margin:16px 0 0 0;">Go build something great,<br /><strong style="color:${BRAND.color};">The AI Native Playbook Team</strong></p>
 `,
   });
