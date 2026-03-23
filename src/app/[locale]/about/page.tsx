@@ -23,7 +23,7 @@ const aboutMeta: Record<string, { title: string; description: string }> = {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
   const meta = aboutMeta[locale] ?? aboutMeta.en;
   const canonicalUrl = locale === "en" ? `${siteUrl}/about` : `${siteUrl}/${locale}/about`;
 
@@ -77,7 +77,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
   const t = await getTranslations("about");
 
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
   const aboutPageJsonLd = [
     {
       "@context": "https://schema.org",

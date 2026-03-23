@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { patterns } from "@/lib/patterns";
 
 const BASE_URL =
-  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
 // Static pages with their last-modified dates (en prefix canonical)
 const STATIC_PAGES: Array<{ path: string; lastmod: string }> = [

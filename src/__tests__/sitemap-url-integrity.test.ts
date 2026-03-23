@@ -18,7 +18,7 @@ vi.mock("next/server", () => ({
 describe("Sitemap URL Integrity", () => {
   it("SITE_URL constant should not contain newlines or whitespace", () => {
     const siteUrl = (
-      process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com"
+      process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com"
     ).trim();
     expect(siteUrl).not.toMatch(/\s/);
     expect(siteUrl).toMatch(/^https?:\/\//);

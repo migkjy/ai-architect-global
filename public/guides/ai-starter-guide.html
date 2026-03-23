@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Business Starter Guide — AI Native Playbook Series</title>
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0f172a;
+    --blue: #3b82f6;
+    --blue-light: #60a5fa;
+    --blue-pale: #dbeafe;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --white: #ffffff;
+    --green: #22c55e;
+    --amber: #f59e0b;
+    --red: #ef4444;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 18mm 16mm 22mm 16mm;
+  }
+
+  html { font-size: 11pt; }
+
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--navy);
+    line-height: 1.55;
+    background: var(--white);
+  }
+
+  /* ── Page Container ── */
+  .page {
+    width: 210mm;
+    min-height: 277mm;
+    padding: 12mm 14mm 18mm 14mm;
+    margin: 0 auto;
+    position: relative;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .page-body { flex: 1; }
+
+  /* ── Header & Footer ── */
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 6px;
+    margin-bottom: 10mm;
+    font-size: 8pt;
+    color: var(--gray-500);
+  }
+  .page-header .brand { font-weight: 700; color: var(--navy); letter-spacing: 0.5px; text-transform: uppercase; font-size: 7.5pt; }
+
+  .page-footer {
+    text-align: center;
+    font-size: 8pt;
+    color: var(--gray-400);
+    padding-top: 6px;
+    border-top: 1px solid var(--gray-200);
+    margin-top: auto;
+  }
+
+  /* ── Typography ── */
+  h1 { font-size: 26pt; font-weight: 800; line-height: 1.15; color: var(--navy); }
+  h2 { font-size: 16pt; font-weight: 700; color: var(--navy); margin-bottom: 6mm; border-bottom: 3px solid var(--blue); padding-bottom: 3mm; }
+  h3 { font-size: 12pt; font-weight: 700; color: var(--navy); margin: 5mm 0 3mm; }
+  h4 { font-size: 10.5pt; font-weight: 700; color: var(--gray-700); margin: 4mm 0 2mm; }
+  p { margin-bottom: 3mm; }
+  ul, ol { margin: 2mm 0 4mm 6mm; }
+  li { margin-bottom: 1.5mm; }
+
+  .subtitle { font-size: 13pt; color: var(--gray-600); font-weight: 400; line-height: 1.45; }
+  .section-intro { font-size: 10.5pt; color: var(--gray-600); margin-bottom: 5mm; font-style: italic; border-left: 3px solid var(--blue); padding-left: 4mm; }
+
+  /* ── Cover ── */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 277mm;
+    padding: 30mm 20mm;
+  }
+  .cover .logo-mark {
+    width: 70px; height: 70px;
+    border: 3px solid var(--navy);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28pt; font-weight: 900; color: var(--blue);
+    margin-bottom: 12mm;
+  }
+  .cover h1 { font-size: 32pt; margin-bottom: 5mm; }
+  .cover .subtitle { font-size: 14pt; margin-bottom: 20mm; max-width: 400px; }
+  .cover .brand-line {
+    font-size: 10pt; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--blue);
+    border: 2px solid var(--blue); padding: 3mm 8mm; border-radius: 4px;
+    margin-bottom: 15mm;
+  }
+  .cover .cover-meta { font-size: 9pt; color: var(--gray-400); }
+
+  /* ── TOC ── */
+  .toc-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 2.5mm 0;
+    border-bottom: 1px dotted var(--gray-300);
+  }
+  .toc-item .toc-title { font-weight: 600; font-size: 10.5pt; }
+  .toc-item .toc-page { font-weight: 700; color: var(--blue); font-size: 10.5pt; }
+  .toc-section { font-size: 9pt; color: var(--gray-500); margin-top: 1mm; }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 4mm 0;
+    font-size: 9.5pt;
+  }
+  th {
+    background: var(--navy);
+    color: var(--white);
+    padding: 2.5mm 3mm;
+    text-align: left;
+    font-weight: 700;
+    font-size: 9pt;
+  }
+  td {
+    padding: 2mm 3mm;
+    border-bottom: 1px solid var(--gray-200);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: var(--gray-50); }
+
+  /* ── Funnel Diagram ── */
+  .funnel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5mm 0;
+  }
+  .funnel-stage {
+    border: 2px solid var(--navy);
+    border-radius: 8px;
+    padding: 3mm 5mm;
+    text-align: center;
+    margin-bottom: 2mm;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+  .funnel-stage.s1 { width: 100%; }
+  .funnel-stage.s2 { width: 82%; }
+  .funnel-stage.s3 { width: 64%; }
+  .funnel-stage.s4 { width: 46%; border-color: var(--blue); color: var(--blue); }
+  .funnel-arrow { font-size: 14pt; color: var(--gray-400); margin: 0; line-height: 1; }
+
+  /* ── Prompt Box ── */
+  .prompt-box {
+    border: 2px solid var(--navy);
+    border-radius: 6px;
+    padding: 4mm 5mm;
+    margin: 3mm 0 5mm;
+    font-family: "SFMono-Regular", "Cascadia Code", "Consolas", monospace;
+    font-size: 8.5pt;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+    background: var(--gray-50);
+  }
+  .prompt-label {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 7.5pt;
+    font-weight: 700;
+    padding: 1mm 3mm;
+    border-radius: 3px;
+    margin-bottom: 2mm;
+    font-family: system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Checklist ── */
+  .checklist { list-style: none; margin-left: 0; }
+  .checklist li {
+    padding: 1.5mm 0 1.5mm 7mm;
+    position: relative;
+  }
+  .checklist li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 3mm;
+    width: 3.5mm; height: 3.5mm;
+    border: 1.5px solid var(--navy);
+    border-radius: 1px;
+  }
+
+  /* ── Day Card ── */
+  .day-card {
+    border: 2px solid var(--navy);
+    border-radius: 8px;
+    padding: 4mm 5mm;
+    margin-bottom: 4mm;
+  }
+  .day-card .day-label {
+    font-weight: 800;
+    font-size: 11pt;
+    color: var(--blue);
+    margin-bottom: 1mm;
+  }
+  .day-card .day-title {
+    font-weight: 700;
+    font-size: 11pt;
+    margin-bottom: 2mm;
+  }
+  .day-meta {
+    display: flex;
+    gap: 6mm;
+    font-size: 8.5pt;
+    color: var(--gray-500);
+    margin-bottom: 2mm;
+    font-weight: 600;
+  }
+
+  /* ── Comparison badges ── */
+  .badge {
+    display: inline-block;
+    padding: 0.5mm 2mm;
+    border-radius: 3px;
+    font-size: 8pt;
+    font-weight: 700;
+  }
+  .badge-best { border: 1.5px solid var(--green); color: #166534; }
+  .badge-good { border: 1.5px solid var(--blue); color: #1e40af; }
+  .badge-mid  { border: 1.5px solid var(--amber); color: #92400e; }
+
+  /* ── CTA Box ── */
+  .cta-box {
+    border: 3px solid var(--blue);
+    border-radius: 10px;
+    padding: 8mm;
+    text-align: center;
+    margin: 8mm 0;
+  }
+  .cta-box h3 { color: var(--blue); font-size: 14pt; margin-bottom: 4mm; }
+
+  /* ── Key Point ── */
+  .key-point {
+    border-left: 4px solid var(--blue);
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    font-size: 9.5pt;
+  }
+  .key-point strong { color: var(--navy); }
+
+  /* ── Print ── */
+  @media print {
+    body { background: none; }
+    .page {
+      width: auto;
+      min-height: auto;
+      padding: 0;
+      margin: 0;
+    }
+    .no-print { display: none; }
+  }
+
+  /* ── Screen preview ── */
+  @media screen {
+    body { background: #e2e8f0; }
+    .page {
+      background: white;
+      margin: 10mm auto;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 1 — COVER
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="logo-mark">AI</div>
+  <div class="brand-line">AI Native Playbook Series</div>
+  <h1>AI Business<br>Starter Guide</h1>
+  <p class="subtitle">Your Complete Blueprint to Building an AI-Native Business</p>
+  <div style="width:60%; border-top:2px solid var(--gray-200); margin:8mm 0;"></div>
+  <p style="font-size:10.5pt; color:var(--gray-600); max-width:380px;">
+    AI Marketing Funnel &bull; Ready-to-Use Prompts &bull; Framework Comparison &bull; 5-Day Quickstart
+  </p>
+  <p class="cover-meta" style="margin-top:20mm;">ai-native-playbook.com &nbsp;|&nbsp; 2026 Edition</p>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 2 — TABLE OF CONTENTS
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>AI Business Starter Guide</span>
+  </div>
+  <div class="page-body">
+    <h2>Table of Contents</h2>
+    <div style="margin-top:6mm;">
+      <div class="toc-item"><span class="toc-title">AI Marketing Funnel Blueprint</span><span class="toc-page">3</span></div>
+      <div class="toc-section">&nbsp;&nbsp;&nbsp;Complete funnel diagram &bull; AI tools at each stage &bull; Key metrics &bull; Implementation priorities</div>
+
+      <div class="toc-item" style="margin-top:3mm;"><span class="toc-title">AI Marketing Funnel — Tools &amp; Metrics Deep Dive</span><span class="toc-page">4</span></div>
+      <div class="toc-section">&nbsp;&nbsp;&nbsp;Stage-by-stage AI tool mapping &bull; KPI benchmarks &bull; Budget allocation</div>
+
+      <div class="toc-item" style="margin-top:3mm;"><span class="toc-title">Funnel Implementation Roadmap</span><span class="toc-page">5</span></div>
+      <div class="toc-section">&nbsp;&nbsp;&nbsp;30-60-90 day plan &bull; Priority matrix &bull; Common mistakes</div>
+
+      <div class="toc-item" style="margin-top:3mm;"><span class="toc-title">Prompt 1 — Market Research &amp; Competitive Analysis</span><span class="toc-page">6</span></div>
+      <div class="toc-section">&nbsp;&nbsp;&nbsp;Full prompt template &bull; Expected output &bull; Iteration guide</div>
+
+      <div class="toc-item" style="margin-top:3mm;"><span class="toc-title">Prompt 2 — 30-Day Content Strategy Generator</span><span class="toc-page">7</span></div>
+      <div class="toc-section">&nbsp;&nbsp;&nbsp;Content calendar prompt &bull; Industry customization &bull; Output format</div>
+
+      <div class="toc-item" style="margin-top:3mm;"><span class="toc-title">Prompt 3 — Customer Journey Mapper</span><span class="toc-page">8</span></div>
+      <div class="toc-section">&nbsp;&nbsp;&nbsp;Touchpoint mapping prompt &bull; CRM integration &bull; Action items</div>
+
+      <div class="toc-item" style="margin-top:3mm;"><span class="toc-title">AI Framework Comparison Chart</span><span class="toc-page">9</span></div>
+      <div class="toc-section">&nbsp;&nbsp;&nbsp;Claude vs ChatGPT vs Gemini vs Copilot &bull; 8 categories &bull; Best use cases</div>
+
+      <div class="toc-item" style="margin-top:3mm;"><span class="toc-title">Comparison — Pricing &amp; Selection Guide</span><span class="toc-page">10</span></div>
+      <div class="toc-section">&nbsp;&nbsp;&nbsp;Pricing tiers &bull; Strength/weakness analysis &bull; Selection guide</div>
+
+      <div class="toc-item" style="margin-top:3mm;"><span class="toc-title">5-Day AI Quickstart — Days 1 &amp; 2</span><span class="toc-page">11</span></div>
+      <div class="toc-section">&nbsp;&nbsp;&nbsp;Workspace setup &bull; First automated document</div>
+
+      <div class="toc-item" style="margin-top:3mm;"><span class="toc-title">5-Day AI Quickstart — Days 3 &amp; 4</span><span class="toc-page">12</span></div>
+      <div class="toc-section">&nbsp;&nbsp;&nbsp;AI knowledge base &bull; First automated workflow</div>
+
+      <div class="toc-item" style="margin-top:3mm;"><span class="toc-title">5-Day AI Quickstart — Day 5 &amp; Review</span><span class="toc-page">13</span></div>
+      <div class="toc-section">&nbsp;&nbsp;&nbsp;Measure &amp; optimize &bull; Weekly habit formation</div>
+
+      <div class="toc-item" style="margin-top:3mm;"><span class="toc-title">Next Steps</span><span class="toc-page">14</span></div>
+      <div class="toc-section">&nbsp;&nbsp;&nbsp;Deeper learning paths &bull; AI Native Playbook courses</div>
+
+      <div class="toc-item" style="margin-top:3mm;"><span class="toc-title">About &amp; Credits</span><span class="toc-page">15</span></div>
+    </div>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 2</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 3 — FUNNEL BLUEPRINT (1/3)
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>AI Marketing Funnel Blueprint</span>
+  </div>
+  <div class="page-body">
+    <h2>AI Marketing Funnel Blueprint</h2>
+    <p class="section-intro">Most businesses bolt AI onto their existing funnel. AI-native businesses redesign the funnel around AI capabilities from the start. Here is the difference that makes.</p>
+
+    <h3>The AI-Native Marketing Funnel</h3>
+    <div class="funnel">
+      <div class="funnel-stage s1">AWARENESS &mdash; AI-Generated Content at Scale</div>
+      <div class="funnel-arrow">&darr;</div>
+      <div class="funnel-stage s2">INTEREST &mdash; AI-Personalized Engagement</div>
+      <div class="funnel-arrow">&darr;</div>
+      <div class="funnel-stage s3">DECISION &mdash; AI-Scored Leads &amp; Smart Nurture</div>
+      <div class="funnel-arrow">&darr;</div>
+      <div class="funnel-stage s4">ACTION &mdash; AI-Optimized Conversion &amp; Follow-Up</div>
+    </div>
+
+    <h3>How AI Transforms Each Stage</h3>
+
+    <h4>Stage 1: Awareness</h4>
+    <p><strong>Traditional approach:</strong> Manually create blog posts, social media content, and ads. Publish 2-3 pieces per week and hope for reach.</p>
+    <p><strong>AI-native approach:</strong> Generate 10-20 pieces of platform-native content per week using AI. Each piece is tailored to the platform's algorithm preferences. AI identifies trending topics in your niche within hours, not weeks. You review, refine, and publish content that is already shaped by data.</p>
+    <div class="key-point">
+      <strong>Key shift:</strong> Your bottleneck moves from content creation to content distribution and quality review. You become an editor, not a writer.
+    </div>
+
+    <h4>Stage 2: Interest</h4>
+    <p><strong>Traditional approach:</strong> One-size-fits-all lead magnets. Same email sequence for every subscriber regardless of how they found you.</p>
+    <p><strong>AI-native approach:</strong> Dynamic lead magnets that adapt to the visitor's industry, role, and pain points. AI segments subscribers in real time based on behavior signals (pages visited, content consumed, email engagement). Each subscriber gets a different nurture path.</p>
+
+    <h4>Stage 3: Decision</h4>
+    <p><strong>Traditional approach:</strong> Sales team manually qualifies leads. Subjective judgment on who is ready to buy.</p>
+    <p><strong>AI-native approach:</strong> Predictive lead scoring that combines firmographic data, engagement history, and behavioral signals. AI identifies buying intent signals (pricing page visits, case study downloads, comparison searches) and triggers timely outreach. A chatbot answers objections 24/7 using your actual case studies and data.</p>
+
+    <h4>Stage 4: Action</h4>
+    <p><strong>Traditional approach:</strong> Standard checkout flow. Generic post-purchase email. Hope for repeat business.</p>
+    <p><strong>AI-native approach:</strong> Personalized offers based on predicted customer lifetime value. AI-generated onboarding sequences customized to the customer's specific use case. Automated check-ins timed to when churn risk spikes. Upsell recommendations based on usage patterns, not arbitrary timelines.</p>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 3</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 4 — FUNNEL TOOLS & METRICS (2/3)
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>Funnel Tools &amp; Metrics</span>
+  </div>
+  <div class="page-body">
+    <h2>AI Tools &amp; Metrics at Each Funnel Stage</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:16%;">Stage</th>
+          <th style="width:32%;">AI Tools &amp; Tactics</th>
+          <th style="width:28%;">Key Metrics</th>
+          <th style="width:24%;">Benchmark Targets</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Awareness</strong></td>
+          <td>
+            &bull; Claude / ChatGPT for long-form SEO articles<br>
+            &bull; AI image generation for social media<br>
+            &bull; AI video script generation<br>
+            &bull; Trend monitoring with AI alerts
+          </td>
+          <td>
+            &bull; Organic traffic growth<br>
+            &bull; Social reach &amp; impressions<br>
+            &bull; Content output volume<br>
+            &bull; Cost per content piece
+          </td>
+          <td>
+            &bull; 3-5x content output<br>
+            &bull; 60-70% cost reduction per piece<br>
+            &bull; 20%+ monthly traffic growth
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Interest</strong></td>
+          <td>
+            &bull; AI chatbots for website visitors<br>
+            &bull; Dynamic email personalization<br>
+            &bull; AI-powered lead magnet creation<br>
+            &bull; Behavioral segmentation engines
+          </td>
+          <td>
+            &bull; Email opt-in rate<br>
+            &bull; Lead magnet download rate<br>
+            &bull; Email open &amp; click rates<br>
+            &bull; Time-to-first-engagement
+          </td>
+          <td>
+            &bull; 25-40% opt-in rate<br>
+            &bull; 35%+ email open rate<br>
+            &bull; 5%+ click-through rate<br>
+            &bull; &lt;24hr first engagement
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Decision</strong></td>
+          <td>
+            &bull; Predictive lead scoring models<br>
+            &bull; AI-generated case study matching<br>
+            &bull; Automated objection handling<br>
+            &bull; Smart proposal generators
+          </td>
+          <td>
+            &bull; Lead-to-opportunity rate<br>
+            &bull; Sales cycle length<br>
+            &bull; Proposal acceptance rate<br>
+            &bull; Cost per qualified lead
+          </td>
+          <td>
+            &bull; 30-40% reduction in sales cycle<br>
+            &bull; 2x lead qualification speed<br>
+            &bull; 50%+ proposal acceptance
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Action</strong></td>
+          <td>
+            &bull; AI-optimized checkout flows<br>
+            &bull; Personalized onboarding sequences<br>
+            &bull; Churn prediction &amp; prevention<br>
+            &bull; Automated upsell recommendations
+          </td>
+          <td>
+            &bull; Conversion rate<br>
+            &bull; Average order value<br>
+            &bull; Customer retention rate<br>
+            &bull; Net Promoter Score
+          </td>
+          <td>
+            &bull; 15-25% conversion improvement<br>
+            &bull; 20%+ AOV increase<br>
+            &bull; 90%+ retention (SaaS)<br>
+            &bull; NPS 50+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Budget Allocation Guide</h3>
+    <p>For a business beginning its AI-native transformation, here is a practical budget split:</p>
+    <table>
+      <thead>
+        <tr><th>Category</th><th>% of AI Budget</th><th>Typical Monthly Cost (SMB)</th><th>Expected ROI Timeline</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AI writing &amp; content tools</td><td>30-35%</td><td>$50-200</td><td>2-4 weeks</td></tr>
+        <tr><td>Email &amp; marketing automation</td><td>25-30%</td><td>$30-150</td><td>4-8 weeks</td></tr>
+        <tr><td>Analytics &amp; lead scoring</td><td>15-20%</td><td>$50-200</td><td>8-12 weeks</td></tr>
+        <tr><td>Chatbot &amp; customer support</td><td>10-15%</td><td>$30-100</td><td>2-6 weeks</td></tr>
+        <tr><td>Training &amp; experimentation</td><td>5-10%</td><td>$20-50</td><td>Ongoing</td></tr>
+      </tbody>
+    </table>
+
+    <div class="key-point">
+      <strong>Rule of thumb:</strong> Start with content creation tools (fastest ROI, lowest risk) and expand into automation and analytics as you see results. Do not try to implement everything at once.
+    </div>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 4</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 5 — FUNNEL IMPLEMENTATION (3/3)
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>Implementation Roadmap</span>
+  </div>
+  <div class="page-body">
+    <h2>Funnel Implementation Roadmap</h2>
+    <p class="section-intro">A phased approach prevents overwhelm and lets you build on each win. Here is your 90-day plan.</p>
+
+    <h3>Days 1-30: Foundation</h3>
+    <ul>
+      <li><strong>Choose one AI writing tool</strong> (Claude or ChatGPT) and commit to it for 30 days. Mastery of one tool beats surface familiarity with five.</li>
+      <li><strong>Create your Brand Voice Document:</strong> Write a 1-page description of your tone, audience, key messages, and words to avoid. Feed this to your AI at the start of every session.</li>
+      <li><strong>Set a content cadence:</strong> Commit to publishing 3-5 AI-assisted pieces per week. Track time spent per piece versus your pre-AI baseline.</li>
+      <li><strong>Install basic analytics:</strong> Ensure Google Analytics 4, email tracking, and social insights are configured. You cannot optimize what you do not measure.</li>
+    </ul>
+
+    <h3>Days 31-60: Automation</h3>
+    <ul>
+      <li><strong>Build your first email automation:</strong> A 5-email welcome sequence (see the prompt templates in this guide) that segments subscribers based on their first click.</li>
+      <li><strong>Deploy a simple chatbot:</strong> A FAQ-answering bot on your website trained on your existing content. Start with the 20 most common questions.</li>
+      <li><strong>Create content repurposing workflows:</strong> One long-form piece becomes a blog post, 3 social posts, an email, and a video script. Use AI for each transformation.</li>
+      <li><strong>Begin A/B testing:</strong> Test AI-generated subject lines against your originals. Test AI-written ad copy against manual copy. Let data decide.</li>
+    </ul>
+
+    <h3>Days 61-90: Optimization</h3>
+    <ul>
+      <li><strong>Implement lead scoring:</strong> Assign point values to behaviors (page visits, email clicks, content downloads). Use AI to analyze which patterns predict purchases.</li>
+      <li><strong>Build feedback loops:</strong> What content performs best? What email sequences convert? Feed performance data back into your AI prompts to refine output quality.</li>
+      <li><strong>Calculate your AI ROI:</strong> Compare time saved, content volume increase, lead quality improvement, and conversion rate changes against your AI tool costs.</li>
+      <li><strong>Plan your next quarter:</strong> Based on 90 days of data, decide which funnel stages need more AI investment and which are performing well.</li>
+    </ul>
+
+    <h3>Common Mistakes to Avoid</h3>
+    <table>
+      <thead>
+        <tr><th style="width:45%;">Mistake</th><th>Why It Hurts</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Publishing AI content without human review</td><td>Damages brand trust. AI is a draft writer, you are the editor.</td></tr>
+        <tr><td>Trying to automate everything at once</td><td>Creates brittle systems. Master one tool before adding another.</td></tr>
+        <tr><td>Ignoring your existing data</td><td>AI performs best when fed your real customer data, not generic assumptions.</td></tr>
+        <tr><td>Copy-pasting generic prompts</td><td>Generic input produces generic output. Invest time in prompts specific to your business.</td></tr>
+        <tr><td>Skipping the measurement phase</td><td>Without metrics, you cannot prove ROI or know what to improve.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 5</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 6 — PROMPT 1: MARKET RESEARCH
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>Ready-to-Use AI Prompts</span>
+  </div>
+  <div class="page-body">
+    <h2>Prompt 1: Market Research &amp; Competitive Analysis</h2>
+    <p class="section-intro">This prompt replaces 8-12 hours of manual research with a structured analysis you can run in under 30 minutes. Customize the bracketed fields for your business.</p>
+
+    <span class="prompt-label">Copy &amp; Paste This Prompt</span>
+    <div class="prompt-box">You are a senior market research analyst. Conduct a comprehensive competitive analysis for my business.
+
+<strong>My Business:</strong>
+- Industry: [e.g., B2B SaaS for restaurant management]
+- Target audience: [e.g., independent restaurant owners, 1-5 locations, US market]
+- Our main product/service: [e.g., AI-powered inventory forecasting tool]
+- Price range: [e.g., $99-299/month]
+- Our key differentiator: [e.g., 95% forecast accuracy using weather + event data]
+
+<strong>Analyze these competitors:</strong> [Competitor 1], [Competitor 2], [Competitor 3]
+If I don't know my competitors, identify the top 5 in my space.
+
+<strong>For each competitor, provide:</strong>
+1. Positioning statement (one sentence: who they serve + their promise)
+2. Pricing model and price points
+3. Top 3 strengths (based on their messaging and reviews)
+4. Top 3 weaknesses (gaps in their offering or negative reviews)
+5. Their primary marketing channels (where they acquire customers)
+6. Content strategy summary (blog frequency, social presence, ad spend signals)
+
+<strong>Then provide:</strong>
+- Market gap analysis: Where are ALL competitors weak?
+- Positioning opportunity: How should I position against these competitors?
+- 5 messaging angles I can use that competitors are NOT using
+- 3 underserved audience segments competitors are ignoring
+- Recommended competitive monitoring plan (what to track monthly)
+
+Format as a structured report with clear headers.</div>
+
+    <h3>Expected Output</h3>
+    <p>A 1,500-2,500 word structured report covering competitor profiles, gap analysis, and actionable positioning recommendations. The output will include specific messaging angles and audience segments you can immediately test in your marketing.</p>
+
+    <h3>How to Iterate</h3>
+    <ol>
+      <li><strong>Deepen one competitor:</strong> "Now do a deep dive on [Competitor X]. Analyze their last 20 blog posts, their pricing page messaging, and any customer reviews you can find patterns in."</li>
+      <li><strong>Test messaging:</strong> "Based on the positioning opportunities you identified, write 5 ad headlines and 5 email subject lines for angle #2."</li>
+      <li><strong>Expand geographically:</strong> "Repeat this analysis for the [UK/EU/APAC] market. How do competitive dynamics differ?"</li>
+      <li><strong>Add seasonal context:</strong> "How does the competitive landscape shift in Q4? Are there seasonal opportunities competitors miss?"</li>
+    </ol>
+
+    <div class="key-point">
+      <strong>Pro tip:</strong> Run this analysis quarterly. Save each output so you can track how competitors evolve. Feed the previous quarter's analysis back into the prompt with "Here is what the landscape looked like 3 months ago: [paste]. What has changed?"
+    </div>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 6</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 7 — PROMPT 2: CONTENT STRATEGY
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>Ready-to-Use AI Prompts</span>
+  </div>
+  <div class="page-body">
+    <h2>Prompt 2: 30-Day Content Strategy Generator</h2>
+    <p class="section-intro">This prompt generates a complete content calendar with topics, formats, distribution channels, and posting schedule. What used to take a content strategist a full day now takes 20 minutes.</p>
+
+    <span class="prompt-label">Copy &amp; Paste This Prompt</span>
+    <div class="prompt-box">You are a content strategist who specializes in [my industry]. Create a 30-day content calendar for my business.
+
+<strong>Business Context:</strong>
+- Business: [e.g., Online fitness coaching for busy professionals]
+- Primary goal this month: [e.g., Generate 200 email subscribers]
+- Target audience: [e.g., 30-45 year old professionals who want to exercise but "don't have time"]
+- Brand voice: [e.g., Motivational but not pushy. Data-driven. No bro-science.]
+- Active platforms: [e.g., Instagram, LinkedIn, Email newsletter, YouTube]
+
+<strong>Content pillars (my 3-4 main themes):</strong>
+1. [e.g., 15-minute workout routines]
+2. [e.g., Nutrition without meal prep]
+3. [e.g., Mindset and habit formation]
+4. [e.g., Client transformation stories]
+
+<strong>For each day, provide:</strong>
+- Platform (where to post)
+- Content type (carousel, reel, long-form, newsletter, thread, video)
+- Topic / headline
+- Key talking points (3-4 bullets)
+- Call-to-action
+- Content pillar it maps to
+- Hashtag suggestions (for social posts)
+
+<strong>Additional requirements:</strong>
+- Follow the Jab-Jab-Jab-Right Hook pattern: 3 value posts for every 1 promotional post
+- Include 2 "trending topic reaction" slots (leave topic open, note the format)
+- Include 1 collaboration/guest content slot per week
+- Vary content types so no platform gets the same format 2 days in a row
+- Note which posts can be repurposed across platforms
+
+Format as a table: Day | Platform | Type | Topic | Pillar | CTA</div>
+
+    <h3>Industry-Specific Customization</h3>
+    <p>Add one of these lines to adapt the prompt for your industry:</p>
+    <ul>
+      <li><strong>E-commerce:</strong> "Include product showcase posts timed to our sale cycle: [sale dates]. Reference seasonal buying patterns."</li>
+      <li><strong>B2B / SaaS:</strong> "Focus on thought leadership and case study content. Weight LinkedIn and newsletter more heavily than Instagram. Include data-driven posts."</li>
+      <li><strong>Local business:</strong> "Include community-focused content, local event tie-ins, and customer spotlight posts. Focus on Google Business Profile and Facebook."</li>
+      <li><strong>Creator / Personal brand:</strong> "Include behind-the-scenes content, personal story posts, and audience Q&A sessions. Prioritize authenticity over polish."</li>
+    </ul>
+
+    <h3>Output Format</h3>
+    <p>You will receive a 30-row table plus a summary showing content mix by pillar, platform distribution, and the value-to-promotional ratio. The calendar is designed to be imported directly into your project management tool or scheduling app.</p>
+
+    <div class="key-point">
+      <strong>Pro tip:</strong> After your first 30-day cycle, feed your top 5 and bottom 5 performing posts back into the AI: "Here are my best and worst performers from last month [paste data]. Adjust next month's calendar to double down on what works and eliminate what does not."
+    </div>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 7</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 8 — PROMPT 3: CUSTOMER JOURNEY MAPPER
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>Ready-to-Use AI Prompts</span>
+  </div>
+  <div class="page-body">
+    <h2>Prompt 3: Customer Journey Mapper</h2>
+    <p class="section-intro">Map every touchpoint from first contact to loyal customer, then identify exactly where you are losing people and what to fix. This prompt turns abstract "customer experience" into a concrete action plan.</p>
+
+    <span class="prompt-label">Copy &amp; Paste This Prompt</span>
+    <div class="prompt-box">You are a customer experience strategist. Map and optimize my customer journey.
+
+<strong>My Business:</strong>
+- Product/Service: [e.g., Project management SaaS for marketing agencies]
+- Price point: [e.g., $49-199/month per team]
+- Average sales cycle: [e.g., 14 days from signup to paid conversion]
+- Current conversion rate: [e.g., Free trial to paid: 12%]
+- Biggest drop-off point (if known): [e.g., Users stop engaging after day 3 of trial]
+
+<strong>Current touchpoints I know about:</strong>
+1. [e.g., Google search -> Landing page]
+2. [e.g., Free trial signup -> Welcome email]
+3. [e.g., In-app onboarding -> First project created]
+4. [e.g., Day 7 check-in email -> Upgrade CTA]
+5. [Add as many as you know, or say "Map these for me"]
+
+<strong>Provide:</strong>
+1. Complete journey map with EVERY touchpoint from first awareness to 90 days post-purchase, organized by phase (Awareness -> Consideration -> Purchase -> Onboarding -> Retention -> Advocacy)
+
+2. For each touchpoint:
+   - Customer's emotional state (excited, confused, skeptical, etc.)
+   - Their key question at this moment
+   - What they need to move to the next stage
+   - Current friction points (identify likely problems)
+   - AI-powered improvement (specific tool or automation)
+
+3. Drop-off risk analysis: Where are customers most likely to leave? Rank by severity.
+
+4. Quick wins: 5 changes I can implement this week to improve the journey
+
+5. 30-day optimization plan: Prioritized list of journey improvements
+
+6. Metrics dashboard: What to measure at each journey stage
+
+If I have CRM data I can share, tell me exactly what export format would be most useful for a deeper analysis.</div>
+
+    <h3>CRM Integration Tips</h3>
+    <p>To supercharge this analysis with your real data, export the following from your CRM and paste a summary into a follow-up message:</p>
+    <ul>
+      <li><strong>Conversion timestamps:</strong> Average time between signup and first purchase, between touchpoints</li>
+      <li><strong>Drop-off data:</strong> At which stage do most leads go cold? What percentage at each stage?</li>
+      <li><strong>Support tickets:</strong> Top 10 most common questions/complaints (these reveal journey friction)</li>
+      <li><strong>NPS or CSAT scores:</strong> Satisfaction data by customer segment or lifecycle stage</li>
+    </ul>
+
+    <h3>Turning Analysis into Action</h3>
+    <p>The journey map is only valuable if you act on it. After receiving your analysis:</p>
+    <ol>
+      <li><strong>Pick the highest-impact drop-off point</strong> (the one losing the most revenue) and fix that first</li>
+      <li><strong>Automate one touchpoint</strong> that is currently manual (usually the follow-up after trial signup)</li>
+      <li><strong>Add one proactive outreach</strong> at the moment customers are most confused (usually onboarding day 2-3)</li>
+      <li><strong>Re-run this analysis in 30 days</strong> with updated data to measure improvement</li>
+    </ol>
+
+    <div class="key-point">
+      <strong>Pro tip:</strong> Ask the AI to role-play as your customer: "Now pretend you are a [target customer]. Walk through my signup flow at [URL] and tell me every moment of confusion, frustration, or delight." This surfaces UX issues you are too close to see.
+    </div>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 8</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 9 — FRAMEWORK COMPARISON (1/2)
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>AI Framework Comparison</span>
+  </div>
+  <div class="page-body">
+    <h2>AI Framework Comparison Chart</h2>
+    <p class="section-intro">An honest, practical comparison of the four major AI platforms as of 2026. No tool is best at everything. Pick based on your primary use case.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width:18%;">Category</th>
+          <th style="width:20.5%;">Claude</th>
+          <th style="width:20.5%;">ChatGPT</th>
+          <th style="width:20.5%;">Gemini</th>
+          <th style="width:20.5%;">Copilot</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Document Analysis</strong></td>
+          <td><span class="badge badge-best">Best</span><br>Handles 200K+ tokens. Exceptional at synthesizing long reports, contracts, and research papers.</td>
+          <td><span class="badge badge-good">Strong</span><br>Good PDF and file analysis. 128K context window with GPT-4o.</td>
+          <td><span class="badge badge-good">Strong</span><br>1M+ token context window. Strong at processing very large documents.</td>
+          <td><span class="badge badge-mid">Adequate</span><br>Integrates with M365 documents. Best within Microsoft ecosystem.</td>
+        </tr>
+        <tr>
+          <td><strong>Code Generation</strong></td>
+          <td><span class="badge badge-best">Best</span><br>Top tier for agentic coding. Claude Code excels at multi-file projects.</td>
+          <td><span class="badge badge-good">Strong</span><br>Broad language support. Good at explaining code. Canvas for iteration.</td>
+          <td><span class="badge badge-good">Strong</span><br>Deep integration with Google Cloud. Good for Google-stack development.</td>
+          <td><span class="badge badge-good">Strong</span><br>GitHub Copilot is market leader for IDE-integrated code completion.</td>
+        </tr>
+        <tr>
+          <td><strong>Creative Writing</strong></td>
+          <td><span class="badge badge-best">Best</span><br>Most natural, nuanced writing. Avoids AI-sounding patterns. Strong brand voice matching.</td>
+          <td><span class="badge badge-good">Strong</span><br>Good variety and creativity. Sometimes overly enthusiastic tone.</td>
+          <td><span class="badge badge-mid">Adequate</span><br>Functional but less stylistic range. Tends toward informational tone.</td>
+          <td><span class="badge badge-mid">Adequate</span><br>Serviceable for business writing. Limited creative range.</td>
+        </tr>
+        <tr>
+          <td><strong>Business Strategy</strong></td>
+          <td><span class="badge badge-best">Best</span><br>Excels at structured strategic analysis. Deep reasoning on complex business problems.</td>
+          <td><span class="badge badge-good">Strong</span><br>Good strategic frameworks. Access to browsing for current data.</td>
+          <td><span class="badge badge-good">Strong</span><br>Leverages Google Search for real-time market data integration.</td>
+          <td><span class="badge badge-mid">Adequate</span><br>Basic strategy support. Better for tactical than strategic work.</td>
+        </tr>
+        <tr>
+          <td><strong>Data Analysis</strong></td>
+          <td><span class="badge badge-good">Strong</span><br>Excellent at interpreting data and generating analysis code. No native execution.</td>
+          <td><span class="badge badge-best">Best</span><br>Code Interpreter runs Python natively. Generates charts and visualizations in-chat.</td>
+          <td><span class="badge badge-good">Strong</span><br>Google Sheets integration. Good at working with structured data.</td>
+          <td><span class="badge badge-good">Strong</span><br>Excel and Power BI integration. Best for Microsoft analytics stack.</td>
+        </tr>
+        <tr>
+          <td><strong>API &amp; Integration</strong></td>
+          <td><span class="badge badge-best">Best</span><br>MCP protocol enables deep tool integration. Agentic capabilities with Claude Code.</td>
+          <td><span class="badge badge-good">Strong</span><br>Mature plugin ecosystem. GPTs store. Function calling API.</td>
+          <td><span class="badge badge-good">Strong</span><br>Google Workspace integration. Vertex AI for enterprise.</td>
+          <td><span class="badge badge-good">Strong</span><br>Deep M365 integration. Azure OpenAI Service for enterprise.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 9</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 10 — FRAMEWORK COMPARISON (2/2)
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>Comparison — Pricing &amp; Selection</span>
+  </div>
+  <div class="page-body">
+    <h2>Pricing &amp; Best Use Cases</h2>
+
+    <table>
+      <thead>
+        <tr><th>Platform</th><th>Free Tier</th><th>Pro/Plus Tier</th><th>API Pricing (approx.)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Claude</strong></td><td>Yes (limited)</td><td>$20/mo (Pro)</td><td>$3-15 per 1M tokens (varies by model)</td></tr>
+        <tr><td><strong>ChatGPT</strong></td><td>Yes (GPT-4o mini)</td><td>$20/mo (Plus)</td><td>$2.50-15 per 1M tokens (varies by model)</td></tr>
+        <tr><td><strong>Gemini</strong></td><td>Yes</td><td>$20/mo (Advanced)</td><td>Pay-per-use via Vertex AI</td></tr>
+        <tr><td><strong>Copilot</strong></td><td>Yes (limited)</td><td>$20-30/mo</td><td>Via Azure OpenAI</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Best Use Case Summary</h3>
+    <table>
+      <thead>
+        <tr><th style="width:25%;">If You Need...</th><th style="width:20%;">Choose</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Strategic thinking, long document analysis, quality writing</td><td><strong>Claude</strong></td><td>Deepest reasoning, most natural writing, exceptional at complex analysis and agentic workflows</td></tr>
+        <tr><td>Data analysis, charts, broad plugin ecosystem</td><td><strong>ChatGPT</strong></td><td>Code Interpreter for in-chat data work, largest ecosystem of integrations and GPTs</td></tr>
+        <tr><td>Google Workspace integration, real-time web data</td><td><strong>Gemini</strong></td><td>Native Google integration, massive context window, strong multimodal capabilities</td></tr>
+        <tr><td>Microsoft 365 environment, IDE code completion</td><td><strong>Copilot</strong></td><td>Deepest Microsoft integration, GitHub Copilot is unmatched for in-editor code assistance</td></tr>
+      </tbody>
+    </table>
+
+    <h3>The Practical Recommendation</h3>
+    <p>For most businesses starting their AI journey, here is the pragmatic approach:</p>
+    <ol>
+      <li><strong>Start with one platform.</strong> Pay for the Pro/Plus tier of whichever tool aligns with your primary use case (see table above). Master it before adding others.</li>
+      <li><strong>Use the free tier of a second tool</strong> for tasks where your primary tool is weaker. For example, if you use Claude for writing and strategy, use ChatGPT's free tier for quick data visualizations.</li>
+      <li><strong>Do not pay for more than two AI subscriptions</strong> in your first 90 days. The productivity gain comes from depth of use, not breadth of tools.</li>
+      <li><strong>Re-evaluate quarterly.</strong> This market moves fast. The best tool in January may not be the best in April. Stay informed but avoid constant switching.</li>
+    </ol>
+
+    <div class="key-point">
+      <strong>Honest take:</strong> All four platforms are remarkably capable. The difference between them is often smaller than the difference between a well-crafted prompt and a lazy one. Invest more time in learning how to communicate with AI effectively than in choosing the "perfect" platform. The prompts in this guide work across all four tools.
+    </div>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 10</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 11 — QUICKSTART DAYS 1 & 2
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>5-Day AI Quickstart</span>
+  </div>
+  <div class="page-body">
+    <h2>5-Day AI Quickstart Checklist</h2>
+    <p class="section-intro">Five days, 30 minutes each. By Friday, you will have a working AI-assisted workflow producing real business output. No theory, just execution.</p>
+
+    <div class="day-card">
+      <div class="day-label">DAY 1</div>
+      <div class="day-title">Set Up Your AI Workspace</div>
+      <div class="day-meta">
+        <span>Time: 30 min</span>
+        <span>Outcome: AI account configured with your business context</span>
+      </div>
+      <ul class="checklist">
+        <li><strong>Create your account</strong> on your chosen AI platform (Claude recommended for business use). Enable the Pro tier if budget allows -- the quality difference is significant.</li>
+        <li><strong>Write your Business Context Document</strong> -- a 200-300 word description of your business, target audience, products/services, brand voice, and current priorities. Save this as a text file.</li>
+        <li><strong>Start your first conversation</strong> by pasting the Business Context Document and asking: "Based on this context, what are the 3 highest-impact tasks you can help me with this week?" Evaluate the suggestions.</li>
+        <li><strong>Set up a dedicated folder</strong> on your computer for AI outputs: prompts you have refined, outputs worth keeping, and templates that work.</li>
+        <li><strong>Bookmark your AI tool</strong> and set it as your browser start page for the next 5 days. Friction reduction matters.</li>
+      </ul>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label">DAY 2</div>
+      <div class="day-title">Automate Your First Document</div>
+      <div class="day-meta">
+        <span>Time: 30 min</span>
+        <span>Outcome: One business document produced in 1/4 of the usual time</span>
+      </div>
+      <ul class="checklist">
+        <li><strong>Pick one document you create regularly:</strong> a client proposal, weekly report, meeting summary, product description, or email template. Choose something you spend at least 30 minutes on each time.</li>
+        <li><strong>Paste an example of your best version</strong> of this document into the AI and say: "This is a [document type] I wrote. Analyze its structure, tone, and format. I want you to help me create new versions of this document quickly."</li>
+        <li><strong>Provide the inputs for a new version:</strong> Give the AI the specific details (client name, project scope, key points) and let it generate a draft.</li>
+        <li><strong>Review and edit</strong> the draft. Do not accept the first output as final. Mark what needs changing, ask for revisions, and iterate until you have a document you would actually send.</li>
+        <li><strong>Save the winning prompt</strong> as a template. Next time you need this document, paste the template and fill in new details. Your 45-minute task is now a 10-minute task.</li>
+        <li><strong>Record time saved:</strong> Note how long this took versus your manual process. Day 5 uses this data.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 11</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 12 — QUICKSTART DAYS 3 & 4
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>5-Day AI Quickstart</span>
+  </div>
+  <div class="page-body">
+
+    <div class="day-card">
+      <div class="day-label">DAY 3</div>
+      <div class="day-title">Build Your AI Knowledge Base</div>
+      <div class="day-meta">
+        <span>Time: 30 min</span>
+        <span>Outcome: AI that understands your business like a team member</span>
+      </div>
+      <ul class="checklist">
+        <li><strong>Gather your core business documents:</strong> your best sales page copy, FAQ answers, customer testimonials, product descriptions, and brand guidelines. These are the raw materials that teach AI your voice.</li>
+        <li><strong>Create a "Business Bible" prompt</strong> -- a single document (500-1000 words) that includes: your value proposition, ideal customer profile, common customer objections and your responses, your brand's tone rules, and 3-5 examples of writing you consider on-brand.</li>
+        <li><strong>Test the knowledge base</strong> by starting a new conversation, pasting the Business Bible, then asking: "Write a response to a customer who asks: Why should I choose you over [Competitor]?" Evaluate whether the output sounds like your brand.</li>
+        <li><strong>Refine based on gaps:</strong> If the AI gets something wrong, add that correction to your Business Bible. "We never claim X" or "We always emphasize Y" are powerful additions.</li>
+        <li><strong>Store the Business Bible</strong> in your AI outputs folder. This is your most valuable AI asset -- update it monthly as your business evolves.</li>
+      </ul>
+    </div>
+
+    <div class="day-card">
+      <div class="day-label">DAY 4</div>
+      <div class="day-title">Create Your First Automated Workflow</div>
+      <div class="day-meta">
+        <span>Time: 30 min</span>
+        <span>Outcome: One repeating business process connected to AI</span>
+      </div>
+      <ul class="checklist">
+        <li><strong>Identify a process you repeat weekly:</strong> writing a newsletter, creating social posts, summarizing meeting notes, responding to common customer inquiries, or generating reports.</li>
+        <li><strong>Map the workflow steps:</strong> Write down every step from input to final output. For example: "Receive meeting notes -> Summarize key decisions -> List action items -> Assign owners -> Format as email -> Send to team."</li>
+        <li><strong>Create a prompt chain:</strong> Write a specific prompt for each step. The output of Step 1 becomes the input for Step 2. Test the full chain end-to-end with real data from last week.</li>
+        <li><strong>Set up a trigger:</strong> Decide when this workflow runs. "Every Monday morning" or "After every client call." Add it to your calendar with a link to your saved prompts.</li>
+        <li><strong>Optional -- connect to automation:</strong> If you use Zapier, Make, or similar tools, explore connecting your AI platform's API to trigger the workflow automatically. Even a simple "email arrives -> AI summarizes -> summary sent to Slack" saves meaningful time.</li>
+        <li><strong>Record the time investment:</strong> How long did it take to set up? How much time will it save per week? You need this for tomorrow's ROI calculation.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 12</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 13 — QUICKSTART DAY 5 & REVIEW
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>5-Day AI Quickstart</span>
+  </div>
+  <div class="page-body">
+
+    <div class="day-card">
+      <div class="day-label">DAY 5</div>
+      <div class="day-title">Measure &amp; Optimize</div>
+      <div class="day-meta">
+        <span>Time: 30 min</span>
+        <span>Outcome: Clear ROI picture and a plan for Week 2</span>
+      </div>
+      <ul class="checklist">
+        <li><strong>Calculate time saved this week.</strong> Add up the hours you saved across Days 2-4. Compare the time spent using AI (including prompt writing and editing) versus doing each task manually. Most people find 40-60% time savings in the first week.</li>
+        <li><strong>Assess quality.</strong> Were the AI-assisted outputs at least as good as your manual work? Better? Where did quality fall short? Rate each output on a simple 1-5 scale.</li>
+        <li><strong>Identify your best prompt.</strong> Which of your prompts produced the best results with the least editing? What made it work? (Usually: specific context, clear format instructions, and a defined audience.)</li>
+        <li><strong>List friction points.</strong> Where did you get stuck? What took longer than expected? Common issues: vague prompts producing generic output, AI not understanding industry jargon, or needing too many revision cycles.</li>
+        <li><strong>Plan Week 2:</strong> Pick 2 new tasks to AI-assist next week. Apply what you learned about prompt quality. Expand one of this week's workflows to cover more of the process.</li>
+        <li><strong>Share one win.</strong> Tell a colleague or business partner about the most useful thing AI did for you this week. Teaching reinforces learning, and you might get useful tips in return.</li>
+      </ul>
+    </div>
+
+    <h3>Building the Weekly Habit</h3>
+    <p>The 5-day quickstart is just the beginning. Here is how to maintain momentum:</p>
+
+    <table>
+      <thead>
+        <tr><th>Week</th><th>Focus</th><th>Goal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Week 2</strong></td><td>Expand to 2 more tasks</td><td>5 total AI-assisted workflows</td></tr>
+        <tr><td><strong>Week 3</strong></td><td>Refine prompt quality</td><td>Reduce editing time by 50%</td></tr>
+        <tr><td><strong>Week 4</strong></td><td>Add one automation</td><td>At least 1 task runs semi-automatically</td></tr>
+        <tr><td><strong>Month 2</strong></td><td>Team adoption</td><td>Share your best prompts with 1-2 colleagues</td></tr>
+        <tr><td><strong>Month 3</strong></td><td>Strategic integration</td><td>AI embedded in your core business processes</td></tr>
+      </tbody>
+    </table>
+
+    <div class="key-point">
+      <strong>The compound effect:</strong> Each hour you invest in prompt refinement saves you multiple hours in the coming months. A well-crafted prompt template used 50 times per year at 20 minutes saved per use equals 16 hours reclaimed from a single 30-minute investment. This is the real ROI of AI adoption -- not the first use, but the hundredth.
+    </div>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 13</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 14 — NEXT STEPS / CTA
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>Next Steps</span>
+  </div>
+  <div class="page-body">
+    <h2>Ready to Go Deeper?</h2>
+    <p class="section-intro">This guide covers the fundamentals. The AI Native Playbook Series goes further -- with advanced strategies, real-world implementation support, and proven frameworks.</p>
+
+    <div class="cta-box">
+      <h3>AI Native Playbook Series</h3>
+      <p style="font-size:11pt; color:var(--gray-600); margin-bottom:5mm;">From starter to AI-native business -- a structured path with proven frameworks</p>
+      <p style="font-size:13pt; font-weight:700; color:var(--navy);">ai-native-playbook.com</p>
+    </div>
+
+    <h3>What You Will Find</h3>
+
+    <h4>Advanced AI Business Frameworks</h4>
+    <ul>
+      <li>Complete AI-native marketing system design -- from funnel architecture to automated reporting</li>
+      <li>AI-powered product development workflows -- from market validation to launch</li>
+      <li>Team AI adoption playbooks -- how to get your entire organization using AI effectively, not just you</li>
+    </ul>
+
+    <h4>Industry-Specific Playbooks</h4>
+    <ul>
+      <li>E-commerce: AI-driven product descriptions, dynamic pricing, and inventory forecasting</li>
+      <li>Professional services: Proposal automation, client communication, and knowledge management</li>
+      <li>SaaS: AI-enhanced onboarding, churn prediction, and feature prioritization</li>
+      <li>Content creators: Multi-platform content engines, audience growth, and monetization</li>
+    </ul>
+
+    <h4>Implementation Support</h4>
+    <ul>
+      <li>Step-by-step implementation guides with video walkthroughs</li>
+      <li>Prompt library with 100+ tested, refined prompts for common business tasks</li>
+      <li>Monthly trend reports on new AI capabilities and how to apply them</li>
+      <li>Community of AI-native business builders sharing wins and lessons</li>
+    </ul>
+
+    <h3>Recommended Learning Path</h3>
+    <table>
+      <thead>
+        <tr><th>Stage</th><th>What to Study</th><th>Expected Timeline</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Foundation</strong></td><td>This guide + 5-Day Quickstart (you are here)</td><td>Week 1</td></tr>
+        <tr><td><strong>Application</strong></td><td>Industry-specific playbook for your business type</td><td>Weeks 2-4</td></tr>
+        <tr><td><strong>Scale</strong></td><td>Team adoption &amp; advanced automation frameworks</td><td>Month 2-3</td></tr>
+        <tr><td><strong>Optimize</strong></td><td>AI-native business model design &amp; competitive strategy</td><td>Month 3+</td></tr>
+      </tbody>
+    </table>
+
+    <div class="key-point">
+      <strong>Start today.</strong> The gap between businesses that adopt AI now and those that wait is widening every month. You do not need to master everything -- you just need to start with one workflow, see the results, and expand from there. This guide gave you the starting point. The rest is execution.
+    </div>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 14</div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 15 — ABOUT & CREDITS
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="brand">AI Native Playbook Series</span>
+    <span>About</span>
+  </div>
+  <div class="page-body">
+    <h2>About &amp; Credits</h2>
+
+    <h3>AI Native Playbook Series</h3>
+    <p>The AI Native Playbook Series provides practical, no-theory-needed frameworks for building businesses that use AI as a core operating system -- not just a bolt-on tool. Every guide, course, and resource is built around one principle: <strong>execution beats education</strong>.</p>
+    <p>We do not teach you how AI works. We teach you how to make AI work for your business, starting today.</p>
+
+    <h3>Our Approach</h3>
+    <ul>
+      <li><strong>Real-world first:</strong> Every framework is tested in live businesses before it is published.</li>
+      <li><strong>Tool-agnostic foundations:</strong> While we note which tools excel at what, our strategies work across all major AI platforms.</li>
+      <li><strong>Beginner-friendly, expert-deep:</strong> Start simple, go as deep as your business needs.</li>
+      <li><strong>Updated continuously:</strong> AI moves fast. Our content moves with it.</li>
+    </ul>
+
+    <h3>Connect</h3>
+    <table>
+      <tbody>
+        <tr><td style="width:30%; font-weight:700;">Website</td><td>ai-native-playbook.com</td></tr>
+        <tr><td style="font-weight:700;">Free Guide Landing Page</td><td>ai-native-playbook.com/free-guide</td></tr>
+        <tr><td style="font-weight:700;">Newsletter</td><td>Weekly AI business insights -- subscribe at ai-native-playbook.com</td></tr>
+        <tr><td style="font-weight:700;">LinkedIn</td><td>Follow for daily AI-native business tips</td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:15mm; padding-top:5mm; border-top:2px solid var(--gray-200);">
+      <h3>Legal</h3>
+      <p style="font-size:8.5pt; color:var(--gray-500); line-height:1.6;">
+        &copy; 2026 AI Native Playbook Series. All rights reserved. This guide is provided for personal and business use by the subscriber. You may share this guide with your team. You may not resell or redistribute it commercially.
+      </p>
+      <p style="font-size:8.5pt; color:var(--gray-500); line-height:1.6;">
+        The information in this guide is provided for educational purposes. AI tools and pricing are subject to change. We recommend verifying current pricing and feature sets on each platform's official website. Product names and trademarks are the property of their respective owners.
+      </p>
+      <p style="font-size:8.5pt; color:var(--gray-500); line-height:1.6;">
+        AI Native Playbook Series is not affiliated with Anthropic, OpenAI, Google, or Microsoft. Our comparisons and recommendations are based on independent evaluation.
+      </p>
+    </div>
+
+    <div style="text-align:center; margin-top:15mm;">
+      <div style="font-size:18pt; font-weight:900; color:var(--navy);">AI</div>
+      <div style="font-size:9pt; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--blue); margin-top:2mm;">AI Native Playbook Series</div>
+      <div style="font-size:8pt; color:var(--gray-400); margin-top:3mm;">2026 Edition &nbsp;&bull;&nbsp; v1.0</div>
+    </div>
+  </div>
+  <div class="page-footer">AI Native Playbook Series &nbsp;&bull;&nbsp; ai-native-playbook.com &nbsp;&bull;&nbsp; Page 15</div>
+</div>
+
+</body>
+</html>

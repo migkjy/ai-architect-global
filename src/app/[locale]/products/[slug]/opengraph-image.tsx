@@ -81,7 +81,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
             fontWeight: "600",
           }}
         >
-          ai-driven-architect.com
+          ai-native-playbook.com
         </div>
       </div>
     ),

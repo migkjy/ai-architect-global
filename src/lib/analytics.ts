@@ -1,5 +1,5 @@
 /**
- * GA4 Event Tracking Utility — ai-driven-architect.com
+ * GA4 Event Tracking Utility — ai-native-playbook.com
  * Measurement ID: G-76C0HSW5LB
  */
 
