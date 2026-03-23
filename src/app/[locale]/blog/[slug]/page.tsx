@@ -28,7 +28,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!post) return {};
 
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
-  const canonicalUrl = `${siteUrl}/blog/${slug}`;
+  const canonicalUrl = locale === "en"
+    ? `${siteUrl}/en/blog/${slug}`
+    : `${siteUrl}/${locale}/blog/${slug}`;
 
   return {
     title: post.title,
@@ -74,10 +76,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        en: `${siteUrl}/blog/${slug}`,
+        en: `${siteUrl}/en/blog/${slug}`,
         ko: `${siteUrl}/ko/blog/${slug}`,
         ja: `${siteUrl}/ja/blog/${slug}`,
-        "x-default": canonicalUrl,
+        "x-default": `${siteUrl}/en/blog/${slug}`,
       },
     },
     robots: {
@@ -144,7 +146,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       width: 1200,
       height: 630,
     },
-    url: `${siteUrl}/blog/${slug}`,
+    url: locale === "en" ? `${siteUrl}/en/blog/${slug}` : `${siteUrl}/${locale}/blog/${slug}`,
     inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
     author: {
       "@type": "Organization",
@@ -164,7 +166,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${siteUrl}/blog/${slug}`,
+      "@id": locale === "en" ? `${siteUrl}/en/blog/${slug}` : `${siteUrl}/${locale}/blog/${slug}`,
     },
     keywords: post.tags.join(", "),
     wordCount: Math.round(post.content.split(/\s+/).length),
@@ -179,8 +181,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "AI Native Playbook Series", item: siteUrl },
-      { "@type": "ListItem", position: 2, name: "Blog", item: `${siteUrl}/blog` },
-      { "@type": "ListItem", position: 3, name: post.title, item: `${siteUrl}/blog/${slug}` },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${siteUrl}/${locale}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: locale === "en" ? `${siteUrl}/en/blog/${slug}` : `${siteUrl}/${locale}/blog/${slug}` },
     ],
   };
 
