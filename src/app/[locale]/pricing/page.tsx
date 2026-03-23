@@ -6,7 +6,7 @@ const BuyButton = dynamic(() => import("@/components/BuyButton"));
 import { setRequestLocale } from "next-intl/server";
 
 const SITE_URL =
-  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
 export async function generateMetadata({
   params,
@@ -415,7 +415,7 @@ export default async function PricingPage({
               </ul>
 
               <a
-                href="mailto:support@ai-driven-architect.com?subject=Enterprise%20Inquiry"
+                href="mailto:support@ai-native-playbook.com?subject=Enterprise%20Inquiry"
                 className="inline-flex items-center justify-center px-8 py-3 rounded-xl font-bold transition-all transform hover:scale-105 bg-transparent border border-white/20 text-text-primary hover:border-gold/40 hover:text-gold w-full text-center"
                 data-testid="cta-enterprise"
               >

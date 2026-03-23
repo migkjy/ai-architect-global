@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 
 const INDEXNOW_KEY = "aiarchitectglobal2026indexnow";
-const INDEXNOW_HOST = "ai-driven-architect.com";
+const INDEXNOW_HOST = "ai-native-playbook.com";
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 
 // GET: 모든 블로그 포스트 URL을 IndexNow에 일괄 제출 (en locale 기준)
@@ -27,7 +27,7 @@ export async function GET() {
   const res = await fetch(INDEXNOW_ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "application/json; charset=utf-8" },
-    body: JSON.stringify({ host: INDEXNOW_HOST, key: INDEXNOW_KEY, keyLocation: `https://ai-driven-architect.com/${INDEXNOW_KEY}.txt`, urlList: urls }),
+    body: JSON.stringify({ host: INDEXNOW_HOST, key: INDEXNOW_KEY, keyLocation: `https://ai-native-playbook.com/${INDEXNOW_KEY}.txt`, urlList: urls }),
   });
 
   return NextResponse.json({ submitted: urls.length, status: res.status });

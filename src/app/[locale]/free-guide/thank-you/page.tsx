@@ -5,7 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { GA4LeadComplete } from "@/components/GA4PurchaseComplete";
 
 const SITE_URL =
-  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-driven-architect.com").trim();
+  (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
 export async function generateMetadata({
   params,
