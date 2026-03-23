@@ -2,6 +2,7 @@
 title: "AI Marketing Strategy 2026: Step-by-Step Framework"
 description: "Build a complete AI marketing strategy using Russell Brunson and Jeff Walker frameworks. Actionable steps for entrepreneurs and small business owners."
 date: "2026-03-07"
+updated: "2026-03-24"
 category: "AI Marketing"
 tags: ["AI marketing strategy", "AI marketing 2026", "marketing automation", "AI business framework", "Russell Brunson AI", "digital marketing AI"]
 locale: "en"
@@ -40,6 +41,8 @@ Instead of guessing what to say when, give AI the PLF framework and your product
 - Social proof integration points
 - Scarcity and urgency triggers timed to your launch calendar
 - Post-launch follow-up for non-buyers
+
+If you want to go deeper on the email side, [AI email automation for solopreneurs](/en/blog/ai-email-automation-for-solopreneurs) covers the full sequence architecture and prompt system that makes these sequences convert.
 
 ### Step 3: Write Copy That Converts
 
