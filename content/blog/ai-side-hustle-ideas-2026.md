@@ -172,4 +172,8 @@ The AI side hustles that fail are the ones started for the income and abandoned 
 
 ---
 
+For the complete end-to-end system — from choosing your revenue model to automating customer acquisition — the [AI Business Blueprint](/en/blog/ai-business-blueprint-2026) walks through every phase with specific prompts and timelines. And the mindset shift that separates successful AI businesses from the rest? The [AI Architect vs. AI User guide](/en/blog/ai-architect-vs-ai-user) explains why building systems compounds while using tools one-off does not.
+
+If you chose Model 6 (digital products) and want to ship fast, the [AI-Native Product Builder's Playbook](/en/blog/ai-native-product-builder-playbook) provides a 30-day framework to go from idea to paying customers.
+
 The [AI Native Playbook Series](/en/products) provides the business frameworks behind models 1, 2, and 5 — including AI system prompts for the Russell Brunson funnel framework, Jeff Walker's product launch model, and Jim Edwards' copywriting templates. Start with the [free guide](/en/free-guide) to see which framework fits your model before committing to the full system.

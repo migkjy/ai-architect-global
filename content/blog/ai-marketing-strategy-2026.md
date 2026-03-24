@@ -88,6 +88,10 @@ Each guide includes:
 - Step-by-step implementation guide
 - Real case studies with documented results
 
+Once your marketing strategy is defined, executing it at speed requires the right tools. The [solopreneur AI stack guide](/en/blog/solopreneur-ai-stack-2026) covers the exact ten tools that handle marketing, sales, and operations for a one-person business.
+
+For the funnel execution side of this strategy, the [AI sales funnel guide](/en/blog/ai-sales-funnel-guide-2026) walks through building the complete funnel — from lead capture to conversion — using the frameworks covered here. And if you want to master the DotCom Secrets component specifically, the [Russell Brunson AI framework guide](/en/blog/russell-brunson-ai-framework) goes deep on Value Ladder, Hook-Story-Offer, and the Soap Opera Sequence.
+
 Not sure which framework fits your business? Grab our [free AI starter guide](/en/free-guide) first — it compares all six frameworks side by side and gives you 3 prompts to test immediately.
 
 The [Complete Bundle](/bundle) includes all six frameworks for $47 — less than the cost of a single business book.
