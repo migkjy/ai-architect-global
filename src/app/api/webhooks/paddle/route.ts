@@ -179,7 +179,7 @@ async function handleTransactionCompleted(
     `[paddle-webhook] transaction.completed: txn=${txId}, email=${order.customerEmail}, product=${order.productName}, amount=${order.amount}, links=${Object.keys(downloadLinks).length}`
   );
 
-  // Send confirmation email with download links
+  // Send confirmation email with download links (with retry — max 3 attempts)
   let emailResult: { success: boolean; error?: string; messageId?: string } = {
     success: false,
     error: "not attempted",
@@ -188,10 +188,10 @@ async function handleTransactionCompleted(
     `[paddle-webhook] Sending confirmation email via Resend: txn=${txId}, to="${order.customerEmail || "(empty)"}", sender=noreply@apppro.kr, downloadLinks=${Object.keys(downloadLinks).join(",")}`
   );
   try {
-    emailResult = await sendPurchaseConfirmationEmail(order, txId, downloadLinks);
+    emailResult = await sendPurchaseConfirmationEmail(order, txId, downloadLinks, { maxRetries: 3 });
     if (!emailResult.success) {
       console.error(
-        `[paddle-webhook] Email send failed: txn=${txId}, error="${emailResult.error}"`
+        `[paddle-webhook] Email send failed after retries: txn=${txId}, error="${emailResult.error}"`
       );
     } else {
       console.log(
@@ -207,19 +207,36 @@ async function handleTransactionCompleted(
   }
 
   // Notify CEO via Telegram
-  await notifyTelegram([
-    `New Purchase!`,
+  const siteUrlForNotify =
+    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
+  const telegramLines = [
+    `🛒 New Purchase!`,
     `Product: ${order.productName}`,
     `Amount: $${(order.amount / 100).toFixed(2)} ${order.currency}`,
     `Customer: ${order.customerEmail}`,
     `Transaction: ${txId}`,
-    `Email: ${emailResult.success ? "Sent" : `FAILED - ${emailResult.error}`}`,
-  ]);
+    `Email: ${emailResult.success ? `✅ Sent (${emailResult.messageId})` : `❌ FAILED - ${emailResult.error}`}`,
+  ];
+
+  // If email failed, add manual fulfillment instructions
+  if (!emailResult.success) {
+    telegramLines.push(
+      ``,
+      `⚠️ MANUAL FULFILLMENT NEEDED`,
+      `Run: curl -X POST ${siteUrlForNotify}/api/delivery/fulfill \\`,
+      `  -H "Authorization: Bearer $PADDLE_API_KEY" \\`,
+      `  -H "Content-Type: application/json" \\`,
+      `  -d '{"transactionId":"${txId}"}'`
+    );
+  }
+
+  await notifyTelegram(telegramLines);
 
   return NextResponse.json({
     received: true,
     orderId: order.id,
     status: "completed",
+    emailSent: emailResult.success,
   });
 }
 

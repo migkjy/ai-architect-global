@@ -138,15 +138,25 @@ export async function POST(request: NextRequest) {
     siteUrl
   );
 
-  // Send email
+  // Send email (with retry — max 3 attempts)
   const emailResult = await sendPurchaseConfirmationEmail(
     order,
     transactionId,
-    downloadLinks
+    downloadLinks,
+    { maxRetries: 3 }
   );
 
   console.log(
     `[delivery/fulfill] Manual fulfillment: txn=${transactionId}, email=${customerEmail}, product=${productName}, emailSuccess=${emailResult.success}`
+  );
+
+  // Notify CEO via Telegram about manual fulfillment result
+  await notifyTelegramFulfillment(
+    transactionId,
+    customerEmail,
+    productName,
+    emailResult.success,
+    emailResult.error
   );
 
   return NextResponse.json({
@@ -159,6 +169,42 @@ export async function POST(request: NextRequest) {
     emailResult,
     thankYouUrl: `${siteUrl}/thank-you?token=${downloadToken}&type=${productType}&product=${encodeURIComponent(productName)}`,
   });
+}
+
+/**
+ * Notify CEO via Telegram about manual fulfillment result.
+ * Fails silently — fulfillment response is returned regardless.
+ */
+async function notifyTelegramFulfillment(
+  transactionId: string,
+  customerEmail: string,
+  productName: string,
+  emailSuccess: boolean,
+  emailError?: string
+): Promise<void> {
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!botToken || !chatId) return;
+
+  const lines = [
+    `🔧 Manual Fulfillment ${emailSuccess ? "✅" : "❌"}`,
+    `Transaction: ${transactionId}`,
+    `Customer: ${customerEmail}`,
+    `Product: ${productName}`,
+    emailSuccess
+      ? `Email: ✅ Sent successfully`
+      : `Email: ❌ FAILED - ${emailError}`,
+  ];
+
+  try {
+    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: chatId, text: lines.join("\n") }),
+    });
+  } catch (err) {
+    console.error("[delivery/fulfill] Telegram notification failed:", err);
+  }
 }
 
 // ─── Helpers ───
