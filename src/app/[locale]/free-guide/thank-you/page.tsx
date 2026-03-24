@@ -13,10 +13,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const canonicalUrl =
-    locale === "en"
-      ? `${SITE_URL}/free-guide/thank-you`
-      : `${SITE_URL}/${locale}/free-guide/thank-you`;
+  const canonicalUrl = `${SITE_URL}/${locale}/free-guide/thank-you`;
 
   return {
     title: "Thank You — Your Free Guide is Ready",
@@ -79,8 +76,9 @@ export default async function ThankYouPage({
 
         {/* Download Button */}
         <a
-          href="/guides/ai-starter-guide.pdf"
-          download
+          href="/guides/ai-starter-guide.html"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-10 py-4 rounded-xl font-bold text-lg transition-all transform hover:scale-105 bg-gold text-navy-dark hover:bg-gold-light mb-10"
         >
           <svg

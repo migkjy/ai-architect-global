@@ -11,7 +11,10 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const canonicalUrl = `${BASE_URL}/${locale}/patterns`;
+
   return {
     title: "AI Architecture Patterns — Proven Business Frameworks Automated with AI | AI Native Playbook",
     description:
@@ -31,16 +34,16 @@ export function generateMetadata(): Metadata {
     openGraph: {
       title: "AI Architecture Patterns — Proven Business Frameworks Automated with AI | AI Native Playbook",
       description: "5 AI architecture patterns for business: Value Ladder, Mass Movement, Dream 100, Story Copy, Product Launch. Free to explore — runs on any AI.",
-      url: `${BASE_URL}/patterns`,
+      url: canonicalUrl,
       type: "website",
       images: [{ url: `${BASE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Architecture Patterns — AI Native Playbook" }],
     },
     alternates: {
-      canonical: `${BASE_URL}/patterns`,
+      canonical: canonicalUrl,
       languages: {
-        en: `${BASE_URL}/patterns`,
+        en: `${BASE_URL}/en/patterns`,
         ja: `${BASE_URL}/ja/patterns`,
-        "x-default": `${BASE_URL}/patterns`,
+        "x-default": `${BASE_URL}/en/patterns`,
       },
     },
   };

@@ -11,7 +11,6 @@ import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { books } from "@/lib/products";
 import BlogInlineCTA from "@/components/BlogInlineCTA";
-import EmailCapture from "@/components/EmailCapture";
 import { splitContentAtMidpoint } from "@/lib/blog-content-utils";
 
 export const revalidate = 60; // 60초마다 재검증 — 예약 시각 도래 시 자동 공개
@@ -29,7 +28,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!post) return {};
 
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
-  const canonicalUrl = `${siteUrl}/blog/${slug}`;
+  const canonicalUrl = locale === "en"
+    ? `${siteUrl}/en/blog/${slug}`
+    : `${siteUrl}/${locale}/blog/${slug}`;
 
   return {
     title: post.title,
@@ -75,17 +76,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        en: `${siteUrl}/blog/${slug}`,
+        en: `${siteUrl}/en/blog/${slug}`,
         ko: `${siteUrl}/ko/blog/${slug}`,
         ja: `${siteUrl}/ja/blog/${slug}`,
-        "x-default": canonicalUrl,
+        "x-default": `${siteUrl}/en/blog/${slug}`,
       },
     },
     robots: {
-      index: !post.noindex,
+      index: true,
       follow: true,
       googleBot: {
-        index: !post.noindex,
+        index: true,
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large" as const,
@@ -145,7 +146,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       width: 1200,
       height: 630,
     },
-    url: `${siteUrl}/blog/${slug}`,
+    url: locale === "en" ? `${siteUrl}/en/blog/${slug}` : `${siteUrl}/${locale}/blog/${slug}`,
     inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
     author: {
       "@type": "Organization",
@@ -165,7 +166,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${siteUrl}/blog/${slug}`,
+      "@id": locale === "en" ? `${siteUrl}/en/blog/${slug}` : `${siteUrl}/${locale}/blog/${slug}`,
     },
     keywords: post.tags.join(", "),
     wordCount: Math.round(post.content.split(/\s+/).length),
@@ -180,8 +181,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "AI Native Playbook Series", item: siteUrl },
-      { "@type": "ListItem", position: 2, name: "Blog", item: `${siteUrl}/blog` },
-      { "@type": "ListItem", position: 3, name: post.title, item: `${siteUrl}/blog/${slug}` },
+      { "@type": "ListItem", position: 2, name: "Blog", item: `${siteUrl}/${locale}/blog` },
+      { "@type": "ListItem", position: 3, name: post.title, item: locale === "en" ? `${siteUrl}/en/blog/${slug}` : `${siteUrl}/${locale}/blog/${slug}` },
     ],
   };
 
@@ -326,12 +327,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </div>
 
-      <div className="mt-8 pt-8 border-t border-white/10">
-        <div className="max-w-md mx-auto">
-          <p className="text-center text-text-primary font-semibold mb-1">Get weekly AI business frameworks</p>
-          <p className="text-center text-xs text-text-muted mb-4">Join 500+ entrepreneurs. Free, every Friday.</p>
-          <EmailCapture className="" buttonText="Subscribe Free" />
-        </div>
+      <div className="mt-8 pt-8 border-t border-white/10 text-center">
+        <p className="text-text-secondary mb-2">Get weekly AI business frameworks — every Friday.</p>
+        <p className="text-xs text-text-muted">500+ entrepreneurs subscribed · No spam · Unsubscribe anytime</p>
       </div>
 
       {/* Related Posts */}

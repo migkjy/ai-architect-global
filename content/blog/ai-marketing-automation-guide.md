@@ -71,4 +71,8 @@ Set a 90-day review checkpoint. Look at which automated sequences are performing
 
 The businesses that win with marketing automation aren't the ones with the most complex systems. They're the ones that built simple, consistent systems and measured them honestly.
 
+For the tools that power each automation system, the [solopreneur AI stack guide](/en/blog/solopreneur-ai-stack-2026) covers the exact ten tools — from email platforms to AI writing assistants — that handle marketing, sales, and operations. And if you want the right prompts to feed into these systems, our [50 ChatGPT prompts for entrepreneurs](/en/blog/chatgpt-prompts-for-entrepreneurs) provides ready-to-use templates for email copy, social content, and customer follow-up.
+
+Building a content pipeline alongside your automation? The [AI content pipeline guide](/en/blog/building-ai-content-pipeline) shows how to produce consistent, quality content in 45 minutes per piece — the fuel that makes your automated distribution actually work.
+
 Ready to build your first automated marketing system? The [AI Native Playbook Series](/en/products) includes frameworks and prompt systems for email sequences, social content, and customer follow-up — or start with the [free guide](/en/free-guide) to understand the core principles first.

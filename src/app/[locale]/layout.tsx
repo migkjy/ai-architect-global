@@ -37,7 +37,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const ogLocale = OG_LOCALE_MAP[locale] ?? "en_US";
-  const pageUrl = locale === "en" ? SITE_URL : `${SITE_URL}/${locale}`;
+  const pageUrl = `${SITE_URL}/${locale}`;
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -106,10 +106,10 @@ export async function generateMetadata({
     alternates: {
       canonical: pageUrl,
       languages: {
-        en: SITE_URL,
+        en: `${SITE_URL}/en`,
         ko: `${SITE_URL}/ko`,
         ja: `${SITE_URL}/ja`,
-        "x-default": SITE_URL,
+        "x-default": `${SITE_URL}/en`,
       },
     },
   };
@@ -256,9 +256,9 @@ export default async function LocaleLayout({
           <>
             <Script
               src="https://cdn.paddle.com/paddle/v2/paddle.js"
-              strategy="lazyOnload"
+              strategy="afterInteractive"
             />
-            <Script id="paddle-init" strategy="lazyOnload">
+            <Script id="paddle-init" strategy="afterInteractive">
               {`
                 (function() {
                   var checkPaddle = setInterval(function() {

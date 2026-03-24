@@ -34,13 +34,16 @@ export async function generateMetadata({
   const title = `${pattern.title} | AI Native Playbook`;
   const description = pattern.description;
 
+  const { locale } = await params;
+  const canonicalUrl = `${BASE_URL}/${locale}/patterns/${slug}`;
+
   return {
     title,
     description,
     openGraph: {
       title,
       description,
-      url: `${BASE_URL}/patterns/${slug}`,
+      url: canonicalUrl,
       type: "article",
       siteName: "AI Native Playbook",
       images: [{ url: `${BASE_URL}/opengraph-image`, width: 1200, height: 630, alt: title }],
@@ -51,7 +54,7 @@ export async function generateMetadata({
       description,
     },
     alternates: {
-      canonical: `${BASE_URL}/patterns/${slug}`,
+      canonical: canonicalUrl,
     },
   };
 }

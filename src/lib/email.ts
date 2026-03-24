@@ -1,8 +1,11 @@
 /**
- * Email sending utilities via Brevo API
+ * Email sending utilities via Resend API (transactional)
  *
  * Used by webhook handlers to send purchase confirmation emails.
  * Extracted for testability and reuse across payment providers.
+ *
+ * Policy: Resend = transactional emails (purchase confirmation, payment failure)
+ *         Brevo  = marketing emails (newsletter, onboarding sequences)
  */
 
 import type { Order } from "@/lib/orders";
@@ -14,19 +17,19 @@ export interface EmailSendResult {
 }
 
 /**
- * Send purchase confirmation email via Brevo.
+ * Send purchase confirmation email via Resend.
  *
  * Includes: product name, amount, transaction ID, download link.
- * Gracefully returns { success: false } when BREVO_API_KEY is not set.
+ * Gracefully returns { success: false } when RESEND_API_KEY is not set.
  */
 export async function sendPurchaseConfirmationEmail(
   order: Order,
   transactionId: string,
   downloadLinks?: Record<string, string>
 ): Promise<EmailSendResult> {
-  const brevoKey = process.env.BREVO_API_KEY;
-  if (!brevoKey) {
-    return { success: false, error: "BREVO_API_KEY not configured" };
+  const resendKey = process.env.RESEND_API_KEY;
+  if (!resendKey) {
+    return { success: false, error: "RESEND_API_KEY not configured" };
   }
 
   if (!order.customerEmail) {
@@ -38,20 +41,17 @@ export async function sendPurchaseConfirmationEmail(
 
   const htmlContent = buildConfirmationEmailHtml(order, transactionId, siteUrl, downloadLinks);
 
-  const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      "api-key": brevoKey,
+      "Authorization": `Bearer ${resendKey}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      sender: {
-        name: "AI Native Playbook Series",
-        email: "hello@ai-native-playbook.com",
-      },
-      to: [{ email: order.customerEmail, name: order.customerName || undefined }],
+      from: "AI Native Playbook <noreply@apppro.kr>",
+      to: [order.customerEmail],
       subject: `Your ${order.productName} is ready to download`,
-      htmlContent,
+      html: htmlContent,
     }),
   });
 
@@ -59,12 +59,12 @@ export async function sendPurchaseConfirmationEmail(
     const errText = await res.text();
     return {
       success: false,
-      error: `Brevo API error: ${res.status} ${errText}`,
+      error: `Resend API error: ${res.status} ${errText}`,
     };
   }
 
-  const data = await res.json();
-  return { success: true, messageId: data.messageId };
+  const data = await res.json() as { id?: string };
+  return { success: true, messageId: data.id };
 }
 
 /**
@@ -183,7 +183,7 @@ function extractTokenFromLinks(
 }
 
 /**
- * Send payment failure notification email.
+ * Send payment failure notification email via Resend.
  * Notifies the customer that their payment could not be processed.
  */
 export async function sendPaymentFailureEmail(
@@ -191,9 +191,9 @@ export async function sendPaymentFailureEmail(
   customerName: string,
   productName: string
 ): Promise<EmailSendResult> {
-  const brevoKey = process.env.BREVO_API_KEY;
-  if (!brevoKey) {
-    return { success: false, error: "BREVO_API_KEY not configured" };
+  const resendKey = process.env.RESEND_API_KEY;
+  if (!resendKey) {
+    return { success: false, error: "RESEND_API_KEY not configured" };
   }
 
   if (!customerEmail) {
@@ -203,20 +203,17 @@ export async function sendPaymentFailureEmail(
   const siteUrl =
     (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
-  const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+  const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      "api-key": brevoKey,
+      "Authorization": `Bearer ${resendKey}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      sender: {
-        name: "AI Native Playbook Series",
-        email: "hello@ai-native-playbook.com",
-      },
-      to: [{ email: customerEmail, name: customerName || undefined }],
+      from: "AI Native Playbook <noreply@apppro.kr>",
+      to: [customerEmail],
       subject: `Action needed: Payment issue for ${productName}`,
-      htmlContent: `<!DOCTYPE html>
+      html: `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
 <body style="margin:0;padding:0;background:#f5f5f5;">
@@ -249,9 +246,9 @@ export async function sendPaymentFailureEmail(
 
   if (!res.ok) {
     const errText = await res.text();
-    return { success: false, error: `Brevo API error: ${res.status} ${errText}` };
+    return { success: false, error: `Resend API error: ${res.status} ${errText}` };
   }
 
-  const data = await res.json();
-  return { success: true, messageId: data.messageId };
+  const data = await res.json() as { id?: string };
+  return { success: true, messageId: data.id };
 }

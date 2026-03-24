@@ -119,6 +119,10 @@ Every prompt improves with three additions: context about your business, a descr
 
 Build a personal prompt library. When you write a prompt that produces great output, save it. Add notes about what worked. Over time, your prompt library becomes a competitive asset that compounds.
 
+These prompts work even better when paired with the right tools. The [solopreneur AI stack guide](/en/blog/solopreneur-ai-stack-2026) covers the ten AI tools that handle marketing, sales, and operations — so you know where to run each prompt for maximum impact. For a focused comparison of ChatGPT vs. Claude and other tools, see the [best AI tools for small business guide](/en/blog/ai-tools-for-small-business-2026).
+
+Once you have a library of prompts producing content, the [AI content pipeline guide](/en/blog/building-ai-content-pipeline) shows how to turn those prompts into a repeatable system — going from idea to published article in 45 minutes.
+
 Want a head start? Download our [free AI business automation guide](/en/free-guide) — it includes 3 production-ready prompts and a 5-day action plan you can run this week.
 
 Want pre-built prompt systems organized by business framework? The [AI Native Playbook Series](/en/products) packages tested prompts for sales funnels, email sequences, and launch campaigns — ready to load and customize. Or explore our [patterns library](/en/patterns) for structured AI workflow examples.

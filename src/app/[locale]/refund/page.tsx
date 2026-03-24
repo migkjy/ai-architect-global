@@ -4,23 +4,28 @@ import { setRequestLocale } from "next-intl/server";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
-export const metadata: Metadata = {
-  title: "Refund Policy — AI Native Playbook Series",
-  description:
-    "Refund policy for AI Native Playbook Series digital products. Full refund available within 14 days of purchase if the product has not been downloaded. Download available for 30 days from purchase.",
-  openGraph: {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const canonicalUrl = `${SITE_URL}/${locale}/refund`;
+
+  return {
     title: "Refund Policy — AI Native Playbook Series",
-    description: "Full refund within 14 days if not downloaded. Download available for 30 days.",
-    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/refund`,
-  },
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
+    description:
+      "Refund policy for AI Native Playbook Series digital products. Full refund available within 14 days of purchase if the product has not been downloaded. Download available for 30 days from purchase.",
+    openGraph: {
+      title: "Refund Policy — AI Native Playbook Series",
+      description: "Full refund within 14 days if not downloaded. Download available for 30 days.",
+      images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
+    },
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
+}
 
 const BREADCRUMB_LABELS: Record<string, { home: string; page: string }> = {
   en: { home: "Home", page: "Refund Policy" },

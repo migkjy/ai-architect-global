@@ -2,6 +2,7 @@
 title: "Build an AI Sales Funnel in 2026 — Complete Guide"
 description: "Step-by-step guide to building an automated AI sales funnel that captures leads, nurtures prospects, and closes sales — without a full marketing team."
 date: "2026-03-13"
+updated: "2026-03-24"
 author: "AI Native Playbook"
 tags: ["AI sales funnel", "automated sales funnel", "AI funnel builder", "sales automation", "AI marketing"]
 category: "AI Marketing"
@@ -117,7 +118,7 @@ You do not need sophisticated automation for this. Most email platforms support 
 
 ### The Sales Page Structure That Works in 2026
 
-Long-form sales pages still outperform short pages for offers above $47. The structure, adapted from Russell Brunson's DotCom Secrets framework:
+Long-form sales pages still outperform short pages for offers above $47. The structure, adapted from [Russell Brunson's DotCom Secrets framework](/en/blog/russell-brunson-ai-framework):
 
 1. **Attention headline** — The transformation, not the product
 2. **Agitation section** — Name the specific frustrations the reader feels right now
@@ -204,5 +205,9 @@ This is executable in parallel while running your business:
 At the end of 30 days, you have a functional funnel generating revenue on autopilot. Not perfect — version one never is. But live and learning.
 
 ---
+
+If you are running paid traffic to your funnel, you need the right [AI marketing strategy](/en/blog/ai-marketing-strategy-2026) to ensure every dollar spent feeds the funnel efficiently. And once the funnel is live, [AI email automation](/en/blog/ai-email-automation-for-solopreneurs) handles the nurture sequence so leads move through the stages without daily manual work.
+
+Planning a product launch around your funnel? The [Product Launch Formula with AI guide](/en/blog/product-launch-formula-ai) shows how to build anticipation and convert during a structured launch window — the perfect complement to an evergreen funnel.
 
 The [AI Native Playbook Series](/en/products) includes complete AI system prompts for every funnel stage — opt-in copy, email sequences, and sales pages — built on the Russell Brunson and Jeff Walker frameworks. Download the [free starter guide](/en/free-guide) to see how the framework approach works before you invest in the full system.

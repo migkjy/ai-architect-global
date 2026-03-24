@@ -22,9 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const book = getBookBySlug(slug);
   if (!book) return {};
 
-  const canonicalUrl = locale === "en"
-    ? `${SITE_URL}/products/${slug}/quick-start`
-    : `${SITE_URL}/${locale}/products/${slug}/quick-start`;
+  const canonicalUrl = `${SITE_URL}/${locale}/products/${slug}/quick-start`;
 
   return {
     title: `Quick Start — ${book.title} | AI Native Playbook`,
@@ -251,9 +249,7 @@ export default async function QuickStartPage({ params }: Props) {
   const content = quickStartContent[slug];
   if (!content) notFound();
 
-  const canonicalUrl = locale === "en"
-    ? `${SITE_URL}/products/${slug}/quick-start`
-    : `${SITE_URL}/${locale}/products/${slug}/quick-start`;
+  const canonicalUrl = `${SITE_URL}/${locale}/products/${slug}/quick-start`;
 
   const howToJsonLd = {
     "@context": "https://schema.org",

@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
   const meta = bundleMeta[locale] ?? bundleMeta.en;
-  const canonicalUrl = locale === "en" ? `${siteUrl}/bundle` : `${siteUrl}/${locale}/bundle`;
+  const canonicalUrl = `${siteUrl}/${locale}/bundle`;
 
   return {
     title: meta.title,
@@ -50,9 +50,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        en: `${siteUrl}/bundle`,
+        en: `${siteUrl}/en/bundle`,
         ja: `${siteUrl}/ja/bundle`,
-        "x-default": `${siteUrl}/bundle`,
+        "x-default": `${siteUrl}/en/bundle`,
       },
     },
     openGraph: {

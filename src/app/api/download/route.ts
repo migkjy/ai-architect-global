@@ -18,6 +18,7 @@ import {
   isValidProductType,
 } from "@/lib/download";
 import { logDownload } from "@/lib/download-log";
+import { isRefunded } from "@/lib/refund-guard";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
@@ -42,6 +43,18 @@ export async function GET(request: NextRequest) {
   if (!valid || !orderId) {
     return NextResponse.json(
       { error: "Download link expired or invalid." },
+      { status: 403 }
+    );
+  }
+
+  // Block download if order has been refunded
+  const refunded = await isRefunded(orderId);
+  if (refunded) {
+    return NextResponse.json(
+      {
+        error:
+          "Download access revoked due to refund. Contact hello@ai-native-playbook.com if you believe this is an error.",
+      },
       { status: 403 }
     );
   }
