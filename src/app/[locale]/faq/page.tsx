@@ -9,7 +9,7 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playboo
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "faqPage" });
-  const canonicalUrl = locale === "en" ? `${SITE_URL}/faq` : `${SITE_URL}/${locale}/faq`;
+  const canonicalUrl = locale === "en" ? `${SITE_URL}/en/faq` : `${SITE_URL}/${locale}/faq`;
 
   return {
     title: t("title"),
@@ -28,10 +28,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        en: `${SITE_URL}/faq`,
+        en: `${SITE_URL}/en/faq`,
         ko: `${SITE_URL}/ko/faq`,
         ja: `${SITE_URL}/ja/faq`,
-        "x-default": `${SITE_URL}/faq`,
+        "x-default": `${SITE_URL}/en/faq`,
       },
     },
     openGraph: {
@@ -123,11 +123,11 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
-      { "@type": "ListItem", position: 2, name: t("title"), item: `${SITE_URL}/faq` },
+      { "@type": "ListItem", position: 2, name: t("title"), item: `${SITE_URL}/en/faq` },
     ],
   };
 
-  const canonicalFaqUrl = locale === "en" ? `${SITE_URL}/faq` : `${SITE_URL}/${locale}/faq`;
+  const canonicalFaqUrl = locale === "en" ? `${SITE_URL}/en/faq` : `${SITE_URL}/${locale}/faq`;
 
   const faqJsonLd = {
     "@context": "https://schema.org",

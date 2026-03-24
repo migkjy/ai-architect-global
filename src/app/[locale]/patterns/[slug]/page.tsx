@@ -40,7 +40,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: `${BASE_URL}/patterns/${slug}`,
+      url: `${BASE_URL}/en/patterns/${slug}`,
       type: "article",
       siteName: "AI Native Playbook",
       images: [{ url: `${BASE_URL}/opengraph-image`, width: 1200, height: 630, alt: title }],
@@ -51,7 +51,7 @@ export async function generateMetadata({
       description,
     },
     alternates: {
-      canonical: `${BASE_URL}/patterns/${slug}`,
+      canonical: `${BASE_URL}/en/patterns/${slug}`,
     },
   };
 }
@@ -75,7 +75,7 @@ export default async function PatternPage({
     "@type": "HowTo",
     name: pattern.title,
     description: pattern.description,
-    url: `${BASE_URL}/patterns/${slug}`,
+    url: `${BASE_URL}/en/patterns/${slug}`,
     step: pattern.keySteps.map((step, i) => ({
       "@type": "HowToStep",
       position: i + 1,
@@ -108,7 +108,7 @@ export default async function PatternPage({
         "@type": "ListItem",
         position: 2,
         name: "Patterns",
-        item: `${BASE_URL}/patterns`,
+        item: `${BASE_URL}/en/patterns`,
       },
       {
         "@type": "ListItem",

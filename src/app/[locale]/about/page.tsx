@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
   const meta = aboutMeta[locale] ?? aboutMeta.en;
-  const canonicalUrl = locale === "en" ? `${siteUrl}/about` : `${siteUrl}/${locale}/about`;
+  const canonicalUrl = locale === "en" ? `${siteUrl}/en/about` : `${siteUrl}/${locale}/about`;
 
   return {
     title: meta.title,
@@ -41,10 +41,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        en: `${siteUrl}/about`,
+        en: `${siteUrl}/en/about`,
         ko: `${siteUrl}/ko/about`,
         ja: `${siteUrl}/ja/about`,
-        "x-default": `${siteUrl}/about`,
+        "x-default": `${siteUrl}/en/about`,
       },
     },
     openGraph: {
@@ -83,7 +83,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       "@context": "https://schema.org",
       "@type": "AboutPage",
       name: "About AI Native Playbook Series",
-      url: `${siteUrl}/about`,
+      url: `${siteUrl}/en/about`,
       description: "Bridge the gap between reading and executing proven business frameworks with AI-powered tools.",
       isPartOf: { "@id": `${siteUrl}/#website` },
       mainEntity: { "@id": `${siteUrl}/#organization` },
@@ -92,8 +92,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-        { "@type": "ListItem", position: 2, name: "About", item: `${siteUrl}/about` },
+        { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/en` },
+        { "@type": "ListItem", position: 2, name: "About", item: `${siteUrl}/en/about` },
       ],
     },
   ];

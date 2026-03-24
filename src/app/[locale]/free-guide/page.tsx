@@ -16,7 +16,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const canonicalUrl =
     locale === "en"
-      ? `${SITE_URL}/free-guide`
+      ? `${SITE_URL}/en/free-guide`
       : `${SITE_URL}/${locale}/free-guide`;
 
   return {
@@ -26,9 +26,9 @@ export async function generateMetadata({
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        en: `${SITE_URL}/free-guide`,
+        en: `${SITE_URL}/en/free-guide`,
         ja: `${SITE_URL}/ja/free-guide`,
-        "x-default": `${SITE_URL}/free-guide`,
+        "x-default": `${SITE_URL}/en/free-guide`,
       },
     },
     openGraph: {
@@ -42,7 +42,7 @@ export async function generateMetadata({
       images: [
         {
           url: locale === "en"
-            ? `${SITE_URL}/free-guide/opengraph-image`
+            ? `${SITE_URL}/en/free-guide/opengraph-image`
             : `${SITE_URL}/${locale}/free-guide/opengraph-image`,
           width: 1200,
           height: 630,
@@ -57,7 +57,7 @@ export async function generateMetadata({
         "Free guide: automate marketing funnels, sales copy, and product launches with AI. Instant PDF download — no purchase required.",
       images: [
         locale === "en"
-          ? `${SITE_URL}/free-guide/opengraph-image`
+          ? `${SITE_URL}/en/free-guide/opengraph-image`
           : `${SITE_URL}/${locale}/free-guide/opengraph-image`,
       ],
     },
@@ -106,7 +106,7 @@ export default async function FreeGuidePage({
 
   const canonicalUrl =
     locale === "en"
-      ? `${SITE_URL}/free-guide`
+      ? `${SITE_URL}/en/free-guide`
       : `${SITE_URL}/${locale}/free-guide`;
 
   const courseJsonLd = {

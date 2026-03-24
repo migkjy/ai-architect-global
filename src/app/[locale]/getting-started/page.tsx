@@ -12,7 +12,7 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playboo
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
   const canonicalUrl = locale === "en"
-    ? `${SITE_URL}/getting-started`
+    ? `${SITE_URL}/en/getting-started`
     : `${SITE_URL}/${locale}/getting-started`;
 
   return {
@@ -76,7 +76,7 @@ export default async function GettingStartedPage({ params }: Props) {
   setRequestLocale(locale);
 
   const canonicalUrl = locale === "en"
-    ? `${SITE_URL}/getting-started`
+    ? `${SITE_URL}/en/getting-started`
     : `${SITE_URL}/${locale}/getting-started`;
 
   const howToJsonLd = {

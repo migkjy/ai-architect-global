@@ -15,7 +15,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const canonicalUrl =
-    locale === "en" ? `${SITE_URL}/pricing` : `${SITE_URL}/${locale}/pricing`;
+    locale === "en" ? `${SITE_URL}/en/pricing` : `${SITE_URL}/${locale}/pricing`;
 
   return {
     title: "Pricing — AI Native Playbook Series",
@@ -31,9 +31,9 @@ export async function generateMetadata({
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        en: `${SITE_URL}/pricing`,
+        en: `${SITE_URL}/en/pricing`,
         ja: `${SITE_URL}/ja/pricing`,
-        "x-default": `${SITE_URL}/pricing`,
+        "x-default": `${SITE_URL}/en/pricing`,
       },
     },
     openGraph: {
@@ -141,13 +141,13 @@ export default async function PricingPage({
         "@type": "ListItem",
         position: 2,
         name: "Pricing",
-        item: `${SITE_URL}/pricing`,
+        item: `${SITE_URL}/en/pricing`,
       },
     ],
   };
 
   const canonicalPricingUrl =
-    locale === "en" ? `${SITE_URL}/pricing` : `${SITE_URL}/${locale}/pricing`;
+    locale === "en" ? `${SITE_URL}/en/pricing` : `${SITE_URL}/${locale}/pricing`;
 
   const offerCatalogJsonLd = {
     "@context": "https://schema.org",

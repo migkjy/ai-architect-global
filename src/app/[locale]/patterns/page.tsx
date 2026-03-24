@@ -31,16 +31,16 @@ export function generateMetadata(): Metadata {
     openGraph: {
       title: "AI Architecture Patterns — Proven Business Frameworks Automated with AI | AI Native Playbook",
       description: "5 AI architecture patterns for business: Value Ladder, Mass Movement, Dream 100, Story Copy, Product Launch. Free to explore — runs on any AI.",
-      url: `${BASE_URL}/patterns`,
+      url: `${BASE_URL}/en/patterns`,
       type: "website",
       images: [{ url: `${BASE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Architecture Patterns — AI Native Playbook" }],
     },
     alternates: {
-      canonical: `${BASE_URL}/patterns`,
+      canonical: `${BASE_URL}/en/patterns`,
       languages: {
-        en: `${BASE_URL}/patterns`,
+        en: `${BASE_URL}/en/patterns`,
         ja: `${BASE_URL}/ja/patterns`,
-        "x-default": `${BASE_URL}/patterns`,
+        "x-default": `${BASE_URL}/en/patterns`,
       },
     },
   };
@@ -67,14 +67,14 @@ export default async function PatternsPage({
     name: "AI Architecture Patterns — AI Native Playbook",
     description: "Proven business frameworks structured as AI architecture patterns — automated with AI for immediate execution",
     keywords: "AI architecture patterns, AI architect, AI native playbook, business automation AI",
-    url: `${BASE_URL}/patterns`,
+    url: `${BASE_URL}/en/patterns`,
     mainEntity: {
       "@type": "ItemList",
       itemListElement: patterns.map((p, i) => ({
         "@type": "ListItem",
         position: i + 1,
         name: p.title,
-        url: `${BASE_URL}/patterns/${p.slug}`,
+        url: `${BASE_URL}/en/patterns/${p.slug}`,
         description: p.description,
       })),
     },

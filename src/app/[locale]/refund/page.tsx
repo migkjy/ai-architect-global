@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
   },
   alternates: {
-    canonical: `${SITE_URL}/refund`,
+    canonical: `${SITE_URL}/en/refund`,
   },
   robots: {
     index: false,

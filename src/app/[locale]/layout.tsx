@@ -37,7 +37,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const ogLocale = OG_LOCALE_MAP[locale] ?? "en_US";
-  const pageUrl = locale === "en" ? SITE_URL : `${SITE_URL}/${locale}`;
+  const pageUrl = locale === "en" ? `${SITE_URL}/en` : `${SITE_URL}/${locale}`;
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -106,10 +106,10 @@ export async function generateMetadata({
     alternates: {
       canonical: pageUrl,
       languages: {
-        en: SITE_URL,
+        en: `${SITE_URL}/en`,
         ko: `${SITE_URL}/ko`,
         ja: `${SITE_URL}/ja`,
-        "x-default": SITE_URL,
+        "x-default": `${SITE_URL}/en`,
       },
     },
   };
@@ -143,7 +143,7 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
         "@type": "WebSite",
         "@id": `${siteUrl}/#website`,
         name: names[locale] ?? names.en,
-        url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`,
+        url: locale === "en" ? `${siteUrl}/en` : `${siteUrl}/${locale}`,
         description: descriptions[locale] ?? descriptions.en,
         inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
         publisher: {

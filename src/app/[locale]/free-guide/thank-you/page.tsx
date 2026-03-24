@@ -15,7 +15,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const canonicalUrl =
     locale === "en"
-      ? `${SITE_URL}/free-guide/thank-you`
+      ? `${SITE_URL}/en/free-guide/thank-you`
       : `${SITE_URL}/${locale}/free-guide/thank-you`;
 
   return {
