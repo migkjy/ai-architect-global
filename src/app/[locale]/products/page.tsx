@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
   const meta = productsMeta[locale] ?? productsMeta.en;
-  const canonicalUrl = locale === "en" ? `${siteUrl}/products` : `${siteUrl}/${locale}/products`;
+  const canonicalUrl = `${siteUrl}/${locale}/products`;
   const ogDescription = (meta as typeof productsMeta.en).ogDescription ?? meta.description;
 
   return {
@@ -51,9 +51,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        en: `${siteUrl}/products`,
+        en: `${siteUrl}/en/products`,
         ja: `${siteUrl}/ja/products`,
-        "x-default": `${siteUrl}/products`,
+        "x-default": `${siteUrl}/en/products`,
       },
     },
     openGraph: {
@@ -96,7 +96,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
     return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
   }
 
-  const canonicalProductsUrl = locale === "en" ? `${siteUrl}/products` : `${siteUrl}/${locale}/products`;
+  const canonicalProductsUrl = `${siteUrl}/${locale}/products`;
 
   const jsonLd = [
     {

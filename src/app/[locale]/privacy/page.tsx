@@ -4,23 +4,28 @@ import { setRequestLocale } from "next-intl/server";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
-export const metadata: Metadata = {
-  title: "Privacy Policy — AI Native Playbook Series",
-  description:
-    "Privacy Policy for AI Native Playbook Series by ai-architect. Learn how we collect, use, and protect your personal data in compliance with GDPR and international law.",
-  openGraph: {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const canonicalUrl = `${SITE_URL}/${locale}/privacy`;
+
+  return {
     title: "Privacy Policy — AI Native Playbook Series",
-    description: "Learn how we collect, use, and protect your personal data.",
-    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/privacy`,
-  },
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
+    description:
+      "Privacy Policy for AI Native Playbook Series by ai-architect. Learn how we collect, use, and protect your personal data in compliance with GDPR and international law.",
+    openGraph: {
+      title: "Privacy Policy — AI Native Playbook Series",
+      description: "Learn how we collect, use, and protect your personal data.",
+      images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
+    },
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
+}
 
 const BREADCRUMB_LABELS: Record<string, { home: string; page: string }> = {
   en: { home: "Home", page: "Privacy Policy" },

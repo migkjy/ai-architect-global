@@ -14,10 +14,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const canonicalUrl =
-    locale === "en"
-      ? `${SITE_URL}/free-guide`
-      : `${SITE_URL}/${locale}/free-guide`;
+  const canonicalUrl = `${SITE_URL}/${locale}/free-guide`;
 
   return {
     title: "Free AI Business Automation Starter Guide",
@@ -26,9 +23,9 @@ export async function generateMetadata({
     alternates: {
       canonical: canonicalUrl,
       languages: {
-        en: `${SITE_URL}/free-guide`,
+        en: `${SITE_URL}/en/free-guide`,
         ja: `${SITE_URL}/ja/free-guide`,
-        "x-default": `${SITE_URL}/free-guide`,
+        "x-default": `${SITE_URL}/en/free-guide`,
       },
     },
     openGraph: {
@@ -104,10 +101,7 @@ export default async function FreeGuidePage({
   setRequestLocale(locale);
   const t = await getTranslations("freeGuide");
 
-  const canonicalUrl =
-    locale === "en"
-      ? `${SITE_URL}/free-guide`
-      : `${SITE_URL}/${locale}/free-guide`;
+  const canonicalUrl = `${SITE_URL}/${locale}/free-guide`;
 
   const courseJsonLd = {
     "@context": "https://schema.org",

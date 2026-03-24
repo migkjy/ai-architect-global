@@ -4,23 +4,28 @@ import { setRequestLocale } from "next-intl/server";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
-export const metadata: Metadata = {
-  title: "Terms of Service — AI Native Playbook Series",
-  description:
-    "Terms of Service for AI Native Playbook Series by ai-architect. Digital product license, payment terms via Paddle, refund policy, and usage guidelines explained.",
-  openGraph: {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const canonicalUrl = `${SITE_URL}/${locale}/terms`;
+
+  return {
     title: "Terms of Service — AI Native Playbook Series",
-    description: "Digital product license, payment terms, refund policy, and usage guidelines.",
-    images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
-  },
-  alternates: {
-    canonical: `${SITE_URL}/terms`,
-  },
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
+    description:
+      "Terms of Service for AI Native Playbook Series by ai-architect. Digital product license, payment terms via Paddle, refund policy, and usage guidelines explained.",
+    openGraph: {
+      title: "Terms of Service — AI Native Playbook Series",
+      description: "Digital product license, payment terms, refund policy, and usage guidelines.",
+      images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
+    },
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
+}
 
 const BREADCRUMB_LABELS: Record<string, { home: string; page: string }> = {
   en: { home: "Home", page: "Terms of Service" },

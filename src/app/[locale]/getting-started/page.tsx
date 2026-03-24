@@ -11,9 +11,7 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playboo
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const canonicalUrl = locale === "en"
-    ? `${SITE_URL}/getting-started`
-    : `${SITE_URL}/${locale}/getting-started`;
+  const canonicalUrl = `${SITE_URL}/${locale}/getting-started`;
 
   return {
     title: "Getting Started — AI Native Playbook Series",
@@ -75,9 +73,7 @@ export default async function GettingStartedPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const canonicalUrl = locale === "en"
-    ? `${SITE_URL}/getting-started`
-    : `${SITE_URL}/${locale}/getting-started`;
+  const canonicalUrl = `${SITE_URL}/${locale}/getting-started`;
 
   const howToJsonLd = {
     "@context": "https://schema.org",
