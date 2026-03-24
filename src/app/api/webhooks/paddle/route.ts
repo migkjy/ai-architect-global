@@ -16,6 +16,19 @@ const processedTransactions = new Set<string>();
 const MAX_PROCESSED = 1000;
 
 /**
+ * GET handler — simple health check for the webhook endpoint.
+ * Returns 200 so we can verify the route is reachable.
+ */
+export async function GET() {
+  return NextResponse.json({
+    status: "ok",
+    endpoint: "/api/webhooks/paddle",
+    method: "POST required",
+    timestamp: new Date().toISOString(),
+  });
+}
+
+/**
  * Paddle Webhook Handler
  *
  * Handled events:
@@ -131,11 +144,32 @@ async function handleTransactionCompleted(
   const productType = detectProductType(order.productName);
   const downloadLinks = getAllDownloadLinks(txId, downloadToken, productType, siteUrl);
 
+  console.log(
+    `[paddle-webhook] transaction.completed: txn=${txId}, email=${order.customerEmail}, product=${order.productName}, amount=${order.amount}, links=${Object.keys(downloadLinks).length}`
+  );
+
   // Send confirmation email with download links
+  let emailResult: { success: boolean; error?: string; messageId?: string } = {
+    success: false,
+    error: "not attempted",
+  };
   try {
-    await sendPurchaseConfirmationEmail(order, txId, downloadLinks);
+    emailResult = await sendPurchaseConfirmationEmail(order, txId, downloadLinks);
+    if (!emailResult.success) {
+      console.error(
+        `[paddle-webhook] Email send returned failure: txn=${txId}, error=${emailResult.error}`
+      );
+    } else {
+      console.log(
+        `[paddle-webhook] Email sent successfully: txn=${txId}, messageId=${emailResult.messageId}`
+      );
+    }
   } catch (emailErr) {
-    console.error("[paddle-order] Email send failed:", emailErr);
+    console.error("[paddle-webhook] Email send threw exception:", emailErr);
+    emailResult = {
+      success: false,
+      error: emailErr instanceof Error ? emailErr.message : String(emailErr),
+    };
   }
 
   // Notify CEO via Telegram
@@ -145,6 +179,7 @@ async function handleTransactionCompleted(
     `Amount: $${(order.amount / 100).toFixed(2)} ${order.currency}`,
     `Customer: ${order.customerEmail}`,
     `Transaction: ${txId}`,
+    `Email: ${emailResult.success ? "Sent" : `FAILED - ${emailResult.error}`}`,
   ]);
 
   return NextResponse.json({
@@ -276,12 +311,26 @@ function extractOrder(
 }
 
 function extractCustomerEmail(tx: Record<string, unknown>): string {
-  return (
+  // Paddle Billing V2 sends customer email in multiple possible locations:
+  // - billing_details.email (card payments)
+  // - customer.email (PayPal and other methods where billing_details may be null)
+  // - checkout.customer_email (overlay checkout)
+  // - address.email (some regions)
+  const email =
     getNestedString(tx, "billing_details.email") ??
     getNestedString(tx, "customer.email") ??
     getNestedString(tx, "details.billing_details.email") ??
-    ""
-  );
+    getNestedString(tx, "checkout.customer_email") ??
+    getNestedString(tx, "customer_email") ??
+    "";
+
+  if (!email) {
+    console.warn(
+      `[paddle-webhook] Could not extract customer email. Available keys: ${Object.keys(tx).join(", ")}. ` +
+      `billing_details=${JSON.stringify(tx.billing_details)}, customer=${JSON.stringify(tx.customer)}`
+    );
+  }
+  return email;
 }
 
 function extractCustomerName(tx: Record<string, unknown>): string {
