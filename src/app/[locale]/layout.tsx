@@ -37,7 +37,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const ogLocale = OG_LOCALE_MAP[locale] ?? "en_US";
-  const pageUrl = locale === "en" ? SITE_URL : `${SITE_URL}/${locale}`;
+  const pageUrl = `${SITE_URL}/${locale}`;
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -106,10 +106,10 @@ export async function generateMetadata({
     alternates: {
       canonical: pageUrl,
       languages: {
-        en: SITE_URL,
+        en: `${SITE_URL}/en`,
         ko: `${SITE_URL}/ko`,
         ja: `${SITE_URL}/ja`,
-        "x-default": SITE_URL,
+        "x-default": `${SITE_URL}/en`,
       },
     },
   };
