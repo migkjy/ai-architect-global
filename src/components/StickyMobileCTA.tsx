@@ -59,10 +59,11 @@ export default function StickyMobileCTA({
 
     if (paddlePriceId && paddleReady && window.Paddle?.Checkout) {
       e.preventDefault();
+      const siteUrl = window.location.origin;
       window.Paddle.Checkout.open({
         items: [{ priceId: paddlePriceId, quantity: 1 }],
         settings: {
-          successUrl: paddleSuccessUrl,
+          successUrl: paddleSuccessUrl ?? `${siteUrl}/thank-you`,
         },
       });
     }

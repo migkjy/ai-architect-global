@@ -125,8 +125,7 @@ export default function BuyButton({
     if (usePaddleOverlay && window.Paddle?.Checkout) {
       e.preventDefault();
 
-      const siteUrl =
-        (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
+      const siteUrl = window.location.origin;
 
       window.Paddle.Checkout.open({
         items: [{ priceId: paddlePriceId!, quantity: 1 }],
