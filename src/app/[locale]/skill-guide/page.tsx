@@ -10,9 +10,7 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playboo
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const canonicalUrl = locale === "en"
-    ? `${SITE_URL}/skill-guide`
-    : `${SITE_URL}/${locale}/skill-guide`;
+  const canonicalUrl = `${SITE_URL}/${locale}/skill-guide`;
 
   return {
     title: "AI Agent Skill Guide — How to Use Your .md Skill File | AI Native Playbook",
@@ -136,9 +134,7 @@ export default async function SkillGuidePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const canonicalUrl = locale === "en"
-    ? `${SITE_URL}/skill-guide`
-    : `${SITE_URL}/${locale}/skill-guide`;
+  const canonicalUrl = `${SITE_URL}/${locale}/skill-guide`;
 
   const faqJsonLd = {
     "@context": "https://schema.org",

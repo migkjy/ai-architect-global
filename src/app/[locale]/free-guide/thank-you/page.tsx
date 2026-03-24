@@ -13,10 +13,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const canonicalUrl =
-    locale === "en"
-      ? `${SITE_URL}/free-guide/thank-you`
-      : `${SITE_URL}/${locale}/free-guide/thank-you`;
+  const canonicalUrl = `${SITE_URL}/${locale}/free-guide/thank-you`;
 
   return {
     title: "Thank You — Your Free Guide is Ready",
