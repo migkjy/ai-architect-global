@@ -86,7 +86,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       canonical: canonicalUrl,
       languages: {
         en: `${siteUrl}/en`,
-        ko: `${siteUrl}/ko`,
         ja: `${siteUrl}/ja`,
         "x-default": `${siteUrl}/en`,
       },
