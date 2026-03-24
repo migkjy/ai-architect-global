@@ -351,4 +351,10 @@ Pick one model. Build one product. Get one customer. Then repeat.
 
 ---
 
+Looking for specific business models to pursue? The [7 AI side hustles guide](/en/blog/ai-side-hustle-ideas-2026) breaks down seven proven models — from copywriting services to micro-SaaS — with revenue ranges, timelines, and starting steps for each.
+
+The difference between following this blueprint as an AI user versus an AI architect determines your long-term advantage. The [AI Architect vs. AI User guide](/en/blog/ai-architect-vs-ai-user) explains why the gap between these two approaches is accelerating in 2026 — and how to make sure you are on the right side of it.
+
+Ready to ship your first product in 30 days? The [AI-Native Product Builder's Playbook](/en/blog/ai-native-product-builder-playbook) provides the exact five-phase framework to go from idea to paying customers without a team or funding.
+
 *Explore AI-powered business frameworks and guides in the [AI Native Playbook collection](/en/products), or download the [free guide](/en/free-guide) to start building your AI business system today.*

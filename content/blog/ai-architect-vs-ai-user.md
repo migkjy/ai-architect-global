@@ -64,4 +64,8 @@ The tools have stabilized. Claude, ChatGPT, and others are reliable enough to bu
 
 ---
 
+Want to see the AI architect approach in practice? The [AI Business Blueprint](/en/blog/ai-business-blueprint-2026) walks through building a complete revenue-generating system from zero — the exact kind of structured approach that separates architects from users. And if you are ready to ship your first AI-native product, the [AI-Native Product Builder's Playbook](/en/blog/ai-native-product-builder-playbook) gives you a 30-day framework to go from idea to paying customers.
+
+For specific business models where the architect advantage matters most, the [7 AI side hustles guide](/en/blog/ai-side-hustle-ideas-2026) covers seven proven models — each one built on systems, not one-off prompts.
+
 The AI Native Playbook Series provides the complete framework for transitioning from AI user to AI architect. Start with our [free guide on the three core principles](/en/free-guide), or explore the full [AI Native Playbook collection](/en/products) to build your first AI-powered system.
