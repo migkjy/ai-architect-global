@@ -8,16 +8,16 @@ import { getTranslations } from "next-intl/server";
 
 const aboutMeta: Record<string, { title: string; description: string }> = {
   en: {
-    title: "About AI Native Playbook Series — Why We Built AI-Powered Business Framework Guides",
-    description: "AI Native Playbook Series bridges the gap between reading and executing proven business frameworks. 6 AI-powered PDF guides that turn Russell Brunson, Jeff Walker, Jim Edwards systems into automated workflows.",
+    title: "About — AI Native Playbook Series",
+    description: "Bridge the gap between reading and executing business frameworks. 6 AI-powered PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards systems into action.",
   },
   ko: {
     title: "AI Native Playbook Series 소개 — AI 기반 비즈니스 프레임워크 가이드를 만든 이유",
     description: "비즈니스 프레임워크를 읽는 것과 실행하는 것 사이의 갭을 해소합니다. AI Native Playbook이 DotCom Secrets, PLF, Copywriting Secrets를 AI 시스템으로 전환합니다.",
   },
   ja: {
-    title: "AI Native Playbook Seriesについて — AIビジネスフレームワークガイドを作った理由",
-    description: "ビジネスフレームワークを読むことと実行することのギャップを埋めます。AI Native PlaybookがDotCom Secrets、PLF、Copywriting SecretsをAIシステムに変換。",
+    title: "AI Native Playbook Seriesについて",
+    description: "ビジネスフレームワークを読むことと実行することのギャップを埋めます。AI Native PlaybookがDotCom Secrets、PLFをAIシステムに変換。",
   },
 };
 
@@ -60,6 +60,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: meta.title,
       description: meta.description,
       images: [`${siteUrl}/opengraph-image`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large" as const,
+        "max-snippet": -1,
+      },
     },
   };
 }

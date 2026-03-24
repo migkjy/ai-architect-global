@@ -55,6 +55,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: t("subtitle"),
       images: [`${SITE_URL}/opengraph-image`],
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large" as const,
+        "max-snippet": -1,
+      },
+    },
   };
 }
 
