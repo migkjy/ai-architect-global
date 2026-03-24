@@ -47,7 +47,7 @@ export async function sendPurchaseConfirmationEmail(
     body: JSON.stringify({
       sender: {
         name: "AI Native Playbook Series",
-        email: "hello@ai-native-playbook.com",
+        email: "contact@apppro.kr",
       },
       to: [{ email: order.customerEmail, name: order.customerName || undefined }],
       subject: `Your ${order.productName} is ready to download`,
@@ -212,7 +212,7 @@ export async function sendPaymentFailureEmail(
     body: JSON.stringify({
       sender: {
         name: "AI Native Playbook Series",
-        email: "hello@ai-native-playbook.com",
+        email: "contact@apppro.kr",
       },
       to: [{ email: customerEmail, name: customerName || undefined }],
       subject: `Action needed: Payment issue for ${productName}`,
