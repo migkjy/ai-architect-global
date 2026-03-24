@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, Suspense } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 
 /* ──────────────────────────── Data ──────────────────────────── */
 
@@ -354,15 +354,75 @@ function EmailCapture() {
 
 /* ──────────────────────────── Main Page ──────────────────────────── */
 
-export default function ScorePage() {
+function SharedPreview({
+  sharedScore,
+  sharedTier,
+  onStart,
+}: {
+  sharedScore: number;
+  sharedTier: Tier;
+  onStart: () => void;
+}) {
+  const info = tiers[sharedTier];
+  return (
+    <div className="min-h-screen pt-24 pb-20">
+      <div className="max-w-2xl mx-auto px-4 text-center">
+        <span className="inline-block bg-gold/10 border border-gold/20 text-gold text-xs font-semibold px-4 py-1.5 rounded-full tracking-wide uppercase mb-6">
+          Shared Result
+        </span>
+        <p className="text-text-secondary mb-6">
+          Someone scored:
+        </p>
+
+        <ScoreRing score={sharedScore} max={30} />
+
+        <h1 className={`text-3xl md:text-4xl font-bold mb-3 ${info.color}`}>
+          {info.label}
+        </h1>
+        <p className="text-lg font-semibold text-text-primary mb-3">
+          {info.headline}
+        </p>
+        <p className="text-text-secondary leading-relaxed max-w-lg mx-auto mb-10">
+          {info.description}
+        </p>
+
+        <button
+          onClick={onStart}
+          className="inline-block px-8 py-4 bg-gold text-navy-dark font-bold rounded-xl text-lg hover:bg-gold-light transition-colors"
+        >
+          Take the Assessment Yourself &rarr;
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function ScorePageInner() {
   const params = useParams();
+  const searchParams = useSearchParams();
   const locale = (params?.locale as string) || "en";
+
+  // Check for shared score in URL params
+  const sharedScoreRaw = searchParams.get("s");
+  const sharedTierRaw = searchParams.get("t");
+  const sharedScoreNum = sharedScoreRaw ? parseInt(sharedScoreRaw, 10) : null;
+  const validSharedScore =
+    sharedScoreNum !== null && !isNaN(sharedScoreNum)
+      ? Math.max(0, Math.min(30, sharedScoreNum))
+      : null;
+  const validSharedTier: Tier | null =
+    sharedTierRaw === "beginner" || sharedTierRaw === "adopter" || sharedTierRaw === "native"
+      ? sharedTierRaw
+      : validSharedScore !== null
+        ? getTier(validSharedScore)
+        : null;
 
   const [currentQ, setCurrentQ] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(
     Array(questions.length).fill(null)
   );
   const [showResult, setShowResult] = useState(false);
+  const [dismissedPreview, setDismissedPreview] = useState(false);
 
   const score = answers.reduce<number>((sum, a) => sum + (a ?? 0), 0);
   const tier = getTier(score);
@@ -397,7 +457,20 @@ export default function ScorePage() {
   };
 
   const siteUrl = "https://ai-native-playbook.com";
-  const shareUrl = `${siteUrl}/${locale}/score`;
+  const shareUrl = showResult
+    ? `${siteUrl}/${locale}/score?s=${score}&t=${tier}`
+    : `${siteUrl}/${locale}/score`;
+
+  /* ── Shared Preview View ── */
+  if (validSharedScore !== null && validSharedTier !== null && !dismissedPreview && !showResult) {
+    return (
+      <SharedPreview
+        sharedScore={validSharedScore}
+        sharedTier={validSharedTier}
+        onStart={() => setDismissedPreview(true)}
+      />
+    );
+  }
 
   /* ── Result View ── */
   if (showResult) {
@@ -541,5 +614,19 @@ export default function ScorePage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ScorePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen pt-24 pb-20 flex items-center justify-center">
+          <div className="text-text-secondary">Loading...</div>
+        </div>
+      }
+    >
+      <ScorePageInner />
+    </Suspense>
   );
 }
