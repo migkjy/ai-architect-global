@@ -5,6 +5,7 @@
  * - Missing type/token returns 400
  * - Invalid product type returns 404
  * - Invalid/expired token returns 403
+ * - Refunded order returns 403 with refund message
  * - Valid request logs download and redirects to R2
  * - Download check API returns correct refund status
  */
@@ -24,6 +25,10 @@ vi.mock("@/lib/download-log", () => ({
   getDownloadHistory: vi.fn(),
 }));
 
+vi.mock("@/lib/refund-guard", () => ({
+  isRefunded: vi.fn().mockResolvedValue(false),
+}));
+
 describe("GET /api/download", () => {
   let GET: (req: NextRequest) => Promise<Response>;
 
@@ -41,6 +46,9 @@ describe("GET /api/download", () => {
       logDownload: vi.fn().mockResolvedValue(undefined),
       hasDownloaded: vi.fn(),
       getDownloadHistory: vi.fn(),
+    }));
+    vi.doMock("@/lib/refund-guard", () => ({
+      isRefunded: vi.fn().mockResolvedValue(false),
     }));
 
     const mod = await import("@/app/api/download/route");
@@ -78,6 +86,51 @@ describe("GET /api/download", () => {
     );
     const res = await GET(req);
     expect(res.status).toBe(403);
+  });
+
+  it("returns 403 with refund message for refunded order", async () => {
+    const { isValidProductType, verifyDownloadToken } = await import(
+      "@/lib/download"
+    );
+    const { isRefunded } = await import("@/lib/refund-guard");
+
+    (isValidProductType as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (verifyDownloadToken as ReturnType<typeof vi.fn>).mockReturnValue({
+      valid: true,
+      orderId: "txn_refunded_123",
+    });
+    (isRefunded as ReturnType<typeof vi.fn>).mockResolvedValue(true);
+
+    const req = new NextRequest(
+      "http://localhost/api/download?type=pdf-vol1&token=valid-token"
+    );
+    const res = await GET(req);
+
+    expect(res.status).toBe(403);
+    const json = await res.json();
+    expect(json.error).toContain("refund");
+  });
+
+  it("does not log download for refunded order", async () => {
+    const { isValidProductType, verifyDownloadToken } = await import(
+      "@/lib/download"
+    );
+    const { isRefunded } = await import("@/lib/refund-guard");
+    const { logDownload } = await import("@/lib/download-log");
+
+    (isValidProductType as ReturnType<typeof vi.fn>).mockReturnValue(true);
+    (verifyDownloadToken as ReturnType<typeof vi.fn>).mockReturnValue({
+      valid: true,
+      orderId: "txn_refunded_123",
+    });
+    (isRefunded as ReturnType<typeof vi.fn>).mockResolvedValue(true);
+
+    const req = new NextRequest(
+      "http://localhost/api/download?type=pdf-vol1&token=valid-token"
+    );
+    await GET(req);
+
+    expect(logDownload).not.toHaveBeenCalled();
   });
 
   it("redirects to R2 URL and logs download on valid request", async () => {

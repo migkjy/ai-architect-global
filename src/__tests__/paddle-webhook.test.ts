@@ -21,6 +21,10 @@ vi.mock("@/lib/email", () => ({
   sendPaymentFailureEmail: vi.fn().mockResolvedValue({ success: true }),
 }));
 
+vi.mock("@/lib/refund-guard", () => ({
+  markRefunded: vi.fn().mockResolvedValue(undefined),
+}));
+
 // Helper: create valid Paddle signature
 function createPaddleSignature(body: string, secret: string): string {
   const timestamp = Math.floor(Date.now() / 1000).toString();
@@ -365,11 +369,55 @@ describe("Paddle Webhook Handler", () => {
       expect(json.status).toBe("refunded");
     });
 
+    it("should call markRefunded() to persist refund in DB", async () => {
+      const body = JSON.stringify(makeRefundedEvent());
+      const sig = createPaddleSignature(body, WEBHOOK_SECRET);
+      const req = createRequest(body, sig);
+
+      await POST(req);
+
+      const { markRefunded } = await import("@/lib/refund-guard");
+      expect(markRefunded).toHaveBeenCalledWith(
+        expect.objectContaining({
+          transactionId: "txn_refund_001",
+          customerEmail: "buyer@example.com",
+        })
+      );
+    });
+
+    it("should still return 200 if markRefunded() throws", async () => {
+      vi.resetModules();
+      vi.doMock("@/lib/refund-guard", () => ({
+        markRefunded: vi.fn().mockRejectedValue(new Error("DB error")),
+      }));
+      vi.doMock("@/lib/email", () => ({
+        sendPurchaseConfirmationEmail: vi.fn().mockResolvedValue({ success: true }),
+        sendPaymentFailureEmail: vi.fn().mockResolvedValue({ success: true }),
+      }));
+
+      const mod = await import("@/app/api/webhooks/paddle/route");
+
+      const body = JSON.stringify(makeRefundedEvent());
+      const sig = createPaddleSignature(body, WEBHOOK_SECRET);
+      const req = createRequest(body, sig);
+
+      const res = await mod.POST(req);
+      expect(res.status).toBe(200);
+    });
+
     it("should send Telegram notification for refund", async () => {
       vi.stubEnv("TELEGRAM_BOT_TOKEN", "test-bot-token");
       vi.stubEnv("TELEGRAM_CHAT_ID", "12345");
 
       vi.resetModules();
+      vi.doMock("@/lib/refund-guard", () => ({
+        markRefunded: vi.fn().mockResolvedValue(undefined),
+      }));
+      vi.doMock("@/lib/email", () => ({
+        sendPurchaseConfirmationEmail: vi.fn().mockResolvedValue({ success: true }),
+        sendPaymentFailureEmail: vi.fn().mockResolvedValue({ success: true }),
+      }));
+
       const mod = await import("@/app/api/webhooks/paddle/route");
 
       const body = JSON.stringify(makeRefundedEvent());
