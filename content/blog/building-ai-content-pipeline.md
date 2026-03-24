@@ -91,4 +91,8 @@ Month 6: 20 minutes per piece (you've refined every prompt)
 
 ---
 
+Content production is one part of the system. To distribute that content automatically, the [AI marketing automation guide](/en/blog/ai-marketing-automation-guide) covers how to set up email sequences, social scheduling, and customer follow-up that run on autopilot. And for the tools that power each step of the pipeline, the [solopreneur AI stack guide](/en/blog/solopreneur-ai-stack-2026) breaks down the ten essential tools by business function.
+
+Need prompts to speed up each step? Our [50 ChatGPT prompts for entrepreneurs](/en/blog/chatgpt-prompts-for-entrepreneurs) includes templates for content ideation, SEO optimization, and social media — ready to plug into your pipeline.
+
 The [AI Native Playbook Series](/en/products) includes the complete prompt library for this pipeline, with versions optimized for different content types: blog posts, newsletters, social media, and email sequences. New to AI systems? Start with the [free guide](/en/free-guide) to understand the foundational principles before building your pipeline.
