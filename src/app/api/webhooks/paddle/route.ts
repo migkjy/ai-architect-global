@@ -141,19 +141,30 @@ async function handleTransactionCompleted(
   // PayPal payments often have billing_details=null and customer={}
   // so we fall back to the Paddle Transactions API with ?include=customer
   if (!order.customerEmail || !order.productName || order.productName === "AI Native Playbook") {
+    console.log(
+      `[paddle-webhook] Enrichment needed: txn=${txId}, email="${order.customerEmail || "(empty)"}", product="${order.productName || "(empty)"}". Calling Paddle API...`
+    );
     const enriched = await fetchPaddleTransactionDetails(txId);
     if (enriched) {
+      console.log(
+        `[paddle-webhook] Paddle API enrichment result: email="${enriched.customerEmail || "(empty)"}", name="${enriched.customerName || "(empty)"}", product="${enriched.productName || "(empty)"}"`
+      );
       if (!order.customerEmail && enriched.customerEmail) {
         order.customerEmail = enriched.customerEmail;
         console.log(`[paddle-webhook] Enriched email from API: ${enriched.customerEmail}`);
       }
       if (!order.customerName && enriched.customerName) {
         order.customerName = enriched.customerName;
+        console.log(`[paddle-webhook] Enriched name from API: ${enriched.customerName}`);
       }
       if (enriched.productName && order.productName === "AI Native Playbook") {
         order.productName = enriched.productName;
         console.log(`[paddle-webhook] Enriched product from API: ${enriched.productName}`);
       }
+    } else {
+      console.warn(
+        `[paddle-webhook] Paddle API enrichment returned null for txn=${txId}. Customer email may still be empty.`
+      );
     }
   }
 
@@ -173,19 +184,22 @@ async function handleTransactionCompleted(
     success: false,
     error: "not attempted",
   };
+  console.log(
+    `[paddle-webhook] Sending Brevo email: txn=${txId}, to="${order.customerEmail || "(empty)"}", sender=contact@apppro.kr, downloadLinks=${Object.keys(downloadLinks).join(",")}`
+  );
   try {
     emailResult = await sendPurchaseConfirmationEmail(order, txId, downloadLinks);
     if (!emailResult.success) {
       console.error(
-        `[paddle-webhook] Email send returned failure: txn=${txId}, error=${emailResult.error}`
+        `[paddle-webhook] Brevo API returned failure: txn=${txId}, error="${emailResult.error}"`
       );
     } else {
       console.log(
-        `[paddle-webhook] Email sent successfully: txn=${txId}, messageId=${emailResult.messageId}`
+        `[paddle-webhook] Brevo email sent successfully: txn=${txId}, messageId=${emailResult.messageId}`
       );
     }
   } catch (emailErr) {
-    console.error("[paddle-webhook] Email send threw exception:", emailErr);
+    console.error("[paddle-webhook] Brevo send threw exception:", emailErr);
     emailResult = {
       success: false,
       error: emailErr instanceof Error ? emailErr.message : String(emailErr),
@@ -347,8 +361,11 @@ function extractCustomerEmail(tx: Record<string, unknown>): string {
   if (!email) {
     console.warn(
       `[paddle-webhook] Could not extract customer email. Available keys: ${Object.keys(tx).join(", ")}. ` +
-      `billing_details=${JSON.stringify(tx.billing_details)}, customer=${JSON.stringify(tx.customer)}`
+      `billing_details=${JSON.stringify(tx.billing_details)}, customer=${JSON.stringify(tx.customer)}, ` +
+      `checkout=${JSON.stringify(tx.checkout)}, customer_email=${JSON.stringify(tx.customer_email)}`
     );
+  } else {
+    console.log(`[paddle-webhook] Customer email extracted: "${email}"`);
   }
   return email;
 }
@@ -494,7 +511,12 @@ async function fetchPaddleTransactionDetails(
 async function notifyTelegram(lines: string[]): Promise<void> {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!botToken || !chatId) return;
+  if (!botToken || !chatId) {
+    console.warn(
+      `[paddle-webhook] Telegram notification skipped: ${!botToken ? "TELEGRAM_BOT_TOKEN" : ""} ${!chatId ? "TELEGRAM_CHAT_ID" : ""} not configured in environment variables`
+    );
+    return;
+  }
 
   const message = lines.join("\n");
 
