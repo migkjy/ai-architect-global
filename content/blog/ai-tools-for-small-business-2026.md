@@ -100,4 +100,8 @@ Most small business owners find the highest ROI in this order: ChatGPT or Claude
 
 The businesses winning in 2026 aren't the ones using the most AI tools. They're the ones who've built consistent systems around the right AI tools for their specific work.
 
+For a complete stack recommendation — all ten tools organized by business function — the [solopreneur AI stack guide](/en/blog/solopreneur-ai-stack-2026) covers marketing, sales, customer service, content, and operations tools in one place.
+
+Want to get more out of ChatGPT and Claude right away? Our [50 ChatGPT prompts for entrepreneurs](/en/blog/chatgpt-prompts-for-entrepreneurs) gives you ready-to-use prompts for marketing, sales, planning, and content. And once you have the tools, the [AI marketing automation guide](/en/blog/ai-marketing-automation-guide) shows how to connect them into systems that save ten hours per week.
+
 To go beyond individual tools and build integrated AI systems for your business, explore the [AI Native Playbook Series](/en/products) — or grab the [free guide](/en/free-guide) to see how the system fits together.

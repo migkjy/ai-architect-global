@@ -82,7 +82,9 @@ The businesses that win with these frameworks are the ones that ship consistentl
 
 AI makes iteration fast enough that consistency becomes achievable for a one-person business. That's the real advantage. Once you have the email sequence running, the next step is connecting it to a complete [AI sales funnel](/en/blog/ai-sales-funnel-guide-2026) that moves leads from opt-in to purchase automatically.
 
-For a broader view of how these frameworks fit together into a cohesive system, the [AI marketing strategy guide](/en/blog/ai-marketing-strategy-2026) covers how Value Ladder, PLF, and copywriting frameworks operate in parallel.
+For a broader view of how these frameworks fit together into a cohesive system, the [AI marketing strategy guide](/en/blog/ai-marketing-strategy-2026) covers how Value Ladder, PLF, and copywriting frameworks operate in parallel. If you want to take the launch side further, the [Product Launch Formula with AI guide](/en/blog/product-launch-formula-ai) shows how to pair PLF with your Soap Opera Sequence for maximum launch conversions.
+
+Need to automate the entire email system so it runs without daily attention? The [AI email automation guide](/en/blog/ai-email-automation-for-solopreneurs) walks through building a complete hands-off nurture sequence from welcome to close.
 
 Want to see how these frameworks compare before committing? Our [free AI business guide](/en/free-guide) breaks down all six frameworks in a side-by-side chart and gives you 3 prompts to try today.
 
