@@ -7,6 +7,7 @@ import {
   getAllDownloadLinks,
   detectProductType,
 } from "@/lib/download";
+import { markRefunded } from "@/lib/refund-guard";
 import crypto from "crypto";
 
 // Simple in-memory dedup for serverless (best-effort)
@@ -189,6 +190,20 @@ async function handleTransactionRefunded(
   console.warn(
     `[paddle-webhook] Refund processed: txn=${txId}, product=${order.productName}, amount=$${(order.amount / 100).toFixed(2)}`
   );
+
+  // Persist refund status to block future downloads
+  try {
+    await markRefunded({
+      transactionId: txId,
+      customerEmail: order.customerEmail,
+      productName: order.productName,
+      amount: order.amount,
+      currency: order.currency,
+    });
+  } catch (err) {
+    // Non-fatal: log and continue so webhook still returns 200
+    console.error("[paddle-webhook] markRefunded failed:", err);
+  }
 
   await notifyTelegram([
     `Refund Processed`,
