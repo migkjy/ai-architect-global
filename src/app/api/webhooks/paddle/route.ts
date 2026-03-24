@@ -16,6 +16,19 @@ const processedTransactions = new Set<string>();
 const MAX_PROCESSED = 1000;
 
 /**
+ * GET handler — simple health check for the webhook endpoint.
+ * Returns 200 so we can verify the route is reachable.
+ */
+export async function GET() {
+  return NextResponse.json({
+    status: "ok",
+    endpoint: "/api/webhooks/paddle",
+    method: "POST required",
+    timestamp: new Date().toISOString(),
+  });
+}
+
+/**
  * Paddle Webhook Handler
  *
  * Handled events:
@@ -124,6 +137,26 @@ async function handleTransactionCompleted(
 
   const order = extractOrder(tx, txId);
 
+  // ── Enrich missing customer/product data via Paddle API ──
+  // PayPal payments often have billing_details=null and customer={}
+  // so we fall back to the Paddle Transactions API with ?include=customer
+  if (!order.customerEmail || !order.productName || order.productName === "AI Native Playbook") {
+    const enriched = await fetchPaddleTransactionDetails(txId);
+    if (enriched) {
+      if (!order.customerEmail && enriched.customerEmail) {
+        order.customerEmail = enriched.customerEmail;
+        console.log(`[paddle-webhook] Enriched email from API: ${enriched.customerEmail}`);
+      }
+      if (!order.customerName && enriched.customerName) {
+        order.customerName = enriched.customerName;
+      }
+      if (enriched.productName && order.productName === "AI Native Playbook") {
+        order.productName = enriched.productName;
+        console.log(`[paddle-webhook] Enriched product from API: ${enriched.productName}`);
+      }
+    }
+  }
+
   // Generate download token and links
   const downloadToken = generateDownloadToken(txId);
   const siteUrl =
@@ -131,11 +164,32 @@ async function handleTransactionCompleted(
   const productType = detectProductType(order.productName);
   const downloadLinks = getAllDownloadLinks(txId, downloadToken, productType, siteUrl);
 
+  console.log(
+    `[paddle-webhook] transaction.completed: txn=${txId}, email=${order.customerEmail}, product=${order.productName}, amount=${order.amount}, links=${Object.keys(downloadLinks).length}`
+  );
+
   // Send confirmation email with download links
+  let emailResult: { success: boolean; error?: string; messageId?: string } = {
+    success: false,
+    error: "not attempted",
+  };
   try {
-    await sendPurchaseConfirmationEmail(order, txId, downloadLinks);
+    emailResult = await sendPurchaseConfirmationEmail(order, txId, downloadLinks);
+    if (!emailResult.success) {
+      console.error(
+        `[paddle-webhook] Email send returned failure: txn=${txId}, error=${emailResult.error}`
+      );
+    } else {
+      console.log(
+        `[paddle-webhook] Email sent successfully: txn=${txId}, messageId=${emailResult.messageId}`
+      );
+    }
   } catch (emailErr) {
-    console.error("[paddle-order] Email send failed:", emailErr);
+    console.error("[paddle-webhook] Email send threw exception:", emailErr);
+    emailResult = {
+      success: false,
+      error: emailErr instanceof Error ? emailErr.message : String(emailErr),
+    };
   }
 
   // Notify CEO via Telegram
@@ -145,6 +199,7 @@ async function handleTransactionCompleted(
     `Amount: $${(order.amount / 100).toFixed(2)} ${order.currency}`,
     `Customer: ${order.customerEmail}`,
     `Transaction: ${txId}`,
+    `Email: ${emailResult.success ? "Sent" : `FAILED - ${emailResult.error}`}`,
   ]);
 
   return NextResponse.json({
@@ -276,12 +331,26 @@ function extractOrder(
 }
 
 function extractCustomerEmail(tx: Record<string, unknown>): string {
-  return (
+  // Paddle Billing V2 sends customer email in multiple possible locations:
+  // - billing_details.email (card payments)
+  // - customer.email (PayPal and other methods where billing_details may be null)
+  // - checkout.customer_email (overlay checkout)
+  // - address.email (some regions)
+  const email =
     getNestedString(tx, "billing_details.email") ??
     getNestedString(tx, "customer.email") ??
     getNestedString(tx, "details.billing_details.email") ??
-    ""
-  );
+    getNestedString(tx, "checkout.customer_email") ??
+    getNestedString(tx, "customer_email") ??
+    "";
+
+  if (!email) {
+    console.warn(
+      `[paddle-webhook] Could not extract customer email. Available keys: ${Object.keys(tx).join(", ")}. ` +
+      `billing_details=${JSON.stringify(tx.billing_details)}, customer=${JSON.stringify(tx.customer)}`
+    );
+  }
+  return email;
 }
 
 function extractCustomerName(tx: Record<string, unknown>): string {
@@ -346,6 +415,76 @@ function getNestedArray(
 ): unknown[] | undefined {
   const val = getNestedValue(obj, path);
   return Array.isArray(val) ? val : undefined;
+}
+
+/**
+ * Fetch transaction details from Paddle API to enrich missing data.
+ * Used when webhook payload lacks customer email or product name
+ * (common with PayPal payments where billing_details is null).
+ *
+ * Uses GET /transactions/{txId}?include=customer to retrieve
+ * customer email and product info in a single API call.
+ */
+interface PaddleEnrichedData {
+  customerEmail: string;
+  customerName: string;
+  productName: string;
+}
+
+async function fetchPaddleTransactionDetails(
+  txId: string
+): Promise<PaddleEnrichedData | null> {
+  const paddleApiKey = process.env.PADDLE_API_KEY;
+  if (!paddleApiKey || !txId) return null;
+
+  const env = process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT ?? "sandbox";
+  const baseUrl =
+    env === "production"
+      ? "https://api.paddle.com"
+      : "https://sandbox-api.paddle.com";
+
+  try {
+    const res = await fetch(
+      `${baseUrl}/transactions/${txId}?include=customer`,
+      {
+        headers: { Authorization: `Bearer ${paddleApiKey}` },
+      }
+    );
+
+    if (!res.ok) {
+      console.error(
+        `[paddle-webhook] Paddle API lookup failed: ${res.status} ${res.statusText}`
+      );
+      return null;
+    }
+
+    const json = await res.json();
+    const data = json.data as Record<string, unknown> | undefined;
+    if (!data) return null;
+
+    // Extract customer email from included customer object
+    const customer = data.customer as Record<string, unknown> | undefined;
+    const customerEmail =
+      typeof customer?.email === "string" ? customer.email : "";
+    const customerName =
+      typeof customer?.name === "string" ? customer.name : "";
+
+    // Extract product name from items[0].product.name
+    const items = Array.isArray(data.items) ? data.items : [];
+    const firstItem = items[0] as Record<string, unknown> | undefined;
+    const product = firstItem?.product as Record<string, unknown> | undefined;
+    const productName =
+      typeof product?.name === "string" ? product.name : "";
+
+    console.log(
+      `[paddle-webhook] API enrichment: email=${customerEmail}, product=${productName}`
+    );
+
+    return { customerEmail, customerName, productName };
+  } catch (err) {
+    console.error("[paddle-webhook] Paddle API lookup exception:", err);
+    return null;
+  }
 }
 
 /**
