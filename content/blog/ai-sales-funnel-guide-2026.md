@@ -206,4 +206,8 @@ At the end of 30 days, you have a functional funnel generating revenue on autopi
 
 ---
 
+If you are running paid traffic to your funnel, you need the right [AI marketing strategy](/en/blog/ai-marketing-strategy-2026) to ensure every dollar spent feeds the funnel efficiently. And once the funnel is live, [AI email automation](/en/blog/ai-email-automation-for-solopreneurs) handles the nurture sequence so leads move through the stages without daily manual work.
+
+Planning a product launch around your funnel? The [Product Launch Formula with AI guide](/en/blog/product-launch-formula-ai) shows how to build anticipation and convert during a structured launch window — the perfect complement to an evergreen funnel.
+
 The [AI Native Playbook Series](/en/products) includes complete AI system prompts for every funnel stage — opt-in copy, email sequences, and sales pages — built on the Russell Brunson and Jeff Walker frameworks. Download the [free starter guide](/en/free-guide) to see how the framework approach works before you invest in the full system.

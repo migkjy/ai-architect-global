@@ -98,4 +98,8 @@ After 30 days: analyze and iterate
 
 ---
 
+Email automation is one piece of the puzzle. To see how it fits into a complete marketing system, the [AI marketing strategy guide](/en/blog/ai-marketing-strategy-2026) covers the full 5-step framework — from Value Ladder to traffic. And for the conversion side, the [AI sales funnel guide](/en/blog/ai-sales-funnel-guide-2026) shows how your email sequences connect to opt-in pages, sales pages, and upsells.
+
+The email structures in this guide are based on Russell Brunson's Soap Opera Sequence. For a deeper dive into the DotCom Secrets framework behind these sequences, see the [Russell Brunson AI framework guide](/en/blog/russell-brunson-ai-framework).
+
 The AI Native Playbook Series includes ready-to-use prompt templates for all seven email types in a complete nurture sequence. [Explore the full collection](/en/products) to get the complete system, or download our [free starter guide](/en/free-guide) to begin building your email architecture today.
