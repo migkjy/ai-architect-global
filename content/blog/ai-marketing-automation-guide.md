@@ -2,6 +2,7 @@
 title: "AI Marketing Automation: Save 10 Hours Per Week"
 description: "Practical AI marketing automation strategies for small business owners. Email sequences, social media content, and customer follow-up on autopilot."
 date: "2026-02-19"
+updated: "2026-03-24"
 category: "AI Marketing"
 tags: ["AI marketing", "marketing automation", "email marketing", "social media", "small business"]
 locale: "en"
@@ -72,6 +73,8 @@ Set a 90-day review checkpoint. Look at which automated sequences are performing
 The businesses that win with marketing automation aren't the ones with the most complex systems. They're the ones that built simple, consistent systems and measured them honestly.
 
 For the tools that power each automation system, the [solopreneur AI stack guide](/en/blog/solopreneur-ai-stack-2026) covers the exact ten tools — from email platforms to AI writing assistants — that handle marketing, sales, and operations. And if you want the right prompts to feed into these systems, our [50 ChatGPT prompts for entrepreneurs](/en/blog/chatgpt-prompts-for-entrepreneurs) provides ready-to-use templates for email copy, social content, and customer follow-up.
+
+The email sequences and copy frameworks powering these systems draw directly from proven conversion frameworks. For a deep dive into applying Russell Brunson's Value Ladder and Soap Opera Sequence to your automation setup, the [Russell Brunson AI framework guide](/en/blog/russell-brunson-ai-framework) explains how to feed these structures into your automated sequences.
 
 Building a content pipeline alongside your automation? The [AI content pipeline guide](/en/blog/building-ai-content-pipeline) shows how to produce consistent, quality content in 45 minutes per piece — the fuel that makes your automated distribution actually work.
 

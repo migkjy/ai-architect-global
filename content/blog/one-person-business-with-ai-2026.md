@@ -80,7 +80,7 @@ This is the engine room. Your AI production system handles the repetitive, high-
 
 **Time investment:** 8-12 hours to set up initially. 1-2 hours per day for ongoing review and optimization.
 
-For the complete solopreneur tool stack breakdown, read our [solopreneur AI stack guide](/en/blog/solopreneur-ai-stack).
+For the complete solopreneur tool stack breakdown — all ten tools organized by business function — read our [solopreneur AI stack guide](/en/blog/solopreneur-ai-stack-2026).
 
 ### Step 3: Set Up Customer Acquisition on Autopilot
 

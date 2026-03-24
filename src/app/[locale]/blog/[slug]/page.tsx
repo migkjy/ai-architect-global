@@ -77,16 +77,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       canonical: canonicalUrl,
       languages: {
         en: `${siteUrl}/en/blog/${slug}`,
-        ko: `${siteUrl}/ko/blog/${slug}`,
         ja: `${siteUrl}/ja/blog/${slug}`,
         "x-default": `${siteUrl}/en/blog/${slug}`,
       },
     },
     robots: {
-      index: true,
+      index: !post.noindex,
       follow: true,
       googleBot: {
-        index: true,
+        index: !post.noindex,
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large" as const,

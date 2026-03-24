@@ -138,7 +138,7 @@ How you monitor performance and optimize the system.
 
 **Total stack cost: $60-280/month** — This runs a business that would cost $8,000-15,000/month in employee salaries.
 
-For a detailed breakdown of every tool in the solopreneur AI stack, read our [complete solopreneur AI stack guide](/en/blog/solopreneur-ai-stack).
+For a detailed breakdown of every tool in the solopreneur AI stack, read our [complete solopreneur AI stack guide](/en/blog/solopreneur-ai-stack-2026).
 
 ## The 7-Day Launch Plan
 
