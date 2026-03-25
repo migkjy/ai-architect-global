@@ -310,10 +310,13 @@ export default async function PricingPage({
                   SAVE ${savedAmount}
                 </span>
               </div>
-              <div className="mb-6">
+              <div className="mb-1">
                 <span className="text-5xl font-bold text-gold">${bundle.price}</span>
                 <span className="text-text-muted text-sm ml-1">one-time</span>
               </div>
+              <p className="text-xs text-text-muted mb-6">
+                That&apos;s just <span className="text-gold font-semibold">${(bundle.price / 6).toFixed(2)}/guide</span> — less than a coffee
+              </p>
 
               <ul className="space-y-3 mb-8 flex-1">
                 {[
@@ -356,7 +359,7 @@ export default async function PricingPage({
                 paddleSuccessUrl={`${SITE_URL}/thank-you?product=Complete+Bundle`}
                 className="w-full text-lg py-4"
               >
-                Get the Bundle — Save {savePct}%
+                Get All 6 Guides — ${bundle.price}
               </BuyButton>
               <p className="text-xs text-text-muted text-center mt-3">
                 Instant download &middot; No account required
@@ -540,6 +543,40 @@ export default async function PricingPage({
           */}
         </section>
 
+        {/* ── Not Ready CTA — Free Guide + Score ── */}
+        <section className="max-w-4xl mx-auto px-4 mb-20">
+          <div className="bg-surface/60 border border-gold/20 rounded-2xl p-8 md:p-10 text-center">
+            <p className="text-gold font-semibold text-sm mb-2 uppercase tracking-wide">
+              Not ready to buy?
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold mb-3">
+              Start with a Free Guide
+            </h2>
+            <p className="text-text-secondary text-sm max-w-xl mx-auto mb-8 leading-relaxed">
+              Download our free AI Business Automation Starter Guide — see how AI
+              prompts turn proven frameworks into instant execution. No email
+              required to browse, or subscribe for the full PDF.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/free-guide"
+                className="inline-flex items-center justify-center px-8 py-3 rounded-xl font-bold transition-all transform hover:scale-105 bg-gold text-navy-dark hover:bg-gold-light shadow-lg shadow-gold/20"
+                data-testid="cta-free-guide"
+              >
+                Get Free Guide &rarr;
+              </Link>
+              <Link
+                href="/score"
+                className="inline-flex items-center justify-center px-8 py-3 rounded-xl font-bold transition-all transform hover:scale-105 bg-transparent border border-white/20 text-text-primary hover:border-gold/40 hover:text-gold"
+                data-testid="cta-score"
+              >
+                Take the AI Readiness Quiz
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* ── Feature Comparison Table ── */}
         <section className="max-w-5xl mx-auto px-4 mb-20">
           <div className="flex items-center gap-3 mb-8">
@@ -702,6 +739,22 @@ export default async function PricingPage({
             <p className="text-xs text-text-muted mt-3">
               Instant download &middot; 14-day refund policy
             </p>
+          </div>
+
+          {/* Risk reversal strip */}
+          <div className="flex flex-wrap items-center justify-center gap-6 mt-6 mb-6 text-xs text-text-secondary">
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-gold shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+              14-day money-back guarantee
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-gold shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+              Secure checkout via Paddle
+            </span>
+            <span className="flex items-center gap-1.5">
+              <svg className="w-4 h-4 text-gold shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>
+              Instant PDF download
+            </span>
           </div>
 
           <div className="mt-4">
