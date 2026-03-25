@@ -3,6 +3,7 @@
 import { useState, useCallback, Suspense } from "react";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
 
 /* ──────────────────────────── Data ──────────────────────────── */
 
@@ -268,6 +269,7 @@ function EmailCapture() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [website, setWebsite] = useState(""); // honeypot
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -278,7 +280,7 @@ function EmailCapture() {
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, name, website }),
+        body: JSON.stringify({ email, name, website, turnstileToken }),
       });
       if (res.ok) {
         setStatus("success");
@@ -290,12 +292,15 @@ function EmailCapture() {
     }
   };
 
+  // Turnstile site key configured = require token before submit
+  const turnstileRequired = !!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+
   if (status === "success") {
     return (
       <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-6 text-center mt-8">
-        <p className="text-emerald-400 font-semibold">You're in! Check your inbox.</p>
+        <p className="text-emerald-400 font-semibold">You&apos;re in! Check your inbox.</p>
         <p className="text-sm text-text-secondary mt-1">
-          We'll send your detailed AI readiness insights shortly.
+          We&apos;ll send your detailed AI readiness insights shortly.
         </p>
       </div>
     );
@@ -336,12 +341,13 @@ function EmailCapture() {
         />
         <button
           type="submit"
-          disabled={status === "loading"}
+          disabled={status === "loading" || (turnstileRequired && !turnstileToken)}
           className="px-6 py-3 bg-gold text-navy-dark font-bold rounded-xl text-sm hover:bg-gold-light transition-colors disabled:opacity-50 whitespace-nowrap"
         >
           {status === "loading" ? "Sending..." : "Get Report"}
         </button>
       </div>
+      <TurnstileWidget onTokenChange={setTurnstileToken} theme="dark" size="normal" />
       {status === "error" && (
         <p className="text-red-400 text-xs mt-2">Something went wrong. Please try again.</p>
       )}
