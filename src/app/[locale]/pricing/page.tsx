@@ -147,6 +147,24 @@ export default async function PricingPage({
 
   const canonicalPricingUrl = `${SITE_URL}/${locale}/pricing`;
 
+  const pricingFaqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    name: "Pricing FAQ — AI Native Playbook Series",
+    url: canonicalPricingUrl,
+    dateModified: "2026-03-26",
+    inLanguage: locale === "ja" ? "ja-JP" : "en-US",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    mainEntity: pricingFaqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
   const offerCatalogJsonLd = {
     "@context": "https://schema.org",
     "@type": "OfferCatalog",
@@ -195,6 +213,12 @@ export default async function PricingPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: escapeJsonLd(JSON.stringify(offerCatalogJsonLd)),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: escapeJsonLd(JSON.stringify(pricingFaqJsonLd)),
         }}
       />
 
