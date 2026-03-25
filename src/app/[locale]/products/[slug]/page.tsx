@@ -260,7 +260,7 @@ export default async function ProductPage({ params }: Props) {
             {book.frameworks.map((f, i) => (
               <div key={i} className="flex gap-3 bg-surface/60 border border-white/5 rounded-xl p-4">
                 <div className="w-6 h-6 bg-gold/10 border border-gold/20 rounded-md flex items-center justify-center shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-gold" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 text-gold" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                 </div>
@@ -279,7 +279,7 @@ export default async function ProductPage({ params }: Props) {
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 bg-gold/15 rounded-xl flex items-center justify-center shrink-0">
-                  <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                   </svg>
                 </div>
@@ -310,7 +310,7 @@ export default async function ProductPage({ params }: Props) {
               {book.whatsInside.map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <div className="w-5 h-5 bg-gold rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                    <svg className="w-3 h-3 text-navy-dark" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 text-navy-dark" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                   </div>
@@ -352,11 +352,11 @@ export default async function ProductPage({ params }: Props) {
             </div>
             <div className="flex items-center justify-center gap-4 mt-4 text-xs text-text-muted">
               <span className="flex items-center gap-1">
-                <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 {tc("moneyBack")}
               </span>
               <span className="flex items-center gap-1">
-                <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
                 {t("noAccount")}
               </span>
             </div>
