@@ -1,7 +1,7 @@
 /**
  * Unified onboarding email templates for AI Native Playbook Series.
  *
- * 4-email sequence: D+0 Welcome, D+1 Tips, D+3 Case Study, D+7 CTA.
+ * 5-email sequence: D+0 Welcome, D+1 Tips, D+3 Case Study, D+5 Bundle Preview, D+7 CTA.
  * Replaces the old Welcome (subscribe/route.ts) + Nurture (nurture-emails.ts) split.
  *
  * Brand colours:
@@ -91,7 +91,7 @@ export function getOnboardingWelcomeHtml(params: OnboardingEmailParams): string 
 <p style="color:#333;font-size:16px;line-height:1.7;">AI Native Playbook takes these experts' proven frameworks and <strong>AI applies them instantly to YOUR specific business.</strong> You just input your business info — AI executes the framework.</p>
 <p style="color:#333;font-size:16px;line-height:1.7;">What used to take a consultant weeks (and cost $5,000+) now takes 90 minutes. The same quality. The same proven frameworks. Just executed by AI instead of waiting weeks.</p>
 <div style="text-align:center;margin:28px 0;">
-  <a href="${siteUrl}/resources/ai-framework-preview" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};font-size:16px;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;">Download Your Free Preview</a>
+  <a href="${siteUrl}/en/free-guide" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};font-size:16px;font-weight:700;padding:14px 32px;border-radius:8px;text-decoration:none;">Download Your Free AI Framework Guide</a>
 </div>
 <p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:28px 0 12px 0;">6 expert frameworks, AI-powered</p>
 <ul style="color:#555;font-size:15px;line-height:2;">
@@ -147,8 +147,8 @@ export function getOnboardingTipsHtml(params: OnboardingEmailParams): string {
   <p style="color:#ccc;font-size:15px;line-height:1.7;margin:0;"><strong style="color:#fff;">Consistency?</strong> The system runs the same way every time. No willpower required. No notebook required.</p>
 </div>
 <div style="text-align:center;margin:0 0 32px 0;">
-  <a href="${siteUrl}/blog" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">
-    Try One Framework Today
+  <a href="${siteUrl}/en/products" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">
+    Explore the AI Playbook Series
   </a>
 </div>
 <p style="color:#555;font-size:15px;line-height:1.7;margin:0;">In 2 days, I'll share a real story — a solo founder who read the same books you did, got stuck in the same place, and finally broke through when AI did the execution for him.</p>
@@ -195,12 +195,92 @@ export function getOnboardingCaseStudyHtml(params: OnboardingEmailParams): strin
   <p style="color:#555;font-size:15px;line-height:1.6;margin:0;">"The AI didn't just help me brainstorm — it executed the entire framework. I went from understanding Brunson's concepts to having a complete, personalized funnel in a single session. That's the difference between reading about strategy and actually having one."</p>
 </div>
 <div style="text-align:center;margin:0 0 32px 0;">
-  <a href="${siteUrl}/blog" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">
-    See How It Works
+  <a href="${siteUrl}/en/pricing" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">
+    See Pricing &amp; Packages
   </a>
 </div>
-<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">In 4 days, I'll send you one final email — with the exact next step to stop studying and start executing.</p>
+<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">In 2 days, I'll show you exactly what's inside the Complete AI Playbook Bundle — and why it's the fastest way to go from studying to executing.</p>
 <p style="color:#555;font-size:15px;line-height:1.7;margin:16px 0 0 0;">Talk soon,<br /><strong style="color:${BRAND.color};">The AI Native Playbook Team</strong></p>
+`,
+  });
+}
+
+/* -- D+5 Bundle Preview --------------------------------------------------- */
+export function getOnboardingBundlePreviewHtml(params: OnboardingEmailParams): string {
+  const g = greeting(params.firstName);
+  return wrapHtml({
+    preheader: "6 expert frameworks. One bundle. Here's what's inside.",
+    body: `
+<p style="color:${BRAND.color};font-size:22px;font-weight:700;margin:0 0 8px 0;line-height:1.3;">
+  What's Inside the Complete AI Native Playbook Bundle
+</p>
+<p style="color:#666;font-size:14px;margin:0 0 32px 0;">Day 5 &bull; AI Native Playbook Series</p>
+<p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 20px 0;">${g}</p>
+<p style="color:#333;font-size:16px;line-height:1.7;margin:0 0 20px 0;">
+  On Day 3, you saw how Daniel transformed his business using 3 AI frameworks. Today, I want to show you exactly what you get when you go all-in with the complete bundle.
+</p>
+<p style="color:${BRAND.color};font-size:17px;font-weight:700;margin:0 0 16px 0;">The Complete Bundle includes:</p>
+<table style="width:100%;border-collapse:collapse;margin:0 0 24px 0;">
+  <tr>
+    <td style="padding:12px 16px;border-bottom:1px solid #e8e4dc;vertical-align:top;">
+      <strong style="color:${BRAND.color};">1. AI Marketing Architect</strong><br/>
+      <span style="color:#666;font-size:14px;">Russell Brunson's funnel framework — build your complete sales funnel</span>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:12px 16px;border-bottom:1px solid #e8e4dc;vertical-align:top;">
+      <strong style="color:${BRAND.color};">2. AI Story Architect</strong><br/>
+      <span style="color:#666;font-size:14px;">Jim Edwards' copywriting secrets — write sales copy that converts</span>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:12px 16px;border-bottom:1px solid #e8e4dc;vertical-align:top;">
+      <strong style="color:${BRAND.color};">3. AI Startup Architect</strong><br/>
+      <span style="color:#666;font-size:14px;">Jeff Walker's launch formula — plan and execute your product launch</span>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:12px 16px;border-bottom:1px solid #e8e4dc;vertical-align:top;">
+      <strong style="color:${BRAND.color};">4. AI Content Architect</strong><br/>
+      <span style="color:#666;font-size:14px;">Nicolas Cole's content framework — fill your content calendar</span>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:12px 16px;border-bottom:1px solid #e8e4dc;vertical-align:top;">
+      <strong style="color:${BRAND.color};">5. AI Brand Architect</strong><br/>
+      <span style="color:#666;font-size:14px;">Expert brand strategy — define your brand identity and positioning</span>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:12px 16px;vertical-align:top;">
+      <strong style="color:${BRAND.color};">6. AI Traffic Architect</strong><br/>
+      <span style="color:#666;font-size:14px;">Proven traffic systems — drive qualified visitors to your offers</span>
+    </td>
+  </tr>
+</table>
+<div style="background:${BRAND.color};border-radius:10px;padding:24px 28px;margin:0 0 28px 0;">
+  <p style="color:${BRAND.gold};font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin:0 0 16px 0;">Bundle vs. Individual</p>
+  <table style="width:100%;border-collapse:collapse;">
+    <tr><td style="color:#ccc;font-size:14px;padding:6px 0;">6 playbooks individually</td><td style="color:#ccc;font-size:14px;text-align:right;padding:6px 0;text-decoration:line-through;">$102</td></tr>
+    <tr><td style="color:${BRAND.gold};font-size:15px;font-weight:700;padding:6px 0;border-top:1px solid #1e2d45;">Complete Bundle</td><td style="color:${BRAND.gold};font-size:15px;font-weight:700;text-align:right;padding:6px 0;border-top:1px solid #1e2d45;">$47 (save 54%)</td></tr>
+  </table>
+</div>
+<div style="border-left:4px solid ${BRAND.gold};padding:16px 20px;margin:0 0 28px 0;background:#faf8f5;border-radius:0 8px 8px 0;">
+  <p style="color:${BRAND.color};font-size:15px;font-weight:700;margin:0 0 8px 0;">Each playbook includes:</p>
+  <ul style="color:#555;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+    <li>Step-by-step PDF guide (30+ pages)</li>
+    <li>AI Agent Skills (ready to paste into Claude/ChatGPT)</li>
+    <li>Agent Settings for immediate use</li>
+    <li>Notion templates for tracking</li>
+  </ul>
+</div>
+<div style="text-align:center;margin:0 0 32px 0;">
+  <a href="${siteUrl}/en/bundle" style="display:inline-block;background:${BRAND.gold};color:${BRAND.color};padding:16px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;">
+    Preview the Complete Bundle
+  </a>
+</div>
+<p style="color:#555;font-size:15px;line-height:1.7;margin:0;">In 2 days, I'll send you one final email with everything you need to make your decision.</p>
+<p style="color:#555;font-size:15px;line-height:1.7;margin:16px 0 0 0;">To your success,<br /><strong style="color:${BRAND.color};">The AI Native Playbook Team</strong></p>
 `,
   });
 }
