@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
   const envStatus = {
     PADDLE_WEBHOOK_SECRET: !!process.env.PADDLE_WEBHOOK_SECRET,
     PADDLE_API_KEY: !!process.env.PADDLE_API_KEY,
-    BREVO_API_KEY: !!process.env.BREVO_API_KEY,
+    RESEND_API_KEY: !!process.env.RESEND_API_KEY,
     R2_PUBLIC_URL: process.env.R2_PUBLIC_URL || "(not set)",
     DOWNLOAD_SECRET: !!process.env.DOWNLOAD_SECRET,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || "(not set)",

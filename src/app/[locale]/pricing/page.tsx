@@ -498,7 +498,7 @@ export default async function PricingPage({
                 className="bg-surface/60 border border-white/5 rounded-xl p-6"
                 data-testid="testimonial-card"
               >
-                <div className="flex gap-1 mb-3">
+                <div className="flex gap-1 mb-3" role="img" aria-label={`${testimonial.rating} out of 5 stars`}>
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
                     <svg
                       key={i}

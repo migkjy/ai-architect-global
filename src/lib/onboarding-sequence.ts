@@ -4,7 +4,7 @@
  * Replaces both the old Welcome sequence (subscribe/route.ts inline)
  * and the Nurture sequence (nurture-sequence.ts).
  *
- * Schedule: D+0 Welcome, D+1 Tips, D+3 Case Study, D+7 CTA.
+ * Schedule: D+0 Welcome, D+1 Tips, D+3 Case Study, D+5 Bundle Preview, D+7 CTA.
  * Dedup: checks Brevo contact attribute ONBOARDING_SENT before scheduling.
  */
 
@@ -12,6 +12,7 @@ import {
   getOnboardingWelcomeHtml,
   getOnboardingTipsHtml,
   getOnboardingCaseStudyHtml,
+  getOnboardingBundlePreviewHtml,
   getOnboardingCtaHtml,
 } from "./onboarding-emails";
 
@@ -29,22 +30,27 @@ interface SequenceStep {
 const SEQUENCE: SequenceStep[] = [
   {
     delayDays: 0,
-    subject: "Welcome to AI Native Playbook",
+    subject: "Welcome — here's why reading business books never works",
     buildHtml: getOnboardingWelcomeHtml,
   },
   {
     delayDays: 1,
-    subject: "3 Ways to Get More From Your AI Framework Guide",
+    subject: "The 3 reasons your marketing strategy stays on paper",
     buildHtml: getOnboardingTipsHtml,
   },
   {
     delayDays: 3,
-    subject: "How One Founder Automated 80% of Their Marketing with AI",
+    subject: "He read DotCom Secrets twice. Nothing changed. Then this happened.",
     buildHtml: getOnboardingCaseStudyHtml,
   },
   {
+    delayDays: 5,
+    subject: "What's inside the Complete AI Playbook Bundle (save 54%)",
+    buildHtml: getOnboardingBundlePreviewHtml,
+  },
+  {
     delayDays: 7,
-    subject: "Your AI Business Transformation Starts Here",
+    subject: "You've studied enough. Time to let AI execute.",
     buildHtml: getOnboardingCtaHtml,
   },
 ];
@@ -102,10 +108,10 @@ async function markOnboardingSent(
 }
 
 /**
- * Schedule the full 4-email onboarding sequence.
+ * Schedule the full 5-email onboarding sequence.
  *
  * Dedup: if the contact already has ONBOARDING_SENT=true, skip entirely.
- * D+0 is sent immediately; D+1/D+3/D+7 use Brevo's scheduledAt.
+ * D+0 is sent immediately; D+1/D+3/D+5/D+7 use Brevo's scheduledAt.
  */
 export async function scheduleOnboardingSequence(
   email: string,

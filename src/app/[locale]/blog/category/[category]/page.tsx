@@ -43,6 +43,7 @@ export async function generateMetadata({
       canonical: canonicalUrl,
       languages: {
         en: `${SITE_URL}/en/blog/category/${categorySlug}`,
+        ja: `${SITE_URL}/ja/blog/category/${categorySlug}`,
         "x-default": `${SITE_URL}/en/blog/category/${categorySlug}`,
       },
     },
