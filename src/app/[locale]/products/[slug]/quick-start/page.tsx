@@ -331,7 +331,7 @@ export default async function QuickStartPage({ params }: Props) {
             {book.frameworks.map((f, i) => (
               <div key={i} className="flex gap-3 bg-surface/60 border border-white/5 rounded-xl p-4">
                 <div className="w-5 h-5 bg-gold/10 border border-gold/20 rounded-md flex items-center justify-center shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-gold" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 text-gold" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                 </div>
@@ -411,7 +411,7 @@ export default async function QuickStartPage({ params }: Props) {
             {content.commonMistakes.map((mistake, i) => (
               <div key={i} className="flex gap-3 bg-surface/60 border border-white/5 rounded-xl p-4">
                 <div className="w-5 h-5 bg-red-500/10 border border-red-500/20 rounded-md flex items-center justify-center shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-red-400" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 text-red-400" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </div>

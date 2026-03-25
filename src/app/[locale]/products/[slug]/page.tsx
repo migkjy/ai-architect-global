@@ -19,6 +19,38 @@ export function generateStaticParams() {
   );
 }
 
+/* Per-product SEO meta descriptions with purchase CTA — max 155 chars */
+const productMetaDescriptions: Record<string, string> = {
+  "ai-marketing-architect":
+    "AI Marketing Architect: Automate DotCom Secrets funnels with AI. Value Ladder, Hook-Story-Offer & email sequences — $17 PDF guide. Download now.",
+  "ai-brand-architect":
+    "AI Brand Architect: Build a movement with Expert Secrets + AI. Mass Movement design, Epiphany Bridge & Perfect Webinar script — $17 PDF. Buy now.",
+  "ai-traffic-architect":
+    "AI Traffic Architect: Automate Traffic Secrets with AI. Dream 100 strategy, multi-platform content & follow-up funnels — $17 PDF. Download now.",
+  "ai-story-architect":
+    "AI Story Architect: Turn Copywriting Secrets into AI-powered sales copy. Headlines, Hero's Journey & FRED targeting — $17 PDF guide. Buy now.",
+  "ai-startup-architect":
+    "AI Startup Architect: Automate Product Launch Formula with AI. Prelaunch sequences, 7-day launch emails & evergreen funnels — $17 PDF. Buy now.",
+  "ai-content-architect":
+    "AI Content Architect: Scale online writing with Nicolas Cole's system + AI. Category design, content atomization & monetization — $17 PDF. Buy now.",
+};
+
+/* Per-product OG descriptions — shorter, social-optimized */
+const productOgDescriptions: Record<string, string> = {
+  "ai-marketing-architect":
+    "Automate Russell Brunson's DotCom Secrets with AI. Build funnels, email sequences & value ladders — $17 instant PDF download.",
+  "ai-brand-architect":
+    "Build a brand movement with Expert Secrets + AI. Generate webinar scripts & belief systems automatically — $17 PDF guide.",
+  "ai-traffic-architect":
+    "Automate Traffic Secrets with AI. Dream 100 lists, platform-specific content & follow-up funnels — $17 instant download.",
+  "ai-story-architect":
+    "Turn Jim Edwards' Copywriting Secrets into AI-powered sales copy. Headlines, stories & CTAs on autopilot — $17 PDF guide.",
+  "ai-startup-architect":
+    "Automate Jeff Walker's Product Launch Formula with AI. Prelaunch content, launch emails & scaling — $17 PDF guide.",
+  "ai-content-architect":
+    "Scale your writing with Nicolas Cole's system + AI. Category design, idea generation & 5-platform atomization — $17 PDF.",
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, locale } = await params;
   const book = getBookBySlug(slug);
@@ -28,14 +60,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = locale === "en"
     ? `${siteUrl}/en/products/${slug}`
     : `${siteUrl}/${locale}/products/${slug}`;
+
+  /* Title: keep under 60 chars — truncate subtitle if needed */
+  const fullTitle = `${book.title} — ${book.subtitle}`;
+  const title = fullTitle.length <= 60 ? fullTitle : `${book.title} | AI Business Guide`;
+
+  /* Description: use CTA-optimized per-product description */
+  const description = productMetaDescriptions[slug] ?? book.shortDescription;
+  const ogDescription = productOgDescriptions[slug] ?? description;
+
   return {
-    title: `${book.title} — ${book.subtitle}`,
-    description: book.shortDescription,
+    title,
+    description,
     keywords: [
       book.title,
       book.framework,
       `${book.framework} AI`,
       `${book.framework} automation`,
+      `${book.framework} AI guide`,
+      `buy ${book.title}`,
       "AI business automation",
       "AI marketing playbook",
       "AI native business guide",
@@ -55,8 +98,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       },
     },
     openGraph: {
-      title: `${book.title} — ${book.subtitle}`,
-      description: book.shortDescription,
+      title,
+      description: ogDescription,
       type: "website",
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Native Playbook Series",
@@ -72,8 +115,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
-      title: `${book.title} — ${book.subtitle}`,
-      description: book.shortDescription,
+      title,
+      description: ogDescription,
       images: [`${siteUrl}/og-image`],
     },
   };
@@ -102,10 +145,12 @@ export default async function ProductPage({ params }: Props) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
+    additionalType: "https://schema.org/DigitalDocument",
     name: book.title,
-    description: book.shortDescription,
-    url: `${siteUrl}/products/${slug}`,
+    description: productMetaDescriptions[slug] ?? book.shortDescription,
+    url: `${siteUrl}/${locale}/products/${slug}`,
     sku: `AIA-VOL${book.vol}`,
+    mpn: `AINP-VOL${book.vol}`,
     image: {
       "@type": "ImageObject",
       url: `${siteUrl}/opengraph-image`,
@@ -115,6 +160,7 @@ export default async function ProductPage({ params }: Props) {
     itemCondition: "https://schema.org/NewCondition",
     brand: { "@type": "Brand", name: "AI Native Playbook Series" },
     category: "Digital Download / Business Guide",
+    inLanguage: locale === "ko" ? "ko" : locale === "ja" ? "ja" : "en",
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "4.8",
@@ -139,22 +185,24 @@ export default async function ProductPage({ params }: Props) {
     offers: [
       {
         "@type": "Offer",
-        name: "Individual",
+        name: "Individual PDF Guide",
         price: "17",
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
-        url: `${siteUrl}/products/${slug}`,
+        url: `${siteUrl}/${locale}/products/${slug}`,
         priceValidUntil: "2026-12-31",
+        itemCondition: "https://schema.org/NewCondition",
         seller: { "@type": "Organization", name: "AI Native Playbook Series", url: siteUrl },
       },
       {
         "@type": "Offer",
-        name: "Complete Bundle (6 Books)",
+        name: "Complete Bundle (All 6 Books)",
         price: "47",
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
-        url: `${siteUrl}/bundle`,
+        url: `${siteUrl}/${locale}/bundle`,
         priceValidUntil: "2026-12-31",
+        itemCondition: "https://schema.org/NewCondition",
         seller: { "@type": "Organization", name: "AI Native Playbook Series", url: siteUrl },
       },
     ],
@@ -259,7 +307,7 @@ export default async function ProductPage({ params }: Props) {
             {book.frameworks.map((f, i) => (
               <div key={i} className="flex gap-3 bg-surface/60 border border-white/5 rounded-xl p-4">
                 <div className="w-6 h-6 bg-gold/10 border border-gold/20 rounded-md flex items-center justify-center shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-gold" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 text-gold" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                 </div>
@@ -278,7 +326,7 @@ export default async function ProductPage({ params }: Props) {
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 bg-gold/15 rounded-xl flex items-center justify-center shrink-0">
-                  <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                   </svg>
                 </div>
@@ -309,7 +357,7 @@ export default async function ProductPage({ params }: Props) {
               {book.whatsInside.map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <div className="w-5 h-5 bg-gold rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                    <svg className="w-3 h-3 text-navy-dark" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 text-navy-dark" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>
                   </div>
@@ -351,11 +399,11 @@ export default async function ProductPage({ params }: Props) {
             </div>
             <div className="flex items-center justify-center gap-4 mt-4 text-xs text-text-muted">
               <span className="flex items-center gap-1">
-                <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 {tc("moneyBack")}
               </span>
               <span className="flex items-center gap-1">
-                <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                <svg className="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
                 {t("noAccount")}
               </span>
             </div>
