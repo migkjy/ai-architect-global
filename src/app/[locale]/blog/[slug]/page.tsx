@@ -11,6 +11,7 @@ import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { books } from "@/lib/products";
 import BlogInlineCTA from "@/components/BlogInlineCTA";
+import BlogBottomCTA from "@/components/BlogBottomCTA";
 import { splitContentAtMidpoint } from "@/lib/blog-content-utils";
 
 export const revalidate = 60; // 60초마다 재검증 — 예약 시각 도래 시 자동 공개
@@ -259,6 +260,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           );
         })()}
       </article>
+
+      {/* Score + Pricing CTA */}
+      <BlogBottomCTA locale={locale} />
+
       {/* Product CTA */}
       <div className="mt-12 p-6 bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl">
         <h3 className="text-lg font-bold mb-2">Ready to Execute These Frameworks with AI?</h3>
