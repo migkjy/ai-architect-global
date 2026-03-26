@@ -16,6 +16,8 @@ const STATIC_PAGES: Array<{ path: string; lastmod: string }> = [
   { path: "en/blog", lastmod: "2026-03-10" },
   { path: "en/patterns", lastmod: "2026-03-11" },
   { path: "en/free-guide", lastmod: "2026-03-12" },
+  { path: "en/score", lastmod: "2026-03-25" },
+  { path: "ja/score", lastmod: "2026-03-25" },
   { path: "en/terms", lastmod: "2025-01-01" },
   { path: "en/privacy", lastmod: "2025-01-01" },
   { path: "en/refund", lastmod: "2025-01-01" },
