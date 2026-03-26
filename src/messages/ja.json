@@ -111,7 +111,21 @@
     "ctaSubtitle": "6つのフレームワーク。6つのAIシステム。即時PDFダウンロード。",
     "ctaBundle": "完全バンドルを購入",
     "ctaViewBooks": "個別書籍を見る",
-    "ctaGuarantee": "即時PDFダウンロード。14日間返金ポリシー。アカウント不要。"
+    "ctaGuarantee": "即時PDFダウンロード。14日間返金ポリシー。アカウント不要。",
+    "trustTitle": "1,800人以上の起業家がAI Native Playbookを信頼する理由",
+    "trustItem1": "Russell Brunson、Jeff Walker、Jim Edwards、Nicolas Coleの実証済みフレームワーク基盤 — 一般的なAIアドバイスではありません",
+    "trustItem2": "500人以上の起業家がビジネス成長に積極的に活用中",
+    "trustItem3": "購入から最初のAI戦略セッションまでの平均時間：24時間以内",
+    "trustItem4": "14日間無条件返金保証",
+    "trustItem5": "ChatGPT、Claude、Geminiに対応 — 専用ツールやサブスクリプション不要",
+    "journeyTitle": "AIジャーニーを始めましょう",
+    "journeySubtitle": "探索中でもビジネス変革の準備中でも、最適なスタートポイントをご用意しています。",
+    "journeyFreeGuideTitle": "無料AIビジネスガイド",
+    "journeyFreeGuideDesc": "無料ガイドを入手して、AIフレームワークがビジネス成長をどう加速するかを発見してください。",
+    "journeyFreeGuideCta": "無料ガイドをダウンロード",
+    "journeyPricingTitle": "料金プランを見る",
+    "journeyPricingDesc": "個別書籍の料金または完全バンドルの割引をご確認ください。購入後すぐにPDFダウンロード。",
+    "journeyPricingCta": "料金を確認"
   },
   "bundle": {
     "badge": "完全バンドル — 全6冊",

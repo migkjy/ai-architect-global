@@ -111,7 +111,21 @@
     "ctaSubtitle": "Six frameworks. Six AI systems. Immediate PDF download.",
     "ctaBundle": "Get Complete Bundle",
     "ctaViewBooks": "View Individual Books",
-    "ctaGuarantee": "Instant PDF download. 14-day refund policy. No account required."
+    "ctaGuarantee": "Instant PDF download. 14-day refund policy. No account required.",
+    "trustTitle": "Why 1,800+ Entrepreneurs Trust AI Native Playbook",
+    "trustItem1": "Built on proven frameworks from Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole — not generic AI advice",
+    "trustItem2": "500+ entrepreneurs actively using the systems to grow their businesses",
+    "trustItem3": "Average time from purchase to first AI-generated strategy session: under 24 hours",
+    "trustItem4": "14-day money-back guarantee — no questions asked",
+    "trustItem5": "Works with ChatGPT, Claude, Gemini — no proprietary tools or subscriptions required",
+    "journeyTitle": "Start Your AI Journey",
+    "journeySubtitle": "Whether you're exploring or ready to transform your business, we have the right starting point for you.",
+    "journeyFreeGuideTitle": "Free AI Business Guide",
+    "journeyFreeGuideDesc": "Get our free guide and discover how AI frameworks can accelerate your business growth. No commitment required.",
+    "journeyFreeGuideCta": "Download Free Guide",
+    "journeyPricingTitle": "View Pricing & Plans",
+    "journeyPricingDesc": "See individual book pricing or save with the complete bundle. Instant PDF download after purchase.",
+    "journeyPricingCta": "See Pricing"
   },
   "bundle": {
     "badge": "BEST VALUE — SAVE $55 TODAY",

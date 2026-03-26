@@ -111,7 +111,21 @@
     "ctaSubtitle": "6가지 프레임워크. 6개의 AI 시스템. 즉시 PDF 다운로드.",
     "ctaBundle": "전체 번들 구매",
     "ctaViewBooks": "개별 도서 보기",
-    "ctaGuarantee": "즉시 PDF 다운로드. 14일 환불 정책. 계정 불필요."
+    "ctaGuarantee": "즉시 PDF 다운로드. 14일 환불 정책. 계정 불필요.",
+    "trustTitle": "1,800명 이상의 기업가가 AI Native Playbook을 신뢰하는 이유",
+    "trustItem1": "Russell Brunson, Jeff Walker, Jim Edwards, Nicolas Cole의 검증된 프레임워크 기반 — 일반적인 AI 조언이 아닙니다",
+    "trustItem2": "500명 이상의 기업가가 비즈니스 성장을 위해 적극 활용 중",
+    "trustItem3": "구매 후 첫 AI 전략 세션까지 평균 소요 시간: 24시간 이내",
+    "trustItem4": "14일 무조건 환불 보장",
+    "trustItem5": "ChatGPT, Claude, Gemini와 호환 — 전용 도구나 구독 불필요",
+    "journeyTitle": "AI 여정을 시작하세요",
+    "journeySubtitle": "탐색 중이든 비즈니스 혁신을 준비 중이든, 적합한 출발점을 제공합니다.",
+    "journeyFreeGuideTitle": "무료 AI 비즈니스 가이드",
+    "journeyFreeGuideDesc": "무료 가이드를 받고 AI 프레임워크가 비즈니스 성장을 어떻게 가속화하는지 알아보세요. 부담 없이 시작하세요.",
+    "journeyFreeGuideCta": "무료 가이드 다운로드",
+    "journeyPricingTitle": "가격 및 플랜 보기",
+    "journeyPricingDesc": "개별 도서 가격 또는 전체 번들 할인을 확인하세요. 구매 즉시 PDF 다운로드.",
+    "journeyPricingCta": "가격 확인하기"
   },
   "bundle": {
     "badge": "전체 번들 — 6권 모두",
