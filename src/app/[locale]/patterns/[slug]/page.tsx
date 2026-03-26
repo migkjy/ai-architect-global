@@ -31,8 +31,8 @@ export async function generateMetadata({
   const pattern = getPatternBySlug(slug);
   if (!pattern) return {};
 
-  const title = `${pattern.title} | AI Native Playbook`;
-  const description = pattern.description;
+  const title = `${pattern.title} — AI Business Framework | AI Native Playbook`;
+  const description = `${pattern.description.slice(0, 155)}…`;
 
   const { locale } = await params;
   const canonicalUrl = `${BASE_URL}/${locale}/patterns/${slug}`;
@@ -40,13 +40,22 @@ export async function generateMetadata({
   return {
     title,
     description,
+    keywords: [
+      pattern.title,
+      "AI architecture pattern",
+      "AI business automation",
+      pattern.sourceBook,
+      pattern.sourceAuthor,
+      "AI native playbook",
+      "AI agent framework",
+    ],
     openGraph: {
       title,
       description,
       url: canonicalUrl,
       type: "article",
       siteName: "AI Native Playbook",
-      images: [{ url: `${BASE_URL}/opengraph-image`, width: 1200, height: 630, alt: title }],
+      images: [{ url: `${BASE_URL}/${locale}/patterns/${slug}/opengraph-image`, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
@@ -55,6 +64,11 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: canonicalUrl,
+      languages: {
+        en: `${BASE_URL}/en/patterns/${slug}`,
+        ja: `${BASE_URL}/ja/patterns/${slug}`,
+        "x-default": `${BASE_URL}/en/patterns/${slug}`,
+      },
     },
   };
 }
@@ -78,7 +92,8 @@ export default async function PatternPage({
     "@type": "HowTo",
     name: pattern.title,
     description: pattern.description,
-    url: `${BASE_URL}/patterns/${slug}`,
+    url: `${BASE_URL}/${locale}/patterns/${slug}`,
+    inLanguage: locale === "ja" ? "ja" : "en",
     step: pattern.keySteps.map((step, i) => ({
       "@type": "HowToStep",
       position: i + 1,
@@ -111,13 +126,13 @@ export default async function PatternPage({
         "@type": "ListItem",
         position: 2,
         name: "Patterns",
-        item: `${BASE_URL}/patterns`,
+        item: `${BASE_URL}/${locale}/patterns`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: pattern.title,
-        item: `${BASE_URL}/patterns/${slug}`,
+        item: `${BASE_URL}/${locale}/patterns/${slug}`,
       },
     ],
   };

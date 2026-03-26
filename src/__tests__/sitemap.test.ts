@@ -55,12 +55,16 @@ describe("sitemap-pages.xml", () => {
     expect(xml).toContain("/en/free-guide");
   });
 
-  it("does not include /ja/ URLs", async () => {
+  it("includes /ja/ URLs", async () => {
     const { GET } = await import("@/app/sitemap-pages.xml/route");
     const response = GET();
     const xml = await response.text();
 
-    expect(xml).not.toContain("/ja/");
+    expect(xml).toContain("/ja/pricing");
+    expect(xml).toContain("/ja/about");
+    expect(xml).toContain("/ja/faq");
+    expect(xml).toContain("/ja/blog");
+    expect(xml).toContain("/ja/free-guide");
   });
 
   it("does not include /ko/ URLs", async () => {

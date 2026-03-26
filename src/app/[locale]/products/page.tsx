@@ -6,34 +6,12 @@ const BuyButton = dynamic(() => import("@/components/BuyButton"));
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 
-const productsMeta: Record<string, { title: string; description: string; ogDescription: string }> = {
+const productsMeta: Record<string, { title: string; description: string; ogDescription: string; ogImageAlt: string; keywords: string[] }> = {
   en: {
     title: "All 6 AI Business Automation Guides — AI Native Playbook Series",
     description: "6 AI-native guides turning world-class marketing frameworks into executable AI systems. Prompt skills included — $17 each or $47 complete bundle.",
     ogDescription: "6 AI-powered business automation guides. Apply world-class marketing frameworks with AI agent skills. Individual $17 or complete bundle $47.",
-  },
-  ko: {
-    title: "AI 비즈니스 프레임워크 가이드 6권 — AI Native Playbook Series",
-    description: "Russell Brunson, Jeff Walker, Jim Edwards, Nicolas Cole의 프레임워크를 실행 가능한 AI 시스템으로 변환하는 6권의 PDF 가이드. 개별 $17, 번들 $47.",
-    ogDescription: "세계적 비즈니스 프레임워크를 AI로 자동화하는 6권의 가이드. 개별 $17 또는 번들 $47.",
-  },
-  ja: {
-    title: "AIビジネスフレームワークガイド全6冊 — AI Native Playbook Series",
-    description: "Russell Brunson、Jeff Walker、Jim Edwards、Nicolas Coleのフレームワークを実行可能なAIシステムに変換する6冊のPDFガイド。個別$17、バンドル$47。",
-    ogDescription: "世界クラスのビジネスフレームワークをAIで自動化する6冊のガイド。個別$17またはバンドル$47。",
-  },
-};
-
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
-  const meta = productsMeta[locale] ?? productsMeta.en;
-  const canonicalUrl = `${siteUrl}/${locale}/products`;
-  const ogDescription = (meta as typeof productsMeta.en).ogDescription ?? meta.description;
-
-  return {
-    title: meta.title,
-    description: meta.description,
+    ogImageAlt: "AI Native Playbook Series — 6 AI Business Automation Guides with Prompt Skills",
     keywords: [
       "AI business automation guides",
       "AI marketing playbook",
@@ -47,11 +25,62 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       "Nicolas Cole AI guide",
       "AI sales funnel",
       "AI copywriting",
+      "buy AI business guides",
+      "AI marketing automation bundle",
+      "digital marketing AI tools",
+      "AI prompt templates for business",
     ],
+  },
+  ko: {
+    title: "AI 비즈니스 자동화 가이드 6권 — AI Native Playbook Series",
+    description: "Russell Brunson, Jeff Walker, Jim Edwards, Nicolas Cole의 프레임워크를 실행 가능한 AI 시스템으로 변환하는 6권의 PDF 가이드. 프롬프트 스킬 포함 — 개별 $17, 번들 $47.",
+    ogDescription: "세계적 비즈니스 프레임워크를 AI로 자동화하는 6권의 가이드. 프롬프트 스킬 포함. 개별 $17 또는 번들 $47.",
+    ogImageAlt: "AI Native Playbook 시리즈 — AI 비즈니스 자동화 가이드 6권",
+    keywords: [
+      "AI 비즈니스 자동화 가이드",
+      "AI 마케팅 플레이북",
+      "AI 프롬프트 템플릿",
+      "비즈니스 자동화 AI",
+      "AI 세일즈 퍼널",
+      "AI 카피라이팅 가이드",
+      "Russell Brunson AI 가이드",
+      "AI 마케팅 프레임워크",
+    ],
+  },
+  ja: {
+    title: "AIビジネス自動化ガイド全6冊 — AI Native Playbook Series",
+    description: "Russell Brunson、Jeff Walker、Jim Edwards、Nicolas Coleのフレームワークを実行可能なAIシステムに変換する6冊のPDFガイド。プロンプトスキル付き — 個別$17、バンドル$47。",
+    ogDescription: "世界クラスのビジネスフレームワークをAIで自動化する6冊のガイド。プロンプトスキル付き。個別$17またはバンドル$47。",
+    ogImageAlt: "AI Native Playbook シリーズ — AIビジネス自動化ガイド全6冊",
+    keywords: [
+      "AIビジネス自動化ガイド",
+      "AIマーケティングプレイブック",
+      "AIプロンプトテンプレート",
+      "ビジネス自動化AI",
+      "AIセールスファネル",
+      "AIコピーライティングガイド",
+      "Russell Brunson AIガイド",
+      "AIマーケティングフレームワーク",
+    ],
+  },
+};
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
+  const meta = productsMeta[locale] ?? productsMeta.en;
+  const canonicalUrl = `${siteUrl}/${locale}/products`;
+  const ogDescription = (meta as typeof productsMeta.en).ogDescription ?? meta.description;
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    keywords: meta.keywords,
     alternates: {
       canonical: canonicalUrl,
       languages: {
         en: `${siteUrl}/en/products`,
+        ko: `${siteUrl}/ko/products`,
         ja: `${siteUrl}/ja/products`,
         "x-default": `${siteUrl}/en/products`,
       },
@@ -68,7 +97,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: `${siteUrl}/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: "AI Native Playbook Series — 6 AI Business Automation Guides",
+          alt: meta.ogImageAlt,
         },
       ],
     },
@@ -98,52 +127,109 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
 
   const canonicalProductsUrl = `${siteUrl}/${locale}/products`;
 
+  const meta = productsMeta[locale] ?? productsMeta.en;
+  const inLanguage = locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US";
+
+  const itemListSchema = {
+    "@type": "ItemList",
+    "@id": `${canonicalProductsUrl}#itemlist`,
+    name: "AI Native Playbook Series — All Books",
+    description: "6 AI-powered PDF guides that turn proven business frameworks into executable AI systems.",
+    numberOfItems: books.length,
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    itemListElement: books.map((book, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Product",
+        name: book.title,
+        description: book.shortDescription,
+        url: `${siteUrl}/${locale}/products/${book.slug}`,
+        sku: `AIA-VOL${book.vol}`,
+        image: `${siteUrl}/opengraph-image`,
+        brand: { "@type": "Brand", name: "AI Native Playbook Series" },
+        category: "Digital Download / Business Guide",
+        offers: {
+          "@type": "Offer",
+          price: "17",
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+          priceValidUntil: "2026-12-31",
+          url: `${siteUrl}/${locale}/products/${book.slug}`,
+          seller: { "@id": `${siteUrl}/#organization` },
+        },
+      },
+    })),
+  };
+
   const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AI Native Playbook",
+      url: siteUrl,
+      logo: `${siteUrl}/opengraph-image`,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "AI Native Playbook",
+      url: siteUrl,
+      publisher: { "@id": `${siteUrl}/#organization` },
+      inLanguage: ["en-US", "ko-KR", "ja-JP"],
+    },
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: siteUrl },
-        { "@type": "ListItem", position: 2, name: "All Books", item: `${siteUrl}/products` },
+        { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/${locale}` },
+        { "@type": "ListItem", position: 2, name: "All Books", item: canonicalProductsUrl },
       ],
     },
     {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
-      name: "All 6 AI Business Automation Guides — AI Native Playbook Series",
-      description: "6 AI-powered PDF guides that turn proven business frameworks into executable AI systems.",
+      "@id": `${canonicalProductsUrl}#webpage`,
+      name: meta.title,
+      description: meta.description,
       url: canonicalProductsUrl,
-      inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+      inLanguage,
       isPartOf: { "@id": `${siteUrl}/#website` },
       publisher: { "@id": `${siteUrl}/#organization` },
+      mainEntity: { "@id": `${canonicalProductsUrl}#itemlist` },
+      breadcrumb: {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: `${siteUrl}/${locale}` },
+          { "@type": "ListItem", position: 2, name: "All Books", item: canonicalProductsUrl },
+        ],
+      },
     },
     {
       "@context": "https://schema.org",
-      "@type": "ItemList",
-      name: "AI Native Playbook Series — All Books",
-      description: "6 AI-powered PDF guides that turn proven business frameworks into executable AI systems.",
+      ...itemListSchema,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "OfferCatalog",
+      name: "AI Native Playbook Series — Complete Bundle",
+      description: "All 6 AI business automation guides in one discounted bundle. Save 54%.",
+      url: `${siteUrl}/${locale}/bundle`,
       numberOfItems: books.length,
-      itemListElement: books.map((book, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        item: {
-          "@type": "Product",
-          name: book.title,
-          description: book.shortDescription,
-          url: `${siteUrl}/products/${book.slug}`,
-          sku: `AIA-VOL${book.vol}`,
-          brand: { "@type": "Brand", name: "AI Native Playbook Series" },
-          category: "Digital Download / Business Guide",
-          offers: {
-            "@type": "Offer",
-            price: "17",
-            priceCurrency: "USD",
-            availability: "https://schema.org/InStock",
-            priceValidUntil: "2026-12-31",
-            url: `${siteUrl}/products/${book.slug}`,
-          },
+      itemListElement: [
+        {
+          "@type": "Offer",
+          name: "Complete Bundle — All 6 AI Guides",
+          price: "47",
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+          priceValidUntil: "2026-12-31",
+          url: `${siteUrl}/${locale}/bundle`,
+          seller: { "@id": `${siteUrl}/#organization` },
         },
-      })),
+      ],
     },
   ];
 

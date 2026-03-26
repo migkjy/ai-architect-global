@@ -107,7 +107,6 @@ export async function generateMetadata({
       canonical: pageUrl,
       languages: {
         en: `${SITE_URL}/en`,
-        ko: `${SITE_URL}/ko`,
         ja: `${SITE_URL}/ja`,
         "x-default": `${SITE_URL}/en`,
       },
@@ -303,6 +302,9 @@ export default async function LocaleLayout({
             cta: tExit("cta"),
             noSpam: tExit("noSpam"),
             dismiss: tExit("dismiss"),
+            freeGuideCta: tExit("freeGuideCta"),
+            pricingCta: tExit("pricingCta"),
+            orDivider: tExit("orDivider"),
           }}
           scrollBannerLabels={{
             title: tScroll("title"),

@@ -11,6 +11,8 @@ import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { books } from "@/lib/products";
 import BlogInlineCTA from "@/components/BlogInlineCTA";
+import EmailCapture from "@/components/EmailCapture";
+import BlogBottomCTA from "@/components/BlogBottomCTA";
 import { splitContentAtMidpoint } from "@/lib/blog-content-utils";
 
 export const revalidate = 60; // 60초마다 재검증 — 예약 시각 도래 시 자동 공개
@@ -48,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: post.description,
       type: "article",
       publishedTime: post.date,
-      modifiedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
       url: canonicalUrl,
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Native Playbook Series",
@@ -77,16 +79,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       canonical: canonicalUrl,
       languages: {
         en: `${siteUrl}/en/blog/${slug}`,
-        ko: `${siteUrl}/ko/blog/${slug}`,
         ja: `${siteUrl}/ja/blog/${slug}`,
         "x-default": `${siteUrl}/en/blog/${slug}`,
       },
     },
     robots: {
-      index: true,
+      index: !post.noindex,
       follow: true,
       googleBot: {
-        index: true,
+        index: !post.noindex,
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large" as const,
@@ -137,7 +138,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     headline: post.title,
     description: post.description,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated ?? post.date,
     image: {
       "@type": "ImageObject",
       url: locale === "en"
@@ -168,6 +169,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       "@type": "WebPage",
       "@id": locale === "en" ? `${siteUrl}/en/blog/${slug}` : `${siteUrl}/${locale}/blog/${slug}`,
     },
+    articleSection: post.category,
     keywords: post.tags.join(", "),
     wordCount: Math.round(post.content.split(/\s+/).length),
     speakable: {
@@ -259,6 +261,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           );
         })()}
       </article>
+
+      {/* Score + Pricing CTA */}
+      <BlogBottomCTA locale={locale} />
+
       {/* Product CTA */}
       <div className="mt-12 p-6 bg-gradient-to-r from-gold/10 to-gold/5 border border-gold/20 rounded-2xl">
         <h3 className="text-lg font-bold mb-2">Ready to Execute These Frameworks with AI?</h3>
@@ -327,9 +333,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </div>
       </div>
 
-      <div className="mt-8 pt-8 border-t border-white/10 text-center">
-        <p className="text-text-secondary mb-2">Get weekly AI business frameworks — every Friday.</p>
-        <p className="text-xs text-text-muted">500+ entrepreneurs subscribed · No spam · Unsubscribe anytime</p>
+      <div className="mt-8 pt-8 border-t border-white/10">
+        <div className="max-w-md mx-auto">
+          <p className="text-center text-text-primary font-semibold mb-1">Get weekly AI business frameworks</p>
+          <p className="text-center text-xs text-text-muted mb-4">Join 500+ entrepreneurs. Free, every Friday.</p>
+          <EmailCapture className="" buttonText="Subscribe Free" />
+        </div>
       </div>
 
       {/* Related Posts */}

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-type NavItem = { href: string; label: string };
+type NavItem = { href: string; label: string; highlight?: boolean };
 
 export default function MobileMenuButton({ navItems, bundleLabel }: { navItems: NavItem[]; bundleLabel: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -18,11 +18,11 @@ export default function MobileMenuButton({ navItems, bundleLabel }: { navItems: 
         className="md:hidden p-1.5 text-text-secondary hover:text-text-primary transition-colors"
       >
         {mobileOpen ? (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         )}
@@ -39,7 +39,11 @@ export default function MobileMenuButton({ navItems, bundleLabel }: { navItems: 
             <Link
               key={item.href}
               href={item.href}
-              className="hover:text-text-primary transition-colors"
+              className={
+                item.highlight
+                  ? "text-gold font-semibold hover:text-gold-light transition-colors"
+                  : "hover:text-text-primary transition-colors"
+              }
               onClick={() => setMobileOpen(false)}
             >
               {item.label}

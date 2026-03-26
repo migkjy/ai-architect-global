@@ -1,5 +1,5 @@
 ---
-title: "AI-Native Product Builder Playbook: Ship in 30 Days"
+title: "AI-Native Product Builder's Playbook: Ship in 30 Days"
 description: "A step-by-step framework to go from idea to paying customers in 30 days — no team, no funding, just you and AI tools."
 date: "2026-03-22"
 author: "AI Native Playbook"

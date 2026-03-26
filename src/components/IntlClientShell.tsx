@@ -24,6 +24,9 @@ type ExitPopupLabels = {
   cta: string;
   noSpam: string;
   dismiss: string;
+  freeGuideCta?: string;
+  pricingCta?: string;
+  orDivider?: string;
 };
 
 type ScrollBannerLabels = {

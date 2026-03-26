@@ -29,7 +29,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       canonical: canonicalUrl,
       languages: {
         en: `${SITE_URL}/en/faq`,
-        ko: `${SITE_URL}/ko/faq`,
         ja: `${SITE_URL}/ja/faq`,
         "x-default": `${SITE_URL}/en/faq`,
       },
@@ -135,6 +134,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
     name: t("title"),
     description: t("subtitle"),
     url: canonicalFaqUrl,
+    dateModified: "2026-03-26",
     inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     publisher: {

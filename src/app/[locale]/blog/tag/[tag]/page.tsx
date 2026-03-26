@@ -44,6 +44,7 @@ export async function generateMetadata({
       canonical: canonicalUrl,
       languages: {
         en: `${SITE_URL}/en/blog/tag/${tagSlug}`,
+        ja: `${SITE_URL}/ja/blog/tag/${tagSlug}`,
         "x-default": `${SITE_URL}/en/blog/tag/${tagSlug}`,
       },
     },

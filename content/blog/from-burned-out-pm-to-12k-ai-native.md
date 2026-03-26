@@ -1,5 +1,5 @@
 ---
-title: "Burned-Out PM to $12K/mo: An AI-Native Builder Story"
+title: "From Burned-Out PM to $12K/mo: An AI-Native Journey"
 description: "How a non-technical product manager built an AI-native SaaS earning $12K/month in 8 months — with no coding background, no funding, and no team."
 date: "2026-03-22"
 author: "AI Native Playbook"

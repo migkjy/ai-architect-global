@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
-import { books, getBookBySlug } from "@/lib/products";
+import { books, bundle, getBookBySlug } from "@/lib/products";
 import { routing } from "@/i18n/routing";
 
 type Props = {
@@ -331,7 +331,7 @@ export default async function QuickStartPage({ params }: Props) {
             {book.frameworks.map((f, i) => (
               <div key={i} className="flex gap-3 bg-surface/60 border border-white/5 rounded-xl p-4">
                 <div className="w-5 h-5 bg-gold/10 border border-gold/20 rounded-md flex items-center justify-center shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-gold" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 text-gold" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                   </svg>
                 </div>
@@ -411,7 +411,7 @@ export default async function QuickStartPage({ params }: Props) {
             {content.commonMistakes.map((mistake, i) => (
               <div key={i} className="flex gap-3 bg-surface/60 border border-white/5 rounded-xl p-4">
                 <div className="w-5 h-5 bg-red-500/10 border border-red-500/20 rounded-md flex items-center justify-center shrink-0 mt-0.5">
-                  <svg className="w-3 h-3 text-red-400" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24">
+                  <svg className="w-3 h-3 text-red-400" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24" aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </div>
@@ -439,6 +439,44 @@ export default async function QuickStartPage({ params }: Props) {
               >
                 {book.title} — $17
               </Link>
+            </div>
+          </div>
+
+          {/* Bundle Upsell CTA */}
+          <div className="mt-6 bg-gradient-to-br from-gold/10 to-gold/5 border border-gold/30 rounded-2xl p-6">
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-lg">📦</span>
+                <p className="font-bold text-gold text-sm uppercase tracking-wide">
+                  Save {Math.round(((bundle.originalPrice - bundle.price) / bundle.originalPrice) * 100)}% with the Complete Bundle
+                </p>
+              </div>
+              <div>
+                <p className="font-semibold text-text-primary mb-2">
+                  Why stop at one? Get all 6 AI Architect guides for ${bundle.price}
+                </p>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  You&apos;re reading the quick start for <strong className="text-text-primary">{book.title}</strong> — but
+                  the real power comes when you combine all 6 frameworks: Marketing, Brand, Traffic,
+                  Story, Startup, and Content. The complete bundle saves you <strong className="text-gold">${bundle.originalPrice - bundle.price}</strong> vs
+                  buying individually and includes 3 exclusive bonuses.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center gap-3">
+                <Link
+                  href="/pricing"
+                  className="inline-flex items-center gap-2 bg-gold text-navy-dark font-bold px-6 py-3 rounded-xl text-sm hover:bg-gold-light transition-colors"
+                >
+                  Get All 6 Volumes — ${bundle.price}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </Link>
+                <span className="text-xs text-text-muted">
+                  <span className="line-through">${bundle.originalPrice}</span>{" "}
+                  <span className="text-gold font-semibold">${bundle.price}</span> — All 6 books + bonuses
+                </span>
+              </div>
             </div>
           </div>
 

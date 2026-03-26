@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { getCtaVariant, CTA_VARIANTS, type CtaVariant } from "@/lib/cta-config";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
 
 declare global {
   interface Window {
@@ -21,6 +22,7 @@ export default function EmailCapture({
 }: EmailCaptureProps) {
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [variant, setVariant] = useState<CtaVariant>("A");
 
@@ -30,6 +32,7 @@ export default function EmailCapture({
 
   const copy = CTA_VARIANTS.emailCapture[variant];
   const resolvedButtonText = buttonText ?? copy.buttonText;
+  const turnstileRequired = !!process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -41,7 +44,7 @@ export default function EmailCapture({
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, website, source: `email-capture-${variant}` }),
+        body: JSON.stringify({ email, website, turnstileToken, source: `email-capture-${variant}` }),
       });
       if (res.ok) {
         setStatus("success");
@@ -108,10 +111,12 @@ export default function EmailCapture({
         />
         <button
           type="submit"
-          className="px-6 py-3 bg-gold text-navy-dark font-bold rounded-xl hover:bg-gold-light transition-all transform hover:scale-105 text-sm whitespace-nowrap"
+          disabled={turnstileRequired && !turnstileToken}
+          className="px-6 py-3 bg-gold text-navy-dark font-bold rounded-xl hover:bg-gold-light transition-all transform hover:scale-105 text-sm whitespace-nowrap disabled:opacity-50"
         >
           {resolvedButtonText}
         </button>
+        <TurnstileWidget onTokenChange={setTurnstileToken} theme="dark" size="compact" />
         {status === "error" && (
           <p id="email-capture-error" role="alert" className="text-red-400 text-xs mt-1">Something went wrong. Try again.</p>
         )}

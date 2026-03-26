@@ -137,8 +137,7 @@ export function getAllDownloadLinks(
   orderId: string,
   token: string,
   productType: string,
-  baseUrl: string = process.env.NEXT_PUBLIC_SITE_URL ||
-    "https://ai-native-playbook.com"
+  baseUrl: string
 ): Record<string, string> {
   const links: Record<string, string> = {};
 

@@ -80,12 +80,14 @@ The DotCom Secrets frameworks work because they're built on timeless psychology.
 
 The businesses that win with these frameworks are the ones that ship consistently. They test more hooks. They run more sequences. They iterate faster than competitors who are still working on their first version.
 
-AI makes iteration fast enough that consistency becomes achievable for a one-person business. That's the real advantage. Once you have the email sequence running, the next step is connecting it to a complete [AI sales funnel](/en/blog/ai-sales-funnel-guide-2026) that moves leads from opt-in to purchase automatically.
+AI makes iteration fast enough that consistency becomes achievable for a one-person business. That's the real advantage. Once you have the email sequence running, the next step is connecting it to a complete [AI sales funnel](/en/blog/ai-sales-funnel-guide-2026) that moves leads from opt-in to purchase automatically. To run these sequences on full autopilot — without manual daily work — the [AI marketing automation guide](/en/blog/ai-marketing-automation-guide) shows how to set up triggered email, social, and follow-up systems around your DotCom Secrets framework.
 
 For a broader view of how these frameworks fit together into a cohesive system, the [AI marketing strategy guide](/en/blog/ai-marketing-strategy-2026) covers how Value Ladder, PLF, and copywriting frameworks operate in parallel. If you want to take the launch side further, the [Product Launch Formula with AI guide](/en/blog/product-launch-formula-ai) shows how to pair PLF with your Soap Opera Sequence for maximum launch conversions.
 
 Need to automate the entire email system so it runs without daily attention? The [AI email automation guide](/en/blog/ai-email-automation-for-solopreneurs) walks through building a complete hands-off nurture sequence from welcome to close.
 
 Want to see how these frameworks compare before committing? Our [free AI business guide](/en/free-guide) breaks down all six frameworks in a side-by-side chart and gives you 3 prompts to try today.
+
+Building these frameworks into a one-person operation? The [solopreneur AI stack guide](/en/blog/solopreneur-ai-stack-2026) covers the ten tools that handle marketing, sales, and operations — so you can deploy DotCom Secrets across a full tech stack without a team.
 
 If you want these frameworks pre-built as AI-powered tools — so you can run DotCom Secrets, Hook-Story-Offer, and the Soap Opera Sequence with AI guiding each step — the [AI Native Playbook Series](/en/products) gives you exactly that. Browse the [patterns library](/en/patterns) to see how these frameworks integrate into a complete AI business system.
