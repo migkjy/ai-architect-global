@@ -20,6 +20,8 @@ export interface BlogPost {
   published?: boolean;
   /** ISO 8601 예약 발행 시각. 미래이면 비공개. 비어있거나 미설정이면 즉시 공개 */
   scheduledAt?: string;
+  /** true이면 검색엔진에 noindex 메타태그 추가 (off-topic 포스트 등) */
+  noindex?: boolean;
   /** 최종 수정일. frontmatter `updated` 필드. 미설정 시 date와 동일 */
   updated?: string;
 }
@@ -77,6 +79,7 @@ export function getAllPosts(): Omit<BlogPost, "content">[] {
         locale: (data.locale as string | undefined) ?? "en",
         published: data.published as boolean | undefined,
         scheduledAt: data.scheduledAt as string | undefined,
+        noindex: data.noindex as boolean | undefined,
         updated: (data.updated as string | undefined) ?? undefined,
       };
     })
@@ -103,6 +106,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     locale: (data.locale as string | undefined) ?? "en",
     published: data.published as boolean | undefined,
     scheduledAt: data.scheduledAt as string | undefined,
+    noindex: data.noindex as boolean | undefined,
     updated: (data.updated as string | undefined) ?? undefined,
   };
 

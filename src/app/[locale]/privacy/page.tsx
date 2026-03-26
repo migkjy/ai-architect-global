@@ -70,7 +70,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">1. Introduction</h2>
             <p>
-              ai-architect (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), operating the website{" "}
+              UniqStart (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), operating the website{" "}
               <span className="text-gold">ai-native-playbook.com</span> under the service name <strong className="text-text-primary">AI Native Playbook Series</strong>, is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit our website or purchase our products.
             </p>
           </section>

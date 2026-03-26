@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { headers } from "next/headers";
 import { setRequestLocale } from "next-intl/server";
 import { GA4PurchaseComplete } from "@/components/GA4PurchaseComplete";
 import {
+  generateDownloadToken,
   verifyDownloadToken,
   getAllDownloadLinks,
   detectProductType,
@@ -49,22 +51,41 @@ export default async function ThankYouPage({
   const sp = await searchParams;
   const productName = sp.product ?? "AI Native Playbook Series";
   const token = sp.token;
+  const txn = sp.txn; // Paddle transaction_id injected via successUrl template
   const purchaseType = sp.type ?? "bundle";
 
   // Verify token and build download links (server-side)
   let downloadLinks: Record<string, string> = {};
   let tokenValid = false;
 
+  const headersList = await headers();
+  const host = headersList.get("host") || "";
+  const proto = headersList.get("x-forwarded-proto") || "https";
+  const siteUrl = `${proto}://${host}`;
+
   if (token) {
+    // Legacy path: token passed directly (e.g. from email links)
     const result = verifyDownloadToken(token);
     if (result.valid && result.orderId) {
       tokenValid = true;
       const productType = detectProductType(purchaseType);
-      const siteUrl =
-        process.env.NEXT_PUBLIC_SITE_URL || "https://ai-native-playbook.com";
       downloadLinks = getAllDownloadLinks(
         result.orderId,
         token,
+        productType,
+        siteUrl
+      );
+    }
+  } else if (txn) {
+    // Paddle checkout success path: generate token from transaction_id
+    const generatedToken = generateDownloadToken(txn);
+    const result = verifyDownloadToken(generatedToken);
+    if (result.valid && result.orderId) {
+      tokenValid = true;
+      const productType = detectProductType(purchaseType);
+      downloadLinks = getAllDownloadLinks(
+        result.orderId,
+        generatedToken,
         productType,
         siteUrl
       );

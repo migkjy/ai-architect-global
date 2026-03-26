@@ -86,7 +86,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       canonical: canonicalUrl,
       languages: {
         en: `${siteUrl}/en`,
-        ko: `${siteUrl}/ko`,
         ja: `${siteUrl}/ja`,
         "x-default": `${siteUrl}/en`,
       },
@@ -324,8 +323,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               {th("viewBooks")}
             </Link>
           </div>
-          <p className="text-center text-xs text-text-muted mb-8">
+          <p className="text-center text-xs text-text-muted mb-4">
             {th("trust")}
+          </p>
+          <p className="text-center text-sm text-text-secondary mb-8">
+            Not ready to buy?{" "}
+            <Link
+              href="/free-guide"
+              className="text-gold font-semibold hover:text-gold-light underline underline-offset-2 transition-colors"
+            >
+              Get the free starter guide
+            </Link>
           </p>
 
           <div className="flex flex-wrap justify-center gap-3 text-xs text-text-muted" aria-label="Purchase benefits">
