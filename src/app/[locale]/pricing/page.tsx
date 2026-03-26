@@ -59,6 +59,17 @@ export async function generateMetadata({
         "6 AI-powered business automation guides. Individual $17 or complete bundle $47.",
       images: [`${SITE_URL}/opengraph-image`],
     },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large" as const,
+        "max-snippet": -1,
+      },
+    },
   };
 }
 

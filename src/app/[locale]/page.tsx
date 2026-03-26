@@ -12,7 +12,7 @@ import { getTranslations } from "next-intl/server";
 
 const homeMeta: Record<string, { title: string; description: string; ogDescription: string; twitterDescription: string }> = {
   en: {
-    title: "AI Native Playbook Series — Business Automation with AI. 6 World-Class Frameworks.",
+    title: "AI Native Playbook — Business Automation with AI",
     description: "6 AI-powered guides that run Russell Brunson, Jeff Walker, Jim Edwards frameworks as automation systems. Bundle $47 — start your AI-native business today.",
     ogDescription: "6 AI native guides turn world-class business frameworks into executable automation systems. AI marketing playbook + agent skills. Bundle: $47.",
     twitterDescription: "Business automation with AI. 6 PDF guides turn Russell Brunson, Jeff Walker, Jim Edwards frameworks into AI-powered systems. Bundle $47.",
@@ -88,6 +88,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         en: `${siteUrl}/en`,
         ja: `${siteUrl}/ja`,
         "x-default": `${siteUrl}/en`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large" as const,
+        "max-snippet": -1,
       },
     },
   };
