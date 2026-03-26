@@ -25,7 +25,8 @@ export interface EmailSendResult {
 export async function sendPurchaseConfirmationEmail(
   order: Order,
   transactionId: string,
-  downloadLinks?: Record<string, string>
+  downloadLinks?: Record<string, string>,
+  options?: { maxRetries?: number }
 ): Promise<EmailSendResult> {
   const resendKey = process.env.RESEND_API_KEY;
   if (!resendKey) {
@@ -41,30 +42,63 @@ export async function sendPurchaseConfirmationEmail(
 
   const htmlContent = buildConfirmationEmailHtml(order, transactionId, siteUrl, downloadLinks);
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${resendKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: "AI Native Playbook <noreply@apppro.kr>",
-      to: [order.customerEmail],
-      subject: `Your ${order.productName} is ready to download`,
-      html: htmlContent,
-    }),
-  });
+  const maxRetries = options?.maxRetries ?? 3;
+  let lastError = "";
 
-  if (!res.ok) {
-    const errText = await res.text();
-    return {
-      success: false,
-      error: `Resend API error: ${res.status} ${errText}`,
-    };
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${resendKey}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: "AI Native Playbook <noreply@apppro.kr>",
+          to: [order.customerEmail],
+          subject: `Your ${order.productName} is ready to download`,
+          html: htmlContent,
+        }),
+      });
+
+      if (res.ok) {
+        const data = await res.json() as { id?: string };
+        if (attempt > 1) {
+          console.log(
+            `[email] Succeeded on attempt ${attempt}/${maxRetries}: txn=${transactionId}`
+          );
+        }
+        return { success: true, messageId: data.id };
+      }
+
+      const errText = await res.text();
+      lastError = `Resend API error: ${res.status} ${errText}`;
+
+      // Don't retry on 4xx client errors (except 429 rate limit)
+      if (res.status >= 400 && res.status < 500 && res.status !== 429) {
+        console.error(
+          `[email] Non-retryable error (${res.status}), attempt ${attempt}/${maxRetries}: txn=${transactionId}, error=${lastError}`
+        );
+        break;
+      }
+
+      console.warn(
+        `[email] Attempt ${attempt}/${maxRetries} failed: txn=${transactionId}, error=${lastError}`
+      );
+    } catch (err) {
+      lastError = err instanceof Error ? err.message : String(err);
+      console.warn(
+        `[email] Attempt ${attempt}/${maxRetries} threw: txn=${transactionId}, error=${lastError}`
+      );
+    }
+
+    // Exponential backoff: 1s, 2s before retries (skip delay on last attempt)
+    if (attempt < maxRetries) {
+      await new Promise((r) => setTimeout(r, attempt * 1000));
+    }
   }
 
-  const data = await res.json() as { id?: string };
-  return { success: true, messageId: data.id };
+  return { success: false, error: lastError };
 }
 
 /**
