@@ -168,14 +168,32 @@ export default async function ThankYouPage({
           </ul>
         </div>
 
-        {/* Secondary CTA — products */}
-        <div className="mt-8 pt-8 border-t border-white/10">
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 px-6 py-3 border border-gold/30 rounded-xl font-semibold text-sm text-gold hover:bg-gold/10 hover:border-gold/50 transition-all"
-          >
-            {t("exploreProducts")}
-          </Link>
+        {/* Upsell CTA — Pricing */}
+        <div className="mt-8 bg-gradient-to-br from-gold/5 to-gold/10 border border-gold/20 rounded-2xl p-6 text-center">
+          <h2 className="text-lg font-bold mb-2">
+            Ready for the Full System?
+          </h2>
+          <p className="text-sm text-text-secondary mb-4 max-w-md mx-auto">
+            Your free guide is just the beginning. Unlock all 6 frameworks,
+            AI agent skills, and complete implementation guides.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              href="/pricing"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-sm transition-all transform hover:scale-105 bg-gold text-navy-dark hover:bg-gold-light"
+            >
+              View Plans & Pricing
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-gold/30 rounded-xl font-semibold text-sm text-gold hover:bg-gold/10 hover:border-gold/50 transition-all"
+            >
+              {t("exploreProducts")}
+            </Link>
+          </div>
         </div>
       </section>
     </div>

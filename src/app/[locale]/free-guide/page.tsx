@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
 import { getTranslations } from "next-intl/server";
 import dynamic from "next/dynamic";
@@ -324,6 +325,42 @@ export default async function FreeGuidePage({
               Claude, ChatGPT, Gemini — use your preferred tool.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Upsell CTA — Full Playbook + Pricing */}
+      <section className="max-w-3xl mx-auto px-4 mt-20">
+        <div className="bg-gradient-to-br from-gold/5 to-gold/10 border border-gold/20 rounded-2xl p-8 md:p-10 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            Want the Full{" "}
+            <span className="gradient-gold">AI Automation System</span>?
+          </h2>
+          <p className="text-text-secondary max-w-xl mx-auto mb-6 leading-relaxed">
+            This free guide covers the basics. Our complete Playbook series
+            gives you 6 world-class frameworks, ready-to-use AI agent skills,
+            and step-by-step implementation guides to fully automate your
+            business.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link
+              href="/pricing"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold text-base transition-all transform hover:scale-105 bg-gold text-navy-dark hover:bg-gold-light"
+            >
+              View Plans & Pricing
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-gold/30 rounded-xl font-semibold text-sm text-gold hover:bg-gold/10 hover:border-gold/50 transition-all"
+            >
+              Explore All Products
+            </Link>
+          </div>
+          <p className="text-xs text-text-muted mt-4">
+            30-day money-back guarantee on all products.
+          </p>
         </div>
       </section>
     </div>
