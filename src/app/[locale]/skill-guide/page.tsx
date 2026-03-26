@@ -381,6 +381,35 @@ export default async function SkillGuidePage({ params }: Props) {
             </Link>
           </div>
         </section>
+
+        {/* Conversion CTA — Apply with AI Playbook */}
+        <section className="max-w-3xl mx-auto px-4 mt-16">
+          <div className="bg-gradient-to-br from-gold/10 via-surface/80 to-gold/5 border border-gold/30 rounded-2xl p-8 text-center">
+            <h2 className="text-2xl font-bold text-text-primary mb-3">
+              Ready to Apply These Skills to Real Business Results?
+            </h2>
+            <p className="text-text-secondary text-sm leading-relaxed max-w-xl mx-auto mb-6">
+              The AI Playbook turns framework knowledge into execution. See our pricing plans or grab the free guide to start building your AI-native business today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/pricing"
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl font-semibold bg-gold text-navy-dark text-sm hover:bg-gold-light transition-colors shadow-lg shadow-gold/20"
+              >
+                View Pricing Plans
+              </Link>
+              <Link
+                href="/free-guide"
+                className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl font-semibold border border-gold/30 text-gold text-sm hover:bg-gold/10 hover:border-gold/50 transition-colors"
+              >
+                Download Free Guide
+              </Link>
+            </div>
+            <p className="text-text-muted text-xs mt-4">
+              No credit card required for the free guide. Instant access.
+            </p>
+          </div>
+        </section>
       </div>
     </>
   );

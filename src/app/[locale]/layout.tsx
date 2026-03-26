@@ -302,6 +302,9 @@ export default async function LocaleLayout({
             cta: tExit("cta"),
             noSpam: tExit("noSpam"),
             dismiss: tExit("dismiss"),
+            freeGuideCta: tExit("freeGuideCta"),
+            pricingCta: tExit("pricingCta"),
+            orDivider: tExit("orDivider"),
           }}
           scrollBannerLabels={{
             title: tScroll("title"),

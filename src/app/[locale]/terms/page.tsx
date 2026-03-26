@@ -9,20 +9,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const canonicalUrl = `${SITE_URL}/${locale}/terms`;
 
   return {
-    title: "Terms of Service — AI Native Playbook Series",
+    title: "Terms of Service | AI Native Playbook Digital Products",
     description:
-      "Terms of Service for AI Native Playbook Series by ai-architect. Digital product license, payment terms via Paddle, refund policy, and usage guidelines explained.",
+      "Read the Terms of Service for AI Native Playbook Series. Covers digital product license, secure Paddle payments, 14-day refund guarantee, and usage rights for AI guides.",
     openGraph: {
-      title: "Terms of Service — AI Native Playbook Series",
-      description: "Digital product license, payment terms, refund policy, and usage guidelines.",
+      title: "Terms of Service | AI Native Playbook Digital Products",
+      description: "Digital product license, secure Paddle payments, 14-day refund guarantee, and usage rights.",
       images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
     },
     alternates: {
       canonical: canonicalUrl,
     },
     robots: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
     },
   };
 }

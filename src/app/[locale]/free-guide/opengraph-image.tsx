@@ -1,17 +1,21 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Free AI Business Guide - AI Native Playbook";
+export const alt = "Free AI Marketing Blueprint - AI Native Playbook";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default async function Image({ params }: { params: { locale: string } }) {
+export default async function Image({
+  params,
+}: {
+  params: { locale: string };
+}) {
   const locale = params.locale || "en";
 
   const LOCALE_TITLE: Record<string, string> = {
-    en: "Free AI Business Starter Guide",
-    ko: "무료 AI 비즈니스 스타터 가이드",
-    ja: "無料AIビジネスガイド",
+    en: "Free AI Marketing Blueprint",
+    ko: "무료 AI 마케팅 블루프린트",
+    ja: "無料AIマーケティング設計図",
   };
 
   const LOCALE_SUBTITLE: Record<string, string> = {
@@ -20,8 +24,15 @@ export default async function Image({ params }: { params: { locale: string } }) 
     ja: "6つの実証済みフレームワークをAIで自動化する方法",
   };
 
+  const LOCALE_CTA: Record<string, string> = {
+    en: "Download Free — No Purchase Required",
+    ko: "무료 다운로드 — 구매 불필요",
+    ja: "無料ダウンロード — 購入不要",
+  };
+
   const title = LOCALE_TITLE[locale] || LOCALE_TITLE.en;
   const subtitle = LOCALE_SUBTITLE[locale] || LOCALE_SUBTITLE.en;
+  const cta = LOCALE_CTA[locale] || LOCALE_CTA.en;
 
   return new ImageResponse(
     (
@@ -29,7 +40,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
         style={{
           width: "100%",
           height: "100%",
-          background: "linear-gradient(135deg, #1a0f00 0%, #2d1a00 40%, #1a0f00 100%)",
+          background: "linear-gradient(135deg, #021a0a 0%, #032b12 40%, #021a0a 100%)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -39,7 +50,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
           position: "relative",
         }}
       >
-        {/* Gold top bar */}
+        {/* Green top bar */}
         <div
           style={{
             position: "absolute",
@@ -47,26 +58,25 @@ export default async function Image({ params }: { params: { locale: string } }) 
             left: 0,
             right: 0,
             height: "6px",
-            background: "linear-gradient(90deg, #e2b714, #f0cc4a, #e2b714)",
+            background: "linear-gradient(90deg, #16a34a, #4ade80, #16a34a)",
           }}
         />
 
-        {/* FREE badge */}
+        {/* 100% FREE badge */}
         <div
           style={{
-            background: "rgba(226,183,20,0.15)",
-            border: "2px solid rgba(226,183,20,0.5)",
-            color: "#e2b714",
-            fontSize: "14px",
+            background: "linear-gradient(90deg, #16a34a, #22c55e)",
+            color: "#ffffff",
+            fontSize: "16px",
             fontWeight: "800",
-            padding: "8px 28px",
+            padding: "10px 32px",
             borderRadius: "100px",
             marginBottom: "32px",
             letterSpacing: "3px",
             textTransform: "uppercase",
           }}
         >
-          FREE GUIDE
+          100% FREE
         </div>
 
         {/* Download icon circle */}
@@ -74,8 +84,8 @@ export default async function Image({ params }: { params: { locale: string } }) 
           style={{
             width: "72px",
             height: "72px",
-            background: "rgba(226,183,20,0.12)",
-            border: "2px solid rgba(226,183,20,0.3)",
+            background: "rgba(34,197,94,0.12)",
+            border: "2px solid rgba(34,197,94,0.3)",
             borderRadius: "50%",
             display: "flex",
             alignItems: "center",
@@ -120,8 +130,8 @@ export default async function Image({ params }: { params: { locale: string } }) 
         {/* CTA pill */}
         <div
           style={{
-            background: "linear-gradient(90deg, #e2b714, #f0cc4a)",
-            color: "#1a0f00",
+            background: "linear-gradient(90deg, #16a34a, #22c55e)",
+            color: "#ffffff",
             fontSize: "18px",
             fontWeight: "800",
             padding: "14px 40px",
@@ -129,7 +139,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
             letterSpacing: "0.5px",
           }}
         >
-          Download Free — No Purchase Required
+          {cta}
         </div>
 
         {/* Branding */}
@@ -139,7 +149,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
             bottom: "30px",
             right: "40px",
             fontSize: "15px",
-            color: "#e2b714",
+            color: "#4ade80",
             fontWeight: "600",
             opacity: 0.8,
           }}

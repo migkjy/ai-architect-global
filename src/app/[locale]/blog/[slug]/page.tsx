@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: post.description,
       type: "article",
       publishedTime: post.date,
-      modifiedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
       url: canonicalUrl,
       locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Native Playbook Series",
@@ -137,7 +137,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     headline: post.title,
     description: post.description,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.updated ?? post.date,
     image: {
       "@type": "ImageObject",
       url: locale === "en"
@@ -168,6 +168,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       "@type": "WebPage",
       "@id": locale === "en" ? `${siteUrl}/en/blog/${slug}` : `${siteUrl}/${locale}/blog/${slug}`,
     },
+    articleSection: post.category,
     keywords: post.tags.join(", "),
     wordCount: Math.round(post.content.split(/\s+/).length),
     speakable: {
