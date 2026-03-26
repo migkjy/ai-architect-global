@@ -185,6 +185,15 @@
       "metric4": "<24h",
       "label4": "Average time from purchase to first executable AI strategy"
     },
+    "communityStats": {
+      "title": "Trusted by a Growing Community",
+      "subscribers": "1,800+",
+      "subscribersLabel": "Newsletter subscribers worldwide",
+      "playbooks": "6",
+      "playbooksLabel": "Comprehensive AI playbooks published",
+      "articles": "23+",
+      "articlesLabel": "In-depth blog articles & guides"
+    },
     "worksWith": "Works with",
     "anyAI": "Any AI with system prompts",
     "gapTitle": "The Gap Between Understanding and Execution",

@@ -185,6 +185,15 @@
       "metric4": "24時間",
       "label4": "購入から初回AI支援戦略セッションまでの平均時間"
     },
+    "communityStats": {
+      "title": "成長するコミュニティの信頼",
+      "subscribers": "1,800+",
+      "subscribersLabel": "世界中のニュースレター購読者",
+      "playbooks": "6",
+      "playbooksLabel": "包括的AIプレイブック出版",
+      "articles": "23+",
+      "articlesLabel": "詳細なブログ記事＆ガイド"
+    },
     "worksWith": "対応ツール",
     "anyAI": "システムプロンプト対応の全AIツール",
     "gapTitle": "理解と実行のギャップ",
