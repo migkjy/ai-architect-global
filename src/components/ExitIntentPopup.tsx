@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
+import Link from "next/link";
 
 declare global {
   interface Window {
@@ -25,6 +26,9 @@ type ExitIntentPopupLabels = {
   cta: string;
   noSpam: string;
   dismiss: string;
+  freeGuideCta?: string;
+  pricingCta?: string;
+  orDivider?: string;
 };
 
 export default function ExitIntentPopup({ labels, variant = "A" }: { labels: ExitIntentPopupLabels; variant?: string }) {
@@ -34,6 +38,10 @@ export default function ExitIntentPopup({ labels, variant = "A" }: { labels: Exi
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
   const dialogRef = useRef<HTMLDivElement>(null);
+
+  const freeGuideCta = labels.freeGuideCta || "Get Free Guide";
+  const pricingCta = labels.pricingCta || "See Pricing Plans";
+  const orDivider = labels.orDivider || "or explore directly";
 
   const dismiss = useCallback(() => {
     setVisible(false);
@@ -135,6 +143,14 @@ export default function ExitIntentPopup({ labels, variant = "A" }: { labels: Exi
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [visible, dismiss]);
+
+  const trackCtaClick = (ctaType: string) => {
+    window.gtag?.("event", "exit_intent_cta_click", {
+      cta_type: ctaType,
+      variant,
+      source: "ai-architect",
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -279,6 +295,35 @@ export default function ExitIntentPopup({ labels, variant = "A" }: { labels: Exi
                 </p>
               )}
             </form>
+
+            {/* Dual CTA section: Free Guide + Pricing */}
+            <div className="mt-4 pt-4 border-t border-white/10">
+              <p className="text-center text-xs text-text-muted mb-3">
+                {orDivider}
+              </p>
+              <div className="flex gap-2">
+                <Link
+                  href="/free-guide"
+                  onClick={() => {
+                    trackCtaClick("free_guide");
+                    dismiss();
+                  }}
+                  className="flex-1 px-4 py-2.5 text-center text-sm font-semibold text-gold border border-gold/30 rounded-xl hover:bg-gold/10 transition-all"
+                >
+                  {freeGuideCta}
+                </Link>
+                <Link
+                  href="/pricing"
+                  onClick={() => {
+                    trackCtaClick("pricing");
+                    dismiss();
+                  }}
+                  className="flex-1 px-4 py-2.5 text-center text-sm font-semibold text-text-primary bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all"
+                >
+                  {pricingCta}
+                </Link>
+              </div>
+            </div>
 
             <p className="mt-3 text-center text-xs text-text-muted">
               {labels.noSpam}
