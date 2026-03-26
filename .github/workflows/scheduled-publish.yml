@@ -9,6 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Vercel Deploy Hook
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
-          curl -s -X POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"
+          if [ -z "$DEPLOY_HOOK_URL" ]; then
+            echo "::warning::VERCEL_DEPLOY_HOOK_URL secret is not set. Skipping deploy."
+            exit 0
+          fi
+          curl -sf -X POST "$DEPLOY_HOOK_URL"
           echo "Deploy hook triggered at $(date -u)"
