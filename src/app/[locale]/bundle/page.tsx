@@ -64,10 +64,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       url: canonicalUrl,
       images: [
         {
-          url: `${siteUrl}/opengraph-image`,
+          url: `${siteUrl}/${locale}/bundle/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: "AI Native Playbook Complete Bundle — 6 AI Business Automation Guides",
+          alt: "AI Native Playbook Complete Bundle — 6 AI Business Automation Guides for $47",
         },
       ],
     },
@@ -75,7 +75,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: "summary_large_image",
       title: meta.title,
       description: meta.ogDescription,
-      images: [`${siteUrl}/opengraph-image`],
+      images: [`${siteUrl}/${locale}/bundle/opengraph-image`],
     },
   };
 }
@@ -178,7 +178,7 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
     url: `${siteUrl}/bundle`,
     image: {
       "@type": "ImageObject",
-      url: `${siteUrl}/opengraph-image`,
+      url: `${siteUrl}/en/bundle/opengraph-image`,
       width: 1200,
       height: 630,
     },
