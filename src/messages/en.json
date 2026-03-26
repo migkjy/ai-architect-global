@@ -290,7 +290,10 @@
     "benefit3": "Weekly AI business insight — every Friday",
     "cta": "Get Free Framework Now",
     "noSpam": "No spam. Unsubscribe anytime.",
-    "dismiss": "No thanks, I don't need free frameworks"
+    "dismiss": "No thanks, I don't need free frameworks",
+    "freeGuideCta": "Get Free Guide",
+    "pricingCta": "See Pricing Plans",
+    "orDivider": "or explore directly"
   },
   "scrollBanner": {
     "title": "AI Framework Preview — Free",

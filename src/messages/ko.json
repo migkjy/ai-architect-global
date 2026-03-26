@@ -290,7 +290,10 @@
     "benefit3": "매주 금요일 AI 비즈니스 인사이트",
     "cta": "무료로 시작하기",
     "noSpam": "스팸 없음. 언제든 해지 가능.",
-    "dismiss": "괜찮습니다, 무료 프레임워크가 필요 없습니다"
+    "dismiss": "괜찮습니다, 무료 프레임워크가 필요 없습니다",
+    "freeGuideCta": "무료 가이드 받기",
+    "pricingCta": "가격 플랜 보기",
+    "orDivider": "또는 바로 둘러보기"
   },
   "scrollBanner": {
     "title": "AI 프레임워크 미리보기 — 무료",
