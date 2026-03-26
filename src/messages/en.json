@@ -380,5 +380,15 @@
     "a19": "Absolutely. The frameworks are universal business principles applied by entrepreneurs in 30+ countries. The AI systems work in any language — describe your business in your preferred language and get framework-driven output.",
     "q20": "How do I contact support?",
     "a20": "Email us at contact@newbizsoft.com. We typically respond within 24 hours on business days."
+  },
+  "scoreCta": {
+    "badge": "Free Assessment",
+    "title": "How AI-Native Is Your Business?",
+    "subtitle": "Take the free 2-minute assessment and discover where you stand on the AI adoption curve. Get a personalized score with actionable recommendations.",
+    "feature1": "5 key dimensions analyzed",
+    "feature2": "Personalized recommendations",
+    "feature3": "Compare with industry benchmarks",
+    "cta": "Take the Score",
+    "ctaSub": "Free · 2 minutes · No signup required"
   }
 }
