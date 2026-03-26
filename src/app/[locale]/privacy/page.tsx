@@ -9,20 +9,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const canonicalUrl = `${SITE_URL}/${locale}/privacy`;
 
   return {
-    title: "Privacy Policy — AI Native Playbook Series",
+    title: "Privacy Policy | AI Native Playbook — GDPR Compliant",
     description:
-      "Privacy Policy for AI Native Playbook Series by ai-architect. Learn how we collect, use, and protect your personal data in compliance with GDPR and international law.",
+      "Privacy Policy for AI Native Playbook Series. Learn how we protect your data with GDPR compliance, secure Paddle payments, and transparent cookie and analytics practices.",
     openGraph: {
-      title: "Privacy Policy — AI Native Playbook Series",
-      description: "Learn how we collect, use, and protect your personal data.",
+      title: "Privacy Policy | AI Native Playbook — GDPR Compliant",
+      description: "GDPR-compliant data protection, secure Paddle payments, and transparent privacy practices.",
       images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
     },
     alternates: {
       canonical: canonicalUrl,
     },
     robots: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
     },
   };
 }

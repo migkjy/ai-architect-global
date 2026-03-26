@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { setRequestLocale } from "next-intl/server";
-import { books } from "@/lib/products";
+import { books, bundle } from "@/lib/products";
+import CopyLinkButton from "@/components/CopyLinkButton";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -243,6 +244,126 @@ export default async function GettingStartedPage({ params }: Props) {
                 </div>
               </Link>
             ))}
+          </div>
+        </section>
+
+        {/* Bundle Upsell CTA */}
+        <section className="max-w-3xl mx-auto px-4 mb-12">
+          <div className="relative overflow-hidden bg-gradient-to-br from-gold/15 via-gold/5 to-transparent border border-gold/25 rounded-2xl p-8">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gold/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+            <div className="relative">
+              <div className="inline-block bg-gold/20 text-gold text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wide">
+                Bundle &amp; Save {bundle.discount}%
+              </div>
+              <h2 className="text-xl font-bold text-text-primary mb-2">
+                Get All 6 Frameworks — Build a Complete Business System
+              </h2>
+              <p className="text-text-secondary text-sm leading-relaxed mb-2">
+                Each book&apos;s AI Agent Skill stacks with the others. Marketing Architect defines your customer. Traffic Architect finds them. Story Architect converts them. Together they become a full AI-powered business execution engine.
+              </p>
+              <p className="text-text-muted text-xs mb-5">
+                <span className="line-through">${bundle.originalPrice}</span>{" "}
+                <span className="text-gold font-bold text-base">${bundle.price}</span>{" "}
+                for all 6 books + 6 AI Agent Skills
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/pricing"
+                  className="inline-flex items-center gap-2 bg-gold text-bg font-semibold text-sm px-6 py-3 rounded-xl hover:bg-gold/90 transition-colors"
+                >
+                  View Bundle Pricing &rarr;
+                </Link>
+                <Link
+                  href="/products"
+                  className="inline-flex items-center gap-2 text-sm text-text-secondary border border-white/10 hover:border-gold/30 px-5 py-3 rounded-xl transition-colors"
+                >
+                  Browse Individual Books
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* AI Readiness Diagnostic CTA */}
+        <section className="max-w-3xl mx-auto px-4 mb-12">
+          <div className="bg-surface/60 border border-white/5 rounded-2xl p-6 hover:border-gold/20 transition-all">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="shrink-0 w-12 h-12 bg-gold/10 border border-gold/20 rounded-xl flex items-center justify-center text-2xl">
+                📊
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-bold text-text-primary mb-1">
+                  How AI-Ready Is Your Business?
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  Take the AI Readiness Score — a quick diagnostic that maps where you are today and which framework to prioritize first. See exactly where AI can create the most leverage in your business.
+                </p>
+              </div>
+              <Link
+                href="/free-guide"
+                className="shrink-0 inline-flex items-center gap-2 text-sm text-gold border border-gold/20 hover:border-gold/40 px-5 py-2.5 rounded-xl transition-all font-semibold whitespace-nowrap"
+              >
+                Get Your Score &rarr;
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter / Free Guide CTA */}
+        <section className="max-w-3xl mx-auto px-4 mb-12">
+          <div className="bg-surface/60 border border-white/5 rounded-2xl p-6 hover:border-gold/20 transition-all">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <div className="shrink-0 w-12 h-12 bg-gold/10 border border-gold/20 rounded-xl flex items-center justify-center text-2xl">
+                📬
+              </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="font-bold text-text-primary mb-1">
+                  Free Guide: AI Implementation Playbook
+                </h3>
+                <p className="text-text-secondary text-sm leading-relaxed">
+                  Get the free starter guide + weekly AI business strategies in your inbox. Learn which frameworks to apply first, common implementation mistakes, and real results from other founders.
+                </p>
+              </div>
+              <Link
+                href="/free-guide"
+                className="shrink-0 inline-flex items-center gap-2 text-sm text-gold border border-gold/20 hover:border-gold/40 px-5 py-2.5 rounded-xl transition-all font-semibold whitespace-nowrap"
+              >
+                Download Free &rarr;
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Social Share CTA */}
+        <section className="max-w-3xl mx-auto px-4 mb-12">
+          <div className="bg-surface/40 border border-white/5 rounded-2xl p-6 text-center">
+            <h3 className="font-bold text-text-primary mb-2">
+              Know Someone Who Needs This?
+            </h3>
+            <p className="text-text-secondary text-sm mb-5 max-w-lg mx-auto">
+              Share the AI Native Playbook series with a founder or marketer who could use AI-powered frameworks to grow their business.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <a
+                href="https://twitter.com/intent/tweet?text=I%27m%20using%20the%20AI%20Native%20Playbook%20series%20to%20build%20AI-powered%20business%20systems.%20Each%20book%20comes%20with%20an%20AI%20Agent%20Skill%20that%20turns%20ChatGPT%2FClaude%20into%20a%20business%20strategist.&url=https%3A%2F%2Fai-native-playbook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-text-secondary border border-white/10 hover:border-gold/30 hover:text-gold px-4 py-2.5 rounded-xl transition-all"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                Share on X
+              </a>
+              <a
+                href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fai-native-playbook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-text-secondary border border-white/10 hover:border-gold/30 hover:text-gold px-4 py-2.5 rounded-xl transition-all"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                Share on LinkedIn
+              </a>
+              <CopyLinkButton url="https://ai-native-playbook.com" />
+            </div>
           </div>
         </section>
 

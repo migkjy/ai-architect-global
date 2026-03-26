@@ -64,10 +64,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       url: canonicalUrl,
       images: [
         {
-          url: `${siteUrl}/opengraph-image`,
+          url: `${siteUrl}/${locale}/bundle/opengraph-image`,
           width: 1200,
           height: 630,
-          alt: "AI Native Playbook Complete Bundle — 6 AI Business Automation Guides",
+          alt: "AI Native Playbook Complete Bundle — 6 AI Business Automation Guides for $47",
         },
       ],
     },
@@ -75,7 +75,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: "summary_large_image",
       title: meta.title,
       description: meta.ogDescription,
-      images: [`${siteUrl}/opengraph-image`],
+      images: [`${siteUrl}/${locale}/bundle/opengraph-image`],
     },
   };
 }
@@ -178,7 +178,7 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
     url: `${siteUrl}/bundle`,
     image: {
       "@type": "ImageObject",
-      url: `${siteUrl}/opengraph-image`,
+      url: `${siteUrl}/en/bundle/opengraph-image`,
       width: 1200,
       height: 630,
     },
@@ -239,13 +239,19 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
     return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
   }
 
+  const reviews = [
+    { name: t("review1Name"), role: t("review1Role"), text: t("review1Text"), stars: 5 },
+    { name: t("review2Name"), role: t("review2Role"), text: t("review2Text"), stars: 5 },
+    { name: t("review3Name"), role: t("review3Role"), text: t("review3Text"), stars: 5 },
+  ];
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(jsonLd)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(breadcrumbJsonLd)) }} />
 
       <div className="min-h-screen pt-24">
-        {/* Hero */}
+        {/* Hero — Enhanced Price Anchoring */}
         <section className="py-16 md:py-24 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-gold/5 via-transparent to-transparent pointer-events-none" />
           <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
@@ -259,18 +265,31 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
               <span className="gradient-gold">{t("title2")}</span>
             </h1>
 
-            <p className="text-text-secondary text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-text-secondary text-lg mb-4 max-w-2xl mx-auto leading-relaxed">
               {t("subtitle")}
             </p>
 
+            {/* Social proof mini-bar */}
+            <div className="flex items-center justify-center gap-2 mb-8">
+              <div className="flex items-center gap-0.5 text-gold">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                ))}
+              </div>
+              <span className="text-sm text-text-secondary">{t("socialProofRating")}</span>
+            </div>
+
             <div className="inline-flex flex-col items-center bg-surface/60 backdrop-blur-sm border-2 border-gold/30 rounded-2xl p-8 card-glow mb-6">
-              <div className="flex items-center gap-4 mb-3">
+              {/* Price anchoring: individual vs bundle */}
+              <div className="flex items-center gap-3 mb-2">
                 <span className="text-xl text-text-secondary line-through decoration-red-400">${bundle.originalPrice}</span>
                 <span className="bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-lg">SAVE ${savedAmount}</span>
+                <span className="bg-green-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">{t("savePct")}</span>
               </div>
-              <div className="text-5xl font-bold text-gold mb-2">${bundle.price}</div>
+              <div className="text-5xl font-bold text-gold mb-1">${bundle.price}</div>
+              <p className="text-xs text-text-secondary mb-4">{t("perBook")}</p>
               <p className="text-sm text-green-400 font-medium mb-6">
-                ${savedAmount} off
+                {t("urgencyNote")}
               </p>
               <BuyButton
                 href={bundleUrl}
@@ -324,6 +343,22 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
           </div>
         </section>
 
+        {/* Mid-Page CTA — After What You Get */}
+        <section className="py-12">
+          <div className="max-w-3xl mx-auto px-4 text-center">
+            <h3 className="text-xl md:text-2xl font-bold mb-3">{t("midCtaTitle")}</h3>
+            <p className="text-text-secondary text-sm mb-6">{t("midCtaSub")}</p>
+            <BuyButton
+              href={bundleUrl}
+              paddlePriceId={bundlePaddlePriceId}
+              paddleSuccessUrl={`${siteUrl}/thank-you?product=Complete+Bundle`}
+              className="text-lg py-4 px-10"
+            >
+              {t("getComplete")} &mdash; ${bundle.price}
+            </BuyButton>
+          </div>
+        </section>
+
         {/* Bonus */}
         <section className="py-16 bg-navy-dark/40">
           <div className="max-w-5xl mx-auto px-4">
@@ -345,8 +380,36 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
           </div>
         </section>
 
-        {/* Value Comparison */}
+        {/* Social Proof — Reviews */}
         <section className="py-16">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-1 h-6 bg-gold rounded-full" />
+              <h2 className="text-2xl md:text-3xl font-bold">{t("socialProofTitle")}</h2>
+            </div>
+            <p className="text-text-secondary mb-10 ml-4">{t("socialProofRating")}</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {reviews.map((review) => (
+                <div key={review.name} className="bg-surface/60 border border-white/5 rounded-xl p-6 card-glow">
+                  <div className="flex items-center gap-0.5 text-gold mb-4">
+                    {[...Array(review.stars)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    ))}
+                  </div>
+                  <p className="text-sm text-text-secondary leading-relaxed mb-4">&ldquo;{review.text}&rdquo;</p>
+                  <div>
+                    <p className="font-semibold text-text-primary text-sm">{review.name}</p>
+                    <p className="text-xs text-text-secondary">{review.role}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Value Comparison */}
+        <section className="py-16 bg-navy-dark/40">
           <div className="max-w-3xl mx-auto px-4">
             <div className="flex items-center gap-3 mb-10">
               <div className="w-1 h-6 bg-gold rounded-full" />
@@ -381,6 +444,21 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
           </div>
         </section>
 
+        {/* Money-Back Guarantee */}
+        <section className="py-16">
+          <div className="max-w-3xl mx-auto px-4 text-center">
+            <div className="inline-flex flex-col items-center bg-surface/60 border-2 border-green-500/20 rounded-2xl p-8 md:p-10">
+              <div className="w-16 h-16 bg-green-500/10 border-2 border-green-500/30 rounded-full flex items-center justify-center mb-5">
+                <svg className="w-8 h-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold mb-3">{t("guaranteeTitle")}</h3>
+              <p className="text-text-secondary leading-relaxed max-w-lg">{t("guaranteeSub")}</p>
+            </div>
+          </div>
+        </section>
+
         {/* Final CTA */}
         <section className="py-16 bg-navy-dark/40">
           <div className="max-w-3xl mx-auto px-4 text-center">
@@ -389,12 +467,15 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
             </h2>
             <p className="text-text-secondary text-lg mb-4 leading-relaxed">{t("readySub")}</p>
 
-            <div className="inline-flex flex-col items-center bg-surface/60 border-2 border-gold/30 rounded-2xl p-8 mb-8 card-glow">
-              <div className="flex items-center gap-3 mb-3">
+            <div className="inline-flex flex-col items-center bg-surface/60 border-2 border-gold/30 rounded-2xl p-8 mb-6 card-glow">
+              <div className="flex items-center gap-3 mb-2">
                 <span className="text-xl text-text-secondary line-through decoration-red-400">${bundle.originalPrice}</span>
                 <span className="bg-red-500 text-white text-sm font-bold px-2.5 py-0.5 rounded">SAVE ${savedAmount}</span>
+                <span className="bg-green-600 text-white text-xs font-bold px-2.5 py-0.5 rounded">{t("savePct")}</span>
               </div>
-              <div className="text-4xl font-bold text-gold mb-6">${bundle.price}</div>
+              <div className="text-4xl font-bold text-gold mb-1">${bundle.price}</div>
+              <p className="text-xs text-text-secondary mb-4">{t("perBook")}</p>
+              <p className="text-sm text-green-400 font-medium mb-6">{t("urgencyNote")}</p>
 
               <BuyButton
                 href={bundleUrl}
@@ -404,6 +485,7 @@ export default async function BundlePage({ params }: { params: Promise<{ locale:
               >
                 {t("getComplete")} &mdash; ${bundle.price}
               </BuyButton>
+              <p className="text-sm text-text-muted mt-4">{t("pdfGuarantee")}</p>
             </div>
 
             <p className="text-sm text-text-secondary mb-2">{t("alreadyKnow")}</p>

@@ -259,6 +259,57 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           </Link>
         </div>
 
+        {/* Trust Signals */}
+        <div className="mb-16">
+          <h2 className="text-2xl font-bold mb-6">{t("trustTitle")}</h2>
+          <div className="space-y-3">
+            {[
+              t("trustItem1"),
+              t("trustItem2"),
+              t("trustItem3"),
+              t("trustItem4"),
+              t("trustItem5"),
+            ].map((item) => (
+              <div key={item} className="flex items-start gap-3 bg-surface/40 border border-white/5 rounded-xl p-4">
+                <svg className="w-5 h-5 text-gold shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-text-secondary text-sm leading-relaxed">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Start Your AI Journey — CTA Cards */}
+        <div className="mb-16">
+          <h2 className="text-2xl font-bold mb-2 text-center">{t("journeyTitle")}</h2>
+          <p className="text-text-secondary text-center mb-8">{t("journeySubtitle")}</p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {/* Free Guide Card */}
+            <div className="bg-surface/60 border border-white/10 rounded-2xl p-6 flex flex-col">
+              <h3 className="text-lg font-bold text-text-primary mb-2">{t("journeyFreeGuideTitle")}</h3>
+              <p className="text-sm text-text-secondary leading-relaxed mb-4 flex-1">{t("journeyFreeGuideDesc")}</p>
+              <Link
+                href="/free-guide"
+                className="inline-flex items-center justify-center px-5 py-3 rounded-xl font-semibold text-sm border border-gold/30 text-gold hover:bg-gold/10 transition-all"
+              >
+                {t("journeyFreeGuideCta")} &rarr;
+              </Link>
+            </div>
+            {/* Pricing Card */}
+            <div className="bg-gold/5 border border-gold/20 rounded-2xl p-6 flex flex-col">
+              <h3 className="text-lg font-bold text-text-primary mb-2">{t("journeyPricingTitle")}</h3>
+              <p className="text-sm text-text-secondary leading-relaxed mb-4 flex-1">{t("journeyPricingDesc")}</p>
+              <Link
+                href="/pricing"
+                className="inline-flex items-center justify-center px-5 py-3 rounded-xl font-semibold text-sm bg-gold text-black hover:bg-gold-light transition-all"
+              >
+                {t("journeyPricingCta")} &rarr;
+              </Link>
+            </div>
+          </div>
+        </div>
+
         {/* CTA */}
         <div className="bg-surface/60 border border-gold/20 rounded-2xl p-8 text-center card-glow">
           <h2 className="text-2xl font-bold mb-3">

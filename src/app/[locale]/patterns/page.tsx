@@ -32,11 +32,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       "AI agent patterns",
     ],
     openGraph: {
-      title: "AI Architecture Patterns — Proven Business Frameworks Automated with AI | AI Native Playbook",
+      title: "AI Architecture Patterns — Proven Business Frameworks Automated with AI",
       description: "5 AI architecture patterns for business: Value Ladder, Mass Movement, Dream 100, Story Copy, Product Launch. Free to explore — runs on any AI.",
       url: canonicalUrl,
+      siteName: "AI Native Playbook",
       type: "website",
       images: [{ url: `${BASE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Architecture Patterns — AI Native Playbook" }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "AI Architecture Patterns — Proven Business Frameworks Automated with AI",
+      description: "5 AI architecture patterns for business: Value Ladder, Mass Movement, Dream 100, Story Copy, Product Launch. Free to explore — runs on any AI.",
     },
     alternates: {
       canonical: canonicalUrl,
@@ -70,14 +76,16 @@ export default async function PatternsPage({
     name: "AI Architecture Patterns — AI Native Playbook",
     description: "Proven business frameworks structured as AI architecture patterns — automated with AI for immediate execution",
     keywords: "AI architecture patterns, AI architect, AI native playbook, business automation AI",
-    url: `${BASE_URL}/patterns`,
+    url: `${BASE_URL}/${locale}/patterns`,
+    inLanguage: locale === "ja" ? "ja" : "en",
     mainEntity: {
       "@type": "ItemList",
+      numberOfItems: patterns.length,
       itemListElement: patterns.map((p, i) => ({
         "@type": "ListItem",
         position: i + 1,
         name: p.title,
-        url: `${BASE_URL}/patterns/${p.slug}`,
+        url: `${BASE_URL}/${locale}/patterns/${p.slug}`,
         description: p.description,
       })),
     },
@@ -88,7 +96,7 @@ export default async function PatternsPage({
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "AI Native Playbook", item: BASE_URL },
-      { "@type": "ListItem", position: 2, name: "Patterns", item: `${BASE_URL}/patterns` },
+      { "@type": "ListItem", position: 2, name: "Patterns", item: `${BASE_URL}/${locale}/patterns` },
     ],
   };
 

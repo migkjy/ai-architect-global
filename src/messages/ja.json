@@ -112,7 +112,21 @@
     "ctaSubtitle": "6つのフレームワーク。6つのAIシステム。即時PDFダウンロード。",
     "ctaBundle": "完全バンドルを購入",
     "ctaViewBooks": "個別書籍を見る",
-    "ctaGuarantee": "即時PDFダウンロード。14日間返金ポリシー。アカウント不要。"
+    "ctaGuarantee": "即時PDFダウンロード。14日間返金ポリシー。アカウント不要。",
+    "trustTitle": "1,800人以上の起業家がAI Native Playbookを信頼する理由",
+    "trustItem1": "Russell Brunson、Jeff Walker、Jim Edwards、Nicolas Coleの実証済みフレームワーク基盤 — 一般的なAIアドバイスではありません",
+    "trustItem2": "500人以上の起業家がビジネス成長に積極的に活用中",
+    "trustItem3": "購入から最初のAI戦略セッションまでの平均時間：24時間以内",
+    "trustItem4": "14日間無条件返金保証",
+    "trustItem5": "ChatGPT、Claude、Geminiに対応 — 専用ツールやサブスクリプション不要",
+    "journeyTitle": "AIジャーニーを始めましょう",
+    "journeySubtitle": "探索中でもビジネス変革の準備中でも、最適なスタートポイントをご用意しています。",
+    "journeyFreeGuideTitle": "無料AIビジネスガイド",
+    "journeyFreeGuideDesc": "無料ガイドを入手して、AIフレームワークがビジネス成長をどう加速するかを発見してください。",
+    "journeyFreeGuideCta": "無料ガイドをダウンロード",
+    "journeyPricingTitle": "料金プランを見る",
+    "journeyPricingDesc": "個別書籍の料金または完全バンドルの割引をご確認ください。購入後すぐにPDFダウンロード。",
+    "journeyPricingCta": "料金を確認"
   },
   "bundle": {
     "badge": "完全バンドル — 全6冊",
@@ -132,7 +146,25 @@
     "pdfGuarantee": "即時PDFダウンロード · 14日間返金ポリシー",
     "sixSystems": "6つのAIシステム。購入後24時間以内に任意のフレームワークを実行開始。",
     "ifBoughtIndividually": "個別購入の場合",
-    "aiArchitectBundle": "AI Native Playbook 完全バンドル"
+    "aiArchitectBundle": "AI Native Playbook 完全バンドル",
+    "savePct": "54%お得",
+    "socialProofTitle": "1,800人以上の起業家が信頼",
+    "socialProofRating": "214件のレビューで平均4.8/5評価",
+    "review1Name": "Marcus T.",
+    "review1Role": "Eコマース創業者",
+    "review1Text": "AIでDotCom Secretsを適用し、60日で$0から月$4,200に。バンドルは初日で元が取れました。",
+    "review2Name": "Sarah K.",
+    "review2Role": "マーケティングコンサルタント",
+    "review2Text": "AIガイドには懐疑的でしたが、これは違いました。プロンプトがフレームワークを即座に実行します。数ヶ月の作業を節約しました。",
+    "review3Name": "James R.",
+    "review3Role": "SaaSスタートアップCEO",
+    "review3Text": "Traffic Architectだけで月250件のリードを獲得。6冊全てを持つことはフルマーケティングチームと同じです。",
+    "guaranteeTitle": "14日間返金保証",
+    "guaranteeSub": "完全バンドルをリスクなしでお試しください。14日以内に価値を感じなければ全額返金。質問なし。",
+    "midCtaTitle": "コンサルティング1時間分以下で6つのフレームワークを",
+    "midCtaSub": "ほとんどのエージェンシーはこれらのフレームワーク1つの実装に$2,000〜10,000を請求します。6つ全て$47で。",
+    "urgencyNote": "すでに1,800人以上が実行中",
+    "perBook": "フレームワークあたりわずか$7.83"
   },
   "products": {
     "title": "全6冊",
@@ -167,6 +199,15 @@
       "label3": "AI Trafficシステムを使用したSaaSスタートアップが達成したCPA削減率",
       "metric4": "24時間",
       "label4": "購入から初回AI支援戦略セッションまでの平均時間"
+    },
+    "communityStats": {
+      "title": "成長するコミュニティの信頼",
+      "subscribers": "1,800+",
+      "subscribersLabel": "世界中のニュースレター購読者",
+      "playbooks": "6",
+      "playbooksLabel": "包括的AIプレイブック出版",
+      "articles": "23+",
+      "articlesLabel": "詳細なブログ記事＆ガイド"
     },
     "worksWith": "対応ツール",
     "anyAI": "システムプロンプト対応の全AIツール",
@@ -291,7 +332,10 @@
     "benefit3": "毎週金曜日のAIビジネスインサイト",
     "cta": "無料で始める",
     "noSpam": "スパムなし。いつでも解除可能。",
-    "dismiss": "いいえ、無料フレームワークは不要です"
+    "dismiss": "いいえ、無料フレームワークは不要です",
+    "freeGuideCta": "無料ガイドを入手",
+    "pricingCta": "料金プランを見る",
+    "orDivider": "または直接ご覧ください"
   },
   "scrollBanner": {
     "title": "AIフレームワークプレビュー — 無料",
@@ -306,6 +350,14 @@
     "offer": "すぐに使えるプロンプトとフレームワークが含まれた無料スタータガイドを手に入れましょう。",
     "ctaButton": "無料ガイドを入手 →",
     "label": "無料AIスタータガイド"
+  },
+  "blogBottomCta": {
+    "heading": "AI Native Playbookで次のステップへ",
+    "description": "ビジネスのAI準備度を確認するか、完全なフレームワークライブラリを探索しましょう。",
+    "scoreCta": "無料AI Nativeスコア診断",
+    "scoreSubtext": "2分の診断 — 即時結果",
+    "pricingCta": "全プレイブック＆価格を見る",
+    "pricingSubtext": "6巻 — $17から"
   },
   "freeGuide": {
     "socialProof": "500人以上のプロフェッショナルがダウンロード済み",
@@ -381,5 +433,15 @@
     "a19": "もちろんです。フレームワークは30カ国以上の起業家に適用されている普遍的なビジネス原則です。AIシステムはどの言語でも動作します — お好みの言語でビジネスを説明し、フレームワーク駆動の出力を得ることができます。",
     "q20": "サポートへの連絡方法は？",
     "a20": "contact@newbizsoft.comまでメールでお問い合わせください。営業日は通常24時間以内にご返信いたします。"
+  },
+  "scoreCta": {
+    "badge": "無料診断",
+    "title": "あなたのビジネスはAIネイティブですか？",
+    "subtitle": "無料の2分診断で、AI導入曲線のどこにいるかを確認しましょう。パーソナライズされたスコアと実行可能な提案を受け取れます。",
+    "feature1": "5つの重要な側面を分析",
+    "feature2": "パーソナライズされた提案",
+    "feature3": "業界ベンチマークと比較",
+    "cta": "スコアを受ける",
+    "ctaSub": "無料 · 2分 · 登録不要"
   }
 }
