@@ -11,9 +11,10 @@ import { getTranslations } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { books } from "@/lib/products";
 import BlogInlineCTA from "@/components/BlogInlineCTA";
+import BlogRelatedInline from "@/components/BlogRelatedInline";
 import EmailCapture from "@/components/EmailCapture";
 import BlogBottomCTA from "@/components/BlogBottomCTA";
-import { splitContentAtMidpoint } from "@/lib/blog-content-utils";
+import { splitContentThreeWay } from "@/lib/blog-content-utils";
 
 export const revalidate = 60; // 60초마다 재검증 — 예약 시각 도래 시 자동 공개
 
@@ -217,7 +218,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <p className="text-lg text-text-secondary">{post.description}</p>
         </header>
         {(() => {
-          const { before, after } = splitContentAtMidpoint(post.content);
+          const { intro, middle, rest } = splitContentThreeWay(post.content);
           const markdownComponents: Components = {
             img: ({ src, alt }) => {
               const srcStr = typeof src === "string" ? src : "";
@@ -242,18 +243,35 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           return (
             <>
+              {/* Intro section (~30% of content) */}
               <div className="prose prose-invert prose-gold max-w-none">
                 <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
-                  {before}
+                  {intro}
                 </ReactMarkdown>
               </div>
 
-              {after && <BlogInlineCTA locale={locale} />}
+              {/* Related posts crosslink — after intro, before midpoint CTA */}
+              {middle && otherPosts.length > 0 && (
+                <BlogRelatedInline posts={otherPosts} locale={locale} />
+              )}
 
-              {after && (
+              {/* Middle section (~30%→50% of content) */}
+              {middle && (
                 <div className="prose prose-invert prose-gold max-w-none">
                   <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
-                    {after}
+                    {middle}
+                  </ReactMarkdown>
+                </div>
+              )}
+
+              {/* Inline CTA (free guide) — at midpoint */}
+              {rest && <BlogInlineCTA locale={locale} />}
+
+              {/* Rest of content (~50%→100%) */}
+              {rest && (
+                <div className="prose prose-invert prose-gold max-w-none">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                    {rest}
                   </ReactMarkdown>
                 </div>
               )}
