@@ -167,6 +167,15 @@
       "metric4": "24시간",
       "label4": "구매부터 첫 AI 지원 전략 세션까지 평균 소요 시간"
     },
+    "communityStats": {
+      "title": "성장하는 커뮤니티의 신뢰",
+      "subscribers": "1,800+",
+      "subscribersLabel": "전 세계 뉴스레터 구독자",
+      "playbooks": "6",
+      "playbooksLabel": "종합 AI 플레이북 출간",
+      "articles": "23+",
+      "articlesLabel": "심층 블로그 아티클 & 가이드"
+    },
     "worksWith": "호환 도구",
     "anyAI": "시스템 프롬프트 지원 AI 전체",
     "gapTitle": "이해와 실행 사이의 격차",

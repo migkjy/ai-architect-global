@@ -118,6 +118,36 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     { metric: t("results.metric4"), label: t("results.label4") },
   ];
 
+  const communityStats = [
+    {
+      metric: t("communityStats.subscribers"),
+      label: t("communityStats.subscribersLabel"),
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+        </svg>
+      ),
+    },
+    {
+      metric: t("communityStats.playbooks"),
+      label: t("communityStats.playbooksLabel"),
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+        </svg>
+      ),
+    },
+    {
+      metric: t("communityStats.articles"),
+      label: t("communityStats.articlesLabel"),
+      icon: (
+        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5" />
+        </svg>
+      ),
+    },
+  ];
+
   const testimonials = [
     { quote: tt("t1Quote"), name: tt("t1Name"), role: tt("t1Role"), result: tt("t1Result") },
     { quote: tt("t2Quote"), name: tt("t2Name"), role: tt("t2Role"), result: tt("t2Result") },
@@ -334,6 +364,31 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               <div key={r.metric}>
                 <div className="text-3xl md:text-4xl font-bold gradient-gold mb-1">{r.metric}</div>
                 <div className="text-xs md:text-sm text-text-secondary leading-snug">{r.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Community Trust Stats */}
+      <section className="py-10 border-b border-white/5">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-center text-sm uppercase tracking-widest text-text-muted mb-8 font-medium">
+            {t("communityStats.title")}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {communityStats.map((s) => (
+              <div
+                key={s.label}
+                className="flex items-center gap-4 bg-surface/40 border border-white/5 rounded-xl px-5 py-4"
+              >
+                <div className="shrink-0 w-10 h-10 bg-gold/10 border border-gold/20 rounded-lg flex items-center justify-center text-gold">
+                  {s.icon}
+                </div>
+                <div>
+                  <div className="text-xl font-bold text-text-primary">{s.metric}</div>
+                  <div className="text-xs text-text-secondary leading-snug">{s.label}</div>
+                </div>
               </div>
             ))}
           </div>
