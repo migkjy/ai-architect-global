@@ -309,6 +309,14 @@
     "ctaButton": "Get My Free Guide →",
     "label": "Free AI Starter Guide"
   },
+  "blogBottomCta": {
+    "heading": "Take the Next Step with AI Native Playbook",
+    "description": "Discover how AI-ready your business is, or explore our complete framework library to accelerate your transformation.",
+    "scoreCta": "Get Your Free AI Native Score",
+    "scoreSubtext": "2-min assessment — instant results",
+    "pricingCta": "View All Playbooks & Pricing",
+    "pricingSubtext": "6 volumes — from $17"
+  },
   "freeGuide": {
     "socialProof": "Downloaded by 500+ professionals",
     "ctaButton": "Get My Free Guide →",
