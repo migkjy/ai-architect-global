@@ -307,6 +307,14 @@
     "ctaButton": "무료 가이드 받기 →",
     "label": "무료 AI 스타터 가이드"
   },
+  "blogBottomCta": {
+    "heading": "AI Native Playbook으로 다음 단계로",
+    "description": "우리 비즈니스의 AI 준비도를 확인하거나, 전체 프레임워크 라이브러리를 탐색해 보세요.",
+    "scoreCta": "무료 AI Native Score 진단",
+    "scoreSubtext": "2분 진단 — 즉시 결과 확인",
+    "pricingCta": "전체 플레이북 & 가격 보기",
+    "pricingSubtext": "6권 — $17부터"
+  },
   "freeGuide": {
     "socialProof": "500명 이상의 전문가가 다운로드했습니다",
     "ctaButton": "무료 가이드 받기 →",
