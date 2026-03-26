@@ -185,21 +185,21 @@ async function handleTransactionCompleted(
     error: "not attempted",
   };
   console.log(
-    `[paddle-webhook] Sending Brevo email: txn=${txId}, to="${order.customerEmail || "(empty)"}", sender=contact@apppro.kr, downloadLinks=${Object.keys(downloadLinks).join(",")}`
+    `[paddle-webhook] Sending confirmation email via Resend: txn=${txId}, to="${order.customerEmail || "(empty)"}", sender=noreply@apppro.kr, downloadLinks=${Object.keys(downloadLinks).join(",")}`
   );
   try {
     emailResult = await sendPurchaseConfirmationEmail(order, txId, downloadLinks);
     if (!emailResult.success) {
       console.error(
-        `[paddle-webhook] Brevo API returned failure: txn=${txId}, error="${emailResult.error}"`
+        `[paddle-webhook] Email send failed: txn=${txId}, error="${emailResult.error}"`
       );
     } else {
       console.log(
-        `[paddle-webhook] Brevo email sent successfully: txn=${txId}, messageId=${emailResult.messageId}`
+        `[paddle-webhook] Email sent successfully: txn=${txId}, messageId=${emailResult.messageId}`
       );
     }
   } catch (emailErr) {
-    console.error("[paddle-webhook] Brevo send threw exception:", emailErr);
+    console.error("[paddle-webhook] Email send threw exception:", emailErr);
     emailResult = {
       success: false,
       error: emailErr instanceof Error ? emailErr.message : String(emailErr),

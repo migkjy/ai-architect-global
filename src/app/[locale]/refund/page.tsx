@@ -9,20 +9,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const canonicalUrl = `${SITE_URL}/${locale}/refund`;
 
   return {
-    title: "Refund Policy — AI Native Playbook Series",
+    title: "Refund Policy | 14-Day Money-Back — AI Native Playbook",
     description:
-      "Refund policy for AI Native Playbook Series digital products. Full refund available within 14 days of purchase if the product has not been downloaded. Download available for 30 days from purchase.",
+      "AI Native Playbook 14-day refund policy. Get a full refund within 14 days if not downloaded. Secure Paddle checkout, 30-day download window, and permanent content access.",
     openGraph: {
-      title: "Refund Policy — AI Native Playbook Series",
-      description: "Full refund within 14 days if not downloaded. Download available for 30 days.",
+      title: "Refund Policy | 14-Day Money-Back — AI Native Playbook",
+      description: "Full refund within 14 days if not downloaded. Secure checkout and permanent content access.",
       images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
     },
     alternates: {
       canonical: canonicalUrl,
     },
     robots: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
     },
   };
 }

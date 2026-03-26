@@ -7,6 +7,7 @@
     "about": "About",
     "pricing": "Pricing",
     "faq": "FAQ",
+    "freeGuide": "Free Guide",
     "getBundle": "Get Bundle — $47",
     "bundleShort": "$47 Bundle"
   },
@@ -111,7 +112,21 @@
     "ctaSubtitle": "Six frameworks. Six AI systems. Immediate PDF download.",
     "ctaBundle": "Get Complete Bundle",
     "ctaViewBooks": "View Individual Books",
-    "ctaGuarantee": "Instant PDF download. 14-day refund policy. No account required."
+    "ctaGuarantee": "Instant PDF download. 14-day refund policy. No account required.",
+    "trustTitle": "Why 1,800+ Entrepreneurs Trust AI Native Playbook",
+    "trustItem1": "Built on proven frameworks from Russell Brunson, Jeff Walker, Jim Edwards, and Nicolas Cole — not generic AI advice",
+    "trustItem2": "500+ entrepreneurs actively using the systems to grow their businesses",
+    "trustItem3": "Average time from purchase to first AI-generated strategy session: under 24 hours",
+    "trustItem4": "14-day money-back guarantee — no questions asked",
+    "trustItem5": "Works with ChatGPT, Claude, Gemini — no proprietary tools or subscriptions required",
+    "journeyTitle": "Start Your AI Journey",
+    "journeySubtitle": "Whether you're exploring or ready to transform your business, we have the right starting point for you.",
+    "journeyFreeGuideTitle": "Free AI Business Guide",
+    "journeyFreeGuideDesc": "Get our free guide and discover how AI frameworks can accelerate your business growth. No commitment required.",
+    "journeyFreeGuideCta": "Download Free Guide",
+    "journeyPricingTitle": "View Pricing & Plans",
+    "journeyPricingDesc": "See individual book pricing or save with the complete bundle. Instant PDF download after purchase.",
+    "journeyPricingCta": "See Pricing"
   },
   "bundle": {
     "badge": "BEST VALUE — SAVE $55 TODAY",
@@ -131,7 +146,25 @@
     "pdfGuarantee": "Instant PDF download · 14-day refund policy · No account required",
     "sixSystems": "Six AI systems ready to run. Most buyers complete their first strategy session within 24 hours of purchase.",
     "ifBoughtIndividually": "If purchased individually",
-    "aiArchitectBundle": "AI Native Playbook — Complete Bundle"
+    "aiArchitectBundle": "AI Native Playbook — Complete Bundle",
+    "savePct": "Save 54%",
+    "socialProofTitle": "Trusted by 1,800+ Entrepreneurs",
+    "socialProofRating": "4.8/5 average rating from 214 reviews",
+    "review1Name": "Marcus T.",
+    "review1Role": "E-commerce Founder",
+    "review1Text": "Applied DotCom Secrets through AI and went from $0 to $4,200/month in 60 days. The bundle paid for itself on day one.",
+    "review2Name": "Sarah K.",
+    "review2Role": "Marketing Consultant",
+    "review2Text": "I was skeptical about AI guides, but these are different. The prompts execute the frameworks immediately. Saved me months of work.",
+    "review3Name": "James R.",
+    "review3Role": "SaaS Startup CEO",
+    "review3Text": "The Traffic Architect alone brought 250 leads/month. Having all 6 volumes is like having a full marketing team.",
+    "guaranteeTitle": "14-Day Money-Back Guarantee",
+    "guaranteeSub": "Try the complete bundle risk-free. If the frameworks don't deliver value within 14 days, get a full refund. No questions asked.",
+    "midCtaTitle": "Get All 6 Frameworks for Less Than the Price of One Consulting Hour",
+    "midCtaSub": "Most agencies charge $2,000–10,000 to implement just one of these frameworks. Get all six for $47.",
+    "urgencyNote": "Join 1,800+ entrepreneurs already executing",
+    "perBook": "That's just $7.83 per framework"
   },
   "products": {
     "title": "6 AI-Powered Framework Systems",
@@ -166,6 +199,15 @@
       "label3": "CPA reduction — SaaS startup using AI Traffic system ($125 → $16)",
       "metric4": "<24h",
       "label4": "Average time from purchase to first executable AI strategy"
+    },
+    "communityStats": {
+      "title": "Trusted by a Growing Community",
+      "subscribers": "1,800+",
+      "subscribersLabel": "Newsletter subscribers worldwide",
+      "playbooks": "6",
+      "playbooksLabel": "Comprehensive AI playbooks published",
+      "articles": "23+",
+      "articlesLabel": "In-depth blog articles & guides"
     },
     "worksWith": "Works with",
     "anyAI": "Any AI with system prompts",
@@ -290,7 +332,10 @@
     "benefit3": "Weekly AI business insight — every Friday",
     "cta": "Get Free Framework Now",
     "noSpam": "No spam. Unsubscribe anytime.",
-    "dismiss": "No thanks, I don't need free frameworks"
+    "dismiss": "No thanks, I don't need free frameworks",
+    "freeGuideCta": "Get Free Guide",
+    "pricingCta": "See Pricing Plans",
+    "orDivider": "or explore directly"
   },
   "scrollBanner": {
     "title": "AI Framework Preview — Free",
@@ -305,6 +350,14 @@
     "offer": "Get the free starter guide with ready-to-use prompts and frameworks.",
     "ctaButton": "Get My Free Guide →",
     "label": "Free AI Starter Guide"
+  },
+  "blogBottomCta": {
+    "heading": "Take the Next Step with AI Native Playbook",
+    "description": "Discover how AI-ready your business is, or explore our complete framework library to accelerate your transformation.",
+    "scoreCta": "Get Your Free AI Native Score",
+    "scoreSubtext": "2-min assessment — instant results",
+    "pricingCta": "View All Playbooks & Pricing",
+    "pricingSubtext": "6 volumes — from $17"
   },
   "freeGuide": {
     "socialProof": "Downloaded by 500+ professionals",
@@ -380,5 +433,15 @@
     "a19": "Absolutely. The frameworks are universal business principles applied by entrepreneurs in 30+ countries. The AI systems work in any language — describe your business in your preferred language and get framework-driven output.",
     "q20": "How do I contact support?",
     "a20": "Email us at contact@newbizsoft.com. We typically respond within 24 hours on business days."
+  },
+  "scoreCta": {
+    "badge": "Free Assessment",
+    "title": "How AI-Native Is Your Business?",
+    "subtitle": "Take the free 2-minute assessment and discover where you stand on the AI adoption curve. Get a personalized score with actionable recommendations.",
+    "feature1": "5 key dimensions analyzed",
+    "feature2": "Personalized recommendations",
+    "feature3": "Compare with industry benchmarks",
+    "cta": "Take the Score",
+    "ctaSub": "Free · 2 minutes · No signup required"
   }
 }

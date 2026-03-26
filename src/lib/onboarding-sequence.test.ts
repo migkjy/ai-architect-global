@@ -17,7 +17,7 @@ describe('scheduleOnboardingSequence', () => {
     vi.unstubAllEnvs();
   });
 
-  it('sends 4 emails (D+0 immediate, D+1/D+3/D+7 scheduled)', async () => {
+  it('sends 5 emails (D+0 immediate, D+1/D+3/D+5/D+7 scheduled)', async () => {
     // First call: check contact attributes (GET)
     mockFetch.mockResolvedValueOnce({
       ok: true,
@@ -25,7 +25,7 @@ describe('scheduleOnboardingSequence', () => {
     });
     // Second call: update ONBOARDING_SENT attribute (PUT)
     mockFetch.mockResolvedValueOnce({ ok: true, status: 204, text: async () => '' });
-    // 4 email sends
+    // 5 email sends
     mockFetch.mockResolvedValue({
       ok: true,
       json: async () => ({ messageId: 'msg-123' }),
@@ -33,8 +33,8 @@ describe('scheduleOnboardingSequence', () => {
 
     await scheduleOnboardingSequence('test@example.com', 'Alex');
 
-    // 1 GET contact + 1 PUT attribute + 4 POST emails = 6 calls
-    expect(mockFetch).toHaveBeenCalledTimes(6);
+    // 1 GET contact + 1 PUT attribute + 5 POST emails = 7 calls
+    expect(mockFetch).toHaveBeenCalledTimes(7);
 
     // Verify D+0 has no scheduledAt (immediate)
     const firstEmailCall = mockFetch.mock.calls[2];
@@ -84,7 +84,7 @@ describe('scheduleOnboardingSequence', () => {
 
     await scheduleOnboardingSequence('new@example.com');
 
-    // 1 GET + 1 PUT + 4 emails = 6
-    expect(mockFetch).toHaveBeenCalledTimes(6);
+    // 1 GET + 1 PUT + 5 emails = 7
+    expect(mockFetch).toHaveBeenCalledTimes(7);
   });
 });

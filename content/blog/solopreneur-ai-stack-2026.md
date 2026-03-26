@@ -35,7 +35,7 @@ The stack below is organized by function. Build it in priority order based on yo
 
 **The real use case**: The AI writing tools people know about are not the high-value use case. The high-value use case is feeding these tools proven business frameworks and having them apply those frameworks to your specific situation.
 
-A generic prompt produces generic output. A prompt structured around Russell Brunson's Value Ladder framework, Jim Edwards' headline formulas, or Jeff Walker's Product Launch Formula produces marketing copy that follows tested conversion patterns.
+A generic prompt produces generic output. A prompt structured around Russell Brunson's Value Ladder framework, Jim Edwards' headline formulas, or Jeff Walker's Product Launch Formula produces marketing copy that follows tested conversion patterns. For a step-by-step walkthrough of applying these frameworks through AI, see the [Russell Brunson AI framework guide](/en/blog/russell-brunson-ai-framework).
 
 **Specific applications:**
 - Write opt-in page copy for lead magnets (complete draft in 20 minutes vs. two hours)

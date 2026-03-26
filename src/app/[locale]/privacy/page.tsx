@@ -9,20 +9,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const canonicalUrl = `${SITE_URL}/${locale}/privacy`;
 
   return {
-    title: "Privacy Policy — AI Native Playbook Series",
+    title: "Privacy Policy | AI Native Playbook — GDPR Compliant",
     description:
-      "Privacy Policy for AI Native Playbook Series by ai-architect. Learn how we collect, use, and protect your personal data in compliance with GDPR and international law.",
+      "Privacy Policy for AI Native Playbook Series. Learn how we protect your data with GDPR compliance, secure Paddle payments, and transparent cookie and analytics practices.",
     openGraph: {
-      title: "Privacy Policy — AI Native Playbook Series",
-      description: "Learn how we collect, use, and protect your personal data.",
+      title: "Privacy Policy | AI Native Playbook — GDPR Compliant",
+      description: "GDPR-compliant data protection, secure Paddle payments, and transparent privacy practices.",
       images: [{ url: `${SITE_URL}/opengraph-image`, width: 1200, height: 630, alt: "AI Native Playbook Series" }],
     },
     alternates: {
       canonical: canonicalUrl,
     },
     robots: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
     },
   };
 }
@@ -70,7 +70,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">1. Introduction</h2>
             <p>
-              ai-architect (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), operating the website{" "}
+              UniqStart (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), operating the website{" "}
               <span className="text-gold">ai-native-playbook.com</span> under the service name <strong className="text-text-primary">AI Native Playbook Series</strong>, is committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your data when you visit our website or purchase our products.
             </p>
           </section>

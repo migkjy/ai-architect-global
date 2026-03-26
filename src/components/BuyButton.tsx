@@ -125,13 +125,17 @@ export default function BuyButton({
     if (usePaddleOverlay && window.Paddle?.Checkout) {
       e.preventDefault();
 
-      const siteUrl =
-        (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
+      const siteUrl = window.location.origin;
+      // Extract locale from current path (e.g. /en/... → /en)
+      const pathParts = window.location.pathname.split("/");
+      const locale = pathParts[1] || "en";
 
       window.Paddle.Checkout.open({
         items: [{ priceId: paddlePriceId!, quantity: 1 }],
         settings: {
-          successUrl: paddleSuccessUrl ?? `${siteUrl}/thank-you`,
+          successUrl:
+            paddleSuccessUrl ??
+            `${siteUrl}/${locale}/thank-you?txn={transaction_id}`,
         },
       });
     }

@@ -7,6 +7,7 @@ const BASE_URL =
 // Static pages with their last-modified dates (en prefix canonical)
 const STATIC_PAGES: Array<{ path: string; lastmod: string }> = [
   { path: "", lastmod: "2026-03-08" },
+  // English pages
   { path: "en", lastmod: "2026-03-08" },
   { path: "en/products", lastmod: "2026-03-08" },
   { path: "en/pricing", lastmod: "2026-03-11" },
@@ -16,9 +17,24 @@ const STATIC_PAGES: Array<{ path: string; lastmod: string }> = [
   { path: "en/blog", lastmod: "2026-03-10" },
   { path: "en/patterns", lastmod: "2026-03-11" },
   { path: "en/free-guide", lastmod: "2026-03-12" },
+  { path: "en/score", lastmod: "2026-03-25" },
+  { path: "ja/score", lastmod: "2026-03-25" },
   { path: "en/terms", lastmod: "2025-01-01" },
   { path: "en/privacy", lastmod: "2025-01-01" },
   { path: "en/refund", lastmod: "2025-01-01" },
+  // Japanese pages
+  { path: "ja", lastmod: "2026-03-26" },
+  { path: "ja/pricing", lastmod: "2026-03-26" },
+  { path: "ja/about", lastmod: "2026-03-26" },
+  { path: "ja/faq", lastmod: "2026-03-26" },
+  { path: "ja/blog", lastmod: "2026-03-26" },
+  { path: "ja/free-guide", lastmod: "2026-03-26" },
+  { path: "ja/patterns", lastmod: "2026-03-26" },
+  { path: "ja/products", lastmod: "2026-03-26" },
+  { path: "ja/bundle", lastmod: "2026-03-26" },
+  { path: "ja/terms", lastmod: "2026-03-26" },
+  { path: "ja/privacy", lastmod: "2026-03-26" },
+  { path: "ja/refund", lastmod: "2026-03-26" },
 ];
 
 function buildUrl(path: string): string {
@@ -30,15 +46,19 @@ function urlEntry(loc: string, lastmod: string): string {
 }
 
 export function GET() {
-  const patternEntries = patterns.map((p) =>
+  const enPatternEntries = patterns.map((p) =>
     urlEntry(buildUrl(`en/patterns/${p.slug}`), "2026-03-11")
+  );
+
+  const jaPatternEntries = patterns.map((p) =>
+    urlEntry(buildUrl(`ja/patterns/${p.slug}`), "2026-03-26")
   );
 
   const staticEntries = STATIC_PAGES.map((page) =>
     urlEntry(buildUrl(page.path), page.lastmod)
   );
 
-  const allEntries = [...staticEntries, ...patternEntries].join("\n");
+  const allEntries = [...staticEntries, ...enPatternEntries, ...jaPatternEntries].join("\n");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

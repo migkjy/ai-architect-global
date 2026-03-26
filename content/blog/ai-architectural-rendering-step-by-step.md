@@ -1,4 +1,5 @@
 ---
+noindex: true
 title: "AI Architectural Rendering: Step-by-Step Guide"
 description: "Step-by-step guide to creating professional architectural renders with AI tools — from model preparation to final output for architects and designers."
 date: "2026-03-07"
@@ -147,6 +148,7 @@ AI rendering isn't replacing architectural visualization specialists. It's chang
 The architects who master AI rendering gain the ability to communicate design intent earlier, iterate faster, and present more options. The rendering itself becomes a design tool, not just a presentation tool.
 
 ---
+noindex: true
 
 **New to AI-powered design workflows?** Our [free AI starter guide](/en/free-guide) walks you through the foundational frameworks and includes 3 ready-to-use prompts you can apply to your next rendering project.
 

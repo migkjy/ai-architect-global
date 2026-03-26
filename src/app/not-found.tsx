@@ -36,6 +36,28 @@ const featuredPosts = [
 
 const recommendedPages = [
   {
+    href: "/pricing",
+    icon: (
+      <svg
+        className="w-5 h-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        aria-hidden="true"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"
+        />
+      </svg>
+    ),
+    title: "Pricing & Plans",
+    description:
+      "Find the right AI Playbook for your business stage — from starter to full bundle.",
+  },
+  {
     href: "/products",
     icon: (
       <svg
@@ -54,7 +76,8 @@ const recommendedPages = [
       </svg>
     ),
     title: "Products",
-    description: "6 AI Native Playbooks — each one turns a world-class business framework into AI-executable prompts.",
+    description:
+      "6 AI Native Playbooks — each one turns a world-class business framework into AI-executable prompts.",
   },
   {
     href: "/free-guide",
@@ -75,7 +98,8 @@ const recommendedPages = [
       </svg>
     ),
     title: "Free Guide",
-    description: "Get our free AI Business Starter guide — no credit card required.",
+    description:
+      "Get our free AI Business Starter guide — no credit card required.",
   },
   {
     href: "/blog",
@@ -96,7 +120,8 @@ const recommendedPages = [
       </svg>
     ),
     title: "Blog",
-    description: "Practical guides on AI business automation, marketing frameworks, and growth strategies.",
+    description:
+      "Practical guides on AI business automation, marketing frameworks, and growth strategies.",
   },
 ] as const;
 
@@ -108,7 +133,7 @@ export default function NotFound() {
       <div className="max-w-4xl w-full mx-auto">
 
         {/* Hero section */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10">
           <div className="mb-4">
             <span className="text-9xl font-bold text-gold opacity-15 select-none" aria-hidden="true">404</span>
           </div>
@@ -125,7 +150,7 @@ export default function NotFound() {
             </p>
           </div>
 
-          {/* Primary CTA */}
+          {/* Primary CTAs */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/"
@@ -134,11 +159,71 @@ export default function NotFound() {
               Back to Home
             </Link>
             <Link
-              href="/free-guide"
+              href="/pricing"
               className="border border-gold/30 text-gold px-6 py-3 rounded-xl font-semibold hover:bg-gold/5 hover:border-gold/50 transition-all"
             >
-              Get Free Guide
+              View Pricing
             </Link>
+          </div>
+        </div>
+
+        {/* Conversion CTA — Free Guide */}
+        <div className="rounded-2xl bg-gradient-to-r from-gold/10 via-gold/5 to-transparent border border-gold/20 p-8 text-center mb-14">
+          <p className="text-xs font-semibold text-gold/70 uppercase tracking-widest mb-2">
+            While You&apos;re Here
+          </p>
+          <h2 className="text-lg font-bold text-text-primary mb-2">
+            Get Your Free AI Business Starter Guide
+          </h2>
+          <p className="text-sm text-text-secondary mb-6 max-w-md mx-auto">
+            Join 1,800+ entrepreneurs already using our playbook to apply world-class business frameworks with AI — completely free, no credit card required.
+          </p>
+          <Link
+            href="/free-guide"
+            className="inline-flex items-center gap-2 bg-gold text-navy-dark px-7 py-3 rounded-xl font-bold text-sm hover:bg-gold-light transition-all"
+          >
+            Download the Free Guide
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+            </svg>
+          </Link>
+        </div>
+
+        {/* Recommended pages */}
+        <div className="mb-14">
+          <h2 className="text-center text-sm font-semibold text-text-secondary uppercase tracking-widest mb-6">
+            Recommended Pages
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {recommendedPages.map((page) => (
+              <Link
+                key={page.href}
+                href={page.href}
+                className="group flex flex-col gap-3 rounded-xl border border-gold/10 bg-navy-dark p-5 hover:border-gold/30 hover:bg-gold/5 transition-all card-glow"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-gold">{page.icon}</span>
+                  <svg
+                    className="w-4 h-4 text-text-secondary/30 group-hover:text-gold/60 transition-colors"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-semibold text-text-primary text-sm mb-1 group-hover:text-gold transition-colors">
+                    {page.title}
+                  </p>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    {page.description}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
 
@@ -184,44 +269,6 @@ export default function NotFound() {
           </p>
         </div>
 
-        {/* Recommended pages */}
-        <div className="mb-14">
-          <h2 className="text-center text-sm font-semibold text-text-secondary uppercase tracking-widest mb-6">
-            Recommended Pages
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {recommendedPages.map((page) => (
-              <Link
-                key={page.href}
-                href={page.href}
-                className="group flex flex-col gap-3 rounded-xl border border-gold/10 bg-navy-dark p-5 hover:border-gold/30 hover:bg-gold/5 transition-all card-glow"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-gold">{page.icon}</span>
-                  <svg
-                    className="w-4 h-4 text-text-secondary/30 group-hover:text-gold/60 transition-colors"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    aria-hidden="true"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="font-semibold text-text-primary text-sm mb-1 group-hover:text-gold transition-colors">
-                    {page.title}
-                  </p>
-                  <p className="text-xs text-text-secondary leading-relaxed">
-                    {page.description}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-
         {/* Popular blog posts */}
         <div className="mb-14">
           <h2 className="text-center text-sm font-semibold text-text-secondary uppercase tracking-widest mb-6">
@@ -254,26 +301,34 @@ export default function NotFound() {
           </div>
         </div>
 
-        {/* Free guide CTA banner */}
-        <div className="rounded-2xl bg-gradient-to-r from-gold/10 via-gold/5 to-transparent border border-gold/20 p-8 text-center">
+        {/* Bottom Pricing CTA */}
+        <div className="rounded-2xl border border-gold/15 bg-navy-dark p-8 text-center">
           <p className="text-xs font-semibold text-gold/70 uppercase tracking-widest mb-2">
-            Free Resource
+            Ready to Get Started?
           </p>
           <h2 className="text-lg font-bold text-text-primary mb-2">
-            Start With Our Free AI Business Guide
+            Turn AI Into Your Business Advantage
           </h2>
           <p className="text-sm text-text-secondary mb-6 max-w-sm mx-auto">
-            Get the starter playbook that shows how to apply world-class business frameworks with AI — at no cost.
+            Choose the AI Playbook that fits your business — from solo entrepreneur to growing team. One-time purchase, lifetime access.
           </p>
-          <Link
-            href="/free-guide"
-            className="inline-flex items-center gap-2 bg-gold text-navy-dark px-7 py-3 rounded-xl font-bold text-sm hover:bg-gold-light transition-all"
-          >
-            Get the Free Guide
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              href="/pricing"
+              className="inline-flex items-center gap-2 bg-gold text-navy-dark px-7 py-3 rounded-xl font-bold text-sm hover:bg-gold-light transition-all"
+            >
+              See Pricing & Plans
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+            <Link
+              href="/free-guide"
+              className="inline-flex items-center gap-2 border border-gold/30 text-gold px-7 py-3 rounded-xl font-semibold text-sm hover:bg-gold/5 hover:border-gold/50 transition-all"
+            >
+              Or Start Free
+            </Link>
+          </div>
         </div>
 
       </div>
