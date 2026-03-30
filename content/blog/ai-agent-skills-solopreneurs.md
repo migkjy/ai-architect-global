@@ -138,12 +138,14 @@ You don't need to build all five skills at once. Start with Skill 1: Workflow De
 
 Once that's running, add orchestration. Then context. Then iteration. Then supervision.
 
-Within 90 days, you'll be operating at a capacity that would have required a team of five just two years ago.
+Within 90 days, you'll be operating at a capacity that would have required a team of five just two years ago. For the complete setup guide on building a [one-person business with AI](/en/blog/one-person-business-with-ai-2026) — including the 5-step process, daily operations framework, and scaling path — that guide covers everything from tool selection to financial milestones.
 
 The solopreneurs who thrive in 2026 and beyond won't be the ones who work the hardest. They'll be the ones who build the best AI agent systems around their expertise.
 
 Your knowledge is the asset. AI agents are the multiplier. The question isn't whether to start — it's how fast you can build the skills to make it work.
 
 ---
+
+Ready to apply these agent skills to an actual business? The [complete guide to starting an AI-native business](/en/blog/how-to-start-ai-native-business-2026) shows you how to build the business system that these agent skills will power — from choosing your model to launching in seven days.
 
 *The AI Native Playbook series is built for solopreneurs who want practical, proven frameworks for scaling with AI. No theory. No fluff. Just execution guides that work. Explore more at [ai-native-playbook.com](https://ai-native-playbook.com).*

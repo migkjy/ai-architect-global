@@ -230,7 +230,7 @@ Total: $36–$56/month. These three tools alone — if used with proper framewor
 - If content production is the bottleneck: Add Descript + ElevenLabs
 - If customer service is creating drag: Add an AI support agent
 
-**The compounding principle**: Each tool saves time that you reinvest into higher-leverage activities. The first automation you build generates capacity to build the second. After six months, the stack functions as an operating system — not a collection of apps.
+**The compounding principle**: Each tool saves time that you reinvest into higher-leverage activities. The first automation you build generates capacity to build the second. After six months, the stack functions as an operating system — not a collection of apps. For a complete walkthrough of building and running a [one-person business with AI](/en/blog/one-person-business-with-ai-2026) — including the daily operations framework and scaling path — that guide shows how this stack fits into the bigger picture.
 
 ## What This Stack Cannot Replace
 

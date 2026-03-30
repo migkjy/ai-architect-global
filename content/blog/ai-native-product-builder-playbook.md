@@ -18,7 +18,7 @@ scheduledAt: "2026-03-22T14:00:00+09:00"
 
 ## Why Most AI Products Never Launch
 
-There are thousands of people right now watching tutorials, bookmarking articles, and 'researching' AI tools. Six months from now, they'll still be researching. The problem isn't knowledge. It's the gap between understanding AI and actually building something people will pay for. The ones who succeed share one trait: they ship before they're ready.
+There are thousands of people right now watching tutorials, bookmarking articles, and 'researching' AI tools. Six months from now, they'll still be researching. The problem isn't knowledge. It's the gap between understanding AI and actually building something people will pay for. The ones who succeed share one trait: they ship before they're ready. Case in point: one non-technical PM [went from burned out to $12K/month](/en/blog/from-burned-out-pm-to-12k-ai-native) by shipping a buggy first version in three weeks — then iterating based on real user feedback.
 
 ## Phase 1: Find the Pain (Days 1-3)
 
