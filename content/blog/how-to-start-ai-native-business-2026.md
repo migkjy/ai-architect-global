@@ -36,7 +36,7 @@ Three things converged in 2025-2026 that make AI-native businesses genuinely via
 
 **Integration infrastructure matured.** Tools like Make, n8n, and Zapier now offer native AI nodes. You can connect an LLM to your CRM, email platform, payment processor, and analytics dashboard without writing code. The plumbing that used to require a developer is now drag-and-drop.
 
-The combined result: you can launch a business that would have required a team of five in 2023 — with zero employees and under $200/month in operating costs.
+The combined result: you can launch a business that would have required a team of five in 2023 — with zero employees and under $200/month in operating costs. For the full phase-by-phase system — from revenue model selection through automation and scaling — the [AI Business Blueprint](/en/blog/ai-business-blueprint-2026) walks through every step with specific prompts and timelines.
 
 ## Choosing Your AI-Native Business Model
 
@@ -207,7 +207,7 @@ Stop planning. Start building. Here is exactly what to do each day for the next 
 
 **Deliverable:** A live, operating AI-native business.
 
-This is not a theoretical exercise. Each day requires 3-5 hours of focused work. By the end of day seven, you have a functioning business with automated content production, lead capture, email nurture, and a payment mechanism. It will not generate $10,000 in month one. But the system is running, and every improvement you make from this point compounds.
+This is not a theoretical exercise. Each day requires 3-5 hours of focused work. By the end of day seven, you have a functioning business with automated content production, lead capture, email nurture, and a payment mechanism. It will not generate $10,000 in month one. But the system is running, and every improvement you make from this point compounds. Want to see what this looks like in practice? Read how one non-technical PM [went from burned out to $12K/month](/en/blog/from-burned-out-pm-to-12k-ai-native) by following this exact kind of rapid-launch approach.
 
 ## Scaling From Launch to $10K/Month
 
@@ -340,7 +340,7 @@ Three main areas to be aware of. First, disclosure: some jurisdictions and platf
 
 You have read the guide. The temptation is to read three more guides, compare seven more tools, and "start next month when things are less busy."
 
-Do not do that. Do this instead:
+Do not do that. If you want a concrete framework to ship your first product in 30 days, the [AI-Native Product Builder's Playbook](/en/blog/ai-native-product-builder-playbook) gives you the exact five-phase process. But right now, do this:
 
 1. **Pick your model** — Choose one of the four models described above. Spend no more than 30 minutes deciding.
 2. **Start Day 1 of the 7-Day Launch Plan** — Today. Not tomorrow. Not next week.

@@ -15,7 +15,7 @@ AI doesn't simplify the strategy. It compresses the production time.
 
 ## The Four-Phase PLF Framework
 
-Walker's launch structure follows four phases: the pre-pre launch (seeding), the pre-launch (three pieces of content), the launch (open cart), and the post-launch (close and follow-up). Each phase has a specific job.
+Walker's launch structure follows four phases: the pre-pre launch (seeding), the pre-launch (three pieces of content), the launch (open cart), and the post-launch (close and follow-up). Each phase has a specific job. When combined with a broader [AI marketing strategy](/en/blog/ai-marketing-strategy-2026), PLF slots into Step 2 of the five-step framework — ensuring your launch feeds your entire Value Ladder.
 
 ### Phase 1: Pre-Pre Launch — Seed the Conversation
 
