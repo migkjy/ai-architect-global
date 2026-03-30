@@ -74,7 +74,7 @@ Base message: [your core message]
 
 ## What AI Can't Do (And You Must)
 
-AI generates technically correct emails. But conversion comes from authenticity.
+AI generates technically correct emails. But conversion comes from authenticity. Once your sequences are written, the [AI marketing automation guide](/en/blog/ai-marketing-automation-guide) covers how to set up the triggers, scheduling, and follow-up systems that keep everything running without daily attention.
 
 Your job after AI drafts:
 1. Add one specific personal story or observation
