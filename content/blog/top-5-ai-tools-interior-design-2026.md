@@ -98,6 +98,8 @@ AI doesn't make a designer more creative. It makes a creative designer faster, m
 
 The designers who thrive with AI tools are those who treat them as skilled assistants, not creative directors.
 
+The AI tools covered here are a subset of the broader landscape available to small businesses. For a full comparison of ChatGPT, Claude, Midjourney, and more — organized by use case and budget — see the [best AI tools for small business in 2026](/en/blog/ai-tools-for-small-business-2026).
+
 ---
 noindex: true
 

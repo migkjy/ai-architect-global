@@ -314,7 +314,7 @@ During setup (first 2-4 weeks): 15-25 hours per week. This includes building you
 
 ### Should I start with a free tool stack or invest in paid tools from day one?
 
-Start with a hybrid approach. Some tools have excellent free tiers that are sufficient for launch: Brevo (email, 300 emails/day free), Google Analytics (free), Notion (free for personal use). Other tools require paid plans from the start: your LLM subscription ($20/month), your automation platform ($20-30/month for useful features). Total minimum viable spend: $40-60/month. Do not let tool costs be the reason you do not start. A coffee shop habit costs more than an AI-native business infrastructure.
+Start with a hybrid approach. Some tools have excellent free tiers that are sufficient for launch: Brevo (email, 300 emails/day free), Google Analytics (free), Notion (free for personal use). Other tools require paid plans from the start: your LLM subscription ($20/month), your automation platform ($20-30/month for useful features). Total minimum viable spend: $40-60/month. Do not let tool costs be the reason you do not start. A coffee shop habit costs more than an AI-native business infrastructure. For a detailed comparison of which tools deliver the best ROI at each price point, see the [best AI tools for small business guide](/en/blog/ai-tools-for-small-business-2026).
 
 ## Your Next Step
 
