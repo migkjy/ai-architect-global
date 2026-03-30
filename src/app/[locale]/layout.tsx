@@ -168,6 +168,7 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
         areaServed: "Worldwide",
         sameAs: [
           "https://ai-native-playbook.com",
+          "https://ai-driven-architect.com",
         ],
         logo: {
           "@type": "ImageObject",
