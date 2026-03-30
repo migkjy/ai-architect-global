@@ -33,7 +33,7 @@ Tell your AI tool: "Apply Russell Brunson's Value Ladder to my business. My prod
 
 ### Step 2: Build Your Launch Sequence
 
-Jeff Walker's Product Launch Formula breaks product launches into four phases: Pre-Pre-Launch, Pre-Launch, Launch, and Post-Launch. Each phase has specific content and psychological triggers.
+Jeff Walker's [Product Launch Formula](/en/blog/product-launch-formula-ai) breaks product launches into four phases: Pre-Pre-Launch, Pre-Launch, Launch, and Post-Launch. Each phase has specific content and psychological triggers.
 
 Instead of guessing what to say when, give AI the PLF framework and your product details. It will generate:
 
