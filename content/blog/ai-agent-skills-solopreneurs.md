@@ -5,6 +5,7 @@ date: "2026-03-30"
 category: "AI Strategy"
 tags: ["AI Agent", "Solopreneur", "AI Automation", "AI Native"]
 locale: "en"
+updated: "2026-04-01"
 ---
 
 # 5 AI Agent Skills Every Solopreneur Needs to Do the Work of 10

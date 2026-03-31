@@ -6,6 +6,7 @@ date: "2026-03-07"
 category: "AI Tools"
 tags: ["AI interior design", "AI design tools", "AI rendering", "interior design technology", "design automation"]
 locale: "en"
+updated: "2026-04-01"
 ---
 
 # Top 5 AI Tools for Interior Design in 2026

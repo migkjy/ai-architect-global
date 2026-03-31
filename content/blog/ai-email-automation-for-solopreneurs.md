@@ -6,6 +6,7 @@ category: "AI Automation"
 tags: ["email automation", "AI email marketing", "solopreneur", "lead nurturing", "email sequences"]
 excerpt: "How to build an AI-powered email system that nurtures leads, handles objections, and drives sales — without writing every email yourself."
 locale: "en"
+updated: "2026-04-01"
 ---
 
 # AI Email Automation for Solopreneurs: The System That Converts While You Sleep

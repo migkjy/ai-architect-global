@@ -4,6 +4,7 @@ description: "Build an AI native business from scratch. 5-layer stack, 12-month 
 date: "2026-03-31"
 category: "AI Strategy"
 tags: ["AI Native", "Solopreneur", "AI Business", "AI Stack"]
+updated: "2026-04-01"
 ---
 
 # The AI Native Business Guide: A Solopreneur's Playbook

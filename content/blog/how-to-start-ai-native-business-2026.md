@@ -6,6 +6,7 @@ author: "AI Native Playbook"
 tags: ["ai-native", "startup", "business", "solopreneur"]
 category: "Business Strategy"
 readingTime: "13 min read"
+updated: "2026-04-01"
 ---
 
 The phrase "AI-powered business" has been thrown around since 2023. Most of the time, it means a traditional business that bolted a chatbot onto its website. That is not what we are talking about here.
