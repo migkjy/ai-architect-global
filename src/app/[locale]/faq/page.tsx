@@ -145,6 +145,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
     name: t("title"),
     description: t("subtitle"),
     url: canonicalFaqUrl,
+    dateModified: "2026-03-26",
     inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     publisher: {

@@ -59,6 +59,8 @@ Starting new: Build AI-native from day one. Plan for moats early. Running tradit
 
 ---
 
-Want to build your own AI-native business from scratch? The [AI Business Blueprint](/en/blog/ai-business-blueprint-2026) walks through every phase — revenue model selection, product creation, sales engine, and scaling — with specific AI prompts and realistic timelines.
+Want to build your own AI-native business from scratch? The [complete guide to starting an AI-native business](/en/blog/how-to-start-ai-native-business-2026) walks through the economics, the 7-day launch plan, and the exact tool stack you need in 2026. For the full revenue blueprint — from model selection through scaling — the [AI Business Blueprint](/en/blog/ai-business-blueprint-2026) covers every phase with specific AI prompts and realistic timelines.
+
+The efficiency gap between AI-native and traditional approaches extends beyond companies to individuals. The [AI Architect vs. AI User guide](/en/blog/ai-architect-vs-ai-user) explains why the people who build AI systems — not just use AI tools — are capturing the lion's share of this structural advantage.
 
 **Subscribe to the AI-Native Playbook at ai-native-playbook.com for deep-dive analyses, builder interviews, and actionable frameworks every week. The model is the commodity. The workflow is the moat.**
