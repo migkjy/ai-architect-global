@@ -2,7 +2,7 @@
 title: "Build an AI Sales Funnel in 2026 — Complete Guide"
 description: "Step-by-step guide to building an automated AI sales funnel that captures leads, nurtures prospects, and closes sales — without a full marketing team."
 date: "2026-03-13"
-updated: "2026-03-24"
+updated: "2026-04-01"
 author: "AI Native Playbook"
 tags: ["AI sales funnel", "automated sales funnel", "AI funnel builder", "sales automation", "AI marketing"]
 category: "AI Marketing"

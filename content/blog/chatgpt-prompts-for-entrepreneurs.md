@@ -5,6 +5,7 @@ date: "2026-02-20"
 category: "AI Automation"
 tags: ["ChatGPT prompts", "entrepreneur", "business prompts", "AI copywriting", "productivity"]
 locale: "en"
+updated: "2026-04-01"
 ---
 
 A great prompt is a reusable asset. The prompts below are tested, specific, and ready to customize for your business. Replace the bracketed placeholders with your details and run them directly in ChatGPT, Claude, or any other AI tool.

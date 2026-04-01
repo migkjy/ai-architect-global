@@ -8,6 +8,7 @@ tags: ["AI-native", "product building", "playbook", "30-day challenge", "solopre
 keywords: ["AI product builder playbook", "ship AI product 30 days", "AI-native product framework", "solo founder guide", "AI startup launch"]
 featured: false
 scheduledAt: "2026-03-22T14:00:00+09:00"
+updated: "2026-04-01"
 ---
 
 # The AI-Native Product Builder's Playbook: Ship Your First Product in 30 Days

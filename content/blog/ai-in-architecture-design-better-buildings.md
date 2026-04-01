@@ -6,6 +6,7 @@ date: "2026-03-07"
 category: "Architecture & Design"
 tags: ["AI architecture", "AI building design", "AI for architects", "generative design", "architectural technology"]
 locale: "en"
+updated: "2026-04-01"
 ---
 
 # AI in Architecture: How Architects Are Using AI to Design Better Buildings

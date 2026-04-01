@@ -6,6 +6,7 @@ author: "AI Native Playbook"
 tags: ["solopreneur", "ai-tools", "one-person-business", "automation"]
 category: "AI Automation"
 readingTime: "14 min read"
+updated: "2026-04-01"
 ---
 
 Running a business alone used to mean choosing between two bad options: stay small and manageable, or try to scale and burn out. AI eliminated that tradeoff.
