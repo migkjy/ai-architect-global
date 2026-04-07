@@ -1,0 +1,23 @@
+name: Initialize Wiki
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  init-wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Create Wiki
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/wiki && cd /tmp/wiki
+          git init -b master
+          git config user.name "migkjy"
+          git config user.email "migkjy@gmail.com"
+          cp "$GITHUB_WORKSPACE/.github/wiki/Home.md" Home.md
+          git add Home.md
+          git commit -m "Initialize wiki"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.wiki.git"
+          git push -u origin master
