@@ -168,11 +168,28 @@ async function handleTransactionCompleted(
     }
   }
 
+  // Parse customData (may arrive as JSON string from Paddle)
+  const rawCustomData = (tx as Record<string, unknown>).custom_data ?? null;
+  let customData: Record<string, unknown> | null = null;
+  if (typeof rawCustomData === "string") {
+    try { customData = JSON.parse(rawCustomData); } catch { /* ignore */ }
+  } else if (typeof rawCustomData === "object" && rawCustomData !== null) {
+    customData = rawCustomData as Record<string, unknown>;
+  }
+
+  // Extract priceId for product type detection
+  const firstItem =
+    getNestedArray(tx as Record<string, unknown>, "items")?.[0] as Record<string, unknown> | undefined;
+  const priceId: string | null =
+    (firstItem?.price && typeof (firstItem.price as Record<string, unknown>)?.id === "string")
+      ? ((firstItem.price as Record<string, unknown>).id as string)
+      : (typeof customData?.priceId === "string" ? customData.priceId as string : null);
+
   // Generate download token and links
   const downloadToken = generateDownloadToken(txId);
   const siteUrl =
     (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
-  const productType = detectProductType(order.productName);
+  const productType = detectProductType(order.productName, priceId);
   const downloadLinks = getAllDownloadLinks(txId, downloadToken, productType, siteUrl);
 
   console.log(
