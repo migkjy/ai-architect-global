@@ -102,10 +102,6 @@ const pricingFaqs = [
     q: "How is this different from just reading the original books?",
     a: "The original books explain the frameworks conceptually. Our guides translate each framework into executable AI prompts and systems you can apply to your specific business immediately — turning weeks of reading into hours of execution.",
   },
-  {
-    q: "Do you offer team or enterprise licensing?",
-    a: "Yes. For teams of 5+ or custom training packages, contact us at the email below for volume pricing and white-label options.",
-  },
 ];
 
 function escapeJsonLd(json: string): string {
@@ -240,7 +236,7 @@ export default async function PricingPage({
 
         {/* ── Pricing Tiers ── */}
         <section className="max-w-6xl mx-auto px-4 mb-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {/* Tier 1 — Individual */}
             <div
               className="bg-surface/60 border border-white/10 rounded-2xl p-8 flex flex-col"
@@ -390,63 +386,6 @@ export default async function PricingPage({
               </p>
             </div>
 
-            {/* Tier 3 — Enterprise */}
-            <div
-              className="bg-surface/60 border border-white/10 rounded-2xl p-8 flex flex-col"
-              data-testid="tier-enterprise"
-            >
-              <h2 className="text-xl font-bold mb-1">Enterprise / Team</h2>
-              <p className="text-text-secondary text-sm mb-6">
-                Custom packages for teams of 5+
-              </p>
-
-              <div className="mb-6">
-                <span className="text-4xl font-bold text-text-primary">
-                  Custom
-                </span>
-              </div>
-
-              <ul className="space-y-3 mb-8 flex-1">
-                {[
-                  "Everything in Complete Bundle",
-                  "Team license (5+ seats)",
-                  "Custom AI prompt customization",
-                  "Priority email support",
-                  "White-label options available",
-                  "Invoice & PO payment",
-                  "Volume discounts",
-                ].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-2.5 text-sm text-text-secondary"
-                  >
-                    <svg
-                      className="w-4 h-4 text-gold shrink-0 mt-0.5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="mailto:support@ai-native-playbook.com?subject=Enterprise%20Inquiry"
-                className="inline-flex items-center justify-center px-8 py-3 rounded-xl font-bold transition-all transform hover:scale-105 bg-transparent border border-white/20 text-text-primary hover:border-gold/40 hover:text-gold w-full text-center"
-                data-testid="cta-enterprise"
-              >
-                Contact Us
-              </a>
-            </div>
           </div>
         </section>
 
