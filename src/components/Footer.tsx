@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 
 export default async function Footer() {
+  const locale = await getLocale();
   const t = await getTranslations("footer");
   const tn = await getTranslations("nav");
 
@@ -22,25 +23,25 @@ export default async function Footer() {
           <div>
             <p className="font-semibold text-text-primary mb-3 text-sm">{t("books")}</p>
             <ul className="space-y-2 text-sm text-text-secondary">
-              <li><Link href="/products/ai-marketing-architect" className="hover:text-gold transition-colors">AI Marketing Architect</Link></li>
-              <li><Link href="/products/ai-brand-architect" className="hover:text-gold transition-colors">AI Brand Architect</Link></li>
-              <li><Link href="/products/ai-traffic-architect" className="hover:text-gold transition-colors">AI Traffic Architect</Link></li>
-              <li><Link href="/products/ai-story-architect" className="hover:text-gold transition-colors">AI Story Architect</Link></li>
-              <li><Link href="/products/ai-startup-architect" className="hover:text-gold transition-colors">AI Startup Architect</Link></li>
-              <li><Link href="/products/ai-content-architect" className="hover:text-gold transition-colors">AI Content Architect</Link></li>
+              <li><Link href={`/${locale}/products/ai-marketing-architect`} className="hover:text-gold transition-colors">AI Marketing Architect</Link></li>
+              <li><Link href={`/${locale}/products/ai-brand-architect`} className="hover:text-gold transition-colors">AI Brand Architect</Link></li>
+              <li><Link href={`/${locale}/products/ai-traffic-architect`} className="hover:text-gold transition-colors">AI Traffic Architect</Link></li>
+              <li><Link href={`/${locale}/products/ai-story-architect`} className="hover:text-gold transition-colors">AI Story Architect</Link></li>
+              <li><Link href={`/${locale}/products/ai-startup-architect`} className="hover:text-gold transition-colors">AI Startup Architect</Link></li>
+              <li><Link href={`/${locale}/products/ai-content-architect`} className="hover:text-gold transition-colors">AI Content Architect</Link></li>
             </ul>
           </div>
 
           <div>
             <p className="font-semibold text-text-primary mb-3 text-sm">{t("info")}</p>
             <ul className="space-y-2 text-sm text-text-secondary">
-              <li><Link href="/bundle" className="hover:text-gold transition-colors">{t("completeBundle")}</Link></li>
-              <li><Link href="/products" className="hover:text-gold transition-colors">{t("individualBooks")}</Link></li>
-              <li><Link href="/pricing" className="hover:text-gold transition-colors">{tn("pricing")}</Link></li>
-              <li><Link href="/blog" className="hover:text-gold transition-colors">{tn("blog")}</Link></li>
-              <li><Link href="/free-guide" className="hover:text-gold transition-colors">{t("freeGuide")}</Link></li>
-              <li><Link href="/about" className="hover:text-gold transition-colors">{tn("about")}</Link></li>
-              <li><Link href="/faq" className="hover:text-gold transition-colors">{tn("faq")}</Link></li>
+              <li><Link href={`/${locale}/bundle`} className="hover:text-gold transition-colors">{t("completeBundle")}</Link></li>
+              <li><Link href={`/${locale}/products`} className="hover:text-gold transition-colors">{t("individualBooks")}</Link></li>
+              <li><Link href={`/${locale}/pricing`} className="hover:text-gold transition-colors">{tn("pricing")}</Link></li>
+              <li><Link href={`/${locale}/blog`} className="hover:text-gold transition-colors">{tn("blog")}</Link></li>
+              <li><Link href={`/${locale}/free-guide`} className="hover:text-gold transition-colors">{t("freeGuide")}</Link></li>
+              <li><Link href={`/${locale}/about`} className="hover:text-gold transition-colors">{tn("about")}</Link></li>
+              <li><Link href={`/${locale}/faq`} className="hover:text-gold transition-colors">{tn("faq")}</Link></li>
             </ul>
           </div>
 
