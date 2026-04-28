@@ -32,6 +32,7 @@ const PRODUCT_LABELS: Record<string, { title: string; description: string }> = {
   skills: { title: "AI Agent Skills", description: "Markdown skill files" },
   agents: { title: "AI Agent Settings", description: "Markdown agent files" },
   notion: { title: "Notion Templates", description: "Notion workspace templates" },
+  "getting-started": { title: "Getting Started Guide", description: "Quick-start PDF guide" },
 };
 
 /** Determine if purchase is a bundle or individual volume */
@@ -406,7 +407,7 @@ function DownloadSection({ links }: { links: Record<string, string> }) {
   const hasBundle = "bundle" in links;
   const pdfKeys = Object.keys(links).filter((k) => k.startsWith("pdf-vol"));
   const bonusKeys = Object.keys(links).filter((k) =>
-    ["skills", "agents", "notion"].includes(k)
+    ["skills", "agents", "notion", "getting-started"].includes(k)
   );
 
   return (
