@@ -123,7 +123,7 @@ describe("Paddle Setup initialization", () => {
   });
 
   it("should NOT call Environment.set in production mode", () => {
-    const environment = "production";
+    const environment: string = "production";
     const clientToken = "live-client-token-xyz";
 
     if (environment === "sandbox" && paddleMock.Environment) {
@@ -151,29 +151,32 @@ describe("Paddle Setup initialization", () => {
 
 describe("BuyButton Paddle readiness logic", () => {
   it("usePaddleOverlay is true only when both paddlePriceId and paddleReady", () => {
-    // Replicate the boolean logic from BuyButton:
-    // const usePaddleOverlay = !!paddlePriceId && paddleReady;
-    expect(!!("pri_vol1") && true).toBe(true);
-    expect(!!("pri_vol1") && false).toBe(false);
-    expect(!!(undefined) && true).toBe(false);
-    expect(!!(undefined) && false).toBe(false);
+    const usePaddleOverlay = (priceId: string | undefined, ready: boolean) =>
+      !!priceId && ready;
+
+    expect(usePaddleOverlay("pri_vol1", true)).toBe(true);
+    expect(usePaddleOverlay("pri_vol1", false)).toBe(false);
+    expect(usePaddleOverlay(undefined, true)).toBe(false);
+    expect(usePaddleOverlay(undefined, false)).toBe(false);
   });
 
   it("paddleNotReady is true when priceId set but Paddle not loaded yet", () => {
-    // const paddleNotReady = !!paddlePriceId && !paddleReady;
-    expect(!!("pri_vol1") && !false).toBe(true);   // priceId set, not ready
-    expect(!!("pri_vol1") && !true).toBe(false);   // priceId set, ready
-    expect(!!(undefined) && !false).toBe(false);    // no priceId
+    const paddleNotReady = (priceId: string | undefined, ready: boolean) =>
+      !!priceId && !ready;
+
+    expect(paddleNotReady("pri_vol1", false)).toBe(true);
+    expect(paddleNotReady("pri_vol1", true)).toBe(false);
+    expect(paddleNotReady(undefined, false)).toBe(false);
   });
 
   it("isDisabled when no paddlePriceId and href is '#' or empty", () => {
-    // const isDisabled = !paddlePriceId && (href === '#' || !href);
-    const paddlePriceId = undefined;
+    const isDisabled = (priceId: string | undefined, href: string) =>
+      !priceId && (href === "#" || !href);
 
-    expect(!paddlePriceId && ("#" === "#" || !"#")).toBe(true);  // href="#"
-    expect(!paddlePriceId && ("" === "#" || !"")).toBe(true);    // empty href
-    expect(!paddlePriceId && ("https://..." === "#" || !"https://...")).toBe(false); // valid href
-    expect(!("pri_vol1") && ("#" === "#" || !"#")).toBe(false);  // has priceId
+    expect(isDisabled(undefined, "#")).toBe(true);
+    expect(isDisabled(undefined, "")).toBe(true);
+    expect(isDisabled(undefined, "https://...")).toBe(false);
+    expect(isDisabled("pri_vol1", "#")).toBe(false);
   });
 });
 
