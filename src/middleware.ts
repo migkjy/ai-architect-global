@@ -1,5 +1,5 @@
 import createMiddleware from "next-intl/middleware";
-import { routing } from "./src/i18n/routing";
+import { routing } from "./i18n/routing";
 import { NextRequest, NextResponse } from "next/server";
 
 const intlMiddleware = createMiddleware(routing);
@@ -16,6 +16,5 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Match all pathnames except Next.js internals, static files, and legal pages (served via rewrites)
   matcher: ["/((?!api|_next|_vercel|og-image|terms|privacy|refund|.*\\..*).*)"],
 };

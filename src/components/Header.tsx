@@ -1,24 +1,25 @@
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import MobileMenuButton from "@/components/MobileMenuButton";
 
 export default async function Header() {
+  const locale = await getLocale();
   const t = await getTranslations("nav");
 
   const navItems = [
-    { href: "/products", label: t("products") },
-    { href: "/pricing", label: t("pricing") },
-    { href: "/bundle", label: t("bundle") },
-    { href: "/free-guide", label: t("freeGuide"), highlight: true },
-    { href: "/blog", label: t("blog") },
-    { href: "/about", label: t("about") },
-    { href: "/faq", label: t("faq") },
+    { href: `/${locale}/products`, label: t("products") },
+    { href: `/${locale}/pricing`, label: t("pricing") },
+    { href: `/${locale}/bundle`, label: t("bundle") },
+    { href: `/${locale}/free-guide`, label: t("freeGuide"), highlight: true },
+    { href: `/${locale}/blog`, label: t("blog") },
+    { href: `/${locale}/about`, label: t("about") },
+    { href: `/${locale}/faq`, label: t("faq") },
   ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-navy-dark/95 border-b border-white/5">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between relative">
-        <Link href="/" className="font-bold text-lg">
+        <Link href={`/${locale}`} className="font-bold text-lg">
           <span className="gradient-gold">AI Native Playbook</span>
           <span className="text-text-secondary text-sm font-normal ml-1.5">Series</span>
         </Link>
@@ -50,20 +51,20 @@ export default async function Header() {
 
         <div className="flex items-center gap-3">
           <Link
-            href="/bundle"
+            href={`/${locale}/bundle`}
             className="hidden md:inline-flex bg-gold text-navy-dark px-4 py-2 rounded-lg text-sm font-bold hover:bg-gold-light transition-colors"
           >
             {t("getBundle")}
           </Link>
 
           <Link
-            href="/bundle"
+            href={`/${locale}/bundle`}
             className="md:hidden bg-gold text-navy-dark px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-gold-light transition-colors"
           >
             {t("bundleShort")}
           </Link>
 
-          <MobileMenuButton navItems={navItems} bundleLabel={t("getBundle")} />
+          <MobileMenuButton navItems={navItems} bundleLabel={t("getBundle")} bundleHref={`/${locale}/bundle`} />
         </div>
       </div>
     </header>

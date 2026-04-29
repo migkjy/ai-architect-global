@@ -5,7 +5,7 @@ import Link from "next/link";
 
 type NavItem = { href: string; label: string; highlight?: boolean };
 
-export default function MobileMenuButton({ navItems, bundleLabel }: { navItems: NavItem[]; bundleLabel: string }) {
+export default function MobileMenuButton({ navItems, bundleLabel, bundleHref }: { navItems: NavItem[]; bundleLabel: string; bundleHref: string }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -50,7 +50,7 @@ export default function MobileMenuButton({ navItems, bundleLabel }: { navItems: 
             </Link>
           ))}
           <Link
-            href="/bundle"
+            href={bundleHref}
             className="hover:text-text-primary transition-colors"
             onClick={() => setMobileOpen(false)}
           >
