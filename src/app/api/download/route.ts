@@ -81,5 +81,5 @@ export async function GET(request: NextRequest) {
     console.error("[download] log failed:", err)
   );
 
-  return NextResponse.redirect(product.url);
+  return NextResponse.redirect(product.url, 307);
 }
