@@ -20,6 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "A new buyer's complete guide: how to read your PDF, load the AI Agent Skill into Claude or ChatGPT, run your first prompt, and follow the 5-day quickstart.",
     alternates: {
       canonical: canonicalUrl,
+      languages: {
+        en: `${SITE_URL}/en/getting-started`,
+        ja: `${SITE_URL}/ja/getting-started`,
+        "x-default": `${SITE_URL}/en/getting-started`,
+      },
     },
     openGraph: {
       title: "Getting Started — AI Native Playbook Series",
@@ -28,6 +33,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       url: canonicalUrl,
       siteName: "AI Native Playbook Series",
+      images: [
+        {
+          url: `${SITE_URL}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: "Getting Started — AI Native Playbook Series",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Getting Started — AI Native Playbook Series",
+      description:
+        "Step-by-step guide: PDF guide, AI Agent Skill setup, first prompt, and 5-day quickstart checklist.",
+      images: [`${SITE_URL}/opengraph-image`],
     },
     robots: { index: true, follow: true },
   };
