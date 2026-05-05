@@ -2,7 +2,7 @@
 title: "AI Marketing Automation: Save 10 Hours Per Week"
 description: "Practical AI marketing automation strategies for small business owners. Email sequences, social media content, and customer follow-up on autopilot."
 date: "2026-02-19"
-updated: "2026-03-24"
+updated: "2026-04-01"
 category: "AI Marketing"
 tags: ["AI marketing", "marketing automation", "email marketing", "social media", "small business"]
 locale: "en"
@@ -22,7 +22,7 @@ A basic automated email system follows three customers simultaneously: new leads
 
 **New lead sequence (Days 1–7):**
 
-Day 1 sends immediately after signup. Use AI to write a welcome email that references what the person signed up for and delivers on that promise. Day 3 sends educational content — one tip they can use today. Day 5 introduces your core offer with social proof. Day 7 creates urgency with a soft deadline.
+Day 1 sends immediately after signup. Use AI to write a welcome email that references what the person signed up for and delivers on that promise. Day 3 sends educational content — one tip they can use today. Day 5 introduces your core offer with social proof. Day 7 creates urgency with a soft deadline. For a complete breakdown of the email prompt system and sequence architecture, the [AI email automation guide for solopreneurs](/en/blog/ai-email-automation-for-solopreneurs) covers all seven email types in detail.
 
 You write the framework once. AI fills in the specifics based on your product and customer segment. Tools like ActiveCampaign, ConvertKit, and Mailchimp now have AI writing assistants built in.
 
@@ -56,7 +56,7 @@ The fastest revenue win for most small businesses is improving follow-up on exis
 
 **AI-powered follow-up messages:**
 
-Connect your CRM to an AI tool via Zapier or a direct integration. When a lead goes 72 hours without responding, trigger an AI-generated follow-up that references their specific inquiry. When a customer hasn't purchased in 60 days, trigger a check-in message that offers value before it asks for anything.
+Connect your CRM to an AI tool via Zapier or a direct integration — this is where your [AI sales funnel](/en/blog/ai-sales-funnel-guide-2026) and follow-up system work together. When a lead goes 72 hours without responding, trigger an AI-generated follow-up that references their specific inquiry. When a customer hasn't purchased in 60 days, trigger a check-in message that offers value before it asks for anything.
 
 These messages feel personal because they reference specific information. They outperform generic broadcast messages significantly in both open rates and conversion.
 

@@ -6,6 +6,7 @@ date: "2026-03-07"
 category: "Architecture & Design"
 tags: ["AI architectural rendering", "AI render tutorial", "architectural visualization", "AI rendering workflow", "design technology"]
 locale: "en"
+updated: "2026-04-01"
 ---
 
 # How to Create Stunning Architectural Renders with AI — Step by Step

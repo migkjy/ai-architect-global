@@ -207,14 +207,27 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     })),
   };
 
-  const webPageJsonLd = locale === "en" ? {
+  const webPageMeta: Record<string, { name: string; description: string; keywords: string }> = {
+    en: {
+      name: "AI Native Playbook Series — AI Architecture Patterns for Business Automation",
+      description: "6 AI-native guides that turn proven business frameworks into executable AI architecture patterns. For entrepreneurs, marketers, and AI-native builders.",
+      keywords: "AI native playbook, AI architecture patterns, AI architect, business automation with AI, AI marketing playbook",
+    },
+    ja: {
+      name: "AI Native Playbook Series — AIビジネス自動化アーキテクチャパターン",
+      description: "実績あるビジネスフレームワークをAIアーキテクチャパターンに変換する6冊のガイド。起業家、マーケター向け。",
+      keywords: "AI native playbook, AIアーキテクチャ, AIビジネス自動化, AIマーケティング",
+    },
+  };
+  const wpMeta = webPageMeta[locale] ?? webPageMeta.en;
+  const webPageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": `${siteUrl}/#webpage`,
-    url: siteUrl,
-    name: "AI Native Playbook Series — AI Architecture Patterns for Business Automation",
-    description: "6 AI-native guides that turn proven business frameworks into executable AI architecture patterns. For entrepreneurs, marketers, and AI-native builders.",
-    inLanguage: "en-US",
+    url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`,
+    name: wpMeta.name,
+    description: wpMeta.description,
+    inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
     isPartOf: { "@id": `${siteUrl}/#website` },
     about: [
       { "@type": "Thing", name: "AI Native Playbook" },
@@ -222,12 +235,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       { "@type": "Thing", name: "AI Business Automation" },
       { "@type": "Thing", name: "AI Architect" },
     ],
-    keywords: "AI native playbook, AI architecture patterns, AI architect, business automation with AI, AI marketing playbook",
+    keywords: wpMeta.keywords,
     speakable: {
       "@type": "SpeakableSpecification",
       cssSelector: ["h1", ".hero-description", ".faq-section"],
     },
-  } : null;
+  };
 
   const bookListJsonLd = {
     "@context": "https://schema.org",
@@ -262,12 +275,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <>
-      {webPageJsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(webPageJsonLd)) }}
-        />
-      )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(webPageJsonLd)) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(faqPageJsonLd)) }}

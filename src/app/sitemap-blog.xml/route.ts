@@ -30,11 +30,12 @@ export function GET() {
   // Blog index entry
   const indexEntry = urlEntry(`${BASE_URL}/en/blog`, today, "daily", "0.9");
 
-  // Individual blog post entries
+  // Individual blog post entries (prefer updated over date for lastmod)
   const postEntries = posts
     .map((post) => {
-      const lastmod = post.date
-        ? new Date(post.date).toISOString().split("T")[0]
+      const modDate = post.updated || post.date;
+      const lastmod = modDate
+        ? new Date(modDate).toISOString().split("T")[0]
         : today;
       return urlEntry(
         `${BASE_URL}/en/blog/${post.slug}`,
@@ -75,8 +76,9 @@ export function GET() {
   const japanesePosts = posts.filter(p => p.slug.includes('japanese-guide'));
   const japaneseEntries = japanesePosts
     .map((post) => {
-      const lastmod = post.date
-        ? new Date(post.date).toISOString().split("T")[0]
+      const modDate = post.updated || post.date;
+      const lastmod = modDate
+        ? new Date(modDate).toISOString().split("T")[0]
         : today;
       return urlEntry(
         `${BASE_URL}/ja/blog/${post.slug}`,

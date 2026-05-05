@@ -2,7 +2,7 @@
 title: "AI Marketing Strategy 2026: Step-by-Step Framework"
 description: "Build a complete AI marketing strategy using Russell Brunson and Jeff Walker frameworks. Actionable steps for entrepreneurs and small business owners."
 date: "2026-03-07"
-updated: "2026-03-24"
+updated: "2026-04-01"
 category: "AI Marketing"
 tags: ["AI marketing strategy", "AI marketing 2026", "marketing automation", "AI business framework", "Russell Brunson AI", "digital marketing AI"]
 locale: "en"
@@ -33,7 +33,7 @@ Tell your AI tool: "Apply Russell Brunson's Value Ladder to my business. My prod
 
 ### Step 2: Build Your Launch Sequence
 
-Jeff Walker's Product Launch Formula breaks product launches into four phases: Pre-Pre-Launch, Pre-Launch, Launch, and Post-Launch. Each phase has specific content and psychological triggers.
+Jeff Walker's [Product Launch Formula](/en/blog/product-launch-formula-ai) breaks product launches into four phases: Pre-Pre-Launch, Pre-Launch, Launch, and Post-Launch. Each phase has specific content and psychological triggers.
 
 Instead of guessing what to say when, give AI the PLF framework and your product details. It will generate:
 

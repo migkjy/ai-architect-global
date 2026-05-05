@@ -5,6 +5,7 @@ date: "2026-02-22"
 category: "AI Marketing"
 tags: ["Jeff Walker", "Product Launch Formula", "AI launch", "email sequence", "launch strategy"]
 locale: "en"
+updated: "2026-04-01"
 ---
 
 Jeff Walker's Product Launch Formula has generated over a billion dollars in sales since its introduction. The framework works by building anticipation over a structured pre-launch period, creating urgency at open cart, and maximizing conversions through a precisely timed close.
@@ -15,7 +16,7 @@ AI doesn't simplify the strategy. It compresses the production time.
 
 ## The Four-Phase PLF Framework
 
-Walker's launch structure follows four phases: the pre-pre launch (seeding), the pre-launch (three pieces of content), the launch (open cart), and the post-launch (close and follow-up). Each phase has a specific job.
+Walker's launch structure follows four phases: the pre-pre launch (seeding), the pre-launch (three pieces of content), the launch (open cart), and the post-launch (close and follow-up). Each phase has a specific job. When combined with a broader [AI marketing strategy](/en/blog/ai-marketing-strategy-2026), PLF slots into Step 2 of the five-step framework — ensuring your launch feeds your entire Value Ladder.
 
 ### Phase 1: Pre-Pre Launch — Seed the Conversation
 

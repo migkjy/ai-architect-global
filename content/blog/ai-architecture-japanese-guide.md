@@ -6,6 +6,7 @@ date: "2026-03-07"
 category: "Architecture & Design"
 tags: ["AI建築", "AI建物設計", "建築家向けAI", "ジェネレーティブデザイン", "建築テクノロジー"]
 locale: "ja"
+updated: "2026-04-01"
 ---
 
 # 建築AI活用法：建築家がAIでより良い建物を設計する方法

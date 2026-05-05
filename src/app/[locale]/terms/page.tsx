@@ -77,7 +77,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
           <section>
             <h2 className="text-xl font-semibold text-text-primary mb-4">2. Products and Digital Goods</h2>
             <p className="mb-3">
-              AI Native Playbook Series sells digital products in PDF format ("Products"). These include but are not limited to:
+              AI Native Playbook Series sells digital products in PDF format (&quot;Products&quot;). These include but are not limited to:
             </p>
             <ul className="list-disc list-inside space-y-1 ml-2">
               <li>AI Marketing Architect</li>
@@ -142,7 +142,7 @@ export default async function TermsPage({ params }: { params: Promise<{ locale: 
             </p>
             <p>
               Please refer to our{" "}
-              <a href="/refund" className="text-gold hover:underline">Refund Policy</a> for full details on how to request a refund.
+              <Link href="/refund" className="text-gold hover:underline">Refund Policy</Link> for full details on how to request a refund.
             </p>
           </section>
 

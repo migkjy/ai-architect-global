@@ -153,6 +153,8 @@ export default async function ProductPage({ params }: Props) {
     itemCondition: "https://schema.org/NewCondition",
     brand: { "@type": "Brand", name: "AI Native Playbook Series" },
     category: "Digital Download / Business Guide",
+    datePublished: "2025-01-15",
+    dateModified: "2026-03-08",
     inLanguage: locale === "ko" ? "ko" : locale === "ja" ? "ja" : "en",
     aggregateRating: {
       "@type": "AggregateRating",

@@ -8,6 +8,7 @@ tags: ["AI-native", "builder story", "solopreneur", "SaaS", "case study"]
 keywords: ["AI-native builder story", "non-technical founder", "solopreneur SaaS", "AI product revenue", "PM to founder"]
 featured: false
 scheduledAt: "2026-03-22T09:00:00+09:00"
+updated: "2026-04-01"
 ---
 
 # From Burned-Out PM to $12K/mo: One Builder's AI-Native Journey
@@ -61,5 +62,7 @@ Sarah has connected with dozens of similar builders: a recruiter ($7K/mo, month 
 March 2026 — UpdatePilot: 640 paying users, $12K MRR, 4.8% monthly churn, zero employees, plans for $25K MRR by year end. 'I make more than my PM salary. I work 30 hours instead of 50. I choose what I work on every day. That's the real win.'
 
 ---
+
+Ready to follow a similar path? The [complete guide to starting an AI-native business](/en/blog/how-to-start-ai-native-business-2026) walks through the economics, the 7-day launch plan, and the exact tool stack for building your own AI-native business in 2026. And if you want the specific 30-day framework to go from idea to paying customers — similar to what Sarah used — the [AI-Native Product Builder's Playbook](/en/blog/ai-native-product-builder-playbook) covers every phase.
 
 **Subscribe to the AI-Native Playbook at ai-native-playbook.com for weekly frameworks, case studies, and builder interviews. You don't need permission to build. You just need to ship.**

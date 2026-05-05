@@ -2,7 +2,7 @@
 title: "The Solopreneur AI Stack: 10 Tools That Replace a Full Team"
 description: "The exact AI tool stack that lets one-person businesses compete with full teams — covering marketing, sales, customer service, content, and operations."
 date: "2026-03-13"
-updated: "2026-03-24"
+updated: "2026-04-01"
 author: "AI Native Playbook"
 tags: ["solopreneur AI tools", "AI tool stack", "one-person business AI", "productivity", "small business AI"]
 category: "AI Tools"
@@ -230,7 +230,7 @@ Total: $36–$56/month. These three tools alone — if used with proper framewor
 - If content production is the bottleneck: Add Descript + ElevenLabs
 - If customer service is creating drag: Add an AI support agent
 
-**The compounding principle**: Each tool saves time that you reinvest into higher-leverage activities. The first automation you build generates capacity to build the second. After six months, the stack functions as an operating system — not a collection of apps.
+**The compounding principle**: Each tool saves time that you reinvest into higher-leverage activities. The first automation you build generates capacity to build the second. After six months, the stack functions as an operating system — not a collection of apps. For a complete walkthrough of building and running a [one-person business with AI](/en/blog/one-person-business-with-ai-2026) — including the daily operations framework and scaling path — that guide shows how this stack fits into the bigger picture.
 
 ## What This Stack Cannot Replace
 

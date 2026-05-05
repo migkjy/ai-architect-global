@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
+import { type FaqItem, parseFaqFromContent } from "./faq-utils";
 
 const BLOG_DIR = path.join(process.cwd(), "content/blog");
 
@@ -24,6 +25,8 @@ export interface BlogPost {
   noindex?: boolean;
   /** 최종 수정일. frontmatter `updated` 필드. 미설정 시 date와 동일 */
   updated?: string;
+  /** FAQ 데이터. frontmatter `faq` 필드 또는 콘텐츠 `## FAQ` 섹션에서 자동 파싱 */
+  faq?: FaqItem[];
 }
 
 /**
@@ -94,6 +97,9 @@ export function getPostBySlug(slug: string): BlogPost | null {
   const { data, content } = matter(raw);
   const stats = readingTime(raw);
 
+  const faqFromFrontmatter = Array.isArray(data.faq) ? data.faq as FaqItem[] : undefined;
+  const faq = faqFromFrontmatter ?? (parseFaqFromContent(content) || undefined);
+
   const post = {
     slug,
     title: data.title ?? slug,
@@ -108,6 +114,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     scheduledAt: data.scheduledAt as string | undefined,
     noindex: data.noindex as boolean | undefined,
     updated: (data.updated as string | undefined) ?? undefined,
+    faq: faq.length > 0 ? faq : undefined,
   };
 
   // 비공개 포스트 직접 접근 차단
