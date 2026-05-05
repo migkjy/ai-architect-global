@@ -40,6 +40,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/:path*",
+        has: [{ type: "host", value: "www.ai-native-playbook.com" }],
+        destination: "https://ai-native-playbook.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
         has: [{ type: "host", value: "ai-driven-architect.com" }],
         destination: "https://ai-native-playbook.com/:path*",
         permanent: true,
