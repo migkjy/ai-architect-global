@@ -151,6 +151,8 @@ The framework is most powerful when applied systematically, but you don't have t
 
 **Phase 2 — Full Stack:** Design your human oversight architecture. Define exactly which decisions escalate to you and which run autonomously. Set your weekly review cadence for system performance.
 
+For the step-by-step automation playbook, read [The AI Automation Playbook for Solopreneurs](/en/blog/ai-automation-playbook-solopreneurs).
+
 The ceiling changes when you operate this way. You're no longer trading time for output — you're designing systems that produce output while you focus on what actually moves the business forward.
 
 ---
