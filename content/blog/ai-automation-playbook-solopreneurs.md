@@ -1,8 +1,8 @@
 ---
 title: "The AI Automation Playbook for Solopreneurs: 6 Phases to Running a Business on Autopilot"
 description: "The AI automation playbook solopreneurs use to run a business with fewer than 30 minutes of manual work per week. 6 phases, real frameworks, zero fluff."
-date: "2026-05-07"
-updated: "2026-05-07"
+date: "2026-05-14"
+updated: "2026-05-14"
 locale: "en"
 category: "AI Strategy"
 tags: ["AI Automation", "AI Automation Playbook", "AI for Solopreneurs", "Solopreneur AI", "Business Automation", "AI Business"]
