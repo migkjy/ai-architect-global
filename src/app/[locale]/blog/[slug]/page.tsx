@@ -15,6 +15,7 @@ import BlogRelatedInline from "@/components/BlogRelatedInline";
 import EmailCapture from "@/components/EmailCapture";
 import BlogBottomCTA from "@/components/BlogBottomCTA";
 import { splitContentThreeWay } from "@/lib/blog-content-utils";
+import { buildFaqJsonLd } from "@/lib/faq-utils";
 
 export const revalidate = 60; // 60초마다 재검증 — 예약 시각 도래 시 자동 공개
 
@@ -189,6 +190,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     ],
   };
 
+  const pageUrl = locale === "en" ? `${siteUrl}/en/blog/${slug}` : `${siteUrl}/${locale}/blog/${slug}`;
+  const faqJsonLd = post.faq ? buildFaqJsonLd(post.faq, pageUrl, locale) : null;
+
   function escapeJsonLd(json: string): string {
     return json.replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026");
   }
@@ -203,6 +207,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(breadcrumbJsonLd)) }}
       />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(faqJsonLd)) }}
+        />
+      )}
     <div className="max-w-3xl mx-auto px-4 py-16">
       <div className="mb-8">
         <Link href="/blog" className="text-gold hover:underline text-sm">← Back to Blog</Link>
