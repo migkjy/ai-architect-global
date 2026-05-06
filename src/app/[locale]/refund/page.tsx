@@ -19,6 +19,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
     alternates: {
       canonical: canonicalUrl,
+      languages: {
+        en: `${SITE_URL}/en/refund`,
+        ja: `${SITE_URL}/ja/refund`,
+        "x-default": `${SITE_URL}/en/refund`,
+      },
     },
     robots: {
       index: true,
