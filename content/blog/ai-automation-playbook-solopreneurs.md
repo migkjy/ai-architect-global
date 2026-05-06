@@ -102,6 +102,8 @@ Content is the highest-leverage starting point because it drives traffic, leads,
 
 Once this pipeline is running, you produce 8–12 pieces of content per month with under 3 hours of your time.
 
+For the full operating system blueprint — four AI agents, six build steps, and a practical weekly workflow — read [How to Run a One-Person Business with AI Agents](/en/blog/one-person-business-ai-agents-guide).
+
 ---
 
 ## Phase 3: Automate Your Marketing Funnel
@@ -196,15 +198,9 @@ Each is deployed as a reusable AI agent skill set, not a static prompt.
 
 An AI automation playbook isn't built overnight, but it starts with one decision: you are going to be the **architect**, not the executor.
 
-The [AI Native Playbook Series](https://ai-native-playbook.com) gives you six frameworks pre-built as AI agent skill sets, ready to deploy as your automation OS.
+**Start here:** [Get the Free AI Starter Guide](/en/free-guide) — the exact system prompts and frameworks to put AI to work in your business today.
 
-**Get the free implementation guide** — join the email list for the step-by-step deployment checklist and new framework releases:
-
-→ [Subscribe for the AI Native Playbook updates](https://ai-native-playbook.com/#email-signup)
-
-Or explore the full product:
-
-→ [AI Native Playbook Series](https://ai-native-playbook.com)
+**Go deeper:** [Explore the AI Native Playbook Series](/en/products) — six proven frameworks deployed as AI agent skill sets for your business.
 
 ---
 

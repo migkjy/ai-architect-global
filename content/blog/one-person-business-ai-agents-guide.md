@@ -255,11 +255,6 @@ The AI OS model works best for: digital product businesses (courses, playbooks, 
 
 The one-person AI business OS is not a future concept. It's a practical system you can build today with available tools and proven frameworks.
 
-The [AI Native Playbook Series](https://ai-native-playbook.com) provides six automation frameworks pre-built as AI agent skill sets — the fastest path to a running AI OS for your business.
+**Start here:** [Get the Free AI Starter Guide](/en/free-guide) — the exact system prompts and frameworks to put AI to work in your business today.
 
-**[Get early access to the AI Native Playbook Series](/en/free-guide)**
-
-Ready to go deeper on the framework? Explore the full series:
-- [The AI Native Business Framework](/en/blog/ai-native-business-framework) — the operating model
-- [The AI Automation Playbook for Solopreneurs](/en/blog/ai-automation-playbook-solopreneurs) — the build sequence
-- [How to Run a One-Person Business with AI Agents](/en/blog/one-person-business-ai-agents-guide) — the AI OS guide (you are here)
+**Go deeper:** [Explore the AI Native Playbook Series](/en/products) — six proven frameworks deployed as AI agent skill sets for your business.

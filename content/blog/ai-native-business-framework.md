@@ -151,7 +151,7 @@ The framework is most powerful when applied systematically, but you don't have t
 
 **Phase 2 — Full Stack:** Design your human oversight architecture. Define exactly which decisions escalate to you and which run autonomously. Set your weekly review cadence for system performance.
 
-For the step-by-step automation playbook, read [The AI Automation Playbook for Solopreneurs](/en/blog/ai-automation-playbook-solopreneurs).
+For the step-by-step automation playbook, read [The AI Automation Playbook for Solopreneurs](/en/blog/ai-automation-playbook-solopreneurs). If you want to see how AI agents map to each of these phases in a real one-person business, read [How to Run a One-Person Business with AI Agents](/en/blog/one-person-business-ai-agents-guide).
 
 The ceiling changes when you operate this way. You're no longer trading time for output — you're designing systems that produce output while you focus on what actually moves the business forward.
 
@@ -185,9 +185,9 @@ An AI user uses AI tools to complete tasks — they prompt, review, and execute.
 
 This framework is at the core of the methodology we teach at AI Native Playbook — not just AI tools, but the full operating model for running a business built on AI from the ground up.
 
-**Start here:** [Join the AI Native Playbook email list](/en/free-guide) — each week, one system, one principle, one real example from building an AI native business, applied.
+**Start here:** [Get the Free AI Starter Guide](/en/free-guide) — the exact system prompts and frameworks to put AI to work in your business today.
 
-**Go deeper:** [Explore the AI Native Playbook](/en/products) — the complete methodology for building and operating an AI native business.
+**Go deeper:** [Explore the AI Native Playbook Series](/en/products) — six proven frameworks deployed as AI agent skill sets for your business.
 
 ---
 
