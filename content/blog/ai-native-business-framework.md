@@ -192,6 +192,7 @@ This framework is at the core of the methodology we teach at AI Native Playbook 
 ---
 
 *Related reading:*
+- [How to Run a One-Person Business with AI Agents](/en/blog/one-person-business-ai-agents-guide)
 - [AI Automation Playbook for Solopreneurs: The Complete Guide](/en/blog/ai-automation-playbook-solopreneurs)
 - [How to Build an AI-First Content System for Your Business](/en/blog/ai-first-content-system)
 - [The One-Person Business AI OS: Running a Company With AI Agents](/en/blog/one-person-business-ai-os)
