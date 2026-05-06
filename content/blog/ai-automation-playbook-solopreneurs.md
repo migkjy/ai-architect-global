@@ -232,11 +232,12 @@ A content pipeline can be running in 1–2 weeks. Email automation in 2–3 week
 
 ### What frameworks work best for AI automation?
 
-Proven business frameworks from DotCom Secrets (Russell Brunson), Product Launch Formula (Jeff Walker), and Copywriting Secrets (Jim Edwards) transfer well to AI automation because they're already structured as repeatable systems. AI executes the steps; the framework provides the logic. This is the approach behind the AI Native Playbook Series.
+Proven business frameworks from DotCom Secrets (Russell Brunson), Product Launch Formula (Jeff Walker), and Copywriting Secrets (Jim Edwards) transfer well to AI automation because they're already structured as repeatable systems. AI executes the steps; the framework provides the logic. For help choosing which to deploy first, see [DotCom Secrets vs PLF vs Copywriting: Which to Automate First](/en/blog/which-ai-framework-to-automate-first). This is the approach behind the AI Native Playbook Series.
 
 ---
 
 *Related reading:*
 - [How to Run a One-Person Business with AI Agents](/en/blog/one-person-business-ai-agents-guide)
 - [The AI Native Business Framework](/en/blog/ai-native-business-framework)
+- [DotCom Secrets vs PLF vs Copywriting: Which to Automate First](/en/blog/which-ai-framework-to-automate-first)
 - [How to Build an AI-First Content System for Your Business](/en/blog/ai-first-content-system)

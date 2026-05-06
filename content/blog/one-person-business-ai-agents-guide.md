@@ -199,7 +199,7 @@ Here's a real weekly workflow from a solopreneur digital product business:
 
 The highest-leverage move for a solopreneur AI OS isn't building better prompts — it's deploying proven business frameworks as AI agent skills.
 
-Frameworks like Russell Brunson's Value Ladder, Jeff Walker's Product Launch Formula, and Jim Edwards' Copywriting Secrets are already optimized for conversion. They've been tested across thousands of businesses. When you train your AI agents on these frameworks, you're not starting from scratch — you're deploying tested systems.
+Frameworks like Russell Brunson's Value Ladder, Jeff Walker's Product Launch Formula, and Jim Edwards' Copywriting Secrets are already optimized for conversion. They've been tested across thousands of businesses. When you train your AI agents on these frameworks, you're not starting from scratch — you're deploying tested systems. For guidance on which framework to automate first, see the [sequencing guide](/en/blog/which-ai-framework-to-automate-first).
 
 This is the approach behind the [AI Native Playbook Series](https://ai-native-playbook.com): six world-class frameworks deployed as AI automation systems, ready to run in your OS.
 
@@ -258,3 +258,10 @@ The one-person AI business OS is not a future concept. It's a practical system y
 **Start here:** [Get the Free AI Starter Guide](/en/free-guide) — the exact system prompts and frameworks to put AI to work in your business today.
 
 **Go deeper:** [Explore the AI Native Playbook Series](/en/products) — six proven frameworks deployed as AI agent skill sets for your business.
+
+---
+
+*Related reading:*
+- [The AI Native Business Framework: The Complete 2026 Guide](/en/blog/ai-native-business-framework)
+- [The AI Automation Playbook for Solopreneurs](/en/blog/ai-automation-playbook-solopreneurs)
+- [DotCom Secrets vs PLF vs Copywriting: Which to Automate First](/en/blog/which-ai-framework-to-automate-first)
