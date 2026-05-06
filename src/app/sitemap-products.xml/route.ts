@@ -11,11 +11,14 @@ function urlEntry(loc: string, lastmod: string): string {
 }
 
 export function GET() {
-  const entries = books
-    .map((book) =>
-      urlEntry(`${BASE_URL}/en/products/${book.slug}`, PRODUCT_LASTMOD)
-    )
-    .join("\n");
+  const productEntries = books.flatMap((book) => [
+    urlEntry(`${BASE_URL}/en/products/${book.slug}`, PRODUCT_LASTMOD),
+    urlEntry(`${BASE_URL}/ja/products/${book.slug}`, PRODUCT_LASTMOD),
+    urlEntry(`${BASE_URL}/en/products/${book.slug}/quick-start`, PRODUCT_LASTMOD),
+    urlEntry(`${BASE_URL}/ja/products/${book.slug}/quick-start`, PRODUCT_LASTMOD),
+  ]);
+
+  const entries = productEntries.join("\n");
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
