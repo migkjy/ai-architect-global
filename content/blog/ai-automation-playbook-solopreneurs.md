@@ -190,7 +190,7 @@ The six frameworks pre-built in the [AI Native Playbook Series](https://ai-nativ
 
 Each is deployed as a reusable AI agent skill set, not a static prompt.
 
-> For a deeper look at the operating model these frameworks sit inside, read [The AI Native Business Framework](/en/blog/ai-native-business-framework).
+> For a deeper look at the operating model these frameworks sit inside, read [The AI Native Business Framework](/en/blog/ai-native-business-framework). For the architectural blueprint that organizes these phases into four distinct layers — Intelligence, Memory, Execution, and Coordination — see [How to Build an AI Operating System for Your Solo Business](/en/blog/ai-operating-system-solo-business).
 
 ---
 

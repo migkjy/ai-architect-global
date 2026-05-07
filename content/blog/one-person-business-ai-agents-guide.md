@@ -58,7 +58,7 @@ The OS has four core components:
 3. **Communication Layer** — Handles customer questions and automated follow-ups
 4. **Intelligence Layer** — Tracks metrics, generates reports, flags decisions
 
-When all four are running, your active involvement reduces to: strategic decisions, high-judgment work, and approving output before it goes live.
+When all four are running, your active involvement reduces to: strategic decisions, high-judgment work, and approving output before it goes live. For a deeper look at how these four components map to a structured 4-layer AI OS — and a 30-day sequence to build it — see [How to Build an AI Operating System for Your Solo Business](/en/blog/ai-operating-system-solo-business).
 
 Everything else runs without you.
 

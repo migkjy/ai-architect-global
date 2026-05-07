@@ -248,7 +248,7 @@ The answer to "which to automate first" is always the same:
 2. **DotCom Secrets second** — build the funnel architecture that runs the copy 24/7
 3. **PLF third** — orchestrate the launch events that spike revenue for your warm audience
 
-All three eventually run together. The sequence is about which problems to solve in what order — not about choosing between them permanently.
+All three eventually run together. The sequence is about which problems to solve in what order — not about choosing between them permanently. Once you know the order, the next question is what system to build them into — that's where [the 4-layer AI OS framework](/en/blog/ai-operating-system-solo-business) picks up.
 
 For the step-by-step implementation guide that covers all three frameworks as integrated AI workflows, the [AI Native Playbook](/en/buy) is the resource designed specifically for solopreneurs deploying these systems without a team.
 
