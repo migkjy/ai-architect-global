@@ -1,8 +1,8 @@
 ---
 title: "How to Run a One-Person Business with AI Agents: The Operating System Guide"
 description: "Build an AI operating system that runs your one-person business — content, marketing, customer communication, and reporting on autopilot. Real framework, real steps."
-date: "2026-05-14"
-updated: "2026-05-14"
+date: "2026-05-12"
+updated: "2026-05-12"
 locale: "en"
 category: "AI Strategy"
 tags: ["AI Agents", "One Person Business", "Solopreneur AI", "AI Operating System", "AI Business", "AI Automation"]
