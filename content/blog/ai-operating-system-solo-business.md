@@ -1,8 +1,8 @@
 ---
 title: "How to Build an AI Operating System for Your Solo Business: A 4-Layer Framework"
 description: "Most solopreneurs add AI tools. The ones who win build AI operating systems. Here's the exact 4-layer framework — and a 30-day build sequence to implement it."
-date: "2026-05-16"
-updated: "2026-05-16"
+date: "2026-05-12"
+updated: "2026-05-12"
 locale: "en"
 category: "AI Strategy"
 tags: ["AI Operating System", "AI Automation", "Solopreneur AI", "Solo Business", "AI Native", "AI Business Framework"]

@@ -1,8 +1,8 @@
 ---
 title: "DotCom Secrets vs PLF vs Copywriting: Sequence Guide"
 description: "DotCom Secrets, PLF, or Copywriting Secrets — which to automate first? A sequencing guide for solopreneurs based on business stage and AI readiness."
-date: "2026-05-15"
-updated: "2026-05-15"
+date: "2026-05-12"
+updated: "2026-05-12"
 locale: "en"
 category: "AI Marketing"
 tags: ["DotCom Secrets AI", "Product Launch Formula AI", "Copywriting Secrets AI", "AI Business Framework", "AI Marketing", "Solopreneur AI"]
