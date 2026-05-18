@@ -148,7 +148,7 @@ test.describe('Test 2: Paddle Checkout Flow', () => {
     await paddleFrame.locator('[data-testid="card-number"]').fill('4242424242424242');
     await paddleFrame.locator('[data-testid="card-expiry"]').fill('01/28');
     await paddleFrame.locator('[data-testid="card-cvc"]').fill('123');
-    await paddleFrame.locator('[data-testid="email"]').fill('test-buyer@uniqstart.com');
+    await paddleFrame.locator('[data-testid="email"]').fill('test-buyer@newbizsoft.com');
     await paddleFrame.locator('button[type="submit"]').click();
 
     await page.waitForURL('**/thank-you**', { timeout: 30000 });
