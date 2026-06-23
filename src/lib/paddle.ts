@@ -20,7 +20,9 @@ function getPaddleBaseUrl(): string {
 }
 
 function getPaddleApiKey(): string {
-  return process.env.PADDLE_API_KEY ?? "";
+  // .trim() guards against a trailing newline in the env value, which would
+  // corrupt the Authorization header (ERR_INVALID_CHAR) on every Paddle call.
+  return (process.env.PADDLE_API_KEY ?? "").trim();
 }
 
 // ─────────────────────────────────────────
