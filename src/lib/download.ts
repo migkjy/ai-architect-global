@@ -8,10 +8,15 @@
 
 import crypto from "crypto";
 
-const DOWNLOAD_SECRET =
-  process.env.DOWNLOAD_SECRET || "ainp-download-secret-2026";
+// NOTE: .trim() guards against trailing whitespace/newlines accidentally saved
+// into the env value (e.g. a stray "\n" pasted into the Vercel dashboard). An
+// untrimmed secret silently changes the HMAC, and an untrimmed URL/header value
+// can throw at request time. See fixes/2026-06-23 download 500 root cause.
+const DOWNLOAD_SECRET = (
+  process.env.DOWNLOAD_SECRET || "ainp-download-secret-2026"
+).trim();
 const TOKEN_EXPIRY_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
-const R2_PUBLIC_URL = process.env.R2_PUBLIC_URL || "";
+const R2_PUBLIC_URL = (process.env.R2_PUBLIC_URL || "").trim();
 
 // ─── Types ───
 

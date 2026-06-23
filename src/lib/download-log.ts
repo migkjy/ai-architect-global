@@ -15,11 +15,17 @@ let _db: Client | null = null;
 function getDb(): Client | null {
   if (_db) return _db;
 
-  const url = process.env.TURSO_DATABASE_URL;
-  const authToken = process.env.TURSO_AUTH_TOKEN;
+  // .trim() guards against trailing newlines in env values (see refund-guard.ts).
+  const url = process.env.TURSO_DATABASE_URL?.trim();
+  const authToken = process.env.TURSO_AUTH_TOKEN?.trim();
   if (!url) return null;
 
-  _db = createClient({ url, authToken });
+  try {
+    _db = createClient({ url, authToken });
+  } catch (err) {
+    console.error("[download-log] DB client init failed:", err);
+    return null;
+  }
   return _db;
 }
 
@@ -62,13 +68,19 @@ export async function hasDownloaded(orderId: string): Promise<boolean> {
   const db = getDb();
   if (!db) return false;
 
-  const result = await db.execute({
-    sql: "SELECT COUNT(*) as count FROM download_logs WHERE order_id = ?",
-    args: [orderId],
-  });
+  try {
+    const result = await db.execute({
+      sql: "SELECT COUNT(*) as count FROM download_logs WHERE order_id = ?",
+      args: [orderId],
+    });
 
-  const count = Number(result.rows[0]?.count ?? 0);
-  return count > 0;
+    const count = Number(result.rows[0]?.count ?? 0);
+    return count > 0;
+  } catch (err) {
+    // Fail open: a DB error must not surface as a 500 on /api/download/check
+    console.error("[download-log] hasDownloaded failed:", err);
+    return false;
+  }
 }
 
 // ─── Get Download History ───
@@ -79,16 +91,21 @@ export async function getDownloadHistory(
   const db = getDb();
   if (!db) return [];
 
-  const result = await db.execute({
-    sql: "SELECT product_type, downloaded_at, ip FROM download_logs WHERE order_id = ? ORDER BY downloaded_at DESC",
-    args: [orderId],
-  });
+  try {
+    const result = await db.execute({
+      sql: "SELECT product_type, downloaded_at, ip FROM download_logs WHERE order_id = ? ORDER BY downloaded_at DESC",
+      args: [orderId],
+    });
 
-  return result.rows.map((row) => ({
-    product_type: String(row.product_type),
-    downloaded_at: Number(row.downloaded_at),
-    ip: String(row.ip),
-  }));
+    return result.rows.map((row) => ({
+      product_type: String(row.product_type),
+      downloaded_at: Number(row.downloaded_at),
+      ip: String(row.ip),
+    }));
+  } catch (err) {
+    console.error("[download-log] getDownloadHistory failed:", err);
+    return [];
+  }
 }
 
 // ─── Refund Eligibility ───

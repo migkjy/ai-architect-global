@@ -40,7 +40,9 @@ export async function GET() {
  * Ref: https://developer.paddle.com/webhooks/overview
  */
 export async function POST(request: Request) {
-  const secret = process.env.PADDLE_WEBHOOK_SECRET;
+  // .trim() guards against a trailing newline saved into the env value, which
+  // would change the HMAC and reject every webhook (401) → no delivery email.
+  const secret = (process.env.PADDLE_WEBHOOK_SECRET ?? "").trim();
   if (!secret) {
     console.error("[paddle-webhook] PADDLE_WEBHOOK_SECRET not configured");
     return NextResponse.json(
@@ -468,7 +470,7 @@ interface PaddleEnrichedData {
 async function fetchPaddleTransactionDetails(
   txId: string
 ): Promise<PaddleEnrichedData | null> {
-  const paddleApiKey = process.env.PADDLE_API_KEY;
+  const paddleApiKey = (process.env.PADDLE_API_KEY ?? "").trim();
   if (!paddleApiKey || !txId) return null;
 
   const env = process.env.NEXT_PUBLIC_PADDLE_ENVIRONMENT ?? "sandbox";

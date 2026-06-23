@@ -17,11 +17,19 @@ let _db: Client | null = null;
 function getDb(): Client | null {
   if (_db) return _db;
 
-  const url = process.env.TURSO_DATABASE_URL;
-  const authToken = process.env.TURSO_AUTH_TOKEN;
+  // .trim() guards against trailing newlines in env values: an untrimmed
+  // authToken throws ERR_INVALID_CHAR when set as the Authorization header,
+  // which otherwise escapes isRefunded()'s try/catch and 500s the download.
+  const url = process.env.TURSO_DATABASE_URL?.trim();
+  const authToken = process.env.TURSO_AUTH_TOKEN?.trim();
   if (!url) return null;
 
-  _db = createClient({ url, authToken });
+  try {
+    _db = createClient({ url, authToken });
+  } catch (err) {
+    console.error("[refund-guard] DB client init failed:", err);
+    return null;
+  }
   return _db;
 }
 
