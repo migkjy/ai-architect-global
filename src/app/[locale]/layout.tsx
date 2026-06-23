@@ -227,6 +227,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={inter.variable}>
       <head>
         <link rel="manifest" href="/manifest.json" />
+        <meta name="google-site-verification" content="rRDmvjL5w52Pww6alkLx0ktYXWxyhfV_uM-yhKBwqPA" />
         <meta name="naver-site-verification" content="a6ff1a6273de52eee09a6d7965035cb60726a641" />
         <meta name="naver-site-verification" content="cda8874de26392058a4eacc1de62c73bf59ff7ef" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
@@ -247,9 +248,9 @@ export default async function LocaleLayout({
           dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(siteJsonLd)) }}
         />
         {/* GA4 */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-76C0HSW5LB" strategy="lazyOnload" />
-        <Script id="ga4-ai-architect-io" strategy="lazyOnload">
-          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-76C0HSW5LB');`}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-EB78F9MMT8" strategy="afterInteractive" />
+        <Script id="ga4-ai-architect-io" strategy="afterInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-EB78F9MMT8');`}
         </Script>
         {/* Paddle Billing — overlay checkout (Client Token 미설정 시 로드하지 않음) */}
         {process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN && (
