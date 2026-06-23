@@ -1,12 +1,6 @@
 {
   "git": {
-    "deploymentEnabled": {
-      "main": false,
-      "master": false,
-      "production": true,
-      "staging": true,
-      "preview": false
-    }
+    "deploymentEnabled": false
   },
   "headers": [
     {

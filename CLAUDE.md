@@ -38,12 +38,12 @@ npm run build
 - 기존 일본어 SEO 메타데이터(title, description, hreflang 등)는 현행 유지
 - 일본어 신규 콘텐츠(블로그, 상품 설명 등) 생성 금지
 
-## Git 브랜치 규칙 (CEO 지시 2026-03-07)
-- **main → production 직행 PR 절대 금지**
-- 브랜치 흐름: `main` → `staging` → `production`
-- PR은 반드시 main → staging으로 생성
-- staging → production 머지는 VP만 수행
-- 긴급 핫픽스도 staging 경유 필수 (예외 없음)
+## 배포 모델 (회장 지시 2026-06-23 — 이전 staging 자동배포 흐름 대체)
+- **Vercel git 자동배포 비활성화**: 프로젝트 `gitProviderOptions.createDeployments=disabled` + `vercel.json` `git.deploymentEnabled:false`. git push 만으로는 어떤 배포도 일어나지 않는다.
+- **개발·테스트는 전부 로컬에서**: `npm run dev` / `npm run build` / `npm test` 로 로컬 검증.
+- **production 배포는 로컬 확정본을 수동으로**: `vercel --prod` (또는 대시보드 수동 redeploy). **하루 1~2회 또는 반드시 필요할 때만.**
+- 기본 개발 브랜치는 `main`. 변경은 로컬에서 main 에 정리한 뒤 수동 배포. (이전 `main→staging→production` 자동 흐름은 폐지)
+- 실결제·가격·환불정책 관련 변경은 운영 매니저 게이트(회장 승인) 유지.
 
 ## 소통 프로토콜
 - 자비스에게 보고: `scripts/project-reply.sh "메시지" "ai-architect-global"`
