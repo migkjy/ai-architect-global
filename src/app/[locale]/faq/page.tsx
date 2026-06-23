@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: t("subtitle"),
       url: canonicalUrl,
       type: "website",
-      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      locale: locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Native Playbook Series",
       images: [
         {
@@ -135,7 +135,7 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
     description: t("subtitle"),
     url: canonicalFaqUrl,
     dateModified: "2026-03-26",
-    inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+    inLanguage: locale === "ja" ? "ja-JP" : "en-US",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     publisher: {
       "@id": `${SITE_URL}/#organization`,

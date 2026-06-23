@@ -80,7 +80,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       canonical: canonicalUrl,
       languages: {
         en: `${siteUrl}/en/products`,
-        ko: `${siteUrl}/ko/products`,
         ja: `${siteUrl}/ja/products`,
         "x-default": `${siteUrl}/en/products`,
       },
@@ -89,7 +88,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: meta.title,
       description: ogDescription,
       type: "website",
-      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      locale: locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Native Playbook Series",
       url: canonicalUrl,
       images: [
@@ -128,7 +127,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
   const canonicalProductsUrl = `${siteUrl}/${locale}/products`;
 
   const meta = productsMeta[locale] ?? productsMeta.en;
-  const inLanguage = locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US";
+  const inLanguage = locale === "ja" ? "ja-JP" : "en-US";
 
   const itemListSchema = {
     "@type": "ItemList",
@@ -178,7 +177,7 @@ export default async function ProductsPage({ params }: { params: Promise<{ local
       name: "AI Native Playbook",
       url: siteUrl,
       publisher: { "@id": `${siteUrl}/#organization` },
-      inLanguage: ["en-US", "ko-KR", "ja-JP"],
+      inLanguage: ["en-US", "ja-JP"],
     },
     {
       "@context": "https://schema.org",

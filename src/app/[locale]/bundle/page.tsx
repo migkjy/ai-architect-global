@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: meta.title,
       description: meta.ogDescription,
       type: "website",
-      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      locale: locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Native Playbook Series",
       url: canonicalUrl,
       images: [

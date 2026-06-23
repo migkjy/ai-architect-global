@@ -4,41 +4,45 @@ import { patterns } from "@/lib/patterns";
 const BASE_URL =
   (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
 
-// Static pages with their last-modified dates (en prefix canonical)
-const STATIC_PAGES: Array<{ path: string; lastmod: string }> = [
-  { path: "", lastmod: "2026-03-08" },
+// Freshness signal: pages are rebuilt every deploy, so lastmod tracks the
+// deploy date instead of frozen hardcoded dates (which stalled the signal).
+const BUILD_DATE = new Date().toISOString().split("T")[0];
+
+// Static page paths (en prefix canonical). lastmod is derived from BUILD_DATE.
+const STATIC_PAGES: string[] = [
+  "",
   // English pages
-  { path: "en", lastmod: "2026-03-08" },
-  { path: "en/products", lastmod: "2026-03-08" },
-  { path: "en/pricing", lastmod: "2026-03-11" },
-  { path: "en/bundle", lastmod: "2026-03-08" },
-  { path: "en/about", lastmod: "2026-03-01" },
-  { path: "en/faq", lastmod: "2026-03-01" },
-  { path: "en/blog", lastmod: "2026-03-10" },
-  { path: "en/patterns", lastmod: "2026-03-11" },
-  { path: "en/free-guide", lastmod: "2026-03-12" },
-  { path: "en/score", lastmod: "2026-03-25" },
-  { path: "ja/score", lastmod: "2026-03-25" },
-  { path: "en/getting-started", lastmod: "2026-03-08" },
-  { path: "ja/getting-started", lastmod: "2026-03-26" },
-  { path: "en/skill-guide", lastmod: "2026-03-08" },
-  { path: "ja/skill-guide", lastmod: "2026-03-26" },
-  { path: "en/terms", lastmod: "2025-01-01" },
-  { path: "en/privacy", lastmod: "2025-01-01" },
-  { path: "en/refund", lastmod: "2025-01-01" },
+  "en",
+  "en/products",
+  "en/pricing",
+  "en/bundle",
+  "en/about",
+  "en/faq",
+  "en/blog",
+  "en/patterns",
+  "en/free-guide",
+  "en/score",
+  "ja/score",
+  "en/getting-started",
+  "ja/getting-started",
+  "en/skill-guide",
+  "ja/skill-guide",
+  "en/terms",
+  "en/privacy",
+  "en/refund",
   // Japanese pages
-  { path: "ja", lastmod: "2026-03-26" },
-  { path: "ja/pricing", lastmod: "2026-03-26" },
-  { path: "ja/about", lastmod: "2026-03-26" },
-  { path: "ja/faq", lastmod: "2026-03-26" },
-  { path: "ja/blog", lastmod: "2026-03-26" },
-  { path: "ja/free-guide", lastmod: "2026-03-26" },
-  { path: "ja/patterns", lastmod: "2026-03-26" },
-  { path: "ja/products", lastmod: "2026-03-26" },
-  { path: "ja/bundle", lastmod: "2026-03-26" },
-  { path: "ja/terms", lastmod: "2026-03-26" },
-  { path: "ja/privacy", lastmod: "2026-03-26" },
-  { path: "ja/refund", lastmod: "2026-03-26" },
+  "ja",
+  "ja/pricing",
+  "ja/about",
+  "ja/faq",
+  "ja/blog",
+  "ja/free-guide",
+  "ja/patterns",
+  "ja/products",
+  "ja/bundle",
+  "ja/terms",
+  "ja/privacy",
+  "ja/refund",
 ];
 
 function buildUrl(path: string): string {
@@ -51,15 +55,15 @@ function urlEntry(loc: string, lastmod: string): string {
 
 export function GET() {
   const enPatternEntries = patterns.map((p) =>
-    urlEntry(buildUrl(`en/patterns/${p.slug}`), "2026-03-11")
+    urlEntry(buildUrl(`en/patterns/${p.slug}`), BUILD_DATE)
   );
 
   const jaPatternEntries = patterns.map((p) =>
-    urlEntry(buildUrl(`ja/patterns/${p.slug}`), "2026-03-26")
+    urlEntry(buildUrl(`ja/patterns/${p.slug}`), BUILD_DATE)
   );
 
-  const staticEntries = STATIC_PAGES.map((page) =>
-    urlEntry(buildUrl(page.path), page.lastmod)
+  const staticEntries = STATIC_PAGES.map((path) =>
+    urlEntry(buildUrl(path), BUILD_DATE)
   );
 
   const allEntries = [...staticEntries, ...enPatternEntries, ...jaPatternEntries].join("\n");

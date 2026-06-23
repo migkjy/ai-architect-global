@@ -54,7 +54,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       publishedTime: post.date,
       modifiedTime: post.updated ?? post.date,
       url: canonicalUrl,
-      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      locale: locale === "ja" ? "ja_JP" : "en_US",
       siteName: "AI Native Playbook Series",
       images: [
         {
@@ -150,7 +150,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       height: 630,
     },
     url: locale === "en" ? `${siteUrl}/en/blog/${slug}` : `${siteUrl}/${locale}/blog/${slug}`,
-    inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+    inLanguage: locale === "ja" ? "ja-JP" : "en-US",
     author: {
       "@type": "Organization",
       name: "AI Native Playbook Series",

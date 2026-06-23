@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-native-playbook.com").trim();
   const meta = homeMeta[locale] ?? homeMeta.en;
   const canonicalUrl = `${siteUrl}/${locale}`;
-  const ogLocale = locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US";
+  const ogLocale = locale === "ja" ? "ja_JP" : "en_US";
 
   return {
     title: meta.title,
@@ -192,7 +192,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     { step: "04", title: t("step4Title"), desc: t("step4Desc") },
   ];
 
-  const dateLocale = locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US";
+  const dateLocale = locale === "ja" ? "ja-JP" : "en-US";
 
   const faqPageJsonLd = {
     "@context": "https://schema.org",
@@ -227,7 +227,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`,
     name: wpMeta.name,
     description: wpMeta.description,
-    inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+    inLanguage: locale === "ja" ? "ja-JP" : "en-US",
     isPartOf: { "@id": `${siteUrl}/#website` },
     about: [
       { "@type": "Thing", name: "AI Native Playbook" },

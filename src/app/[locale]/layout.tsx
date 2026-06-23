@@ -127,12 +127,10 @@ export function generateStaticParams() {
 function buildSiteJsonLd(locale: string, siteUrl: string) {
   const names: Record<string, string> = {
     en: "AI Native Playbook Series",
-    ko: "AI 아키텍트 시리즈",
     ja: "AI アーキテクトシリーズ",
   };
   const descriptions: Record<string, string> = {
     en: "6 world-class business frameworks automated with AI.",
-    ko: "Russell Brunson, Jeff Walker, Jim Edwards의 비즈니스 프레임워크를 AI로 자동화.",
     ja: "世界クラスのビジネスフレームワークをAIで自動化。",
   };
   return {
@@ -144,7 +142,7 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
         name: names[locale] ?? names.en,
         url: locale === "en" ? siteUrl : `${siteUrl}/${locale}`,
         description: descriptions[locale] ?? descriptions.en,
-        inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+        inLanguage: locale === "ja" ? "ja-JP" : "en-US",
         publisher: {
           "@id": `${siteUrl}/#organization`,
         },
@@ -190,7 +188,7 @@ function buildSiteJsonLd(locale: string, siteUrl: string) {
           "@type": "ContactPoint",
           email: "contact@newbizsoft.com",
           contactType: "customer service",
-          availableLanguage: ["English", "Korean", "Japanese"],
+          availableLanguage: ["English", "Japanese"],
         },
       },
     ],
@@ -227,6 +225,8 @@ export default async function LocaleLayout({
     <html lang={locale} className={inter.variable}>
       <head>
         <link rel="manifest" href="/manifest.json" />
+        {/* Google Search Console — site verification (META method, service account n8n-976) */}
+        <meta name="google-site-verification" content="rRDmvjL5w52Pww6alkLx0ktYXWxyhfV_uM-yhKBwqPA" />
         <meta name="naver-site-verification" content="a6ff1a6273de52eee09a6d7965035cb60726a641" />
         <meta name="naver-site-verification" content="cda8874de26392058a4eacc1de62c73bf59ff7ef" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
@@ -246,9 +246,9 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: escapeJsonLd(JSON.stringify(siteJsonLd)) }}
         />
-        {/* GA4 */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-76C0HSW5LB" strategy="lazyOnload" />
-        <Script id="ga4-ai-architect-io" strategy="lazyOnload">
+        {/* GA4 — afterInteractive so pageviews fire reliably (lazyOnload dropped hits on fast bounces) */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-76C0HSW5LB" strategy="afterInteractive" />
+        <Script id="ga4-ai-architect-io" strategy="afterInteractive">
           {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-76C0HSW5LB');`}
         </Script>
         {/* Paddle Billing — overlay checkout (Client Token 미설정 시 로드하지 않음) */}

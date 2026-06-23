@@ -36,7 +36,7 @@ export async function generateMetadata({
       type: "website",
       url: canonicalUrl,
       siteName: "AI Native Playbook Series",
-      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      locale: locale === "ja" ? "ja_JP" : "en_US",
       images: [
         {
           url: locale === "en"
@@ -111,7 +111,7 @@ export default async function FreeGuidePage({
     description:
       "Download your free AI starter guide. Learn how to automate marketing funnels, sales copy, and product launches using AI. No purchase required.",
     url: canonicalUrl,
-    inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+    inLanguage: locale === "ja" ? "ja-JP" : "en-US",
     isAccessibleForFree: true,
     educationalLevel: "Beginner",
     provider: {

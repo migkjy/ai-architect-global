@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "website",
       url: canonicalUrl,
       siteName: "AI Native Playbook Series",
-      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      locale: locale === "ja" ? "ja_JP" : "en_US",
       images: [
         {
           url: locale === "en"
@@ -123,7 +123,7 @@ export default async function BlogPage({
   const topTags = getAllTags();
 
   const canonicalUrl = locale === "en" ? `${SITE_URL}/en/blog` : `${SITE_URL}/${locale}/blog`;
-  const dateLocale = locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US";
+  const dateLocale = locale === "ja" ? "ja-JP" : "en-US";
 
   const collectionPageJsonLd = {
     "@context": "https://schema.org",
@@ -131,7 +131,7 @@ export default async function BlogPage({
     name: "AI Business Blog | AI Native Playbook Series",
     description: "Practical AI tools, marketing automation, and business growth strategies for entrepreneurs and small business owners.",
     url: canonicalUrl,
-    inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+    inLanguage: locale === "ja" ? "ja-JP" : "en-US",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     publisher: {
       "@type": "Organization",

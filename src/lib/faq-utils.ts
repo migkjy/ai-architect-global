@@ -45,7 +45,7 @@ export function buildFaqJsonLd(
     "@context": "https://schema.org",
     "@type": "FAQPage",
     url: pageUrl,
-    inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+    inLanguage: locale === "ja" ? "ja-JP" : "en-US",
     mainEntity: faqs.map((item) => ({
       "@type": "Question",
       name: item.q,

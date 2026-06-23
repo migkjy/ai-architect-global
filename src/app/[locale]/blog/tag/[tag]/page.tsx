@@ -54,7 +54,7 @@ export async function generateMetadata({
       type: "website",
       url: canonicalUrl,
       siteName: "AI Native Playbook Series",
-      locale: locale === "ko" ? "ko_KR" : locale === "ja" ? "ja_JP" : "en_US",
+      locale: locale === "ja" ? "ja_JP" : "en_US",
     },
     robots: {
       index: true,
@@ -103,7 +103,7 @@ export default async function TagPage({
     name: `${matched} Articles | AI Native Playbook Series`,
     description: `All articles tagged with "${matched}".`,
     url: canonicalUrl,
-    inLanguage: locale === "ko" ? "ko-KR" : locale === "ja" ? "ja-JP" : "en-US",
+    inLanguage: locale === "ja" ? "ja-JP" : "en-US",
     isPartOf: { "@id": `${SITE_URL}/#website` },
     hasPart: posts.map((post) => ({
       "@type": "BlogPosting",
